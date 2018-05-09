@@ -1,0 +1,11 @@
+ios
+android
+styleguide
+.babelrc
+.flowconfig
+.watchmanconfig
+app.json
+index.js
+styleguide.config
+package-lock.json
+src/**/*.md

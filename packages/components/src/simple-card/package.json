@@ -1,0 +1,6 @@
+{
+  "name": "@mobius-components/simple-card",
+  "version": "0.0.1",
+  "description": "Simple Card",
+  "main": "./SimpleCard.js"
+}

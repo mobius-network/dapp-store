@@ -1,0 +1,78 @@
+{
+  "name": "@mobius-network/web-wallet",
+  "version": "0.0.1",
+  "description": "Mobius Network Web wallet",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "clean": "rimraf dist",
+    "build:webpack": "webpack --config webpack.production.config.js --progress --profile --colors",
+    "build": "cross-env npm run clean && npm run build:webpack",
+    "prettier": "npx prettier --write src/**/*.js *.js",
+    "lint": "npx eslint --fix --ext js .",
+    "format": "npm run prettier && npm run lint",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "coverage": "jest --coverage"
+  },
+  "dependencies": {
+    "@mobius-network/components": "0.0.1",
+    "cross-env": "5.1.4",
+    "react": "16.3.2",
+    "react-dom": "16.3.2",
+    "react-hot-loader": "^4.1.2",
+    "react-native-web": "^0.6.1",
+    "react-router-dom": "4.2.2",
+    "styled-components": "^3.2.6"
+  },
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-core": "6.26.3",
+    "babel-eslint": "8.2.3",
+    "babel-jest": "22.4.3",
+    "babel-loader": "7.1.4",
+    "babel-plugin-react-native-web": "^0.6.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-react-hmre": "1.1.1",
+    "copy-webpack-plugin": "4.5.1",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "eslint": "^4.9.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^5.1.0",
+    "eslint-plugin-flowtype": "^2.46.3",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "file-loader": "1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "22.4.3",
+    "open-browser-webpack-plugin": "0.0.5",
+    "prettier": "^1.12.1",
+    "react-test-renderer": "16.3.2",
+    "rimraf": "2.6.2",
+    "url-loader": "1.0.1",
+    "webpack": "4.8.1",
+    "webpack-cli": "^2.1.3",
+    "webpack-dev-server": "3.1.4"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/config/jest/shim.js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}"
+    ],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/config/jest/assetsTransformer.js"
+    },
+    "testMatch": [
+      "**/?(*.)(spec|test).js?(x)"
+    ],
+    "transform": {
+      "\\.js$": "babel-jest"
+    }
+  }
+}
