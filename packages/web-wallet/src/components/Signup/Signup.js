@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
 
+import PasswordForm from './PasswordForm';
+
 class Signup extends Component {
+  static propTypes = {
+    signupStep: string.isRequired,
+  };
+
   toggleSignupStep = () => {
     const { setSignupStep, signupStep } = this.props;
 
@@ -17,6 +24,7 @@ class Signup extends Component {
         <button onClick={this.toggleSignupStep}>Toggle</button>
         <div>step: {signupStep}</div>
         <Link to="/">Home</Link>
+        <PasswordForm />
       </div>
     );
   }

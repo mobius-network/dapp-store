@@ -49,11 +49,18 @@ const config = {
                 targets: {
                   chrome: 66,
                 },
+                useBuiltIns: true,
               },
             ],
             'react',
           ],
-          plugins: ['react-native-web', 'transform-class-properties'],
+          plugins: [
+            'react-native-web',
+            'syntax-object-rest-spread',
+            'transform-class-properties',
+            'styled-components',
+            'lodash',
+          ],
         },
         include: [
           resolve(__dirname, 'src'),

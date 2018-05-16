@@ -3,7 +3,7 @@ import { persistStore } from 'redux-persist';
 import createSagaMiddleware from 'redux-saga';
 import eventFilterMiddleware from 'event-filter-redux-middleware';
 
-import { isDev } from 'core/env';
+import { isDev } from 'utils/env';
 import getReducer from './reducer';
 
 const sagaMiddleware =
