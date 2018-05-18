@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { SimpleCard } from '@mobius-network/components';
 
 import reactLogo from '../assets/images/react_logo_512x512.png';
@@ -17,6 +18,7 @@ const App = () => (
     <SimpleCard color="green" title="Card">
       <p>Welcome to React Native Web!</p>
     </SimpleCard>
+    <Link to="/signup">Signup</Link>
   </div>
 );
 
