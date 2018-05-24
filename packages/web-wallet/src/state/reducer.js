@@ -4,9 +4,11 @@ import storage from 'redux-persist/lib/storage';
 import { reducer as formReducer } from 'redux-form';
 
 import { authReducer, authActions } from './auth';
+import { balanceReducer } from './balance';
 
 const combined = combineReducers({
   auth: authReducer,
+  balance: balanceReducer,
   form: formReducer,
 });
 
@@ -17,7 +19,7 @@ const persistConfig = {
 };
 
 const rootReducer = (state, action) => {
-  if (action.type === authActions.logout) {
+  if (action.type === authActions.logout.type) {
     return combined(undefined, action);
   }
 

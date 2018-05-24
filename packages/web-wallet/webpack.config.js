@@ -33,7 +33,10 @@ const config = {
 
   resolve: {
     extensions: ['.js'],
-    modules: ['src', 'node_modules'],
+    modules: [
+      resolve(__dirname, 'src'),
+      'node_modules',
+    ],
   },
 
   module: {
@@ -66,8 +69,9 @@ const config = {
           resolve(__dirname, 'src'),
           resolve(__dirname, '../components/src'),
           resolve(__dirname, 'node_modules', '@mobius-network/components'),
-          resolve(__dirname, '../core/src'),
-          resolve(__dirname, 'node_modules', '@mobius-network/core'),
+          resolve(__dirname, 'node_modules', 'js-xdr'),
+          // resolve(__dirname, '../core/src'),
+          // resolve(__dirname, 'node_modules', '@mobius-network/core'),
         ],
       },
       {
@@ -137,6 +141,9 @@ const config = {
   },
 
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require('./config/dev.env'),
+    }),
     new HtmlWebpackPlugin({
       template: 'index.html',
       filename: 'index.html',
@@ -144,6 +151,10 @@ const config = {
     new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.HotModuleReplacementPlugin(),
   ],
+
+  node: {
+    fs: 'empty',
+  },
 };
 
 module.exports = config;

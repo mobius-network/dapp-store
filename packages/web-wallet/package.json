@@ -21,7 +21,8 @@
     "@mobius-network/components": "0.0.1",
     "@mobius-network/core": "0.0.1",
     "cross-env": "5.1.4",
-    "event-filter-redux-middleware": "^0.0.1",
+    "downloadjs": "^1.4.7",
+    "event-filter-redux-middleware": "^0.0.2",
     "immutability-helper": "^2.7.0",
     "lodash": "^4.17.10",
     "react": "^16.3.2",
@@ -38,7 +39,8 @@
     "reselect": "^3.0.1",
     "stellar-hd-wallet": "^0.0.6",
     "stellar-sdk": "^0.8.1",
-    "styled-components": "^3.2.6"
+    "styled-components": "^3.2.6",
+    "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",

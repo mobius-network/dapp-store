@@ -22,13 +22,13 @@ export default compose(
     validate: ({ password, passwordConfirmation }) => {
       const errors = {};
 
-      if (password === passwordConfirmation) {
+      if (password !== passwordConfirmation) {
         // eslint-disable-next-line no-underscore-dangle
         errors._error = 'Should match';
       }
 
       return errors;
     },
-    onSubmit: values => console.log(values),
-  }),
+    onSubmit: (values, store, { signup }) => signup(values),
+  })
 )(PasswordForm);

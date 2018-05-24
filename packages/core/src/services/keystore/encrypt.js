@@ -29,7 +29,7 @@ export function encrypt(password, mnemonic) {
         },
       };
 
-      resolve(keystore);
+      resolve({ keystore, wallet });
     });
   });
 }

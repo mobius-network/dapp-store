@@ -8,16 +8,13 @@ export const fixed = (_, { fixed }) => fixed;
 
 export const wallet = state => state.balance.wallet;
 export const masterAccount = state => state.balance.masterAccount;
+export const getMnemonic = state => state.balance.mnemonic;
 
-export const balance = createSelector(
-  masterAccount,
-  account => stellarBalance.parseBalance(account),
-);
+export const balance = createSelector(masterAccount, account =>
+  stellarBalance.parseBalance(account));
 
-export const assetBalance = createSelector(
-  [balance, asset],
-  (balance, asset) => stellarBalance.parsedBalanceValue(balance, asset)
-);
+export const assetBalance = createSelector([balance, asset], (balance, asset) =>
+  stellarBalance.parsedBalanceValue(balance, asset));
 
 export const assetValueFixed = createSelector(
   [assetBalance, fixed],
@@ -64,5 +61,5 @@ export const keypairFor = createSelector(
 
 export const masterTrustlineCreated = createSelector(
   balance,
-  balance => balance && balance.mobi !== undefined,
+  balance => balance && balance.mobi !== undefined
 );
