@@ -1,0 +1,19 @@
+# OSX
+#
+.DS_Store
+
+# Node
+#
+dist/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# VScode
+#
+.vscode
+
+# coverage
+#
+/coverage
+

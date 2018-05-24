@@ -1,21 +1,14 @@
 const { resolve } = require('path');
-
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  stats: 'minimal',
-  devtool: 'eval',
-  mode: 'development',
+  devtool: 'source-map',
+  mode: 'production',
 
   context: resolve(__dirname, 'src'),
 
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './index.js',
-  ],
+  entry: ['./index.js'],
 
   output: {
     filename: 'bundle.js',
@@ -23,13 +16,26 @@ const config = {
     publicPath: '',
   },
 
-  devServer: {
-    stats: 'minimal',
-    hot: true,
-    publicPath: '/',
-    historyApiFallback: true,
-    contentBase: resolve(__dirname, 'dist'),
+  optimization: {
+    minimize: true,
   },
+
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new HtmlWebpackPlugin({
+      template: `${__dirname}/src/index.html`,
+      filename: 'index.html',
+      inject: 'body',
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false,
+    }),
+    new webpack.DefinePlugin({
+      'process.env': { NODE_ENV: JSON.stringify('production') },
+    }),
+  ],
 
   resolve: {
     extensions: ['.js'],
@@ -40,34 +46,24 @@ const config = {
     rules: [
       {
         test: /\.js?$/,
-        loader: 'babel-loader',
+        loaders: 'babel-loader',
         options: {
           presets: [
             [
               'env',
               {
                 targets: {
-                  chrome: 66,
+                  browsers: ['>0.25%', 'not ie 11', 'not op_mini all'],
                 },
-                useBuiltIns: true,
               },
             ],
             'react',
-          ],
-          plugins: [
-            'react-native-web',
-            'syntax-object-rest-spread',
-            'transform-class-properties',
-            'styled-components',
-            'lodash',
           ],
         },
         include: [
           resolve(__dirname, 'src'),
           resolve(__dirname, '../components/src'),
           resolve(__dirname, 'node_modules', '@mobius-network/components'),
-          resolve(__dirname, '../core/src'),
-          resolve(__dirname, 'node_modules', '@mobius-network/core'),
         ],
       },
       {
@@ -135,15 +131,6 @@ const config = {
       },
     ],
   },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html',
-      filename: 'index.html',
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-  ],
 };
 
 module.exports = config;

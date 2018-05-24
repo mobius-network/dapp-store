@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { reducer as formReducer } from 'redux-form';
 
 import { authReducer, authActions } from './auth';
 
 const combined = combineReducers({
   auth: authReducer,
+  form: formReducer,
 });
 
 const persistConfig = {

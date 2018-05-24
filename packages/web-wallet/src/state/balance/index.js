@@ -1,18 +1,22 @@
 import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
-export const balanceActions = createActions(['dummy'], 'balance');
+export const balanceActions = createActions([
+  'setWallet',
+  'setMasterAccount',
+], 'balance');
 
 const initialState = {
-  dummy: 'value',
+  wallet: null,
+  masterAccount: null,
 };
 
 export const balanceReducer = createReducer(
   {
-    [balanceActions.dummy]: (state, value) =>
-      merge(state, {
-        value,
-      }),
+    [balanceActions.setWallet]: (state, wallet) =>
+      merge(state, { wallet }),
+    [balanceActions.setMasterAccount]: (state, masterAccount) =>
+      merge(state, { masterAccount }),
   },
   initialState
 );

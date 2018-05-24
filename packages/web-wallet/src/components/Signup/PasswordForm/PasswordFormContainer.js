@@ -1,3 +1,5 @@
+import { compose } from 'redux';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -13,4 +15,20 @@ const actions = {
   ...authActions,
 };
 
-export default connect(mapStateToProps, actions)(PasswordForm);
+export default compose(
+  connect(mapStateToProps, actions),
+  reduxForm({
+    form: 'signupPassword',
+    validate: ({ password, passwordConfirmation }) => {
+      const errors = {};
+
+      if (password === passwordConfirmation) {
+        // eslint-disable-next-line no-underscore-dangle
+        errors._error = 'Should match';
+      }
+
+      return errors;
+    },
+    onSubmit: values => console.log(values),
+  }),
+)(PasswordForm);

@@ -66,8 +66,6 @@ const config = {
           resolve(__dirname, 'src'),
           resolve(__dirname, '../components/src'),
           resolve(__dirname, 'node_modules', '@mobius-network/components'),
-          resolve(__dirname, '../core/src'),
-          resolve(__dirname, 'node_modules', '@mobius-network/core'),
         ],
       },
       {
