@@ -1,7 +1,6 @@
-import download from 'downloadjs';
 import StellarHDWallet from 'stellar-hd-wallet';
 import { encrypt, stellarBalance } from '@mobius-network/core';
-import { fork, call, takeLatest, select, put, all } from 'redux-saga/effects';
+import { fork, call, select, put } from 'redux-saga/effects';
 
 import {
   balanceActions,
@@ -10,19 +9,7 @@ import {
   masterTrustlineCreated,
 } from 'state/balance';
 
-import { getKeystore } from './selectors';
 import { authActions, signupSteps } from './reducer';
-
-export function* downloadKeypair() {
-  const keypair = yield select(getKeystore, 0);
-
-  const date = new Date();
-  const fileName = `${date.toISOString()}.json`;
-
-  download(JSON.stringify(keypair), `Mobius-${fileName}`, 'application/json');
-
-  yield put(authActions.setSignupStep(signupSteps.mnemonic));
-}
 
 export function* prepareAccount(wallet) {
   yield put(balanceActions.setWallet(wallet));
@@ -55,9 +42,4 @@ export function* signup({ payload }) {
   yield fork(prepareAccount, wallet);
 }
 
-export function* signupSaga() {
-  yield all([
-    takeLatest(authActions.signup.type, signup),
-    takeLatest(balanceActions.downloadKeypair, downloadKeypair),
-  ]);
-}
+export default { [signup]: authActions.signup };

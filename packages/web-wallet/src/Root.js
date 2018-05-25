@@ -6,7 +6,7 @@ import PrivateRoute from 'components/shared/PrivateRoute';
 import PublicRoute from 'components/shared/PublicRoute';
 
 import Header from 'components/Header';
-import App from 'components/App';
+import DappStore from 'components/DappStore';
 import Login from 'components/Login';
 import Signup from 'components/Signup';
 import Onboarding from 'components/Onboarding';
@@ -18,10 +18,10 @@ const Root = ({ store, persistor }) => (
         <div>
           <Route path="/" component={Header} />
           <Switch>
-            <Route path="/" component={App} exact />
+            <Route path="/" component={DappStore} exact />
             <PublicRoute path="/login" component={Login} exact />
             <PublicRoute path="/signup" component={Signup} exact />
-            <PrivateRoute path="/onboarding" component={Onboarding} exact />
+            <PrivateRoute path="/onboarding" component={Onboarding} />
           </Switch>
         </div>
       </Router>
