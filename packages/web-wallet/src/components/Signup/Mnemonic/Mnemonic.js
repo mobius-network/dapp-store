@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { signupSteps } from 'state/auth';
 import { Container, Title } from './styles';
 
 class Mnemonic extends Component {
@@ -11,7 +10,7 @@ class Mnemonic extends Component {
   };
 
   markSignupCompleted = () => {
-    this.props.setSignupStep(signupSteps.completed);
+    this.props.login();
   };
 
   render() {

@@ -1,5 +1,5 @@
 import download from 'downloadjs';
-import { select, put } from 'redux-saga/effects';
+import { takeLatest, select, put } from 'redux-saga/effects';
 
 import { balanceActions } from 'state/balance';
 
@@ -17,4 +17,4 @@ export function* downloadKeypair() {
   yield put(authActions.setSignupStep(signupSteps.mnemonic));
 }
 
-export default { [downloadKeypair]: balanceActions.downloadKeypair };
+export default takeLatest(balanceActions.downloadKeypair, downloadKeypair);

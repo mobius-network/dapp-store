@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { authActions } from 'state/auth';
-import { getMnemonic } from 'state/balance';
+import { authActions, getMnemonic } from 'state/auth';
 
 import Mnemonic from './Mnemonic';
 

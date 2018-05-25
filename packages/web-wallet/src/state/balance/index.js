@@ -1,25 +1,8 @@
-import { merge } from 'state/utils';
-import { createActions, createReducer } from 'redux-yo';
+import { yieldSagas } from 'state/utils';
+import initAppSaga from './initAppSaga';
+import watchAccountSaga from './watchAccountSaga';
 
-export const balanceActions = createActions(
-  ['setWallet', 'setMasterAccount', 'downloadKeypair', 'setMnemonic'],
-  'balance'
-);
+export const balanceSagas = yieldSagas(watchAccountSaga, initAppSaga);
 
-const initialState = {
-  wallet: null,
-  masterAccount: null,
-};
-
-export const balanceReducer = createReducer(
-  {
-    [balanceActions.setWallet]: (state, wallet) => merge(state, { wallet }),
-    [balanceActions.setMasterAccount]: (state, masterAccount) =>
-      merge(state, { masterAccount }),
-    [balanceActions.setMnemonic]: (state, mnemonic) =>
-      merge(state, { mnemonic }),
-  },
-  initialState
-);
-
+export * from './reducer';
 export * from './selectors';
