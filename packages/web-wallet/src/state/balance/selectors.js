@@ -10,6 +10,11 @@ export const getMasterAccount = state => state.balance.masterAccount;
 export const getBalance = createSelector(getMasterAccount, account =>
   stellarBalance.parseBalance(account));
 
+export const getAccountId = createSelector(
+  getMasterAccount,
+  account => account.id
+);
+
 export const getAssetBalance = createSelector(
   [getBalance, getAsset],
   (balance, asset) => {

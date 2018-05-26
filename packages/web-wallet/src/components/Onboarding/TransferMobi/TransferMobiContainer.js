@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { authActions, signupStep } from 'state/auth';
+import { balanceActions, getAccountId } from 'state/balance';
 
 import TransferMobi from './TransferMobi';
 
 const mapStateToProps = createStructuredSelector({
-  signupStep,
+  accountId: getAccountId,
 });
 
 const actions = {
-  ...authActions,
+  ...balanceActions,
 };
 
 export default connect(mapStateToProps, actions)(TransferMobi);
