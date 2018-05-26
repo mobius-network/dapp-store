@@ -10,9 +10,11 @@ class TransferXlm extends Component {
   };
 
   render() {
+    const { balance } = this.props;
+
     return (
       <Container>
-        <Title>TransferXlm</Title>
+        <Title>Current balance: {balance}</Title>
         <Link to="/onboarding/mobi">Continue</Link>
       </Container>
     );

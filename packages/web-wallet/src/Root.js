@@ -11,9 +11,23 @@ import Login from 'components/Login';
 import Signup from 'components/Signup';
 import Onboarding from 'components/Onboarding';
 
+// TODO: move me to saga
+const waitForRequiredData = store => () =>
+  new Promise(resolve => {
+    store.subscribe(() => {
+      if (store.getState().balance.masterAccount) {
+        resolve();
+      }
+    });
+  });
+
 const Root = ({ store, persistor }) => (
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    <PersistGate
+      loading={null}
+      persistor={persistor}
+      onBeforeLift={waitForRequiredData(store)}
+    >
       <Router>
         <div>
           <Route path="/" component={Header} />

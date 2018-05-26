@@ -2,19 +2,27 @@
 import { createSelector } from 'reselect';
 import { stellarBalance } from '@mobius-network/core';
 
-export const asset = (_, { asset }) => asset;
-export const fixed = (_, { fixed }) => fixed;
+export const getAsset = (_, { asset }) => asset;
+export const getFixed = (_, { fixed }) => fixed;
 
 export const getMasterAccount = state => state.balance.masterAccount;
 
-export const balance = createSelector(getMasterAccount, account =>
+export const getBalance = createSelector(getMasterAccount, account =>
   stellarBalance.parseBalance(account));
 
-export const assetBalance = createSelector([balance, asset], (balance, asset) =>
-  stellarBalance.parsedBalanceValue(balance, asset));
+export const getAssetBalance = createSelector(
+  [getBalance, getAsset],
+  (balance, asset) => {
+    if (!balance) {
+      return null;
+    }
+
+    return stellarBalance.parsedBalanceValue(balance, asset);
+  }
+);
 
 export const assetValueFixed = createSelector(
-  [assetBalance, fixed],
+  [getAssetBalance, getFixed],
   (assetBalance, fixed) => {
     if (!assetBalance) {
       return null;
@@ -24,6 +32,6 @@ export const assetValueFixed = createSelector(
 );
 
 export const masterTrustlineCreated = createSelector(
-  balance,
+  getBalance,
   balance => balance && balance.mobi !== undefined
 );
