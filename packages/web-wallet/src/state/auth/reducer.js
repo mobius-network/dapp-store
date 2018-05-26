@@ -1,3 +1,5 @@
+import StellarHDWallet from 'stellar-hd-wallet';
+import { REHYDRATE } from 'redux-persist';
 import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
@@ -30,6 +32,11 @@ const initialState = {
 
 export const authReducer = createReducer(
   {
+    [REHYDRATE]: (state, { auth }) =>
+      merge(state, {
+        ...auth,
+        wallet: StellarHDWallet.fromSeed(auth.wallet.seedHex),
+      }),
     [authActions.set]: (state, payload) => merge(state, payload),
     [authActions.login]: state =>
       merge(state, {
