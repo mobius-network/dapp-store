@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { string } from 'prop-types';
-import { Link } from 'react-router-dom';
-import { stellarBalance, stellarServer } from '@mobius-network/core';
+import PurchaseMobi from 'components/shared/PurchaseMobi';
+import TransferSuccessMessage from 'components/shared/TransferSuccessMessage';
 
 import { Container, Title } from './styles';
 
@@ -11,41 +11,30 @@ class TransferMobi extends Component {
   };
 
   state = {
-    mobi: 0,
+    mobiPurchased: false,
   };
 
-  handleMobiChange = ({ target: { value } }) => {
-    const { accountId } = this.props;
-
-    this.setState({ mobi: value });
-
-    stellarServer
-      .paths(accountId, accountId, stellarBalance.mobi(), value)
-      .limit(5)
-      .call()
-      .then(resp => {
-        const minPrice = Math.min(...resp.records.map(path => path.source_amount));
-
-        console.log(minPrice);
-      });
+  handlePurchase = ({ value }) => {
+    this.setState({ mobiPurchased: value });
   };
 
   render() {
-    const { mobi } = this.state;
-    const { accountId } = this.props;
+    const { mobiPurchased } = this.state;
 
     return (
       <Container>
-        <Title>TransferMobi</Title>
-        <p>{accountId}</p>
+        <Title>Add MOBI</Title>
 
-        <input
-          type="number"
-          placeholder="mobi amount"
-          value={mobi}
-          onChange={this.handleMobiChange}
-        />
-        <Link to="/">Browse DApp store</Link>
+        {mobiPurchased ? (
+          <TransferSuccessMessage
+            assetName="mobi"
+            assetValue={mobiPurchased}
+            linkPath="/"
+            linkLabel="Browse DApp store"
+          />
+        ) : (
+          <PurchaseMobi onSuccess={this.handlePurchase} />
+        )}
       </Container>
     );
   }

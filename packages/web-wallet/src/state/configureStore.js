@@ -39,7 +39,6 @@ function makeStore(initialState = {}) {
     eventFilterMiddleware,
   ]);
 
-  // Initialize with dummy reducer first
   const store = createStoreWithMiddleware(getReducer(), initialState);
 
   store.runSaga = sagaMiddleware.run;

@@ -3,11 +3,11 @@ import { takeLatest, select, put } from 'redux-saga/effects';
 
 import { balanceActions } from 'state/balance';
 
-import { getKeystore } from './selectors';
-import { authActions, signupSteps } from './reducer';
+import { getKeystore } from 'state/auth/selectors';
+import { authActions, signupSteps } from 'state/auth/reducer';
 
 export function* downloadKeypair() {
-  const keypair = yield select(getKeystore, 0);
+  const keypair = yield select(getKeystore);
 
   const date = new Date();
   const fileName = `${date.toISOString()}.json`;

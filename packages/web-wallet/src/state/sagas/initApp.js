@@ -1,16 +1,16 @@
 import { takeLatest, call, select } from 'redux-saga/effects';
 import { REHYDRATE } from 'redux-persist';
 
-import { isAuthorized } from 'state/auth/selectors';
+import { getIsAuthorized } from 'state/auth/selectors';
 
-import { prepareAccount } from './watchAccountSaga';
-import { getMasterAccount } from './selectors';
+import { getMasterAccount } from 'state/balance/selectors';
+import { prepareAccount } from './watchAccount';
 
 export function* initApp() {
   const masterAccount = yield select(getMasterAccount);
-  const authorized = yield select(isAuthorized);
+  const isAuthorized = yield select(getIsAuthorized);
 
-  if (masterAccount || !authorized) {
+  if (masterAccount || !isAuthorized) {
     return;
   }
 

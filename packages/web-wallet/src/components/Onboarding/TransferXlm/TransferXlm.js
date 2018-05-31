@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
-// import { string } from 'prop-types';
+import { number } from 'prop-types';
 import { Link } from 'react-router-dom';
+import CurrentAddress from 'components/shared/CurrentAddress';
 
 import { Container, Title } from './styles';
 
 class TransferXlm extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    balance: number,
+  };
+
+  static defaultProps = {
+    balance: 0,
   };
 
   render() {
@@ -14,6 +19,7 @@ class TransferXlm extends Component {
 
     return (
       <Container>
+        <CurrentAddress />
         <Title>Current balance: {balance}</Title>
         <Link to="/onboarding/mobi">Continue</Link>
       </Container>

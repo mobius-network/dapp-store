@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { isAuthorized } from 'state/auth';
+import { getIsAuthorized } from 'state/auth';
 
 import PrivateRoute from './PrivateRoute';
 
 const mapStateToProps = createStructuredSelector({
-  isAuthorized,
+  isAuthorized: getIsAuthorized,
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

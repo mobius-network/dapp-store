@@ -1,1 +1,1 @@
-export { default } from './OnboardingContainer';
+export { default } from './Onboarding';

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { string } from 'prop-types';
-import { Link } from 'react-router-dom';
-
 import { signupSteps } from 'state/auth';
+
 import PasswordForm from './PasswordForm';
 import DownloadKeypair from './DownloadKeypair';
 import Mnemonic from './Mnemonic';
@@ -18,7 +17,7 @@ class Signup extends Component {
     signupStep: string.isRequired,
   };
 
-  // TODO: delete me
+  // TODO: added for testing purposes, delete me
   componentDidMount() {
     this.props.setSignupStep('password');
   }
@@ -30,8 +29,6 @@ class Signup extends Component {
     return (
       <div>
         <div>Signup</div>
-        <div>step: {signupStep}</div>
-        <Link to="/">Home</Link>
 
         <StepComponent />
       </div>

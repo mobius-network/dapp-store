@@ -21,4 +21,7 @@ export const Title = styled(Text)`
 
 export const ContentView = styled(View)`
   padding: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;

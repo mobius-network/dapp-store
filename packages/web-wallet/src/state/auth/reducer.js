@@ -32,11 +32,16 @@ const initialState = {
 
 export const authReducer = createReducer(
   {
-    [REHYDRATE]: (state, { auth }) =>
-      merge(state, {
-        ...auth,
-        wallet: StellarHDWallet.fromSeed(auth.wallet.seedHex),
-      }),
+    [REHYDRATE]: (state, { auth }) => {
+      if (auth.wallet) {
+        return merge(state, {
+          ...auth,
+          wallet: StellarHDWallet.fromSeed(auth.wallet.seedHex),
+        });
+      }
+
+      return merge(state, auth);
+    },
     [authActions.set]: (state, payload) => merge(state, payload),
     [authActions.login]: state =>
       merge(state, {

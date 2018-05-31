@@ -8,20 +8,21 @@ import {
   take,
   cancel,
 } from 'redux-saga/effects';
-import { stellarBalance } from '@mobius-network/core';
+import { assets, stellarBalance, stellarAccount } from '@mobius-network/core';
 
 import { authActions } from 'state/auth/reducer';
-import { publicKeyFor, secretKeyFor } from 'state/auth/selectors';
+import { getWallet, getPublicKeyFor } from 'state/auth/selectors';
 
-import { balanceActions } from './reducer';
-import { masterTrustlineCreated } from './selectors';
+import { balanceActions } from 'state/balance/reducer';
+import { getMasterTrustlineCreated } from 'state/balance/selectors';
 
 export function* loadAccount(publicKey) {
-  // TODO: delete me
-  // const account = !publicKey;
   const account = yield call(stellarBalance.safeLoadAccount, publicKey);
 
   if (account) {
+    // TODO: replace with client-sdk methods
+    stellarAccount.setAccount(account);
+
     yield put(balanceActions.setMasterAccount(account));
   }
 }
@@ -34,18 +35,23 @@ export function* watchAccount(publicKey, delayDuration = 2000) {
 }
 
 export function* prepareAccount() {
-  const publicKey = yield select(publicKeyFor, 0);
+  const publicKey = yield select(getPublicKeyFor);
 
   yield call(loadAccount, publicKey);
   const accountWatcher = yield fork(watchAccount, publicKey);
 
   const state = yield select();
 
-  if (masterTrustlineCreated(state)) {
-    stellarBalance.createTrustline(
-      publicKeyFor(state, 0),
-      secretKeyFor(state, 0)
-    );
+  // Wait for account activation
+  yield take(balanceActions.setMasterAccount);
+
+  // TODO: replace with client-sdk methods
+  stellarAccount.setWallet(getWallet(state));
+
+  if (!getMasterTrustlineCreated(state)) {
+    const createTrustOp = stellarBalance.createTrustline(assets.mobi);
+
+    yield call([stellarAccount, 'submitTransaction'], createTrustOp);
   }
 
   yield take(authActions.logout);

@@ -3,12 +3,12 @@ import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { authActions, signupStep } from 'state/auth';
+import { authActions, getSignupStep } from 'state/auth';
 
 import PasswordForm from './PasswordForm';
 
 const mapStateToProps = createStructuredSelector({
-  signupStep,
+  signupStep: getSignupStep,
 });
 
 const actions = {

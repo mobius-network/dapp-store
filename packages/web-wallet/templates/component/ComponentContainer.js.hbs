@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { authActions, signupStep } from 'state/auth';
+import { authActions, getIsAuthorized } from 'state/auth';
 
 import {{ properCase name }} from './{{ properCase name }}';
 
 const mapStateToProps = createStructuredSelector({
-  signupStep,
+  isAuthorized: getIsAuthorized,
 });
 
 const actions = {

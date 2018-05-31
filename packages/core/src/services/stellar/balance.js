@@ -1,22 +1,25 @@
-import StellarSdk from 'stellar-sdk';
+import { Asset, Operation } from 'stellar-sdk';
 import { stellarServer } from './server';
 
+export const assets = {
+  mobi: new Asset(
+    process.env.MOBI_ASSET,
+    process.env.MOBI_ASSET_ISSUER
+  ),
+  native: Asset.native(),
+};
+
 export const stellarBalance = {
-  mobi() {
-    return new StellarSdk.Asset(
-      process.env.MOBI_ASSET,
-      process.env.MOBI_ASSET_ISSUER
-    );
-  },
+  mobi: assets.mobi,
 
   parseBalance(account) {
     if (!account) {
       return null;
     }
 
-    return account.balances.reduce((h, b) => {
-      h[(b.asset_code || b.asset_type).toLowerCase()] = b;
-      return h;
+    return account.balances.reduce((acc, b) => {
+      acc[(b.asset_code || b.asset_type).toLowerCase()] = b;
+      return acc;
     }, {});
   },
 
@@ -43,21 +46,7 @@ export const stellarBalance = {
     });
   },
 
-  createTrustline(publicKey, secret) {
-    const keypair = StellarSdk.Keypair.fromSecret(secret);
-    const changeTrustOp = StellarSdk.Operation.changeTrust({
-      asset: this.mobi(),
-    });
-
-    const changeTrust = account => {
-      const transaction = new StellarSdk.TransactionBuilder(account)
-        .addOperation(changeTrustOp)
-        .build();
-
-      transaction.sign(keypair);
-      return stellarServer.submitTransaction(transaction);
-    };
-
-    return stellarServer.loadAccount(publicKey).then(changeTrust);
+  createTrustline(asset) {
+    return Operation.changeTrust({ asset });
   },
 };

@@ -2,9 +2,8 @@ import StellarHDWallet from 'stellar-hd-wallet';
 import { takeLatest, fork, call, put } from 'redux-saga/effects';
 import { encrypt } from '@mobius-network/core';
 
-import { prepareAccount } from 'state/balance/watchAccountSaga';
-
-import { authActions, signupSteps } from './reducer';
+import { authActions, signupSteps } from 'state/auth/reducer';
+import { prepareAccount } from './watchAccount';
 
 export function* signup({ payload }) {
   const { password } = payload;

@@ -1,26 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { SimpleCard } from '@mobius-network/components';
 
-import reactLogo from 'assets/images/react_logo_512x512.png';
+import { Container, Title } from './styles';
 
-const Header = ({ logout }) => (
-  <div>
-    <h2 id="heading">Hello ReactJS!</h2>
-    <img
-      className="image"
-      style={{ margin: '0.5em' }}
-      height="40"
-      width="40"
-      src={reactLogo}
-      alt="React Logo"
-    />
-    <SimpleCard color="green" title="Card">
-      <p>Welcome to React Native Web!</p>
-    </SimpleCard>
-    <Link to="/signup">Signup</Link>
-    <button onClick={logout}>Logout</button>
-  </div>
-);
+class Header extends Component {
+  renderContent() {
+    const { isAuthorized, logout } = this.props;
+
+    if (isAuthorized) {
+      return <button onClick={logout}>Logout</button>;
+    }
+
+    return (
+      <Container>
+        <Link to="/login">Login </Link>
+        <Link to="/signup">Signup</Link>
+      </Container>
+    );
+  }
+
+  render() {
+    return (
+      <Container>
+        <SimpleCard color="gray" title="Header">
+          <Title>
+            <Link to="/">Mobius</Link>
+          </Title>
+          {this.renderContent()}
+        </SimpleCard>
+      </Container>
+    );
+  }
+}
 
 export default Header;

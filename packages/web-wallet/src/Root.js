@@ -14,6 +14,11 @@ import Onboarding from 'components/Onboarding';
 // TODO: move me to saga
 const waitForRequiredData = store => () =>
   new Promise(resolve => {
+    if (!store.getState().auth.isLoggedIn) {
+      resolve();
+      return;
+    }
+
     store.subscribe(() => {
       if (store.getState().balance.masterAccount) {
         resolve();

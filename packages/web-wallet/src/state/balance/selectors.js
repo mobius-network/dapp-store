@@ -19,24 +19,24 @@ export const getAssetBalance = createSelector(
   [getBalance, getAsset],
   (balance, asset) => {
     if (!balance) {
-      return null;
+      return undefined;
     }
 
     return stellarBalance.parsedBalanceValue(balance, asset);
   }
 );
 
-export const assetValueFixed = createSelector(
+export const getAssetValueFixed = createSelector(
   [getAssetBalance, getFixed],
   (assetBalance, fixed) => {
     if (!assetBalance) {
-      return null;
+      return undefined;
     }
     return assetBalance.toFixed(fixed);
   }
 );
 
-export const masterTrustlineCreated = createSelector(
+export const getMasterTrustlineCreated = createSelector(
   getBalance,
   balance => balance && balance.mobi !== undefined
 );
