@@ -4,7 +4,16 @@ import initAppSaga from './initApp';
 import watchAccountSaga from './watchAccount';
 import signupSaga from './signup';
 import downloadKeypairSaga from './downloadKeypair';
+import bestPathSaga from './bestPath';
+import submitTransactionSaga from './submitTransaction';
 
 export default function* () {
-  yield all([initAppSaga, watchAccountSaga, signupSaga, downloadKeypairSaga]);
+  yield all([
+    initAppSaga,
+    watchAccountSaga,
+    signupSaga,
+    downloadKeypairSaga,
+    bestPathSaga,
+    submitTransactionSaga,
+  ]);
 }

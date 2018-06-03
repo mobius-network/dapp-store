@@ -8,21 +8,18 @@ import {
   take,
   cancel,
 } from 'redux-saga/effects';
-import { assets, stellarBalance, stellarAccount } from '@mobius-network/core';
+import { assets, safeLoadAccount, createTrustline } from '@mobius-network/core';
 
 import { authActions } from 'state/auth/reducer';
-import { getWallet, getPublicKeyFor } from 'state/auth/selectors';
+import { getPublicKeyFor } from 'state/auth/selectors';
 
 import { balanceActions } from 'state/balance/reducer';
 import { getMasterTrustlineCreated } from 'state/balance/selectors';
 
 export function* loadAccount(publicKey) {
-  const account = yield call(stellarBalance.safeLoadAccount, publicKey);
+  const account = yield call(safeLoadAccount, publicKey);
 
   if (account) {
-    // TODO: replace with client-sdk methods
-    stellarAccount.setAccount(account);
-
     yield put(balanceActions.setMasterAccount(account));
   }
 }
@@ -45,13 +42,8 @@ export function* prepareAccount() {
   // Wait for account activation
   yield take(balanceActions.setMasterAccount);
 
-  // TODO: replace with client-sdk methods
-  stellarAccount.setWallet(getWallet(state));
-
   if (!getMasterTrustlineCreated(state)) {
-    const createTrustOp = stellarBalance.createTrustline(assets.mobi);
-
-    yield call([stellarAccount, 'submitTransaction'], createTrustOp);
+    yield put(balanceActions.transact, createTrustline(assets.mobi));
   }
 
   yield take(authActions.logout);

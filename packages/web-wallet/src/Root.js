@@ -14,7 +14,7 @@ import Onboarding from 'components/Onboarding';
 // TODO: move me to saga
 const waitForRequiredData = store => () =>
   new Promise(resolve => {
-    if (!store.getState().auth.isLoggedIn) {
+    if (!store.getState().auth.loggedIn) {
       resolve();
       return;
     }

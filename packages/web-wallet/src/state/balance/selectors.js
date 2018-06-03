@@ -1,6 +1,6 @@
 /* eslint-disable no-shadow */
 import { createSelector } from 'reselect';
-import { stellarBalance } from '@mobius-network/core';
+import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
 export const getAsset = (_, { asset }) => asset;
 export const getFixed = (_, { fixed }) => fixed;
@@ -8,7 +8,7 @@ export const getFixed = (_, { fixed }) => fixed;
 export const getMasterAccount = state => state.balance.masterAccount;
 
 export const getBalance = createSelector(getMasterAccount, account =>
-  stellarBalance.parseBalance(account));
+  parseBalance(account));
 
 export const getAccountId = createSelector(
   getMasterAccount,
@@ -22,7 +22,7 @@ export const getAssetBalance = createSelector(
       return undefined;
     }
 
-    return stellarBalance.parsedBalanceValue(balance, asset);
+    return parsedBalanceValue(balance, asset);
   }
 );
 

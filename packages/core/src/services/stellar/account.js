@@ -1,24 +1,26 @@
-import { TransactionBuilder, Keypair } from 'stellar-sdk';
+import { TransactionBuilder } from 'stellar-sdk';
 import { stellarServer } from './server';
 
-export const stellarAccount = {
-  setAccount(account) {
-    this.account = account;
-  },
+export async function safeLoadAccount(pubKey) {
+  try {
+    const account = await stellarServer.loadAccount(pubKey);
 
-  setWallet(wallet) {
-    this.wallet = wallet;
-    this.secret = this.wallet.getSecret(0);
-    this.keypair = Keypair.fromSecret(this.secret);
-  },
+    return account;
+  } catch (err) {
+    if (err.name === 'NotFoundError') {
+      return null;
+    }
 
-  submitTransaction(operation) {
-    const transaction = new TransactionBuilder(this.account)
-      .addOperation(operation)
-      .build();
+    throw err;
+  }
+}
 
-    transaction.sign(this.keypair);
+export function submitTransaction(operation, account, keypair) {
+  const transaction = new TransactionBuilder(account)
+    .addOperation(operation)
+    .build();
 
-    return stellarServer.submitTransaction(transaction);
-  },
-};
+  transaction.sign(keypair);
+
+  return stellarServer.submitTransaction(transaction);
+}

@@ -9373,9 +9373,9 @@ redux-saga@^0.16.0:
   version "0.16.0"
   resolved "https://registry.yarnpkg.com/redux-saga/-/redux-saga-0.16.0.tgz#0a231db0a1489301dd980f6f2f88d8ced418f724"
 
-redux-yo@^0.0.24:
-  version "0.0.24"
-  resolved "https://registry.yarnpkg.com/redux-yo/-/redux-yo-0.0.24.tgz#397e4ce50d910900bac77554f12ccbc0e21358a0"
+redux-yo@^0.0.25:
+  version "0.0.25"
+  resolved "https://registry.yarnpkg.com/redux-yo/-/redux-yo-0.0.25.tgz#582b230f8e9f2439855979747a128d7bb4dfdc50"
 
 redux@^4.0.0:
   version "4.0.0"

@@ -5,10 +5,12 @@ import { reducer as formReducer } from 'redux-form';
 
 import { authReducer, authActions } from './auth';
 import { balanceReducer } from './balance';
+import { transfersReducer } from './transfers';
 
 const combined = combineReducers({
   auth: authReducer,
   balance: balanceReducer,
+  transfers: transfersReducer,
   form: formReducer,
 });
 

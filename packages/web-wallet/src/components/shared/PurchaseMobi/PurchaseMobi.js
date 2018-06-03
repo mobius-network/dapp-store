@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { string, func } from 'prop-types';
 import { debounce, noop } from 'lodash';
-import { assets, stellarAccount, stellarTransfer } from '@mobius-network/core';
+import { promisifyAction } from 'redux-yo';
+import { assets, pathPayment } from '@mobius-network/core';
 
 import { Container, Title } from './styles';
 
@@ -17,59 +18,46 @@ class PurchaseMobi extends Component {
 
   state = {
     destAmount: 0,
-    paymentPath: null,
   };
 
-  componentWillUnmount() {
-    this.onCalculateSuccess = noop;
-  }
+  calculatePrice(value) {
+    const { accountId, findBestPath } = this.props;
 
-  // eslint-disable-next-line react/sort-comp
-  onCalculateSuccess(paymentPath, value) {
-    if (value === this.state.destAmount) {
-      this.setState({ paymentPath });
-    }
-  }
-
-  async calculatePrice(value) {
-    const { accountId } = this.props;
-
-    const paymentPath = await stellarTransfer.findBestPath({
+    findBestPath({
       source: accountId,
       destination: accountId,
-      destinationAsset: assets.mobi,
       destinationAmount: value,
+      destinationAsset: assets.mobi,
     });
-
-    this.onCalculateSuccess(paymentPath, value);
   }
 
   debouncedCalculatePrice = debounce(this.calculatePrice, 800);
 
   // eslint-disable-next-line react/sort-comp
   onMobiChange = ({ target: { value } }) => {
-    this.setState({ destAmount: value, paymentPath: null });
+    this.setState({ destAmount: value });
 
     this.debouncedCalculatePrice(value);
   };
 
   submitTransfer = async () => {
     const { destAmount } = this.state;
-    const { accountId, onSuccess } = this.props;
+    const { accountId, onSuccess, transact } = this.props;
 
-    const pathPaymentOp = stellarTransfer.pathPayment({
+    const pathPaymentOp = pathPayment({
       destination: accountId,
       destAsset: assets.mobi,
       destAmount,
     });
 
-    const response = await stellarAccount.submitTransaction(pathPaymentOp);
+    const response = await promisifyAction(transact, pathPaymentOp);
 
     onSuccess({ response, value: destAmount });
   };
 
   render() {
-    const { destAmount, paymentPath } = this.state;
+    const { destAmount } = this.state;
+    const { paymentPath } = this.props;
 
     return (
       <Container>

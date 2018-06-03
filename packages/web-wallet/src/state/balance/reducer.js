@@ -2,7 +2,7 @@ import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
 export const balanceActions = createActions(
-  ['setWallet', 'setMasterAccount', 'downloadKeypair'],
+  ['setWallet', 'setMasterAccount', 'downloadKeypair', 'transact'],
   'balance'
 );
 

@@ -14,7 +14,7 @@ module.exports = function configurePlop(plop) {
     actions: () => {
       const actions = [];
 
-      ['selectors', 'index'].forEach(template =>
+      ['selectors', 'reducer', 'index'].forEach(template =>
         actions.push({
           type: 'add',
           path: `src/state/{{ camelCase name }}/${template}.js`,
