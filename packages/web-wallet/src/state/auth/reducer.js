@@ -15,6 +15,7 @@ export const authActions = createActions(
     'login',
     'logout',
     'signup',
+    'completeSignup',
     'setKeystore',
     'setSignupStep',
     'setMnemonic',
@@ -32,7 +33,7 @@ const initialState = {
 
 export const authReducer = createReducer(
   {
-    [REHYDRATE]: (state, { auth }) => {
+    [REHYDRATE]: (state, { auth = {} } = {}) => {
       if (auth.wallet) {
         return merge(state, {
           ...auth,
@@ -43,11 +44,15 @@ export const authReducer = createReducer(
       return merge(state, auth);
     },
     [authActions.set]: (state, payload) => merge(state, payload),
-    [authActions.login]: state =>
+    [authActions.completeSignup]: state =>
       merge(state, {
         loggedIn: true,
         mnemonic: undefined,
         keystore: undefined,
+      }),
+    [authActions.login]: state =>
+      merge(state, {
+        loggedIn: true,
       }),
     [authActions.setSignupStep]: (state, signupStep) =>
       merge(state, { signupStep }),

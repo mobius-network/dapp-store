@@ -16,6 +16,8 @@ import { getPublicKeyFor } from 'state/auth/selectors';
 import { balanceActions } from 'state/balance/reducer';
 import { getMasterTrustlineCreated } from 'state/balance/selectors';
 
+const watchers = {};
+
 export function* loadAccount(publicKey) {
   const account = yield call(safeLoadAccount, publicKey);
 
@@ -35,7 +37,7 @@ export function* prepareAccount() {
   const publicKey = yield select(getPublicKeyFor);
 
   yield call(loadAccount, publicKey);
-  const accountWatcher = yield fork(watchAccount, publicKey);
+  watchers[publicKey] = yield fork(watchAccount, publicKey);
 
   const state = yield select();
 
@@ -47,7 +49,7 @@ export function* prepareAccount() {
   }
 
   yield take(authActions.logout);
-  yield cancel(accountWatcher);
+  yield cancel(watchers[publicKey]);
 }
 
 export default takeLatest(authActions.login, prepareAccount);
