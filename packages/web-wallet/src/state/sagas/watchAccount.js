@@ -43,7 +43,7 @@ export function* prepareAccount() {
   yield take(balanceActions.setMasterAccount);
 
   if (!getMasterTrustlineCreated(state)) {
-    yield put(balanceActions.transact, createTrustline(assets.mobi));
+    yield put(balanceActions.transact(createTrustline(assets.mobi)));
   }
 
   yield take(authActions.logout);

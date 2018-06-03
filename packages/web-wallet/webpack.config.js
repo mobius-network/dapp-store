@@ -155,6 +155,12 @@ const config = {
   node: {
     fs: 'empty',
   },
+
+  watchOptions: {
+    ignored: [
+      /node_modules([\\]+|\/)+(?!mobius-network)/,
+    ],
+  },
 };
 
 module.exports = config;
