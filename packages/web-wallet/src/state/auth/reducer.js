@@ -11,14 +11,15 @@ export const signupSteps = {
 
 export const authActions = createActions(
   [
-    'set',
-    'login',
+    'loginStart',
+    'loginSuccess',
+    'signupStart',
+    'signupSuccess',
     'logout',
-    'signup',
-    'completeSignup',
+    'set',
+    'setMnemonic',
     'setKeystore',
     'setSignupStep',
-    'setMnemonic',
   ],
   'auth'
 );
@@ -44,13 +45,13 @@ export const authReducer = createReducer(
       return merge(state, auth);
     },
     [authActions.set]: (state, payload) => merge(state, payload),
-    [authActions.completeSignup]: state =>
+    [authActions.signupSuccess]: state =>
       merge(state, {
         loggedIn: true,
         mnemonic: undefined,
         keystore: undefined,
       }),
-    [authActions.login]: state =>
+    [authActions.loginSuccess]: state =>
       merge(state, {
         loggedIn: true,
       }),

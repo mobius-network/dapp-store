@@ -33,11 +33,17 @@ export function* watchAccount(publicKey, delayDuration = 2000) {
   }
 }
 
+export function* cancelWatcherOnLogout(publicKey) {
+  yield take(authActions.logout);
+  yield cancel(watchers[publicKey]);
+}
+
 export function* prepareAccount() {
   const publicKey = yield select(getPublicKeyFor);
 
   yield call(loadAccount, publicKey);
   watchers[publicKey] = yield fork(watchAccount, publicKey);
+  yield fork(cancelWatcherOnLogout, publicKey);
 
   const state = yield select();
 
@@ -47,9 +53,6 @@ export function* prepareAccount() {
   if (!getMasterTrustlineCreated(state)) {
     yield put(balanceActions.transact(createTrustline(assets.mobi)));
   }
-
-  yield take(authActions.logout);
-  yield cancel(watchers[publicKey]);
 }
 
-export default takeLatest(authActions.login, prepareAccount);
+export default takeLatest(authActions.loginSuccess, prepareAccount);

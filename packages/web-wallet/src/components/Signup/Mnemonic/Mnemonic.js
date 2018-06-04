@@ -10,7 +10,7 @@ class Mnemonic extends Component {
   };
 
   markSignupCompleted = () => {
-    this.props.completeSignup();
+    this.props.signupSuccess();
   };
 
   render() {

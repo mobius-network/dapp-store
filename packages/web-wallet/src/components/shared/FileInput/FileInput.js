@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 
 import { Container, Input, ErrorMessage } from './styles';
 
-class TextInput extends Component {
+class FileInput extends Component {
   static propTypes = {
     // name: string.isRequired,
   };
 
   render() {
     const {
-      input,
+      input: { onChange },
       required,
       className,
       errorLabel,
@@ -23,8 +23,9 @@ class TextInput extends Component {
     return (
       <Container required={required} className={className}>
         <Input
-          {...input}
+          type="file"
           error={showError}
+          onChange={onChange}
           required={required}
           placeholder={placeholder}
         />
@@ -38,4 +39,4 @@ class TextInput extends Component {
   }
 }
 
-export default TextInput;
+export default FileInput;

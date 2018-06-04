@@ -6,6 +6,7 @@ import signupSaga from './signup';
 import downloadKeypairSaga from './downloadKeypair';
 import bestPathSaga from './bestPath';
 import submitTransactionSaga from './submitTransaction';
+import loginSaga from './login';
 
 export default function* () {
   yield all([
@@ -15,5 +16,6 @@ export default function* () {
     downloadKeypairSaga,
     bestPathSaga,
     submitTransactionSaga,
+    loginSaga,
   ]);
 }

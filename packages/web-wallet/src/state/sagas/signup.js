@@ -22,4 +22,4 @@ export function* signup({ payload }) {
   yield fork(prepareAccount);
 }
 
-export default takeLatest(authActions.signup, signup);
+export default takeLatest(authActions.signupStart, signup);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import { string } from 'prop-types';
 
-import { Container, Title } from './styles';
+import { Container, Title, LoginForm } from './styles';
 
 class Login extends Component {
   static propTypes = {
@@ -12,6 +12,7 @@ class Login extends Component {
     return (
       <Container>
         <Title>Login</Title>
+        <LoginForm />
       </Container>
     );
   }

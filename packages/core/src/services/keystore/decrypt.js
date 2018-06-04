@@ -12,7 +12,8 @@ export function decrypt(password, keyfileContent) {
     scrypt(password, salt, keyfile.crypto.scryptOptions, key => {
       const chiper = base64js.toByteArray(keyfile.crypto.chiper);
       const seed = nacl.secretbox.open(chiper, nonce, key);
-      const wallet = StellarHDWallet.fromSeed(Buffer.from(seed));
+      const seedHex = new TextDecoder('utf-8').decode(seed);
+      const wallet = StellarHDWallet.fromSeed(seedHex);
 
       resolve(wallet);
     });
