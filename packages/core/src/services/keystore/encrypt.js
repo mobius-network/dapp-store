@@ -18,13 +18,13 @@ export function encrypt(password, mnemonic) {
     };
 
     scrypt(password, salt, scryptOptions, key => {
-      const chiper = nacl.secretbox(seedHex, nonce, key);
+      const cipher = nacl.secretbox(seedHex, nonce, key);
       const keystore = {
         version: 'mobius-wallet-1.0',
         crypto: {
           salt: base64js.fromByteArray(salt),
           nonce: base64js.fromByteArray(nonce),
-          chiper: base64js.fromByteArray(chiper),
+          cipher: base64js.fromByteArray(cipher),
           scryptOptions,
         },
       };

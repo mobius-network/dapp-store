@@ -10,8 +10,8 @@ export function decrypt(password, keyfileContent) {
     const nonce = base64js.toByteArray(keyfile.crypto.nonce);
 
     scrypt(password, salt, keyfile.crypto.scryptOptions, key => {
-      const chiper = base64js.toByteArray(keyfile.crypto.chiper);
-      const seed = nacl.secretbox.open(chiper, nonce, key);
+      const cipher = base64js.toByteArray(keyfile.crypto.cipher);
+      const seed = nacl.secretbox.open(cipher, nonce, key);
       const seedHex = new TextDecoder('utf-8').decode(seed);
       const wallet = StellarHDWallet.fromSeed(seedHex);
 
