@@ -39,14 +39,15 @@ function makeStore(initialState = {}) {
     eventFilterMiddleware,
   ]);
 
-  // Initialize with dummy reducer first
   const store = createStoreWithMiddleware(getReducer(), initialState);
 
   store.runSaga = sagaMiddleware.run;
 
-  persistStore(store);
-
   return store;
 }
 
-export default makeStore();
+const store = makeStore();
+
+export const persistor = persistStore(store);
+
+export default store;

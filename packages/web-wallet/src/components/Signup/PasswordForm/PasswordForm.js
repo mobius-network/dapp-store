@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 // import { string } from 'prop-types';
+import { required } from 'utils';
+import TextInput from 'components/shared/TextInput';
 
-import { Container, Title } from './styles';
+import { Form, Title, TextField, SubmitButton } from './styles';
 
 class PasswordForm extends Component {
   static propTypes = {
@@ -9,10 +11,27 @@ class PasswordForm extends Component {
   };
 
   render() {
+    const { handleSubmit } = this.props;
+
     return (
-      <Container>
+      <Form onSubmit={handleSubmit}>
         <Title>PasswordForm</Title>
-      </Container>
+        <TextField
+          name="password"
+          component={TextInput}
+          validate={required}
+        />
+        <TextField
+          name="passwordConfirmation"
+          component={TextInput}
+          validate={required}
+        />
+        <SubmitButton
+          onClick={handleSubmit}
+        >
+          Continue
+        </SubmitButton>
+      </Form>
     );
   }
 }
