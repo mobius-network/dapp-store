@@ -10,7 +10,7 @@ const Footer = () => (
     <MainRow>
       <Grid>
         <Row middle="md">
-          <Col md={6}>
+          <Col md={9}>
             <NavLinks />
           </Col>
         </Row>

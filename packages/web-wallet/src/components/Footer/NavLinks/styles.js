@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 
-import Link from 'components/shared/Link';
 import { media } from 'components/shared/Styleguide';
 
-export const Container = styled.div`
+export const ListContainer = styled.ul`
   align-items: center;
   display: flex;
   justify-content: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
   @media screen and (min-width: ${media.sm}) {
     justify-content: start;
   }
 `;
 
-export const NavLink = styled(Link)`
+export const ListItem = styled.li`
+  align-items: center;
+  display: flex;
   margin-right: 25px;
+  padding: 0;
 
   @media screen and (min-width: ${media.sm}) {
     margin-right: 35px;
