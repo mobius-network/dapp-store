@@ -9,10 +9,15 @@ const linkStyles = `
   display: inline-block;
   font-family: ${fonts.control};
   font-size: ${fontSizes.default};
+  opacity: 1;
+  outline: 0;
   text-decoration: none;
+  transition: 0.3s;
   user-select: none;
+  white-space: nowrap;
 
   &:hover {
+    opacity: 0.8;
     text-decoration: underline;
   }
 `;
