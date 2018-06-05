@@ -30,6 +30,13 @@ export const gradients = {
   full: 'linear-gradient(90deg, #37CAE6 0%, #8C2DFD 100%)',
 };
 
+export const media = {
+  xs: '576px',
+  sm: '768px',
+  md: '992px',
+  lg: '1200px',
+};
+
 export const shadows = {
   buttonPrimary:
     '0 5px 15px 0 rgba(0,0,0,0.11), 0 10px 24px 0 rgba(135,46,250,0.16)',
