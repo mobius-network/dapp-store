@@ -1,11 +1,12 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import PrivateRoute from 'components/shared/PrivateRoute';
 import PublicRoute from 'components/shared/PublicRoute';
 
-import Header from 'components/Header';
+import DappStoreLayout from 'components/layouts/DappStoreLayout';
+
 import DappStore from 'components/DappStore';
 import Login from 'components/Login';
 import Signup from 'components/Signup';
@@ -34,15 +35,13 @@ const Root = ({ store, persistor }) => (
       onBeforeLift={waitForRequiredData(store)}
     >
       <Router>
-        <div>
-          <Route path="/" component={Header} />
-          <Switch>
-            <Route path="/" component={DappStore} exact />
-            <PublicRoute path="/login" component={Login} exact />
-            <PublicRoute path="/signup" component={Signup} exact />
-            <PrivateRoute path="/onboarding" component={Onboarding} />
-          </Switch>
-        </div>
+        <Switch>
+          <DappStoreLayout path="/" component={DappStore} exact />
+
+          <PublicRoute path="/login" component={Login} exact />
+          <PublicRoute path="/signup" component={Signup} exact />
+          <PrivateRoute path="/onboarding" component={Onboarding} />
+        </Switch>
       </Router>
     </PersistGate>
   </Provider>
