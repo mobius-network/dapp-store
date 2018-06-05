@@ -25,7 +25,8 @@ export const LogoImage = styled.div`
 `;
 
 export const LogoName = styled.span`
-  font-family: ${fonts.logo};
   color: ${colors.textPrimary};
+  font-family: ${fonts.logo};
+  font-size: 15px;
   margin-left: 10px;
 `;

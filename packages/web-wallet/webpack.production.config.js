@@ -63,7 +63,6 @@ const config = {
         include: [
           resolve(__dirname, 'src'),
           resolve(__dirname, '../components/src'),
-          resolve(__dirname, 'node_modules', '@mobius-network/components'),
         ],
       },
       {
