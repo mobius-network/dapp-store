@@ -1,8 +1,6 @@
-const merge = require('webpack-merge');
-
 const prodEnv = require('./prod.env');
 
-module.exports = merge(prodEnv, {
+module.exports = Object.assign(prodEnv, {
   NODE_ENV: '"development"',
   STELLAR_HORIZON_URL: '"https://horizon-testnet.stellar.org"',
   STELLAR_TESTNET: '"true"',

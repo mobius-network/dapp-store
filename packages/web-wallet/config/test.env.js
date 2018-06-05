@@ -1,7 +1,5 @@
-'use strict'
-const merge = require('webpack-merge')
-const devEnv = require('./dev.env')
+const devEnv = require('./dev.env');
 
-module.exports = merge(devEnv, {
-  NODE_ENV: '"testing"'
-})
+module.exports = Object.assign(devEnv, {
+  NODE_ENV: '"testing"',
+});
