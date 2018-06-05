@@ -4,6 +4,7 @@ import {
   shadows,
   fonts,
   gradients,
+  media,
 } from 'components/shared/Styleguide';
 
 export const Container = styled.div`
@@ -11,7 +12,21 @@ export const Container = styled.div`
   border-radius: ${radius.default};
   box-shadow: ${shadows.pane};
   font-family: ${fonts.default};
+  margin-bottom: 20px;
   position: relative;
+  text-align: left;
+
+  @media screen and (min-width: ${media.sm}) {
+    margin-bottom: 40px;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+
+    @media screen and (min-width: ${media.sm}) {
+      margin-bottom: 0;
+    }
+  }
 `;
 
 export const Gradient = styled.div`

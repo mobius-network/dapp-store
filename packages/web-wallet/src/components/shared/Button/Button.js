@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
 import { colors, gradients, shadows } from 'components/shared/Styleguide';
-import { Container, Content } from './styles';
+import { StyledButton, StyledLink, Content } from './styles';
 
 const themes = {
   primary: {
@@ -31,12 +31,23 @@ const themes = {
 };
 
 const Button = ({
-  children, disabled, theme, onClick, ...rest
+  children, disabled, theme, to, onClick, ...rest
 }) => (
   <ThemeProvider theme={themes[theme]}>
-    <Container disabled={disabled} onClick={onClick} type="button" {...rest}>
-      <Content>{children}</Content>
-    </Container>
+    {to ? (
+      <StyledLink to={to} {...rest}>
+        <Content>{children}</Content>
+      </StyledLink>
+    ) : (
+      <StyledButton
+        disabled={disabled}
+        onClick={onClick}
+        type="button"
+        {...rest}
+      >
+        <Content>{children}</Content>
+      </StyledButton>
+    )}
   </ThemeProvider>
 );
 
@@ -45,6 +56,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   onClick: PropTypes.func,
   theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary']),
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 Button.defaultProps = {

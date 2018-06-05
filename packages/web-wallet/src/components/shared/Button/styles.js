@@ -1,12 +1,10 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 import { fonts, fontSizes } from 'components/shared/Styleguide';
 
-export const Container = styled.button`
-  background: ${props => props.theme.background};
+const buttonStyles = `
   border-radius: 20px;
-  border: ${props => props.theme.border};
-  box-shadow: ${props => props.theme.boxShadow};
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -16,12 +14,14 @@ export const Container = styled.button`
   outline: 2px;
   overflow: hidden;
   padding: 0;
+  text-decoration: none;
   transition: 0.3s;
   user-select: none;
   white-space: nowrap;
 
   &:hover {
     opacity: 0.8;
+    text-decoration: none;
   }
 
   &:active {
@@ -31,6 +31,22 @@ export const Container = styled.button`
   &:disabled {
     opacity: 0.8;
     pointer-events: none;
+  }
+`;
+
+export const StyledButton = styled.button`
+  background: ${props => props.theme.background};
+  border: ${props => props.theme.border};
+  box-shadow: ${props => props.theme.boxShadow};
+  ${buttonStyles};
+`;
+
+export const StyledLink = styled(Link)`
+  background: ${props => props.theme.background};
+  border: ${props => props.theme.border};
+  box-shadow: ${props => props.theme.boxShadow};
+  ${buttonStyles} &: {
+    ${buttonStyles};
   }
 `;
 

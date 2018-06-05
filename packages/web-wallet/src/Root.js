@@ -6,6 +6,7 @@ import PrivateRoute from 'components/shared/PrivateRoute';
 import PublicRoute from 'components/shared/PublicRoute';
 
 import DappStoreLayout from 'components/layouts/DappStoreLayout';
+import PublicLayout from 'components/layouts/PublicLayout';
 
 import DappStore from 'components/DappStore';
 import Login from 'components/Login';
@@ -38,7 +39,8 @@ const Root = ({ store, persistor }) => (
         <Switch>
           <DappStoreLayout path="/" component={DappStore} exact />
 
-          <PublicRoute path="/login" component={Login} exact />
+          <PublicLayout path="/login" component={Login} exact />
+
           <PublicRoute path="/signup" component={Signup} exact />
           <PrivateRoute path="/onboarding" component={Onboarding} />
         </Switch>
