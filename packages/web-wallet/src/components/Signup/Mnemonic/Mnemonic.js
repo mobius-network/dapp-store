@@ -1,31 +1,30 @@
-import React, { Component } from 'react';
-import { string } from 'prop-types';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Container, Title } from './styles';
+import Pane from 'components/shared/Pane';
+import Button from 'components/shared/Button';
 
-class Mnemonic extends Component {
-  static propTypes = {
-    mnemonic: string.isRequired,
-  };
+const Mnemonic = ({ mnemonic, signupSuccess }) => (
+  <Pane theme="wide" withGradient>
+    <Pane.Header
+      title="Write Down Your Mnemonic Phrase"
+      caption="If you ever lose your key pair you can use your mnemonic phrase
+        to recover your account."
+    />
 
-  markSignupCompleted = () => {
-    this.props.signupSuccess();
-  };
+    <Pane.Section>
+      <p>{mnemonic}</p>
 
-  render() {
-    const { mnemonic } = this.props;
+      <Button to="/onboarding" onClick={signupSuccess} fullWidth>
+        I’ve Written it Down
+      </Button>
+    </Pane.Section>
+  </Pane>
+);
 
-    return (
-      <Container>
-        <Title>Mnemonic</Title>
-        <p>{mnemonic}</p>
-        <Link to="/onboarding" onClick={this.markSignupCompleted}>
-          {'I\'ve'} written it down
-        </Link>
-      </Container>
-    );
-  }
-}
+Mnemonic.propTypes = {
+  mnemonic: PropTypes.string.isRequired,
+  signupSuccess: PropTypes.func.isRequired,
+};
 
 export default Mnemonic;

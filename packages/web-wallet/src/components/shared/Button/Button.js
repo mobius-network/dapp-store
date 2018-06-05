@@ -31,16 +31,23 @@ const themes = {
 };
 
 const Button = ({
-  children, disabled, theme, to, onClick, ...rest
+  children,
+  disabled,
+  fullWidth,
+  theme,
+  to,
+  onClick,
+  ...rest
 }) => (
   <ThemeProvider theme={themes[theme]}>
     {to ? (
-      <StyledLink to={to} {...rest}>
+      <StyledLink fullWidth={fullWidth} to={to} {...rest}>
         <Content>{children}</Content>
       </StyledLink>
     ) : (
       <StyledButton
         disabled={disabled}
+        fullWidth={fullWidth}
         onClick={onClick}
         type="button"
         {...rest}
@@ -54,6 +61,7 @@ const Button = ({
 Button.propTypes = {
   children: PropTypes.any,
   disabled: PropTypes.bool,
+  fullWidth: PropTypes.bool,
   onClick: PropTypes.func,
   theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary']),
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -61,6 +69,7 @@ Button.propTypes = {
 
 Button.defaultProps = {
   disabled: false,
+  fullWidth: false,
   theme: 'primary',
 };
 

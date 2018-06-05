@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { string } from 'prop-types';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { signupSteps } from 'state/auth';
 
 import PasswordForm from './PasswordForm';
@@ -12,28 +12,14 @@ const signupComponents = {
   [signupSteps.mnemonic]: Mnemonic,
 };
 
-class Signup extends Component {
-  static propTypes = {
-    signupStep: string.isRequired,
-  };
+const Signup = ({ signupStep }) => {
+  const StepComponent = signupComponents[signupStep];
 
-  // TODO: added for testing purposes, delete me
-  componentDidMount() {
-    this.props.setSignupStep('password');
-  }
+  return <StepComponent />;
+};
 
-  render() {
-    const { signupStep } = this.props;
-    const StepComponent = signupComponents[signupStep];
-
-    return (
-      <div>
-        <div>Signup</div>
-
-        <StepComponent />
-      </div>
-    );
-  }
-}
+Signup.propTypes = {
+  signupStep: PropTypes.isRequired,
+};
 
 export default Signup;

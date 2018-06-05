@@ -3,7 +3,6 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import PrivateRoute from 'components/shared/PrivateRoute';
-import PublicRoute from 'components/shared/PublicRoute';
 
 import DappStoreLayout from 'components/layouts/DappStoreLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
@@ -40,8 +39,8 @@ const Root = ({ store, persistor }) => (
           <DappStoreLayout path="/" component={DappStore} exact />
 
           <PublicLayout path="/login" component={Login} exact />
+          <PublicLayout path="/signup" component={Signup} exact />
 
-          <PublicRoute path="/signup" component={Signup} exact />
           <PrivateRoute path="/onboarding" component={Onboarding} />
         </Switch>
       </Router>

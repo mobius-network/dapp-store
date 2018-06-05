@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { fonts, fontSizes } from 'components/shared/Styleguide';
 
 const buttonStyles = `
+  align-items: stretch;
   border-radius: 20px;
   cursor: pointer;
   display: flex;
@@ -38,13 +39,14 @@ export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
-  ${buttonStyles};
+  width: ${props => (props.fullWidth ? '100%' : 'auto')} ${buttonStyles};
 `;
 
 export const StyledLink = styled(Link)`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
+  width: ${props => (props.fullWidth ? '100%' : 'auto')}
   ${buttonStyles} &: {
     ${buttonStyles};
   }
