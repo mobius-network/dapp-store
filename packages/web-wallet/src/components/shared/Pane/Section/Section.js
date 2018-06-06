@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Container } from './styles';
 
-const Section = ({ children }) => <Container>{children}</Container>;
+export default class Section extends Component {
+  static propTypes = {
+    children: PropTypes.any,
+  };
 
-Section.propTypes = {
-  children: PropTypes.any,
-};
+  render() {
+    const { children } = this.props;
 
-export default Section;
+    return <Container>{children}</Container>;
+  }
+}

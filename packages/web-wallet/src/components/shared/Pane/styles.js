@@ -1,16 +1,10 @@
 import styled from 'styled-components';
-import {
-  radius,
-  shadows,
-  fonts,
-  gradients,
-  media,
-} from 'components/shared/Styleguide';
+import { radius, fonts, gradients, media } from 'components/shared/Styleguide';
 
 export const Container = styled.div`
   background: ${props => props.theme.background};
   border-radius: ${radius.default};
-  box-shadow: ${shadows.pane};
+  box-shadow: ${props => props.theme.shadow};
   font-family: ${fonts.default};
   margin-bottom: 20px;
   position: relative;
