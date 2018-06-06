@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { string, func } from 'prop-types';
 import { debounce, noop } from 'lodash';
 import { promisifyAction } from 'redux-yo';
-import { assets, pathPayment } from '@mobius-network/core';
+import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
 import { Container, Title } from './styles';
 
@@ -18,16 +18,21 @@ class PurchaseMobi extends Component {
 
   state = {
     destAmount: 0,
+    calculating: false,
   };
 
   calculatePrice(value) {
-    const { accountId, findBestPath } = this.props;
+    const { accountId, fetchStart } = this.props;
 
-    findBestPath({
-      source: accountId,
-      destination: accountId,
-      destinationAmount: value,
-      destinationAsset: assets.mobi,
+    fetchStart({
+      name: 'findBestPath',
+      fetcher: findBestPath,
+      payload: {
+        source: accountId,
+        destination: accountId,
+        destinationAmount: value,
+        destinationAsset: assets.mobi,
+      },
     });
   }
 
@@ -35,7 +40,7 @@ class PurchaseMobi extends Component {
 
   // eslint-disable-next-line react/sort-comp
   onMobiChange = ({ target: { value } }) => {
-    this.setState({ destAmount: value });
+    this.setState({ destAmount: value, calculating: true });
 
     this.debouncedCalculatePrice(value);
   };
@@ -50,21 +55,27 @@ class PurchaseMobi extends Component {
       destAmount,
     });
 
-    const response = await promisifyAction(transact, pathPaymentOp);
+    const response = await promisifyAction(transact, {
+      name: 'pathPayment',
+      operation: pathPaymentOp,
+    });
 
     onSuccess({ response, value: destAmount });
   };
 
   render() {
-    const { destAmount } = this.state;
+    const { destAmount, calculating } = this.state;
     const { paymentPath } = this.props;
+
+    const pricePlaceholder = calculating ? 'calculating' : 'enter mobi amount';
 
     return (
       <Container>
         <Title>Purchase MOBI</Title>
 
         <p>
-          XLM price: {paymentPath ? paymentPath.source_amount : 'calculating'}
+          XLM price:{' '}
+          {paymentPath ? paymentPath.source_amount : pricePlaceholder}
         </p>
         <input
           type="number"

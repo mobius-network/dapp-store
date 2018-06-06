@@ -6,11 +6,15 @@ import { reducer as formReducer } from 'redux-form';
 import { authReducer, authActions } from './auth';
 import { balanceReducer } from './balance';
 import { transfersReducer } from './transfers';
+import { appsReducer } from './apps';
+import { requestsReducer } from './requests';
 
 const combined = combineReducers({
   auth: authReducer,
   balance: balanceReducer,
   transfers: transfersReducer,
+  apps: appsReducer,
+  requests: requestsReducer,
   form: formReducer,
 });
 

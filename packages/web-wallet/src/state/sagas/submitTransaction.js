@@ -1,28 +1,23 @@
-import { noop } from 'lodash';
-import { takeLatest, call, select } from 'redux-saga/effects';
+import { takeLatest, put, select } from 'redux-saga/effects';
 import { submitTransaction } from '@mobius-network/core';
 
+import { requestActions } from 'state/requests/reducer';
 import { balanceActions } from 'state/balance/reducer';
 import { getKeypairFor } from 'state/auth/selectors';
 import { getMasterAccount } from 'state/balance/selectors';
 
-// TODO: add transaction status tracking to Redux store
-function* transact({
-  payload: operation,
-  meta: { resolve = noop, reject = noop } = {},
-}) {
+function* transact({ payload: { operation, name }, meta }) {
   const account = yield select(getMasterAccount);
   const keypair = yield select(getKeypairFor);
 
-  try {
-    const response = yield call(submitTransaction, operation, account, keypair);
-
-    resolve(response);
-
-    yield response;
-  } catch (err) {
-    reject(err);
-  }
+  yield put(requestActions.fetchStart(
+    {
+      name,
+      fetcher: submitTransaction,
+      payload: [operation, account, keypair],
+    },
+    meta
+  ));
 }
 
 export default takeLatest(balanceActions.transact, transact);
