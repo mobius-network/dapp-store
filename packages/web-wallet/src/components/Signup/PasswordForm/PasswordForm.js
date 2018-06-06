@@ -54,7 +54,7 @@ export default class PasswordForm extends Component {
           <LoginBlock>
             <LoginBlockText>Already have an account?</LoginBlockText>
 
-            <Button to="/login" theme="primaryOutline">
+            <Button to="/login" theme="primaryOutline" wide>
               Login
             </Button>
           </LoginBlock>

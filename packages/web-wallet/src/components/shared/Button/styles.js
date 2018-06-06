@@ -65,7 +65,6 @@ export const Content = styled.div`
   font-weight: ${props => props.theme.fontWeight};
   justify-content: center;
   margin: 2px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: ${props => (props.wide ? '0 60px' : '0 30px')};
   text-transform: uppercase;
 `;

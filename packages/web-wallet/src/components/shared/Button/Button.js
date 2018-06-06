@@ -37,12 +37,14 @@ export default class Button extends Component {
     onClick: PropTypes.func,
     theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary']),
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    wide: PropTypes.bool,
   };
 
   static defaultProps = {
     disabled: false,
     fullWidth: false,
     theme: 'primary',
+    wide: false,
   };
 
   render() {
@@ -50,9 +52,10 @@ export default class Button extends Component {
       children,
       disabled,
       fullWidth,
+      onClick,
       theme,
       to,
-      onClick,
+      wide,
       ...rest
     } = this.props;
 
@@ -60,7 +63,7 @@ export default class Button extends Component {
       <ThemeProvider theme={themes[theme]}>
         {to ? (
           <StyledLink to={to} {...rest}>
-            <Content>{children}</Content>
+            <Content wide={wide}>{children}</Content>
           </StyledLink>
         ) : (
           <StyledButton
@@ -70,7 +73,7 @@ export default class Button extends Component {
             type="button"
             {...rest}
           >
-            <Content>{children}</Content>
+            <Content wide={wide}>{children}</Content>
           </StyledButton>
         )}
       </ThemeProvider>

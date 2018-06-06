@@ -25,7 +25,7 @@ export default class Login extends Component {
           <SignupBlock>
             <SignupBlockText>Don’t have an account?</SignupBlockText>
 
-            <Button to="/signup" theme="primaryOutline">
+            <Button to="/signup" theme="primaryOutline" wide>
               Sign Up
             </Button>
           </SignupBlock>
