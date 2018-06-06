@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { array } from 'prop-types';
-import { apiUrl } from 'utils';
 
 import DappItem from './DappItem';
 import { Container, Title } from './styles';
@@ -11,10 +10,7 @@ class DappList extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchStart({
-      name: 'apps',
-      payload: `${apiUrl}/app_store/all`,
-    });
+    this.props.loadApps();
   }
 
   render() {
