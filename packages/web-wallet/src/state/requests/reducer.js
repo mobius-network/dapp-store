@@ -19,10 +19,10 @@ export const requestsReducer = createReducer(
           isFetching: true,
         },
       }),
-    [requestActions.fetchSuccess]: (state, { name, response }) =>
+    [requestActions.fetchSuccess]: (state, { name, data }) =>
       merge(state, {
         [name]: {
-          data: response,
+          data,
           success: true,
           isFetching: false,
         },
