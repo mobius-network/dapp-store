@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 // import { string } from 'prop-types';
 
-import DappList from './DappList';
 import { Container, Title } from './styles';
 
-class DappStore extends Component {
+class DappList extends Component {
   static propTypes = {
     // name: string.isRequired,
   };
@@ -12,11 +11,10 @@ class DappStore extends Component {
   render() {
     return (
       <Container>
-        <Title>DappStore</Title>
-        <DappList />
+        <Title>DappList</Title>
       </Container>
     );
   }
 }
 
-export default DappStore;
+export default DappList;
