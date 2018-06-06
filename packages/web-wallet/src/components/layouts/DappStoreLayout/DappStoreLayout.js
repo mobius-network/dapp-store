@@ -1,24 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import Header from 'components/Header';
 
-const DappStoreLayout = ({ component: Component, ...rest }) => (
-  <DefaultLayout
-    {...rest}
-    component={matchProps => (
-      <Fragment>
-        <Header />
+export default class DappStoreLayout extends Component {
+  static propTypes = {
+    component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  };
 
-        <Component {...matchProps} />
-      </Fragment>
-    )}
-  />
-);
+  render() {
+    const { component: RouterComponent, ...rest } = this.props;
 
-DappStoreLayout.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-};
+    return (
+      <DefaultLayout
+        {...rest}
+        component={matchProps => (
+          <Fragment>
+            <Header />
 
-export default DappStoreLayout;
+            <RouterComponent {...matchProps} />
+          </Fragment>
+        )}
+      />
+    );
+  }
+}

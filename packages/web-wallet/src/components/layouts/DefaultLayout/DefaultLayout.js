@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
@@ -6,23 +6,27 @@ import Footer from 'components/Footer';
 
 import { Container, Content } from './styles';
 
-const DefaultLayout = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={matchProps => (
-      <Container>
-        <Content>
-          <Component {...matchProps} />
-        </Content>
+export default class DefaultLayout extends Component {
+  static propTypes = {
+    component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+  };
 
-        <Footer />
-      </Container>
-    )}
-  />
-);
+  render() {
+    const { component: RouterComponent, ...rest } = this.props;
 
-DefaultLayout.propTypes = {
-  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
-};
+    return (
+      <Route
+        {...rest}
+        render={matchProps => (
+          <Container>
+            <Content>
+              <RouterComponent {...matchProps} />
+            </Content>
 
-export default DefaultLayout;
+            <Footer />
+          </Container>
+        )}
+      />
+    );
+  }
+}

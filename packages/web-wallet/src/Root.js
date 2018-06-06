@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
@@ -27,25 +27,29 @@ const waitForRequiredData = store => () =>
     });
   });
 
-const Root = ({ store, persistor }) => (
-  <Provider store={store}>
-    <PersistGate
-      loading={null}
-      persistor={persistor}
-      onBeforeLift={waitForRequiredData(store)}
-    >
-      <Router>
-        <Switch>
-          <DappStoreLayout path="/" component={DappStore} exact />
+export default class Root extends Component {
+  render() {
+    const { store, persistor } = this.props;
 
-          <PublicLayout path="/login" component={Login} exact />
-          <PublicLayout path="/signup" component={Signup} exact />
+    return (
+      <Provider store={store}>
+        <PersistGate
+          loading={null}
+          persistor={persistor}
+          onBeforeLift={waitForRequiredData(store)}
+        >
+          <Router>
+            <Switch>
+              <DappStoreLayout path="/" component={DappStore} exact />
 
-          <PrivateRoute path="/onboarding" component={Onboarding} />
-        </Switch>
-      </Router>
-    </PersistGate>
-  </Provider>
-);
+              <PublicLayout path="/login" component={Login} exact />
+              <PublicLayout path="/signup" component={Signup} exact />
 
-export default Root;
+              <PrivateRoute path="/onboarding" component={Onboarding} />
+            </Switch>
+          </Router>
+        </PersistGate>
+      </Provider>
+    );
+  }
+}
