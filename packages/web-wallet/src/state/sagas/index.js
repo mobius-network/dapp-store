@@ -7,6 +7,7 @@ import downloadKeypairSaga from './downloadKeypair';
 import submitTransactionSaga from './submitTransaction';
 import loginSaga from './login';
 import requestSaga from './request';
+import loadAppsSaga from './loadApps';
 
 export default function* () {
   yield all([
@@ -17,5 +18,6 @@ export default function* () {
     submitTransactionSaga,
     loginSaga,
     requestSaga,
+    loadAppsSaga,
   ]);
 }
