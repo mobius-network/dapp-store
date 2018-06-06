@@ -67,4 +67,5 @@ export const Content = styled.div`
   margin: 2px;
   padding-left: 20px;
   padding-right: 20px;
+  text-transform: uppercase;
 `;

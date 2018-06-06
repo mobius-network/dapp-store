@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
@@ -15,7 +15,6 @@ const themes = {
   },
   primaryOutline: {
     background: gradients.button,
-    boxShadow: shadows.buttonPrimary,
     color: '#6278F1',
     contentBackground: colors.bg,
     fontWeight: 700,
@@ -30,47 +29,51 @@ const themes = {
   },
 };
 
-const Button = ({
-  children,
-  disabled,
-  fullWidth,
-  theme,
-  to,
-  onClick,
-  ...rest
-}) => (
-  <ThemeProvider theme={themes[theme]}>
-    {to ? (
-      <StyledLink fullWidth={fullWidth} to={to} {...rest}>
-        <Content>{children}</Content>
-      </StyledLink>
-    ) : (
-      <StyledButton
-        disabled={disabled}
-        fullWidth={fullWidth}
-        onClick={onClick}
-        type="button"
-        {...rest}
-      >
-        <Content>{children}</Content>
-      </StyledButton>
-    )}
-  </ThemeProvider>
-);
+export default class Button extends Component {
+  static propTypes = {
+    children: PropTypes.any,
+    disabled: PropTypes.bool,
+    fullWidth: PropTypes.bool,
+    onClick: PropTypes.func,
+    theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary']),
+    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  };
 
-Button.propTypes = {
-  children: PropTypes.any,
-  disabled: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-  onClick: PropTypes.func,
-  theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary']),
-  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-};
+  static defaultProps = {
+    disabled: false,
+    fullWidth: false,
+    theme: 'primary',
+  };
 
-Button.defaultProps = {
-  disabled: false,
-  fullWidth: false,
-  theme: 'primary',
-};
+  render() {
+    const {
+      children,
+      disabled,
+      fullWidth,
+      theme,
+      to,
+      onClick,
+      ...rest
+    } = this.props;
 
-export default Button;
+    return (
+      <ThemeProvider theme={themes[theme]}>
+        {to ? (
+          <StyledLink fullWidth={fullWidth} to={to} {...rest}>
+            <Content>{children}</Content>
+          </StyledLink>
+        ) : (
+          <StyledButton
+            disabled={disabled}
+            fullWidth={fullWidth}
+            onClick={onClick}
+            type="button"
+            {...rest}
+          >
+            <Content>{children}</Content>
+          </StyledButton>
+        )}
+      </ThemeProvider>
+    );
+  }
+}
