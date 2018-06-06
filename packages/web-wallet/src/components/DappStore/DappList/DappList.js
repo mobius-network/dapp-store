@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-// import { string } from 'prop-types';
+import { array } from 'prop-types';
 import { apiUrl } from 'utils';
 
+import DappItem from './DappItem';
 import { Container, Title } from './styles';
 
 class DappList extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    apps: array,
   };
 
   componentDidMount() {
@@ -17,9 +18,15 @@ class DappList extends Component {
   }
 
   render() {
+    const { apps } = this.props;
+
     return (
       <Container>
         <Title>DappList</Title>
+
+        {!apps && <p>Loading</p>}
+
+        {apps && apps.map(app => <DappItem key={app.id} {...app} />)}
       </Container>
     );
   }

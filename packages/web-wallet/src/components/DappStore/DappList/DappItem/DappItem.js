@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-// import { string } from 'prop-types';
+import { string } from 'prop-types';
 
 import { Container, Title } from './styles';
 
 class DappItem extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    name: string.isRequired,
   };
 
   render() {
+    const { name } = this.props;
+
     return (
       <Container>
-        <Title>DappItem</Title>
+        <Title>{name}</Title>
       </Container>
     );
   }
