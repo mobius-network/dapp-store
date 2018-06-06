@@ -1,17 +1,15 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { requestActions } from 'state/requests';
-import { authActions, getIsAuthorized } from 'state/auth';
+import { requestActions, getApps } from 'state/requests';
 
 import DappList from './DappList';
 
 const mapStateToProps = createStructuredSelector({
-  isAuthorized: getIsAuthorized,
+  apps: getApps,
 });
 
 const actions = {
-  ...authActions,
   ...requestActions,
 };
 
