@@ -8,7 +8,10 @@ import {
 } from 'components/shared/Styleguide';
 
 export const MainRow = styled.div`
+  align-items: center;
   background: ${colors.bg};
+  display: flex;
+  min-height: 30px;
   padding: 15px 0;
 `;
 
@@ -18,14 +21,14 @@ export const SecondaryRow = styled.div`
 `;
 
 export const CopyrightText = styled.p`
-  font-size: ${fontSizes.small};
   color: ${colors.textLight};
+  font-size: ${fontSizes.small};
   margin: 0 0 5px;
   padding: 0;
   text-align: center;
 
   @media screen and (min-width: ${breakpoints.md}) {
-    text-align: left;
     margin: 0;
+    text-align: left;
   }
 `;

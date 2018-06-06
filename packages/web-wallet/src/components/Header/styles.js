@@ -7,7 +7,12 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   height: 40px;
+  margin-bottom: 30px;
   padding: 10px 0;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin-bottom: 60px;
+  }
 `;
 
 export const ListContainer = styled.ul`

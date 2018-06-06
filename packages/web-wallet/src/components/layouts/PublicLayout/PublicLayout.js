@@ -27,7 +27,7 @@ export default class PublicLayout extends Component {
             <Content>
               <Grid>
                 <Grid.Row justifyContent="center">
-                  <Grid.Col width={[1, 1 / 2]}>
+                  <Grid.Col width={[1, 1, 1 / 2]}>
                     <RouterComponent {...matchProps} />
                   </Grid.Col>
                 </Grid.Row>
