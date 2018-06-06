@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
+
 import { colors, fontSizes, shadows } from 'components/shared/Styleguide';
 import Header from './Header';
 import Section from './Section';
@@ -24,13 +25,6 @@ const themes = {
     sectionPadding: '25px',
     shadow: shadows.pane,
   },
-  secondary: {
-    background: colors.bg,
-    headerFontSize: fontSizes.heading,
-    headerPadding: '25px',
-    headerSpacing: '10px',
-    sectionPadding: '25px',
-  },
   wide: {
     background: colors.bgWhite,
     headerFontSize: fontSizes.paneHeading,
@@ -44,7 +38,7 @@ const themes = {
 class Pane extends Component {
   static propTypes = {
     children: PropTypes.any,
-    theme: PropTypes.oneOf(['default', 'narrow', 'secondary', 'wide']),
+    theme: PropTypes.oneOf(['default', 'narrow', 'wide']),
     withGradient: PropTypes.bool,
   };
 

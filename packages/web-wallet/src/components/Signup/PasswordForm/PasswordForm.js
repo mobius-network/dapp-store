@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { required } from 'utils';
 
 import Pane from 'components/shared/Pane';
+import AdditionalInfo from 'components/shared/AdditionalInfo';
 import Button from 'components/shared/Button';
 import TextInput from 'components/shared/TextInput';
 
@@ -49,17 +50,15 @@ export default class PasswordForm extends Component {
           </Pane.Section>
         </Pane>
 
-        <Pane theme="secondary">
-          <Pane.Section>
-            <LoginBlock>
-              <LoginBlockText>Already have an account?</LoginBlockText>
+        <AdditionalInfo>
+          <LoginBlock>
+            <LoginBlockText>Already have an account?</LoginBlockText>
 
-              <Button to="/login" theme="primaryOutline">
-                Login
-              </Button>
-            </LoginBlock>
-          </Pane.Section>
-        </Pane>
+            <Button to="/login" theme="primaryOutline">
+              Login
+            </Button>
+          </LoginBlock>
+        </AdditionalInfo>
       </Fragment>
     );
   }

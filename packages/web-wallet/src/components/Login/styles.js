@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { fonts } from 'components/shared/Styleguide';
 import Form from './LoginForm';
 
 export const LoginForm = styled(Form)``;
@@ -13,5 +12,4 @@ export const SignupBlock = styled.div`
 
 export const SignupBlockText = styled.p`
   margin: 0;
-  font-family: ${fonts.nunitoSans};
 `;

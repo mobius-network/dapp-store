@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import Pane from 'components/shared/Pane';
+import AdditionalInfo from 'components/shared/AdditionalInfo';
 import Button from 'components/shared/Button';
 
 import { LoginForm, SignupBlock, SignupBlockText } from './styles';
@@ -20,17 +21,15 @@ export default class Login extends Component {
           </Pane.Section>
         </Pane>
 
-        <Pane theme="secondary">
-          <Pane.Section>
-            <SignupBlock>
-              <SignupBlockText>Don’t have an account?</SignupBlockText>
+        <AdditionalInfo>
+          <SignupBlock>
+            <SignupBlockText>Don’t have an account?</SignupBlockText>
 
-              <Button to="/signup" theme="primaryOutline">
-                Sign Up
-              </Button>
-            </SignupBlock>
-          </Pane.Section>
-        </Pane>
+            <Button to="/signup" theme="primaryOutline">
+              Sign Up
+            </Button>
+          </SignupBlock>
+        </AdditionalInfo>
       </Fragment>
     );
   }
