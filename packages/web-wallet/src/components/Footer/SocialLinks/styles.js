@@ -29,8 +29,8 @@ export const ListItem = styled.li`
 const socialLinkStyles = `
   color: ${colors.textLight};
   cursor: pointer;
-  height: 10px;
-  line-height: 10px;
+  display: inline-block;
+  font-size: 14px;
   opacity: 0.8;
   text-decoration: none;
 
@@ -49,8 +49,11 @@ export const SocialLink = styled(Link)`
 export const KakaoTalkLink = styled(Link)`
   ${socialLinkStyles};
   background-image: url(${kakaoTalkIcon});
-  width: 10px;
-  height: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 17px;
+  vertical-align: bottom;
+  width: 17px;
 
   &:visited {
     ${socialLinkStyles};

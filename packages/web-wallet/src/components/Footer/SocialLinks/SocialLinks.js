@@ -11,13 +11,14 @@ import {
   faGithub,
   faMedium,
 } from '@fortawesome/fontawesome-free-brands';
+import { faEnvelope } from '@fortawesome/fontawesome-free-regular';
 
 import {
+  KakaoTalkLink,
   ListContainer,
   ListItem,
   SocialLink,
   WeChatButton,
-  KakaoTalkLink,
 } from './styles';
 
 const socialUrls = {
@@ -42,7 +43,7 @@ export default class SocialLinks extends Component {
       <ListContainer>
         <ListItem>
           <SocialLink href={socialUrls.telegram} title="Telegram">
-            <FontAwesomeIcon icon={faTelegramPlane} />
+            <FontAwesomeIcon icon={faTelegramPlane} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
 
@@ -56,49 +57,55 @@ export default class SocialLinks extends Component {
             title="WeChat"
             type="button"
           >
-            <FontAwesomeIcon icon={faWeixin} />
+            <FontAwesomeIcon icon={faWeixin} fixedWidth size="lg" />
           </WeChatButton>
         </ListItem>
 
         <ListItem>
           <SocialLink href={socialUrls.meetup} title="Meetup">
-            <FontAwesomeIcon icon={faMeetup} />
+            <FontAwesomeIcon icon={faMeetup} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
 
         <ListItem>
           <SocialLink href={socialUrls.twitter} title="Twitter">
-            <FontAwesomeIcon icon={faTwitter} />
+            <FontAwesomeIcon icon={faTwitter} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
 
         <ListItem>
           <SocialLink href={socialUrls.facebook} title="Facebook">
-            <FontAwesomeIcon icon={faFacebook} />
+            <FontAwesomeIcon icon={faFacebook} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
 
         <ListItem>
           <SocialLink href={socialUrls.weibo} title="Weibo">
-            <FontAwesomeIcon icon={faWeibo} />
+            <FontAwesomeIcon icon={faWeibo} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
 
         <ListItem>
           <SocialLink href={socialUrls.reddit} title="Reddit">
-            <FontAwesomeIcon icon={faReddit} />
+            <FontAwesomeIcon icon={faReddit} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
 
         <ListItem>
           <SocialLink href={socialUrls.github} title="Github">
-            <FontAwesomeIcon icon={faGithub} />
+            <FontAwesomeIcon icon={faGithub} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
 
         <ListItem>
           <SocialLink href={socialUrls.medium} title="Medium">
-            <FontAwesomeIcon icon={faMedium} />
+            <FontAwesomeIcon icon={faMedium} fixedWidth size="lg" />
+          </SocialLink>
+        </ListItem>
+
+        <ListItem>
+          <SocialLink href={socialUrls.email}>
+            <FontAwesomeIcon icon={faEnvelope} fixedWidth size="lg" />
           </SocialLink>
         </ListItem>
       </ListContainer>

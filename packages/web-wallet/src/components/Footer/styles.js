@@ -14,7 +14,7 @@ export const MainRow = styled.div`
 
 export const SecondaryRow = styled.div`
   background: ${gradients.full};
-  padding: 5px 0;
+  padding: 8px 0;
 `;
 
 export const CopyrightText = styled.p`
