@@ -7,7 +7,7 @@ const linkStyles = `
   color: ${colors.textPrimary};
   cursor: pointer;
   display: inline-block;
-  font-family: ${fonts.control};
+  font-family: ${fonts.nunitoSans};
   font-size: ${fontSizes.default};
   opacity: 1;
   outline: 0;

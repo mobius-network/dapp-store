@@ -6,6 +6,7 @@ export const Caption = styled.p`
   font-family: ${fonts.default};
   font-size: ${fontSizes.paneCaption};
   margin: 0;
+  line-height: 1.6;
 `;
 
 export const Container = styled.div`
@@ -22,6 +23,7 @@ export const Title = styled.p`
   font-family: ${fonts.default};
   font-size: ${props => props.theme.headerFontSize};
   font-weight: 700;
+  line-height: 1.2;
   margin-bottom: ${props => props.theme.headerSpacing};
   margin-top: 0;
 

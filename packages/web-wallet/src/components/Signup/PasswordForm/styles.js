@@ -1,6 +1,8 @@
 import { Field } from 'redux-form';
 import styled from 'styled-components';
 
+import { fonts } from 'components/shared/Styleguide';
+
 export const Form = styled.form``;
 
 export const Title = styled.p``;
@@ -17,4 +19,5 @@ export const LoginBlock = styled.div`
 
 export const LoginBlockText = styled.p`
   margin: 0;
+  font-family: ${fonts.nunitoSans};
 `;

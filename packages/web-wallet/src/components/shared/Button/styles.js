@@ -60,7 +60,7 @@ export const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  font-family: ${fonts.control};
+  font-family: ${fonts.nunitoSans};
   font-size: ${fontSizes.default};
   font-weight: ${props => props.theme.fontWeight};
   justify-content: center;

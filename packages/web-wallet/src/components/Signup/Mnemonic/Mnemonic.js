@@ -1,30 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
 
-const Mnemonic = ({ mnemonic, signupSuccess }) => (
-  <Pane theme="wide" withGradient>
-    <Pane.Header
-      title="Write Down Your Mnemonic Phrase"
-      caption="If you ever lose your key pair you can use your mnemonic phrase
-        to recover your account."
-    />
+export default class Mnemonic extends Component {
+  static propTypes = {
+    mnemonic: PropTypes.string.isRequired,
+    signupSuccess: PropTypes.func.isRequired,
+  };
 
-    <Pane.Section>
-      <p>{mnemonic}</p>
+  render() {
+    const { mnemonic, signupSuccess } = this.props;
 
-      <Button to="/onboarding" onClick={signupSuccess} fullWidth>
-        I’ve Written it Down
-      </Button>
-    </Pane.Section>
-  </Pane>
-);
+    return (
+      <Pane theme="wide" withGradient>
+        <Pane.Header
+          title="Write Down Your Mnemonic Phrase"
+          caption="If you ever lose your key pair you can use your mnemonic phrase
+            to recover your account."
+        />
 
-Mnemonic.propTypes = {
-  mnemonic: PropTypes.string.isRequired,
-  signupSuccess: PropTypes.func.isRequired,
-};
+        <Pane.Section>
+          <p>{mnemonic}</p>
 
-export default Mnemonic;
+          <Button to="/onboarding" onClick={signupSuccess} fullWidth>
+            I’ve Written it Down
+          </Button>
+        </Pane.Section>
+      </Pane>
+    );
+  }
+}

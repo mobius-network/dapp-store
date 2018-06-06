@@ -10,9 +10,9 @@ export const colors = {
 };
 
 export const fonts = {
-  control: '\'Nunito Sans\', Helvetica, Arial, sans-serif',
   default: '\'Helvetica Neue\', Helvetica, Arial, sans-serif',
-  logo: '\'Montserrat\', sans-serif',
+  montserrat: '\'Montserrat\', sans-serif',
+  nunitoSans: '\'Nunito Sans\', Helvetica, Arial, sans-serif',
 };
 
 export const fontSizes = {
