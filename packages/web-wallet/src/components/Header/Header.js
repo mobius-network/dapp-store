@@ -26,7 +26,7 @@ class Header extends Component {
           <Link to="/login">Login </Link>
         </ListItem>
         <ListItem>
-          <Link to="/signup">Signup</Link>
+          <Link to="/signup">Sign Up</Link>
         </ListItem>
       </Fragment>
     );
