@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { colors, media } from 'components/shared/Styleguide';
+import { colors, breakpoints } from 'components/shared/Styleguide';
 import Link from 'components/shared/Link';
 
 import kakaoTalkIcon from './images/kakao.svg';
@@ -13,7 +13,7 @@ export const ListContainer = styled.ul`
   padding: 0;
   justify-content: center;
 
-  @media screen and (min-width: ${media.sm}) {
+  @media screen and (min-width: ${breakpoints.md}) {
     justify-content: flex-end;
   }
 `;

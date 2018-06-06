@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-import { media } from 'components/shared/Styleguide';
+import { breakpoints } from 'components/shared/Styleguide';
 
 export const Content = styled.div`
-  margin: 30px auto;
+  margin-bottom: 30px;
 
-  @media screen and (min-width: ${media.sm}) {
-    margin: 60px auto;
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin-bottom: 60px;
   }
 `;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { media } from 'components/shared/Styleguide';
+import { breakpoints } from 'components/shared/Styleguide';
 
 export const Container = styled.div`
   align-items: center;
@@ -25,7 +25,7 @@ export const ListItem = styled.li`
   margin-right: 25px;
   padding: 0;
 
-  @media screen and (min-width: ${media.sm}) {
+  @media screen and (min-width: ${breakpoints.md}) {
     margin-right: 35px;
   }
 

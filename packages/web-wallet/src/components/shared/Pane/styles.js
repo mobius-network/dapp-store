@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { radius, fonts, gradients, media } from 'components/shared/Styleguide';
+import {
+  radius,
+  fonts,
+  gradients,
+  breakpoints,
+} from 'components/shared/Styleguide';
 
 export const Container = styled.div`
   background: ${props => props.theme.background};
@@ -10,14 +15,14 @@ export const Container = styled.div`
   position: relative;
   text-align: left;
 
-  @media screen and (min-width: ${media.sm}) {
+  @media screen and (min-width: ${breakpoints.md}) {
     margin-bottom: 40px;
   }
 
   &:last-child {
     margin-bottom: 0;
 
-    @media screen and (min-width: ${media.sm}) {
+    @media screen and (min-width: ${breakpoints.md}) {
       margin-bottom: 0;
     }
   }

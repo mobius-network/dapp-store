@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Grid, Row, Col } from 'react-flexbox-grid';
 
+import Grid from 'components/shared/Grid';
 import Button from 'components/shared/Button';
 import Link from 'components/shared/Link';
 import Logo from 'components/shared/Logo';
@@ -36,11 +36,11 @@ class Header extends Component {
     return (
       <Container>
         <Grid>
-          <Row middle="xs">
-            <Col xs>
+          <Grid.Row alignItems={['center']} flexWrap="wrap">
+            <Grid.Col width={[1, 1 / 2]}>
               <Logo withName />
-            </Col>
-            <Col xs>
+            </Grid.Col>
+            <Grid.Col width={[1, 1 / 2]}>
               <ListContainer>
                 <ListItem>
                   <Link to="/">Browse DApps</Link>
@@ -51,8 +51,8 @@ class Header extends Component {
 
                 {this.renderSessionActions()}
               </ListContainer>
-            </Col>
-          </Row>
+            </Grid.Col>
+          </Grid.Row>
         </Grid>
       </Container>
     );

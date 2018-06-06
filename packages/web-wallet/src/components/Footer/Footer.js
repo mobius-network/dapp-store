@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { Grid, Row, Col } from 'react-flexbox-grid';
 
+import Grid from 'components/shared/Grid';
 import NavLinks from './NavLinks';
 import SocialLinks from './SocialLinks';
 import { MainRow, SecondaryRow, CopyrightText } from './styles';
@@ -11,25 +11,25 @@ export default class Footer extends Component {
       <Fragment>
         <MainRow>
           <Grid>
-            <Row middle="md">
-              <Col md={9}>
+            <Grid.Row alignItems={['flex-start', 'center']}>
+              <Grid.Col width={[1, 3 / 4]}>
                 <NavLinks />
-              </Col>
-            </Row>
+              </Grid.Col>
+            </Grid.Row>
           </Grid>
         </MainRow>
         <SecondaryRow>
           <Grid>
-            <Row middle="md">
-              <Col md={6}>
+            <Grid.Row alignItems={['flex-start', 'center']} flexWrap="wrap">
+              <Grid.Col width={[1, 1 / 2]}>
                 <CopyrightText>
                   © 2018 Mochi, Inc. All Rights Reserved.
                 </CopyrightText>
-              </Col>
-              <Col md={6}>
+              </Grid.Col>
+              <Grid.Col width={[1, 1 / 2]}>
                 <SocialLinks />
-              </Col>
-            </Row>
+              </Grid.Col>
+            </Grid.Row>
           </Grid>
         </SecondaryRow>
       </Fragment>

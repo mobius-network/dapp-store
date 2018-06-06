@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Row, Col } from 'react-flexbox-grid';
 
 import DefaultLayout from 'components/layouts/DefaultLayout';
+import Grid from 'components/shared/Grid';
 import Header from 'components/Header';
 
 import { Content } from './styles';
@@ -26,11 +26,11 @@ export default class PublicLayout extends Component {
 
             <Content>
               <Grid>
-                <Row center="md">
-                  <Col md={6}>
+                <Grid.Row justifyContent="center">
+                  <Grid.Col width={[1, 1 / 2]}>
                     <RouterComponent {...matchProps} />
-                  </Col>
-                </Row>
+                  </Grid.Col>
+                </Grid.Row>
               </Grid>
             </Content>
           </Fragment>

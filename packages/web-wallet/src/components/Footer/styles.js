@@ -4,7 +4,7 @@ import {
   colors,
   fontSizes,
   gradients,
-  media,
+  breakpoints,
 } from 'components/shared/Styleguide';
 
 export const MainRow = styled.div`
@@ -24,7 +24,7 @@ export const CopyrightText = styled.p`
   padding: 0;
   text-align: center;
 
-  @media screen and (min-width: ${media.sm}) {
+  @media screen and (min-width: ${breakpoints.md}) {
     text-align: left;
     margin: 0;
   }

@@ -31,11 +31,10 @@ export const gradients = {
   full: 'linear-gradient(90deg, #37CAE6 0%, #8C2DFD 100%)',
 };
 
-export const media = {
-  xs: '576px',
-  sm: '768px',
-  md: '992px',
-  lg: '1200px',
+export const breakpoints = {
+  sm: '576px',
+  md: '768px',
+  lg: '992px',
 };
 
 export const shadows = {
