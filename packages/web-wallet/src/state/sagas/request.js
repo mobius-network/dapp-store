@@ -1,19 +1,23 @@
 import { noop } from 'lodash';
+import axios from 'axios';
 import { takeLatest, call, put } from 'redux-saga/effects';
 
 import { requestActions } from 'state/requests/reducer';
 
 function* request({
-  payload: { name, payload, fetcher = fetch },
+  payload: {
+    name, payload, fetcher = axios, method = 'get',
+  },
   meta: { resolve = noop, reject = noop } = {},
 }) {
   const args = Array.isArray(payload) ? payload : [payload];
 
   try {
-    const response = yield call(fetcher, ...args);
+    const response = yield call(fetcher[method], ...args);
+    const data = fetcher === axios ? response.data : response;
 
-    resolve(response);
-    yield put(requestActions.fetchSuccess({ name, response }));
+    resolve(data);
+    yield put(requestActions.fetchSuccess({ name, data }));
   } catch ({ response, message, stack }) {
     const error = { message, stack, ...response };
 
