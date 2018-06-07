@@ -25,6 +25,12 @@ class DappModal extends Component {
     style: object,
   };
 
+  openApp = () => {
+    const { openDapp, app } = this.props;
+
+    openDapp(app);
+  };
+
   onDeposit = () => {
     const { depositApp, app } = this.props;
 
@@ -53,7 +59,7 @@ class DappModal extends Component {
         <Title>{app.name}</Title>
         <button onClick={onClose}>close</button>
         <Container>
-          <button>Go to App</button>
+          <button onClick={this.openApp}>Go to App</button>
           <button onClick={this.onDeposit}>Deposit Funds</button>
           <p>balance: {mobiBalance}</p>
         </Container>
