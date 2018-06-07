@@ -1,8 +1,9 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 
 import Header from 'components/Header';
+import { Container } from './styles';
 
 export default class DappStoreLayout extends Component {
   static propTypes = {
@@ -16,11 +17,11 @@ export default class DappStoreLayout extends Component {
       <Route
         {...rest}
         component={matchProps => (
-          <Fragment>
+          <Container>
             <Header />
 
             <RouterComponent {...matchProps} />
-          </Fragment>
+          </Container>
         )}
       />
     );

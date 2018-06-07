@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
+
 import PrivateRoute from 'components/shared/PrivateRoute';
 
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import DappStoreLayout from 'components/layouts/DappStoreLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
+import Footer from 'components/Footer';
+import Loading from 'components/Loading';
 
 import DappStore from 'components/DappStore';
 import Login from 'components/Login';
@@ -34,24 +37,28 @@ export default class Root extends Component {
 
     return (
       <Provider store={store}>
-        <PersistGate
-          loading={null}
-          persistor={persistor}
-          onBeforeLift={waitForRequiredData(store)}
-        >
-          <Router>
-            <DefaultLayout>
-              <Switch>
-                <DappStoreLayout path="/" component={DappStore} exact />
+        <DefaultLayout>
+          <PersistGate
+            loading={<Loading />}
+            persistor={persistor}
+            onBeforeLift={waitForRequiredData(store)}
+          >
+            <Router>
+              <Fragment>
+                <Switch>
+                  <DappStoreLayout path="/" component={DappStore} exact />
 
-                <PublicLayout path="/login" component={Login} exact />
-                <PublicLayout path="/signup" component={Signup} exact />
+                  <PublicLayout path="/login" component={Login} exact />
+                  <PublicLayout path="/signup" component={Signup} exact />
 
-                <PrivateRoute path="/onboarding" component={Onboarding} />
-              </Switch>
-            </DefaultLayout>
-          </Router>
-        </PersistGate>
+                  <PrivateRoute path="/onboarding" component={Onboarding} />
+                </Switch>
+
+                <Footer />
+              </Fragment>
+            </Router>
+          </PersistGate>
+        </DefaultLayout>
       </Provider>
     );
   }

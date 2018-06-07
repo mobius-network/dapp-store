@@ -1,11 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import PublicRoute from 'components/shared/PublicRoute';
 import Grid from 'components/shared/Grid';
 import Header from 'components/Header';
 
-import { Content } from './styles';
+import { Container, Content } from './styles';
 
 export default class PublicLayout extends Component {
   static propTypes = {
@@ -19,7 +19,7 @@ export default class PublicLayout extends Component {
       <PublicRoute
         {...rest}
         component={matchProps => (
-          <Fragment>
+          <Container>
             <Header />
 
             <Content>
@@ -31,7 +31,7 @@ export default class PublicLayout extends Component {
                 </Grid.Row>
               </Grid>
             </Content>
-          </Fragment>
+          </Container>
         )}
       />
     );
