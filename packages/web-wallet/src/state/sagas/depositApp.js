@@ -13,24 +13,24 @@ import { getPublicKeyFor, getSecretKeyFor } from 'state/auth/selectors';
 import { appActions, getAppAccount } from 'state/apps';
 
 export function* addToAppAccount(app, amount) {
-  const destination = yield select(getPublicKeyFor({
+  const destination = yield select(getPublicKeyFor, {
     accountNumber: app.id,
-  }));
+  });
 
-  yield put(accountActions.transact, {
+  yield put(accountActions.transact({
     name: 'depositApp',
     operation: Operation.payment({
       destination,
       amount: String(amount),
       asset: assets.mobi,
     }),
-  });
+  }));
 }
 
 export function* createApp(app, amount) {
   const account = yield select(getMasterAccount);
   const masterSecretKey = yield select(getSecretKeyFor);
-  const appSecretKey = yield select(getSecretKeyFor, app.id);
+  const appSecretKey = yield select(getSecretKeyFor, { accountNumber: app.id });
 
   const transaction = createAppAccount({
     developerPublicKey: app.stellar_public_key,
@@ -48,7 +48,7 @@ export function* createApp(app, amount) {
 }
 
 export function* depositApp({ payload: { app, amount } }) {
-  const appAccount = yield select(getAppAccount, app.id);
+  const appAccount = yield select(getAppAccount, { appId: app.id });
 
   const handler = appAccount ? addToAppAccount : createApp;
 
