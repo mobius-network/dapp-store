@@ -1,12 +1,16 @@
-import { Field } from 'redux-form';
 import styled from 'styled-components';
 
-export const Form = styled.form``;
+import Link from 'components/shared/Link';
+import { fontSizes } from 'components/shared/Styleguide';
 
-export const Title = styled.p``;
+export const ActionsRow = styled.div`
+  margin-top: 25px;
+`;
 
-export const TextField = styled(Field)``;
+export const StyledLink = styled(Link)`
+  font-size: ${fontSizes.formField};
 
-export const UploadField = styled(Field)``;
-
-export const SubmitButton = styled.button``;
+  &:visited {
+    font-size: ${fontSizes.formField};
+  }
+`;

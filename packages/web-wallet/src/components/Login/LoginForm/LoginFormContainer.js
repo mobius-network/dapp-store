@@ -7,6 +7,7 @@ import { createStructuredSelector } from 'reselect';
 import { authActions, getSignupStep } from 'state/auth';
 
 import LoginForm from './LoginForm';
+import { validate } from './validations';
 
 const mapStateToProps = createStructuredSelector({
   signupStep: getSignupStep,
@@ -20,6 +21,7 @@ export default compose(
   connect(mapStateToProps, actions),
   reduxForm({
     form: 'loginForm',
+    validate,
     onSubmit: (values, store, { loginStart }) =>
       promisifyAction(loginStart, values),
   })
