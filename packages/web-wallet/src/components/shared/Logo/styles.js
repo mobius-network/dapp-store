@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Link from 'components/shared/Link';
 import { colors, fonts } from 'components/shared/Styleguide';
 
-import logoImage from './images/logo.png';
+import image from './images/logo.png';
 
 export const LogoLink = styled(Link)`
   align-items: center;
@@ -16,12 +16,12 @@ export const LogoLink = styled(Link)`
 `;
 
 export const LogoImage = styled.div`
-  background-image: url(${logoImage});
+  background-image: url(${image});
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 20px;
-  width: 50px;
+  height: 18px;
+  width: 38px;
 `;
 
 export const LogoName = styled.span`
