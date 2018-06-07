@@ -7,6 +7,8 @@ import { requestActions } from 'state/requests/reducer';
 import { matchFetchSuccess } from 'state/requests/matchers';
 
 export function* openDapp({ payload: app }) {
+  const tab = window.open('', '_blank');
+
   yield put(requestActions.fetchStart({
     name: 'getChallenge',
     payload: `${app.url}/auth`,
@@ -41,7 +43,8 @@ export function* openDapp({ payload: app }) {
     payload: { data: token },
   } = yield take(matchFetchSuccess('postChallenge'));
 
-  window.open(`${app.url}/?token=${token}`, '_blank');
+  const finalUrl = `${app.url}/?token=${token}`;
+  tab.location.href = finalUrl;
 }
 
 export default takeLatest(appActions.openDapp, openDapp);
