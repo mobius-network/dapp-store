@@ -1,8 +1,8 @@
 /* eslint-disable no-shadow */
 import { createSelector } from 'reselect';
 
-export const getAccountNumber = (_, number) =>
-  parseInt(Number.isInteger(number) ? number : 0, 10);
+export const getAccountNumber = (_, { accountNumber = 0 } = {}) =>
+  parseInt(accountNumber, 10);
 
 export const getSignupStep = state => state.auth.signupStep;
 export const getKeystore = state => state.auth.keystore;
