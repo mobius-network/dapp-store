@@ -17,9 +17,9 @@ export default class PublicLayout extends Component {
 
     return (
       <DefaultLayout
+        {...rest}
         redirectTo="/"
         checkEqualityTo={false}
-        {...rest}
         component={matchProps => (
           <Fragment>
             <Header />
