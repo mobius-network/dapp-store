@@ -14,16 +14,14 @@ import { safeLoadAccount } from '@mobius-network/core';
 import { apiUrl } from 'utils';
 
 import { requestActions } from 'state/requests/reducer';
+import { matchFetchSuccess } from 'state/requests/matchers';
 import { getPublicKeyFor, getIsAuthorized } from 'state/auth/selectors';
 import { authActions } from 'state/auth/reducer';
 import { appActions } from 'state/apps/reducer';
 
-const appsLoadedAction = ({ type, payload = {} }) =>
-  type === requestActions.fetchSuccess.type && payload.name === 'apps';
-
 const watchers = {};
 
-export function* loadApp(app) {
+export function* loadAppAccount(app) {
   const publicKey = yield select(getPublicKeyFor, { accountNumber: app.id });
   const account = yield call(safeLoadAccount, publicKey);
 
@@ -31,14 +29,18 @@ export function* loadApp(app) {
   return { account, app };
 }
 
-export function* watchApp(app, delayDuration = 2000) {
+export function* watchAppAccount(app, delayDuration = 2000) {
   while (true) {
-    yield call(loadApp, app);
+    yield call(loadAppAccount, app);
     yield call(delay, delayDuration);
   }
 }
 
-export function* stopAppWatcher() {
+export function* startAppAccountWatcher(app) {
+  watchers[app.id] = yield fork(watchAppAccount, app);
+}
+
+export function* stopAppAccountWatcher() {
   while (true) {
     const { payload: appId } = yield take(appActions.stopWatching);
     yield cancel(watchers[appId]);
@@ -49,17 +51,17 @@ export function* stopAppWatcher() {
 export function* loadAppAccounts() {
   const {
     payload: { data },
-  } = yield take(appsLoadedAction);
+  } = yield take(matchFetchSuccess('apps'));
 
   // Attempt to load all accounts
-  const pairs = yield all(data.apps.map(app => call(loadApp, app)));
-  const loadedPairs = pairs.filter(pair => pair.account);
+  const pairs = yield all(data.apps.map(app => call(loadAppAccount, app)));
 
   // Start watching only apps with created accounts
-  const watchTasks = yield all(loadedPairs.map(pair => fork(watchApp, pair.app)));
-  loadedPairs.forEach(({ app }, idx) => (watchers[app.id] = watchTasks[idx]));
+  yield all(pairs
+    .filter(pair => pair.account)
+    .map(pair => fork(startAppAccountWatcher, pair.app)));
 
-  yield fork(stopAppWatcher);
+  yield fork(stopAppAccountWatcher);
 
   // Cancel all watchers on logout
   yield take(authActions.logout);
