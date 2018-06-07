@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { appActions } from 'state/apps';
+import { appActions, getAppAssetBalance } from 'state/apps';
 
 import DappModal from './DappModal';
 
-const mapStateToProps = createStructuredSelector({});
+const mapStateToProps = (state, { app }) => ({
+  mobiBalance: getAppAssetBalance(state, { appId: app.id }),
+});
 
 const actions = {
   ...appActions,

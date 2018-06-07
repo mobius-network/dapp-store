@@ -13,7 +13,9 @@ import { getPublicKeyFor, getSecretKeyFor } from 'state/auth/selectors';
 import { appActions, getAppAccount } from 'state/apps';
 
 export function* addToAppAccount(app, amount) {
-  const destination = yield select(getPublicKeyFor(app.id));
+  const destination = yield select(getPublicKeyFor({
+    accountNumber: app.id,
+  }));
 
   yield put(accountActions.transact, {
     name: 'depositApp',

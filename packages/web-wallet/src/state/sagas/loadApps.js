@@ -24,7 +24,7 @@ const appsLoadedAction = ({ type, payload = {} }) =>
 const watchers = {};
 
 export function* loadApp(app) {
-  const publicKey = yield select(getPublicKeyFor, app.id);
+  const publicKey = yield select(getPublicKeyFor, { accountNumber: app.id });
   const account = yield call(safeLoadAccount, publicKey);
 
   yield put(appActions.setAppAccount({ account, app }));

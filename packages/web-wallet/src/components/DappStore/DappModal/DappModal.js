@@ -36,7 +36,11 @@ class DappModal extends Component {
 
   render() {
     const {
-      isOpen, style = customStyles, onClose, app,
+      isOpen,
+      style = customStyles,
+      onClose,
+      app,
+      mobiBalance,
     } = this.props;
 
     return (
@@ -51,6 +55,7 @@ class DappModal extends Component {
         <Container>
           <button>Go to App</button>
           <button onClick={this.onDeposit}>Deposit Funds</button>
+          <p>balance: {mobiBalance}</p>
         </Container>
       </Modal>
     );
