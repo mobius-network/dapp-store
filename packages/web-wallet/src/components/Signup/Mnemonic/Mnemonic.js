@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
+import CopyField from 'components/shared/CopyField';
+import { MnemonicPhraseRow } from './styles';
 
 export default class Mnemonic extends Component {
   static propTypes = {
@@ -22,7 +24,9 @@ export default class Mnemonic extends Component {
         />
 
         <Pane.Section>
-          <p>{mnemonic}</p>
+          <MnemonicPhraseRow>
+            <CopyField text={mnemonic} />
+          </MnemonicPhraseRow>
 
           <Button to="/onboarding" onClick={signupSuccess} fullWidth>
             I’ve Written it Down
