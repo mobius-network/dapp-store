@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.0.20",
     "@mobius-network/core": "0.0.1",
+    "@mobius-network/mobius-client-js": "^0.3.2",
     "cross-env": "5.1.4",
     "downloadjs": "^1.4.7",
     "event-filter-redux-middleware": "^0.0.2",
