@@ -42,6 +42,7 @@
     "redux-saga": "^0.16.0",
     "redux-yo": "^0.0.25",
     "reselect": "^3.0.1",
+    "revalidate": "^1.2.0",
     "stellar-hd-wallet": "^0.0.6",
     "stellar-sdk": "^0.8.1",
     "styled-components": "^3.2.6",

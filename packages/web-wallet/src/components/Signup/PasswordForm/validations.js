@@ -1,23 +1,11 @@
-export const validate = values => {
-  let errors = {};
+import { combineValidators, composeValidators, isRequired } from 'revalidate';
 
-  if (!values.password) {
-    errors = Object.assign({}, errors, {
-      password: 'Password required',
-    });
-  }
+import { isEquals } from 'utils';
 
-  if (!values.passwordConfirmation) {
-    errors = Object.assign({}, errors, {
-      passwordConfirmation: 'Password confirmation required',
-    });
-  }
-
-  if (values.password !== values.passwordConfirmation) {
-    errors = Object.assign({}, errors, {
-      passwordConfirmation: 'Passwords must match',
-    });
-  }
-
-  return errors;
-};
+export const validate = combineValidators({
+  password: isRequired('Password'),
+  passwordConfirmation: composeValidators(
+    isRequired,
+    isEquals('password')({ message: 'Confirmation must match password' })
+  )('Password Confirmation'),
+});
