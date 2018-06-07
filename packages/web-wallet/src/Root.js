@@ -4,6 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import PrivateRoute from 'components/shared/PrivateRoute';
 
+import DefaultLayout from 'components/layouts/DefaultLayout';
 import DappStoreLayout from 'components/layouts/DappStoreLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
 
@@ -39,14 +40,16 @@ export default class Root extends Component {
           onBeforeLift={waitForRequiredData(store)}
         >
           <Router>
-            <Switch>
-              <DappStoreLayout path="/" component={DappStore} exact />
+            <DefaultLayout>
+              <Switch>
+                <DappStoreLayout path="/" component={DappStore} exact />
 
-              <PublicLayout path="/login" component={Login} exact />
-              <PublicLayout path="/signup" component={Signup} exact />
+                <PublicLayout path="/login" component={Login} exact />
+                <PublicLayout path="/signup" component={Signup} exact />
 
-              <PrivateRoute path="/onboarding" component={Onboarding} />
-            </Switch>
+                <PrivateRoute path="/onboarding" component={Onboarding} />
+              </Switch>
+            </DefaultLayout>
           </Router>
         </PersistGate>
       </Provider>

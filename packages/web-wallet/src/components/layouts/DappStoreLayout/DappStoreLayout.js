@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Route } from 'react-router-dom';
 
-import DefaultLayout from 'components/layouts/DefaultLayout';
 import Header from 'components/Header';
 
 export default class DappStoreLayout extends Component {
@@ -13,7 +13,7 @@ export default class DappStoreLayout extends Component {
     const { component: RouterComponent, ...rest } = this.props;
 
     return (
-      <DefaultLayout
+      <Route
         {...rest}
         component={matchProps => (
           <Fragment>

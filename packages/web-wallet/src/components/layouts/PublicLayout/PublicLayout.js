@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import DefaultLayout from 'components/layouts/DefaultLayout';
+import PublicRoute from 'components/shared/PublicRoute';
 import Grid from 'components/shared/Grid';
 import Header from 'components/Header';
 
@@ -16,10 +16,8 @@ export default class PublicLayout extends Component {
     const { component: RouterComponent, ...rest } = this.props;
 
     return (
-      <DefaultLayout
+      <PublicRoute
         {...rest}
-        redirectTo="/"
-        checkEqualityTo={false}
         component={matchProps => (
           <Fragment>
             <Header />
