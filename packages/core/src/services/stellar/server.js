@@ -1,7 +1,9 @@
-import StellarSdk from 'stellar-sdk';
+import { Server, Network } from 'stellar-sdk';
 
 if (process.env.STELLAR_TESTNET === 'true') {
-  StellarSdk.Network.useTestNetwork();
+  Network.useTestNetwork();
 }
 
-export const stellarServer = new StellarSdk.Server(process.env.STELLAR_HORIZON_URL);
+export const stellarServer = new Server(process.env.STELLAR_HORIZON_URL);
+
+export const submitTransaction = (...args) => stellarServer.submitTransaction(...args);

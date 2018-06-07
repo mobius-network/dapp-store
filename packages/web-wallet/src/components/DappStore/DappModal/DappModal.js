@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string, object, bool, func } from 'prop-types';
+import { object, bool, func } from 'prop-types';
 import Modal from 'react-modal';
 
 import { Container, Title } from './styles';
@@ -19,15 +19,24 @@ const customStyles = {
 
 class DappModal extends Component {
   static propTypes = {
-    name: string.isRequired,
+    app: object.isRequired,
     onClose: func.isRequired,
     isOpen: bool.isRequired,
     style: object,
   };
 
+  onDeposit = () => {
+    const { depositApp, app } = this.props;
+
+    depositApp({
+      amount: 3,
+      app,
+    });
+  };
+
   render() {
     const {
-      isOpen, style = customStyles, onClose, name,
+      isOpen, style = customStyles, onClose, app,
     } = this.props;
 
     return (
@@ -37,11 +46,11 @@ class DappModal extends Component {
         contentLabel="Dapp modal"
         style={style}
       >
-        <Title>{name}</Title>
+        <Title>{app.name}</Title>
         <button onClick={onClose}>close</button>
         <Container>
           <button>Go to App</button>
-          <button>Deposit Funds</button>
+          <button onClick={this.onDeposit}>Deposit Funds</button>
         </Container>
       </Modal>
     );

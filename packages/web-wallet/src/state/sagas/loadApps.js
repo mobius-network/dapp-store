@@ -13,22 +13,60 @@ import {
 import { safeLoadAccount } from '@mobius-network/core';
 import { apiUrl } from 'utils';
 
-import { requestActions } from 'state/requests';
-import { getPublicKeyFor } from 'state/auth';
-import { appActions } from 'state/apps';
+import { requestActions } from 'state/requests/reducer';
+import { getPublicKeyFor, getIsAuthorized } from 'state/auth/selectors';
+import { authActions } from 'state/auth/reducer';
+import { appActions } from 'state/apps/reducer';
+
+const appsLoadedAction = ({ type, payload = {} }) =>
+  type === requestActions.fetchSuccess.type && payload.name === 'apps';
+
+const watchers = {};
 
 export function* loadApp(app) {
   const publicKey = yield select(getPublicKeyFor, app.id);
   const account = yield call(safeLoadAccount, publicKey);
 
-  console.log(app, account);
+  yield put(appActions.setAppAccount({ account, app }));
+  return { account, app };
 }
 
-export function* watchApps(apps, delayDuration = 2000) {
+export function* watchApp(app, delayDuration = 2000) {
   while (true) {
-    yield all(apps.map(app => call(loadApp, app)));
+    yield call(loadApp, app);
     yield call(delay, delayDuration);
   }
+}
+
+export function* stopAppWatcher() {
+  while (true) {
+    const { payload: appId } = yield take(appActions.stopWatching);
+    yield cancel(watchers[appId]);
+    delete watchers[appId];
+  }
+}
+
+export function* loadAppAccounts() {
+  const {
+    payload: { data },
+  } = yield take(appsLoadedAction);
+
+  // Attempt to load all accounts
+  const pairs = yield all(data.apps.map(app => call(loadApp, app)));
+  const loadedPairs = pairs.filter(pair => pair.account);
+
+  // Start watching only apps with created accounts
+  const watchTasks = yield all(loadedPairs.map(pair => fork(watchApp, pair.app)));
+  loadedPairs.forEach(({ app }, idx) => (watchers[app.id] = watchTasks[idx]));
+
+  yield fork(stopAppWatcher);
+
+  // Cancel all watchers on logout
+  yield take(authActions.logout);
+  Object.entries(watchers).forEach(([appId, watcher]) => {
+    watcher.cancel();
+    delete watchers[appId];
+  });
 }
 
 export function* fetchApps() {
@@ -37,15 +75,11 @@ export function* fetchApps() {
     payload: `${apiUrl}/app_store/all`,
   }));
 
-  const {
-    payload: { data },
-  } = yield take(({ type, payload: { name } = {} }) =>
-    type === requestActions.fetchSuccess.type && name === 'apps');
+  const isAuthorized = yield select(getIsAuthorized);
 
-  const appsWatcher = yield fork(watchApps, data.apps);
-
-  yield take(appActions.stopWatching);
-  yield cancel(appsWatcher);
+  if (isAuthorized) {
+    yield fork(loadAppAccounts);
+  }
 }
 
 export default takeLatest(appActions.loadApps, fetchApps);

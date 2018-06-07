@@ -1,10 +1,10 @@
 import { takeLatest, put, select } from 'redux-saga/effects';
-import { submitTransaction } from '@mobius-network/core';
+import { submitOperation } from '@mobius-network/core';
 
 import { requestActions } from 'state/requests/reducer';
-import { balanceActions } from 'state/balance/reducer';
+import { accountActions } from 'state/account/reducer';
 import { getKeypairFor } from 'state/auth/selectors';
-import { getMasterAccount } from 'state/balance/selectors';
+import { getMasterAccount } from 'state/account/selectors';
 
 function* transact({ payload: { operation, name }, meta }) {
   const account = yield select(getMasterAccount);
@@ -13,11 +13,11 @@ function* transact({ payload: { operation, name }, meta }) {
   yield put(requestActions.fetchStart(
     {
       name,
-      fetcher: submitTransaction,
+      fetcher: submitOperation,
       payload: [operation, account, keypair],
     },
     meta
   ));
 }
 
-export default takeLatest(balanceActions.transact, transact);
+export default takeLatest(accountActions.transact, transact);

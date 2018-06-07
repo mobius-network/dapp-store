@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { object } from 'prop-types';
 
 import DappModal from 'components/DappStore/DappModal';
 import { Container, Title } from './styles';
 
 class DappItem extends Component {
   static propTypes = {
-    name: string.isRequired,
+    app: object.isRequired,
   };
 
   state = {
@@ -22,19 +22,15 @@ class DappItem extends Component {
   };
 
   render() {
-    const { name } = this.props;
+    const { app } = this.props;
     const { modalOpened } = this.state;
 
     return (
       <Container>
-        <Title>{name}</Title>
+        <Title>{app.name}</Title>
         <button onClick={this.openModal}>Open Modal</button>
 
-        <DappModal
-          isOpen={modalOpened}
-          onClose={this.closeModal}
-          {...this.props}
-        />
+        <DappModal app={app} isOpen={modalOpened} onClose={this.closeModal} />
       </Container>
     );
   }

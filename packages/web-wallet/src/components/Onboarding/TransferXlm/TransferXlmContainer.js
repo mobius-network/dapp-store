@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
 import { authActions } from 'state/auth';
-import { getAssetBalance } from 'state/balance';
+import { getAssetBalance } from 'state/account';
 
 import TransferXlm from './TransferXlm';
 

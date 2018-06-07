@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { authActions, getIsAuthorized } from 'state/auth';
+import { appActions } from 'state/apps';
 
 import DappModal from './DappModal';
 
-const mapStateToProps = createStructuredSelector({
-  isAuthorized: getIsAuthorized,
-});
+const mapStateToProps = createStructuredSelector({});
 
 const actions = {
-  ...authActions,
+  ...appActions,
 };
 
 export default connect(mapStateToProps, actions)(DappModal);

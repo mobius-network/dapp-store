@@ -8,6 +8,7 @@ import submitTransactionSaga from './submitTransaction';
 import loginSaga from './login';
 import requestSaga from './request';
 import loadAppsSaga from './loadApps';
+import depositAppSaga from './depositApp';
 
 export default function* () {
   yield all([
@@ -19,5 +20,6 @@ export default function* () {
     loginSaga,
     requestSaga,
     loadAppsSaga,
+    depositAppSaga,
   ]);
 }

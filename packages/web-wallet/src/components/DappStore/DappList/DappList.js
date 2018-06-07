@@ -22,7 +22,7 @@ class DappList extends Component {
 
         {!apps && <p>Loading</p>}
 
-        {apps && apps.map(app => <DappItem key={app.id} {...app} />)}
+        {apps && apps.map(app => <DappItem key={app.id} app={app} />)}
       </Container>
     );
   }
