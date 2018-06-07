@@ -1,13 +1,8 @@
-import { Field } from 'redux-form';
 import styled from 'styled-components';
 
-export const Form = styled.form``;
-
-export const Title = styled.p``;
-
-export const TextField = styled(Field)``;
-
-export const SubmitButton = styled.button``;
+export const ActionsRow = styled.div`
+  margin-top: 25px;
+`;
 
 export const LoginBlock = styled.div`
   display: flex;

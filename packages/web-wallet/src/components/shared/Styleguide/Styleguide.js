@@ -43,8 +43,7 @@ export const breakpoints = {
 export const shadows = {
   buttonPrimary:
     '0 5px 15px 0 rgba(0,0,0,0.11), 0 10px 24px 0 rgba(135,46,250,0.16)',
-  buttonSecondary:
-    '0 5px 15px 0 rgba(0,0,0,0.11), 0 10px 24px 0 rgba(135,46,250,0.16)',
+  buttonSecondary: '0 2px 4px 0 #F1F2F7',
   pane: '0 10px 25px 0 rgba(192,100,239,0.06), 0 4px 12px 0 rgba(0,0,0,0.07)',
 };
 

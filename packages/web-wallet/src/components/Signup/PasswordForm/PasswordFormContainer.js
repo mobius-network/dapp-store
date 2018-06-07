@@ -6,6 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { authActions, getSignupStep } from 'state/auth';
 
 import PasswordForm from './PasswordForm';
+import { validate } from './validations';
 
 const mapStateToProps = createStructuredSelector({
   signupStep: getSignupStep,
@@ -19,16 +20,7 @@ export default compose(
   connect(mapStateToProps, actions),
   reduxForm({
     form: 'signupPassword',
-    validate: ({ password, passwordConfirmation }) => {
-      const errors = {};
-
-      if (password !== passwordConfirmation) {
-        // eslint-disable-next-line no-underscore-dangle
-        errors._error = 'Should match';
-      }
-
-      return errors;
-    },
+    validate,
     onSubmit: (values, store, { signupStart }) => signupStart(values),
   })
 )(PasswordForm);

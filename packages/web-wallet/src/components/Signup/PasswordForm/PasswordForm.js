@@ -1,20 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { required } from 'utils';
 
 import Pane from 'components/shared/Pane';
+import FormRow from 'components/shared/FormRow';
+import TextInput from 'components/shared/TextInput';
 import AdditionalInfo from 'components/shared/AdditionalInfo';
 import Button from 'components/shared/Button';
-import TextInput from 'components/shared/TextInput';
 
-import {
-  LoginBlock,
-  LoginBlockText,
-  Form,
-  Title,
-  TextField,
-  SubmitButton,
-} from './styles';
+import { LoginBlock, LoginBlockText, ActionsRow } from './styles';
 
 export default class PasswordForm extends Component {
   static propTypes = {
@@ -33,20 +26,25 @@ export default class PasswordForm extends Component {
           />
 
           <Pane.Section>
-            <Form onSubmit={handleSubmit}>
-              <Title>PasswordForm</Title>
-              <TextField
+            <form onSubmit={handleSubmit}>
+              <FormRow
+                component={TextInput}
                 name="password"
-                component={TextInput}
-                validate={required}
+                label="Set Password"
               />
-              <TextField
+
+              <FormRow
+                component={TextInput}
                 name="passwordConfirmation"
-                component={TextInput}
-                validate={required}
+                label="Confirm Password"
               />
-              <SubmitButton onClick={handleSubmit}>Continue</SubmitButton>
-            </Form>
+
+              <ActionsRow>
+                <Button onClick={handleSubmit} fullWidth>
+                  Continue
+                </Button>
+              </ActionsRow>
+            </form>
           </Pane.Section>
         </Pane>
 
