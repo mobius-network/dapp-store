@@ -3,15 +3,15 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { reducer as formReducer } from 'redux-form';
 
-import { authReducer, authActions } from './auth';
-import { balanceReducer } from './balance';
+import { authReducer } from './auth';
+import { accountReducer } from './account';
 import { transfersReducer } from './transfers';
 import { appsReducer } from './apps';
 import { requestsReducer } from './requests';
 
-const combined = combineReducers({
+const rootReducer = combineReducers({
   auth: authReducer,
-  balance: balanceReducer,
+  masterAccount: accountReducer,
   transfers: transfersReducer,
   apps: appsReducer,
   requests: requestsReducer,
@@ -22,14 +22,6 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['auth'],
-};
-
-const rootReducer = (state, action) => {
-  if (action.type === authActions.logout.type) {
-    return combined(undefined, action);
-  }
-
-  return combined(state, action);
 };
 
 export default () => persistReducer(persistConfig, rootReducer);

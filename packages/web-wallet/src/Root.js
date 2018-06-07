@@ -25,7 +25,7 @@ const waitForRequiredData = store => () =>
     }
 
     store.subscribe(() => {
-      if (store.getState().balance.masterAccount) {
+      if (store.getState().masterAccount) {
         resolve();
       }
     });

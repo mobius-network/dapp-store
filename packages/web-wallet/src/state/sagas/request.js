@@ -11,9 +11,10 @@ function* request({
   meta: { resolve = noop, reject = noop } = {},
 }) {
   const args = Array.isArray(payload) ? payload : [payload];
+  const fetch = fetcher === axios ? fetcher[method] : fetcher;
 
   try {
-    const response = yield call(fetcher[method], ...args);
+    const response = yield call(fetch, ...args);
     const data = fetcher === axios ? response.data : response;
 
     resolve(data);

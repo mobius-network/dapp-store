@@ -15,7 +15,7 @@ export async function safeLoadAccount(pubKey) {
   }
 }
 
-export function submitTransaction(operation, account, keypair) {
+export function submitOperation(operation, account, keypair) {
   const transaction = new TransactionBuilder(account)
     .addOperation(operation)
     .build();

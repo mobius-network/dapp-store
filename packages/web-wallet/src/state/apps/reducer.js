@@ -1,18 +1,22 @@
 import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
-export const appActions = createActions(['loadApps', 'stopWatching'], 'apps');
+import { authActions } from 'state/auth/reducer';
 
-const initialState = {
-  dummy: undefined,
-};
+export const appActions = createActions(
+  ['loadApps', 'stopWatching', 'depositApp', 'setAppAccount'],
+  'apps'
+);
+
+const initialState = {};
 
 export const appsReducer = createReducer(
   {
-    [appActions.dummy]: (state, value) =>
+    [appActions.setAppAccount]: (state, { account, app }) =>
       merge(state, {
-        value,
+        [app.id]: account,
       }),
+    [authActions.logout]: () => initialState,
   },
   initialState
 );

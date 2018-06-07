@@ -13,8 +13,8 @@ import { assets, safeLoadAccount, createTrustline } from '@mobius-network/core';
 import { authActions } from 'state/auth/reducer';
 import { getPublicKeyFor } from 'state/auth/selectors';
 
-import { balanceActions } from 'state/balance/reducer';
-import { getMasterTrustlineCreated } from 'state/balance/selectors';
+import { accountActions } from 'state/account/reducer';
+import { getMasterTrustlineCreated } from 'state/account/selectors';
 
 const watchers = {};
 
@@ -22,7 +22,7 @@ export function* loadAccount(publicKey) {
   const account = yield call(safeLoadAccount, publicKey);
 
   if (account) {
-    yield put(balanceActions.setMasterAccount(account));
+    yield put(accountActions.setMasterAccount(account));
   }
 }
 
@@ -48,10 +48,10 @@ export function* prepareAccount() {
   const state = yield select();
 
   // Wait for account activation
-  yield take(balanceActions.setMasterAccount);
+  yield take(accountActions.setMasterAccount);
 
   if (!getMasterTrustlineCreated(state)) {
-    yield put(balanceActions.transact({
+    yield put(accountActions.transact({
       name: 'createTrustline',
       operation: createTrustline(assets.mobi),
     }));

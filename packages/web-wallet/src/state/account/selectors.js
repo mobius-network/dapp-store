@@ -5,7 +5,7 @@ import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 export const getAsset = (_, { asset }) => asset;
 export const getFixed = (_, { fixed }) => fixed;
 
-export const getMasterAccount = state => state.balance.masterAccount;
+export const getMasterAccount = state => state.masterAccount;
 
 export const getBalance = createSelector(getMasterAccount, account =>
   parseBalance(account));
