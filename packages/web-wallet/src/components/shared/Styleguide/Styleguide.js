@@ -4,9 +4,11 @@ export const colors = {
   bgWhite: '#FFFFFF',
   border: '#DFDFE9',
   textDefault: '#000000',
-  textLight: '#FFFFFF',
+  textWhite: '#FFFFFF',
+  textLight: '#999999',
   textPrimary: '#3894E6',
   textSecondary: '#666666',
+  error: '#EB506A',
 };
 
 export const fonts = {
@@ -17,6 +19,7 @@ export const fonts = {
 
 export const fontSizes = {
   default: '14px',
+  formField: '16px',
   heading: '24px',
   mainHeading: '56px',
   paneCaption: '16px',

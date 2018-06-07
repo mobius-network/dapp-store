@@ -24,7 +24,7 @@ function enhance(middlewareArray = []) {
     if (!devtoolsCompose) {
       const { createLogger } = require('redux-logger');
 
-      middlewares.push(createLogger());
+      middlewares.push(createLogger({ collapsed: true }));
     }
   }
 
