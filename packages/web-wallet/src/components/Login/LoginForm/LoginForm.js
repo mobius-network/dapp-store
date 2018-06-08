@@ -44,7 +44,7 @@ class LoginForm extends Component {
         <StyledLink href="#">Can’t find your keyfile?</StyledLink>
 
         <ActionsRow>
-          <Button onClick={handleSubmit} wide>
+          <Button onClick={handleSubmit} fullWidth>
             Login
           </Button>
         </ActionsRow>
