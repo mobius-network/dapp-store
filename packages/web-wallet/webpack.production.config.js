@@ -21,6 +21,7 @@ module.exports = merge(baseConfig, {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
+      favicon: resolve(__dirname, 'src', 'favicon.ico'),
       filename: 'index.html',
       template: resolve(__dirname, 'src', 'index.html'),
     }),

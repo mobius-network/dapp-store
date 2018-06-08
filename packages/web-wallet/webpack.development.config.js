@@ -21,6 +21,7 @@ module.exports = merge(baseConfig, {
       'process.env': require('./config/dev.env'),
     }),
     new HtmlWebpackPlugin({
+      favicon: resolve(__dirname, 'src', 'favicon.ico'),
       filename: 'index.html',
       template: resolve(__dirname, 'src', 'index.html'),
     }),
