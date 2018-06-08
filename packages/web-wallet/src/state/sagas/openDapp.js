@@ -9,42 +9,51 @@ import { matchFetchSuccess } from 'state/requests/matchers';
 export function* openDapp({ payload: app }) {
   const tab = window.open('', '_blank');
 
-  yield put(requestActions.fetchStart({
-    name: 'getChallenge',
-    payload: `${app.url}/auth`,
-  }));
+  try {
+    yield put(requestActions.fetchStart({
+      name: 'getChallenge',
+      payload: `${app.url}/auth`,
+    }));
 
-  const {
-    payload: { data: challenge },
-  } = yield take(matchFetchSuccess('getChallenge'));
-  const appSecretKey = yield select(getSecretKeyFor, { accountNumber: app.id });
+    const {
+      payload: { data: challenge },
+    } = yield take(matchFetchSuccess('getChallenge'));
 
-  const signedChallenge = Auth.Sign.call(
-    appSecretKey,
-    challenge,
-    app.stellar_public_key
-  );
+    const appSecretKey = yield select(getSecretKeyFor, {
+      accountNumber: app.id,
+    });
 
-  const appPublicKey = yield select(getPublicKeyFor, { accountNumber: app.id });
+    const signedChallenge = Auth.Sign.call(
+      appSecretKey,
+      challenge,
+      app.stellar_public_key
+    );
 
-  yield put(requestActions.fetchStart({
-    name: 'postChallenge',
-    method: 'POST',
-    payload: [
-      `${app.url}/auth`,
-      {
-        xdr: signedChallenge,
-        public_key: appPublicKey,
-      },
-    ],
-  }));
+    const appPublicKey = yield select(getPublicKeyFor, {
+      accountNumber: app.id,
+    });
 
-  const {
-    payload: { data: token },
-  } = yield take(matchFetchSuccess('postChallenge'));
+    yield put(requestActions.fetchStart({
+      name: 'postChallenge',
+      method: 'POST',
+      payload: [
+        `${app.url}/auth`,
+        {
+          xdr: signedChallenge,
+          public_key: appPublicKey,
+        },
+      ],
+    }));
 
-  const finalUrl = `${app.url}/?token=${token}`;
-  tab.location.href = finalUrl;
+    const {
+      payload: { data: token },
+    } = yield take(matchFetchSuccess('postChallenge'));
+
+    const finalUrl = `${app.url}/?token=${token}`;
+    tab.location.href = finalUrl;
+  } catch (error) {
+    tab.close();
+  }
 }
 
 export default takeLatest(appActions.openDapp, openDapp);

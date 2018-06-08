@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { string } from 'prop-types';
-import { required } from 'utils';
 import TextInput from 'components/shared/TextInput';
 import FileInput from 'components/shared/FileInput';
 import Textarea from 'components/shared/Textarea';
@@ -14,11 +12,10 @@ import {
   SubmitButton,
 } from './styles';
 
-class SubmitDapp extends Component {
-  static propTypes = {
-    // name: string.isRequired,
-  };
+// TODO: move to utils
+const required = v => !!v;
 
+class SubmitDapp extends Component {
   render() {
     const { handleSubmit } = this.props;
 

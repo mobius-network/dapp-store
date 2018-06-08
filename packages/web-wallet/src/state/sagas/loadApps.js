@@ -22,11 +22,17 @@ import { appActions } from 'state/apps/reducer';
 const watchers = {};
 
 export function* loadAppAccount(app) {
-  const publicKey = yield select(getPublicKeyFor, { accountNumber: app.id });
-  const account = yield call(safeLoadAccount, publicKey);
+  try {
+    const publicKey = yield select(getPublicKeyFor, { accountNumber: app.id });
+    const account = yield call(safeLoadAccount, publicKey);
 
-  yield put(appActions.setAppAccount({ account, app }));
-  return { account, app };
+    yield put(appActions.setAppAccount({ account, app }));
+    return { account, app };
+  } catch (error) {
+    // TODO: use fetchStart to `safeLoadAccount` and error handling
+    yield put(requestActions.fetchFail({ name: 'loadAppAccount', error }));
+    return {};
+  }
 }
 
 export function* watchAppAccount(app, delayDuration = 2000) {

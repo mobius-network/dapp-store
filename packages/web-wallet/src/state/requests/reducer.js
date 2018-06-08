@@ -2,7 +2,7 @@ import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
 export const requestActions = createActions(
-  ['fetchStart', 'fetchSuccess', 'fetchFail', 'resetRequest'],
+  ['fetchStart', 'fetchSuccess', 'fetchFail', 'resetRequest', 'resetError'],
   'requests'
 );
 
@@ -27,16 +27,23 @@ export const requestsReducer = createReducer(
           isFetching: false,
         },
       }),
-    [requestActions.fetchFail]: (state, { name, error }) =>
-      merge(state, {
+    [requestActions.fetchFail]: (state, { name, error }) => {
+      const serializedError = {
+        message: error.message,
+        stack: error.stack,
+        response: error.response,
+      };
+
+      return merge(state, {
         [name]: {
-          error,
+          error: serializedError,
           data: undefined,
           success: false,
           isFetching: false,
         },
-        requestError: error,
-      }),
+        requestError: serializedError,
+      });
+    },
     [requestActions.resetRequest]: (state, name) =>
       merge(state, {
         [name]: {
@@ -45,6 +52,10 @@ export const requestsReducer = createReducer(
           success: undefined,
           isFetching: false,
         },
+      }),
+    [requestActions.resetError]: state =>
+      merge(state, {
+        requestError: undefined,
       }),
   },
   initialState

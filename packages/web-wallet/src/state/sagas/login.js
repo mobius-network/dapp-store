@@ -19,9 +19,12 @@ export function* login({
     yield put(authActions.loginSuccess());
   } catch (err) {
     if (err.message === 'Network Error') {
-      reject({ error: 'networkError' });
+      reject({ keyfile: 'Network error occured!' });
     } else {
-      reject({ error: 'Wrong password or keyfile corrupted!' });
+      reject({
+        keyfile: 'Wrong password or keyfile corrupted!',
+        password: ' ',
+      });
     }
   }
 }

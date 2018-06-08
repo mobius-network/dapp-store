@@ -1,5 +1,5 @@
 import { compose } from 'redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { promisifyAction } from 'redux-yo';
 import { createStructuredSelector } from 'reselect';
@@ -23,6 +23,8 @@ export default compose(
     form: 'loginForm',
     validate,
     onSubmit: (values, store, { loginStart }) =>
-      promisifyAction(loginStart, values),
+      promisifyAction(loginStart, values).catch(error => {
+        throw new SubmissionError(error);
+      }),
   })
 )(LoginForm);

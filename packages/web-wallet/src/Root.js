@@ -18,7 +18,7 @@ import Signup from 'components/Signup';
 import Onboarding from 'components/Onboarding';
 import Developers from 'components/Developers';
 
-export default class Root extends Component {
+class Root extends Component {
   render() {
     const { store, persistor } = this.props;
 
@@ -49,3 +49,5 @@ export default class Root extends Component {
     );
   }
 }
+
+export default Root;

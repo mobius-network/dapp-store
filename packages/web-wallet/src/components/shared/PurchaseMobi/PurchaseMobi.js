@@ -76,8 +76,8 @@ class PurchaseMobi extends Component {
   };
 
   renderPrice = () => {
-    const { destAmount } = this.state;
-    const { calculating, paymentPath } = this.props;
+    const { destAmount, calculating } = this.state;
+    const { paymentPath } = this.props;
 
     if (paymentPath) {
       const price = parseFloat(destAmount * parseFloat(paymentPath.source_amount)).toFixed(2);
