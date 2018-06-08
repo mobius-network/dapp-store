@@ -69,6 +69,7 @@ export const ContentStepIcon = styled.div`
   justify-content: center;
   margin-right: 20px;
   width: 35px;
+  font-weight: bold;
 `;
 
 export const ContentStepText = styled.p`

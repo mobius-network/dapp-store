@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { colors, fontSizes, fonts } from 'components/shared/Styleguide';
+import { colors, fonts } from 'components/shared/Styleguide';
 
 export const Container = styled.div`
   font-family: ${fonts.default};
@@ -16,10 +16,11 @@ export const AssetName = styled.span`
   color: ${colors.textDefaul};
   font-size: 26px;
   font-weight: 700;
+  margin-left: 7px;
 `;
 
 export const Message = styled.p`
   color: ${colors.textSecondary};
-  font-size: ${fontSizes.default};
+  font-size: 16px;
   margin: 5px 0 0;
 `;
