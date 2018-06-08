@@ -52,6 +52,18 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+function getContentPadding(props) {
+  if (props.fullWidth) {
+    return '0';
+  }
+
+  if (props.wide) {
+    return '0 60px';
+  }
+
+  return '0 30px';
+}
+
 export const Content = styled.div`
   align-items: center;
   background: ${props => props.theme.contentBackground};
@@ -65,6 +77,6 @@ export const Content = styled.div`
   font-weight: ${props => props.theme.fontWeight};
   justify-content: center;
   margin: 2px;
-  padding: ${props => (props.wide ? '0 60px' : '0 30px')};
+  padding: ${props => getContentPadding(props)};
   text-transform: uppercase;
 `;

@@ -3,8 +3,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import PrivateRoute from 'components/shared/PrivateRoute';
-
+import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import DappStoreLayout from 'components/layouts/DappStoreLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
@@ -51,7 +50,7 @@ export default class Root extends Component {
                   <PublicLayout path="/login" component={Login} exact />
                   <PublicLayout path="/signup" component={Signup} exact />
 
-                  <PrivateRoute path="/onboarding" component={Onboarding} />
+                  <OnboardingLayout path="/onboarding" component={Onboarding} />
                 </Switch>
 
                 <Footer />
