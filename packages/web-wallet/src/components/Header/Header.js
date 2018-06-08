@@ -60,7 +60,7 @@ class Header extends Component {
                   <Link to="/">Browse DApps</Link>
                 </ListItem>
                 <ListItem>
-                  <Link to="/">Developers</Link>
+                  <Link to="/developers">Developers</Link>
                 </ListItem>
 
                 {this.renderSessionActions()}

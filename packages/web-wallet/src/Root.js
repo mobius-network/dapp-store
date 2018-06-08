@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import waitForMasterAccount from 'state/auth/waitForMasterAccount';
 
@@ -16,6 +16,7 @@ import DappStore from 'components/DappStore';
 import Login from 'components/Login';
 import Signup from 'components/Signup';
 import Onboarding from 'components/Onboarding';
+import Developers from 'components/Developers';
 
 export default class Root extends Component {
   render() {
@@ -33,11 +34,10 @@ export default class Root extends Component {
               <Fragment>
                 <Switch>
                   <DappStoreLayout path="/" component={DappStore} exact />
-
                   <PublicLayout path="/login" component={Login} exact />
                   <PublicLayout path="/signup" component={Signup} exact />
-
                   <OnboardingLayout path="/onboarding" component={Onboarding} />
+                  <Route path="/developers" component={Developers} />
                 </Switch>
 
                 <Footer />
