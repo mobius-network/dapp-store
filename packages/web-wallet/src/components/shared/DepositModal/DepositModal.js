@@ -34,7 +34,7 @@ class DepositModal extends Component {
 
   render() {
     const {
-      isOpen, style = customStyles, onClose, xlmBalance,
+      isOpen, style = customStyles, onClose, mobiBalance,
     } = this.props;
 
     return (
@@ -48,7 +48,10 @@ class DepositModal extends Component {
         <button onClick={onClose}>close</button>
         <Container>
           <button onClick={this.onDeposit}>Deposit</button>
-          <p>xlmBalance: {xlmBalance}</p>
+          <p>Available MOBI: {mobiBalance}</p>
+          <p>
+            Design is wrong, here we should show MOBI instead of XLM balance
+          </p>
         </Container>
       </Modal>
     );

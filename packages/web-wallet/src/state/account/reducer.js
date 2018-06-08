@@ -5,7 +5,7 @@ import { authActions } from 'state/auth/reducer';
 
 export const accountActions = createActions(
   ['setMasterAccount', 'downloadKeypair', 'transact'],
-  'balance'
+  'account'
 );
 
 const initialState = null;
