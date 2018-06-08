@@ -58,4 +58,5 @@ export const radius = {
   default: '10px',
   medium: '6px',
   small: '4px',
+  big: '20px',
 };
