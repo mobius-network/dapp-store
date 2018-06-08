@@ -10,6 +10,7 @@ import requestSaga from './request';
 import loadAppsSaga from './loadApps';
 import depositAppSaga from './depositApp';
 import openDappSaga from './openDapp';
+import releaseBalanceSaga from './releaseBalance';
 
 export default function* () {
   yield all([
@@ -23,5 +24,6 @@ export default function* () {
     loadAppsSaga,
     depositAppSaga,
     openDappSaga,
+    releaseBalanceSaga,
   ]);
 }

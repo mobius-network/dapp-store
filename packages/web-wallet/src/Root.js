@@ -15,6 +15,7 @@ import DappStore from 'components/DappStore';
 import Login from 'components/Login';
 import Signup from 'components/Signup';
 import Onboarding from 'components/Onboarding';
+import Wallet from 'components/Wallet';
 
 // TODO: move me to saga
 const waitForRequiredData = store => () =>
@@ -52,6 +53,7 @@ export default class Root extends Component {
                   <PublicLayout path="/signup" component={Signup} exact />
 
                   <PrivateRoute path="/onboarding" component={Onboarding} />
+                  <PrivateRoute path="/wallet" component={Wallet} />
                 </Switch>
 
                 <Footer />

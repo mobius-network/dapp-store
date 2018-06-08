@@ -18,7 +18,7 @@ function enhance(middlewareArray = []) {
   if (isDev) {
     // eslint-disable-next-line no-underscore-dangle
     const devtoolsCompose = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      actionsBlacklist: ['account/setMasterAccount', 'apps/setAppAccount'],
+      // actionsBlacklist: ['account/setMasterAccount', 'apps/setAppAccount'],
     });
 
     composeEnhancers = devtoolsCompose || compose;
