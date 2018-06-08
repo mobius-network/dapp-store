@@ -62,7 +62,7 @@ export default class Button extends Component {
     return (
       <ThemeProvider theme={themes[theme]}>
         {to ? (
-          <StyledLink to={to} {...rest}>
+          <StyledLink to={to} onClick={onClick} {...rest}>
             <Content wide={wide}>{children}</Content>
           </StyledLink>
         ) : (
