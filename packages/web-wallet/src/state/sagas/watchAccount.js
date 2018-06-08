@@ -28,14 +28,16 @@ export function* loadAccount(publicKey) {
 
 export function* watchAccount(publicKey, delayDuration = 2000) {
   while (true) {
-    yield call(loadAccount, publicKey);
     yield call(delay, delayDuration);
+    yield call(loadAccount, publicKey);
   }
 }
 
 export function* cancelWatcherOnLogout(publicKey) {
   yield take(authActions.logout);
   yield cancel(watchers[publicKey]);
+
+  delete watchers[publicKey];
 }
 
 export function* prepareAccount() {
@@ -55,4 +57,7 @@ export function* prepareAccount() {
   }
 }
 
-export default takeLatest(authActions.loginSuccess, prepareAccount);
+export default takeLatest(
+  [authActions.loginSuccess, authActions.watchAccount],
+  prepareAccount
+);
