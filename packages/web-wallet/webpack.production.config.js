@@ -1,12 +1,17 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { merge } = require('lodash');
 
 const baseConfig = require('./config/webpack.base.config');
 
-module.exports = Object.assign(baseConfig, {
+module.exports = merge(baseConfig, {
   devtool: 'source-map',
   mode: 'production',
+  output: {
+    filename: '[name].[chunkhash].js',
+    sourceMapFilename: '[name].[chunkhash].js.map',
+  },
   optimization: {
     minimize: true,
   },
@@ -16,9 +21,8 @@ module.exports = Object.assign(baseConfig, {
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
-      template: resolve(__dirname, 'src', 'index.html'),
       filename: 'index.html',
-      inject: 'body',
+      template: resolve(__dirname, 'src', 'index.html'),
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({

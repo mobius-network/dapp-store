@@ -4,15 +4,22 @@ const root = resolve(__dirname, '..');
 
 module.exports = {
   context: resolve(root, 'src'),
-  entry: [resolve(root, 'src', 'index.js')],
+  entry: {
+    bundle: resolve(root, 'src', 'index.js'),
+  },
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: resolve(root, 'dist'),
     publicPath: '',
   },
   resolve: {
     extensions: ['.js'],
     modules: [resolve(root, 'src'), 'node_modules'],
+  },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
   module: {
     rules: [{

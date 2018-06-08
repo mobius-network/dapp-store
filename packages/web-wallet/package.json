@@ -4,7 +4,7 @@
   "description": "Mobius Network Web wallet",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config webpack.development.config.js",
     "start:bleed": "webpack-dev-server --config webpack.config.bleed.js",
     "clean": "rimraf dist",
     "build:webpack": "webpack --config webpack.production.config.js --progress --profile --colors",
@@ -50,8 +50,7 @@
     "revalidate": "^1.2.0",
     "stellar-hd-wallet": "^0.0.6",
     "stellar-sdk": "^0.8.1",
-    "styled-components": "^3.2.6",
-    "webpack-merge": "^4.1.2"
+    "styled-components": "^3.2.6"
   },
   "devDependencies": {
     "babel-cli": "6.26.0",
