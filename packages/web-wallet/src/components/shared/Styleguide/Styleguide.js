@@ -18,6 +18,7 @@ export const fonts = {
 };
 
 export const fontSizes = {
+  button: '13px',
   default: '14px',
   formField: '16px',
   heading: '24px',
