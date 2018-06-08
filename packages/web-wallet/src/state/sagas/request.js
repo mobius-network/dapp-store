@@ -19,9 +19,7 @@ function* request({
 
     resolve(data);
     yield put(requestActions.fetchSuccess({ name, data }));
-  } catch ({ response, message, stack }) {
-    const error = { message, stack, ...response };
-
+  } catch (error) {
     reject(error);
     yield put(requestActions.fetchFail({ name, error }));
 

@@ -11,6 +11,7 @@ import {
 import { assets, safeLoadAccount, createTrustline } from '@mobius-network/core';
 
 import { authActions } from 'state/auth/reducer';
+import { requestActions } from 'state/requests/reducer';
 import { getPublicKeyFor } from 'state/auth/selectors';
 
 import { accountActions } from 'state/account/reducer';
@@ -19,10 +20,15 @@ import { getMasterTrustlineCreated } from 'state/account/selectors';
 const watchers = {};
 
 export function* loadAccount(publicKey) {
-  const account = yield call(safeLoadAccount, publicKey);
+  try {
+    const account = yield call(safeLoadAccount, publicKey);
 
-  if (account) {
-    yield put(accountActions.setMasterAccount(account));
+    if (account) {
+      yield put(accountActions.setMasterAccount(account));
+    }
+  } catch (error) {
+    // TODO: use fetchStart to `safeLoadAccount` and error handling
+    yield put(requestActions.fetchFail({ name: 'loadAccount', error }));
   }
 }
 
