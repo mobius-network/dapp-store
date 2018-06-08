@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from 'components/shared/PrivateRoute';
-import PublicRoute from 'components/shared/PublicRoute';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
-import Header from 'components/Header';
+import PrivateRoute from 'components/shared/PrivateRoute';
+
+import DefaultLayout from 'components/layouts/DefaultLayout';
+import DappStoreLayout from 'components/layouts/DappStoreLayout';
+import PublicLayout from 'components/layouts/PublicLayout';
+import Footer from 'components/Footer';
+import Loading from 'components/Loading';
+
 import DappStore from 'components/DappStore';
 import Login from 'components/Login';
 import Signup from 'components/Signup';
@@ -26,26 +31,35 @@ const waitForRequiredData = store => () =>
     });
   });
 
-const Root = ({ store, persistor }) => (
-  <Provider store={store}>
-    <PersistGate
-      loading={null}
-      persistor={persistor}
-      onBeforeLift={waitForRequiredData(store)}
-    >
-      <Router>
-        <div>
-          <Route path="/" component={Header} />
-          <Switch>
-            <Route path="/" component={DappStore} exact />
-            <PublicRoute path="/login" component={Login} exact />
-            <PublicRoute path="/signup" component={Signup} exact />
-            <PrivateRoute path="/onboarding" component={Onboarding} />
-          </Switch>
-        </div>
-      </Router>
-    </PersistGate>
-  </Provider>
-);
+export default class Root extends Component {
+  render() {
+    const { store, persistor } = this.props;
 
-export default Root;
+    return (
+      <Provider store={store}>
+        <DefaultLayout>
+          <PersistGate
+            loading={<Loading />}
+            persistor={persistor}
+            onBeforeLift={waitForRequiredData(store)}
+          >
+            <Router>
+              <Fragment>
+                <Switch>
+                  <DappStoreLayout path="/" component={DappStore} exact />
+
+                  <PublicLayout path="/login" component={Login} exact />
+                  <PublicLayout path="/signup" component={Signup} exact />
+
+                  <PrivateRoute path="/onboarding" component={Onboarding} />
+                </Switch>
+
+                <Footer />
+              </Fragment>
+            </Router>
+          </PersistGate>
+        </DefaultLayout>
+      </Provider>
+    );
+  }
+}

@@ -68,7 +68,6 @@ const config = {
         include: [
           resolve(__dirname, 'src'),
           resolve(__dirname, '../components/src'),
-          resolve(__dirname, 'node_modules', '@mobius-network/components'),
           resolve(__dirname, 'node_modules', 'js-xdr'),
           // resolve(__dirname, '../core/src'),
           // resolve(__dirname, 'node_modules', '@mobius-network/core'),
@@ -136,6 +135,11 @@ const config = {
             },
           },
         ],
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+        include: /flexboxgrid/,
       },
     ],
   },

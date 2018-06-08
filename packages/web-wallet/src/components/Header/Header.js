@@ -1,34 +1,59 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { SimpleCard } from '@mobius-network/components';
+import React, { Component, Fragment } from 'react';
 
-import { Container, Title } from './styles';
+import Grid from 'components/shared/Grid';
+import Button from 'components/shared/Button';
+import Link from 'components/shared/Link';
+import Logo from 'components/shared/Logo';
+import { Container, ListContainer, ListItem } from './styles';
 
 class Header extends Component {
-  renderContent() {
+  renderSessionActions() {
     const { isAuthorized, logout } = this.props;
 
     if (isAuthorized) {
-      return <button onClick={logout}>Logout</button>;
+      return (
+        <ListItem>
+          <Button onClick={logout} theme="secondary">
+            Logout
+          </Button>
+        </ListItem>
+      );
     }
 
     return (
-      <Container>
-        <Link to="/login">Login </Link>
-        <Link to="/signup">Signup</Link>
-      </Container>
+      <Fragment>
+        <ListItem>
+          <Link to="/login">Login </Link>
+        </ListItem>
+        <ListItem>
+          <Link to="/signup">Sign Up</Link>
+        </ListItem>
+      </Fragment>
     );
   }
 
   render() {
     return (
       <Container>
-        <SimpleCard color="gray" title="Header">
-          <Title>
-            <Link to="/">Mobius</Link>
-          </Title>
-          {this.renderContent()}
-        </SimpleCard>
+        <Grid>
+          <Grid.Row alignItems={['center']} flexWrap="wrap">
+            <Grid.Col width={[1, 1 / 2]}>
+              <Logo withName />
+            </Grid.Col>
+            <Grid.Col width={[1, 1 / 2]}>
+              <ListContainer>
+                <ListItem>
+                  <Link to="/">Browse DApps</Link>
+                </ListItem>
+                <ListItem>
+                  <Link to="/">Developers</Link>
+                </ListItem>
+
+                {this.renderSessionActions()}
+              </ListContainer>
+            </Grid.Col>
+          </Grid.Row>
+        </Grid>
       </Container>
     );
   }

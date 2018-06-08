@@ -1,21 +1,36 @@
-import React, { Component } from 'react';
-// import { string } from 'prop-types';
+import React, { Component, Fragment } from 'react';
 
-import { Container, Title, LoginForm } from './styles';
+import Pane from 'components/shared/Pane';
+import AdditionalInfo from 'components/shared/AdditionalInfo';
+import Button from 'components/shared/Button';
 
-class Login extends Component {
-  static propTypes = {
-    // name: string.isRequired,
-  };
+import { LoginForm, SignupBlock, SignupBlockText } from './styles';
 
+export default class Login extends Component {
   render() {
     return (
-      <Container>
-        <Title>Login</Title>
-        <LoginForm />
-      </Container>
+      <Fragment>
+        <Pane theme="wide">
+          <Pane.Header
+            title="Login"
+            caption="Access your wallet and submit DApps."
+          />
+
+          <Pane.Section>
+            <LoginForm />
+          </Pane.Section>
+        </Pane>
+
+        <AdditionalInfo>
+          <SignupBlock>
+            <SignupBlockText>Don’t have an account?</SignupBlockText>
+
+            <Button to="/signup" theme="primaryOutline" wide>
+              Sign Up
+            </Button>
+          </SignupBlock>
+        </AdditionalInfo>
+      </Fragment>
     );
   }
 }
-
-export default Login;

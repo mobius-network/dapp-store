@@ -1,39 +1,65 @@
-import React, { Component } from 'react';
-// import { string } from 'prop-types';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { required } from 'utils';
+
+import Pane from 'components/shared/Pane';
+import AdditionalInfo from 'components/shared/AdditionalInfo';
+import Button from 'components/shared/Button';
 import TextInput from 'components/shared/TextInput';
 
-import { Form, Title, TextField, SubmitButton } from './styles';
+import {
+  LoginBlock,
+  LoginBlockText,
+  Form,
+  Title,
+  TextField,
+  SubmitButton,
+} from './styles';
 
-class PasswordForm extends Component {
+export default class PasswordForm extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
   };
 
   render() {
     const { handleSubmit } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit}>
-        <Title>PasswordForm</Title>
-        <TextField
-          name="password"
-          component={TextInput}
-          validate={required}
-        />
-        <TextField
-          name="passwordConfirmation"
-          component={TextInput}
-          validate={required}
-        />
-        <SubmitButton
-          onClick={handleSubmit}
-        >
-          Continue
-        </SubmitButton>
-      </Form>
+      <Fragment>
+        <Pane theme="wide" withGradient>
+          <Pane.Header
+            title="Sign Up"
+            caption="We’ll create a new Mobius wallet for you to make purchases in the DApp store."
+          />
+
+          <Pane.Section>
+            <Form onSubmit={handleSubmit}>
+              <Title>PasswordForm</Title>
+              <TextField
+                name="password"
+                component={TextInput}
+                validate={required}
+              />
+              <TextField
+                name="passwordConfirmation"
+                component={TextInput}
+                validate={required}
+              />
+              <SubmitButton onClick={handleSubmit}>Continue</SubmitButton>
+            </Form>
+          </Pane.Section>
+        </Pane>
+
+        <AdditionalInfo>
+          <LoginBlock>
+            <LoginBlockText>Already have an account?</LoginBlockText>
+
+            <Button to="/login" theme="primaryOutline" wide>
+              Login
+            </Button>
+          </LoginBlock>
+        </AdditionalInfo>
+      </Fragment>
     );
   }
 }
-
-export default PasswordForm;

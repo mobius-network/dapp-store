@@ -1,14 +1,29 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
 class PrivateRoute extends Component {
+  static propTypes = {
+    checkEqualityTo: PropTypes.bool,
+    component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+    isAuthorized: PropTypes.bool,
+    redirect: PropTypes.bool,
+    redirectTo: PropTypes.string,
+  };
+
+  static defaultProps = {
+    checkEqualityTo: true,
+    redirect: true,
+    redirectTo: '/login',
+  };
+
   render() {
     const {
       isAuthorized,
       component: RouteComponent,
-      checkEqualityTo = true,
-      redirectTo = '/login',
-      redirect = true,
+      checkEqualityTo,
+      redirectTo,
+      redirect,
       ...rest
     } = this.props;
 
