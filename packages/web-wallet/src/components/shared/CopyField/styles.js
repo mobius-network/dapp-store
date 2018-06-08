@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { fonts, fontSizes, colors, radius } from 'components/shared/Styleguide';
+import { colors, radius } from 'components/shared/Styleguide';
 
 export const Container = styled.div`
   background-color: ${colors.bgWhite};
@@ -20,7 +20,7 @@ export const Container = styled.div`
 export const Text = styled.p`
   color: ${colors.textDefault};
   flex: 1;
-  font: ${fontSizes.formField} ${fonts.nunitoSans};
+  font-size: 13px;
   margin: 0 10px 0 0;
 `;
 
