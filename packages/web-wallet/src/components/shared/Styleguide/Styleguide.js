@@ -23,6 +23,7 @@ export const fontSizes = {
   formField: '16px',
   heading: '24px',
   mainHeading: '56px',
+  mini: '13px',
   paneCaption: '16px',
   paneHeading: '32px',
   sectionHeading: '16px',
@@ -39,6 +40,11 @@ export const breakpoints = {
   sm: '576px',
   md: '768px',
   lg: '992px',
+};
+
+export const lineHeights = {
+  default: 1.6,
+  narrow: 1.2,
 };
 
 export const shadows = {

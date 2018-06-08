@@ -1,12 +1,17 @@
 import styled from 'styled-components';
-import { fonts, fontSizes, colors } from 'components/shared/Styleguide';
+import {
+  fonts,
+  fontSizes,
+  colors,
+  lineHeights,
+} from 'components/shared/Styleguide';
 
 export const Caption = styled.p`
   color: ${colors.textSecondary};
   font-family: ${fonts.default};
   font-size: ${fontSizes.paneCaption};
   margin: 0;
-  line-height: 1.6;
+  line-height: ${lineHeights.default};
 `;
 
 export const Container = styled.div`
@@ -23,7 +28,7 @@ export const Title = styled.p`
   font-family: ${fonts.default};
   font-size: ${props => props.theme.headerFontSize};
   font-weight: 700;
-  line-height: 1.2;
+  line-height: ${lineHeights.narrow};
   margin-bottom: ${props => props.theme.headerSpacing};
   margin-top: 0;
 

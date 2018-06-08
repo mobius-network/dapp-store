@@ -22,6 +22,8 @@ export const Text = styled.p`
   flex: 1;
   font-size: 13px;
   margin: 0 10px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const CopyButton = styled.button`

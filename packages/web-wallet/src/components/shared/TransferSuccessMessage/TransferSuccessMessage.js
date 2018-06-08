@@ -1,33 +1,30 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import { Container, Title } from './styles';
+import { Container, AssetName, AssetValue, Message } from './styles';
 
 class TransferSuccessMessage extends Component {
   static propTypes = {
-    assetName: string.isRequired,
-    assetValue: string.isRequired,
-    linkPath: string.isRequired,
-    linkLabel: string,
+    assetName: PropTypes.string.isRequired,
+    assetValue: PropTypes.number.isRequired,
+    className: PropTypes.string,
+    message: PropTypes.string,
   };
 
   static defaultProps = {
-    linkLabel: 'Continue',
+    message: 'Transferred successfully!',
   };
 
   render() {
     const {
-      assetName, assetValue, linkPath, linkLabel,
+      assetName, assetValue, className, message,
     } = this.props;
 
     return (
-      <Container>
-        <Title>
-          {assetValue} {assetName}
-        </Title>
-        <p>Transferred successfully!</p>
-        <Link to={linkPath}>{linkLabel}</Link>
+      <Container className={className}>
+        <AssetValue>{parseFloat(assetValue).toFixed(2)}</AssetValue>
+        <AssetName>{assetName}</AssetName>
+        <Message>{message}</Message>
       </Container>
     );
   }
