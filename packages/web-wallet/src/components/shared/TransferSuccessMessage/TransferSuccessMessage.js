@@ -22,7 +22,7 @@ class TransferSuccessMessage extends Component {
 
     return (
       <Container className={className}>
-        <AssetValue>{parseFloat(assetValue).toFixed(2)}</AssetValue>
+        <AssetValue>{parseFloat(parseFloat(assetValue).toFixed(2))}</AssetValue>
         <AssetName>{assetName}</AssetName>
         <Message>{message}</Message>
       </Container>

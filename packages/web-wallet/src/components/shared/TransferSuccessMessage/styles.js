@@ -10,14 +10,12 @@ export const Container = styled.div`
 export const AssetValue = styled.span`
   color: ${colors.textPrimary};
   font-size: 92px;
-  line-height: 1;
 `;
 
 export const AssetName = styled.span`
   color: ${colors.textDefaul};
   font-size: 26px;
   font-weight: 700;
-  line-height: 1;
 `;
 
 export const Message = styled.p`
