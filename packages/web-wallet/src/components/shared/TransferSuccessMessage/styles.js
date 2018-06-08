@@ -10,6 +10,7 @@ export const Container = styled.div`
 export const AssetValue = styled.span`
   color: ${colors.textPrimary};
   font-size: 92px;
+  font-weight: 300;
 `;
 
 export const AssetName = styled.span`
