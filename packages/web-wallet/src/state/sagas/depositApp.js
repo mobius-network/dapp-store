@@ -1,5 +1,5 @@
 import { Operation } from 'stellar-sdk';
-import { takeLatest, take, select, call, put } from 'redux-saga/effects';
+import { takeLatest, take, select, spawn, call, put } from 'redux-saga/effects';
 
 import {
   submitTransaction,
@@ -58,7 +58,7 @@ export function* depositApp({ payload: { app, amount } }) {
 
   const handler = appAccount ? addToAppAccount : createApp;
 
-  yield call(handler, app, amount);
+  yield spawn(handler, app, amount);
 }
 
 export default takeLatest(appActions.depositApp, depositApp);
