@@ -2,28 +2,21 @@ const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const config = {
+const baseConfig = require('./config/webpack.base.config');
+
+module.exports = Object.assign(baseConfig, {
   devtool: 'source-map',
   mode: 'production',
-
-  context: resolve(__dirname, 'src'),
-
-  entry: ['./index.js'],
-
-  output: {
-    filename: 'bundle.js',
-    path: resolve(__dirname, 'dist'),
-    publicPath: '',
-  },
-
   optimization: {
     minimize: true,
   },
-
   plugins: [
+    new webpack.DefinePlugin({
+      'process.env': require('./config/prod.env'),
+    }),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new HtmlWebpackPlugin({
-      template: `${__dirname}/src/index.html`,
+      template: resolve(__dirname, 'src', 'index.html'),
       filename: 'index.html',
       inject: 'body',
     }),
@@ -36,105 +29,4 @@ const config = {
       'process.env': { NODE_ENV: JSON.stringify('production') },
     }),
   ],
-
-  resolve: {
-    extensions: ['.js'],
-    modules: ['src', 'node_modules'],
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.js?$/,
-        loaders: 'babel-loader',
-        options: {
-          presets: [
-            [
-              'env',
-              {
-                targets: {
-                  browsers: ['>0.25%', 'not ie 11', 'not op_mini all'],
-                },
-              },
-            ],
-            'react',
-          ],
-        },
-        include: [
-          resolve(__dirname, 'src'),
-          resolve(__dirname, '../components/src'),
-        ],
-      },
-      {
-        test: /\.(png|jpg|gif)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              mimetype: 'image/png',
-              name: 'images/[name].[ext]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: 'fonts/[name].[ext]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              mimetype: 'application/font-woff',
-              name: 'fonts/[name].[ext]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              mimetype: 'application/octet-stream',
-              name: 'fonts/[name].[ext]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              mimetype: 'image/svg+xml',
-              name: 'images/[name].[ext]',
-            },
-          },
-        ],
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader',
-        include: /flexboxgrid/,
-      },
-    ],
-  },
-};
-
-module.exports = config;
+});

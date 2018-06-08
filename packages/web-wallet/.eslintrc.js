@@ -1,4 +1,6 @@
-{
+const { resolve } = require('path');
+
+module.exports = {
   "parser": "babel-eslint",
   "extends": [
     "plugin:react/recommended",
@@ -6,7 +8,7 @@
   ],
   "plugins": [
     "babel",
-    "flowtype",
+    "flowtype"
   ],
   "env": {
     "node": true,
@@ -16,11 +18,8 @@
   },
   "settings": {
     "import/resolver": {
-      "node": {
-        "paths": [
-          "src",
-          "packages/web-wallet/src"
-        ]
+      "webpack": {
+        "config": resolve(__dirname, 'config', 'webpack.base.config.js')
       }
     },
     "flowtype": {
@@ -82,7 +81,7 @@
           "render"
         ]
       }
-    }],
+    }]
   }
 }
 
