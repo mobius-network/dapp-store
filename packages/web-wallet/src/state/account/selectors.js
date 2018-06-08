@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import { createSelector } from 'reselect';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 

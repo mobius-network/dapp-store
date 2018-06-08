@@ -1,4 +1,3 @@
-/* eslint-disable no-shadow */
 import { createSelector } from 'reselect';
 
 export const getAccountNumber = (_, { accountNumber = 0 } = {}) =>
