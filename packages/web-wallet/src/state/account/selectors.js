@@ -3,6 +3,8 @@ import { createSelector } from 'reselect';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
 export const getAsset = (_, { asset = 'mobi' }) => asset;
+export const getMobiAsset = (_, { asset = 'mobi' }) => asset;
+export const getNativeAsset = (_, { asset = 'native' }) => asset;
 export const getFixed = (_, { fixed = 2 }) => fixed;
 
 export const getMasterAccount = state => state.masterAccount;
@@ -10,8 +12,11 @@ export const getMasterAccount = state => state.masterAccount;
 export const createBalanceSelector = accountSelector =>
   createSelector(accountSelector, account => parseBalance(account));
 
-export const createAssetBalanceSelector = balanceSelector =>
-  createSelector([balanceSelector, getAsset], (balance, asset) => {
+export const createAssetBalanceSelector = (
+  balanceSelector,
+  assetSelector = getAsset
+) =>
+  createSelector([balanceSelector, assetSelector], (balance, asset) => {
     if (!balance) {
       return undefined;
     }
@@ -21,6 +26,14 @@ export const createAssetBalanceSelector = balanceSelector =>
 
 export const getBalance = createBalanceSelector(getMasterAccount);
 export const getAssetBalance = createAssetBalanceSelector(getBalance);
+export const getMobiBalance = createAssetBalanceSelector(
+  getBalance,
+  getMobiAsset
+);
+export const getNativeBalance = createAssetBalanceSelector(
+  getBalance,
+  getNativeAsset
+);
 
 export const getAccountId = createSelector(
   getMasterAccount,

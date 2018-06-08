@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { object, bool, func } from 'prop-types';
 import Modal from 'react-modal';
 
+import DepositModal from 'components/shared/DepositModal';
 import { Container, Title } from './styles';
 
 Modal.setAppElement('#root');
@@ -25,22 +26,27 @@ class DappModal extends Component {
     style: object,
   };
 
+  state = {
+    depositModalOpened: false,
+  };
+
+  openDepositModal = () => {
+    this.setState({ depositModalOpened: true });
+  };
+
+  closeDepositModal = () => {
+    this.setState({ depositModalOpened: false });
+  };
+
   openApp = () => {
     const { openDapp, app } = this.props;
 
     openDapp(app);
   };
 
-  onDeposit = () => {
-    const { depositApp, app } = this.props;
-
-    depositApp({
-      amount: 3,
-      app,
-    });
-  };
-
   render() {
+    const { depositModalOpened } = this.state;
+
     const {
       isOpen,
       style = customStyles,
@@ -60,9 +66,17 @@ class DappModal extends Component {
         <button onClick={onClose}>close</button>
         <Container>
           <button onClick={this.openApp}>Go to App</button>
-          <button onClick={this.onDeposit}>Deposit Funds</button>
-          <p>balance: {mobiBalance}</p>
+          <button onClick={this.openDepositModal}>
+            Open DepositModal Modal
+          </button>
+          <p>Mobi balance: {mobiBalance}</p>
         </Container>
+
+        <DepositModal
+          app={app}
+          isOpen={depositModalOpened}
+          onClose={this.closeDepositModal}
+        />
       </Modal>
     );
   }
