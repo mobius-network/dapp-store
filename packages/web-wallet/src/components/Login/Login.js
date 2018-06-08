@@ -10,7 +10,7 @@ export default class Login extends Component {
   render() {
     return (
       <Fragment>
-        <Pane theme="wide">
+        <Pane theme="wide" withGradient>
           <Pane.Header
             title="Login"
             caption="Access your wallet and submit DApps."

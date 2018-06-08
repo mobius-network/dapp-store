@@ -9,7 +9,7 @@ const themes = {
   primary: {
     background: gradients.button,
     boxShadow: shadows.buttonPrimary,
-    color: colors.textLight,
+    color: colors.textWhite,
     contentBackground: 'transparent',
     fontWeight: 700,
   },

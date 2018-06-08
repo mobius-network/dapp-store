@@ -21,7 +21,7 @@ export const SecondaryRow = styled.div`
 `;
 
 export const CopyrightText = styled.p`
-  color: ${colors.textLight};
+  color: ${colors.textWhite};
   font-size: ${fontSizes.small};
   margin: 0 0 5px;
   padding: 0;

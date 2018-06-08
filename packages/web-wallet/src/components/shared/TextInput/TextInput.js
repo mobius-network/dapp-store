@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-// import { string } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { Container, Input, ErrorMessage } from './styles';
 
 class TextInput extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    disabled: PropTypes.bool,
+    input: PropTypes.object,
+    placeholder: PropTypes.string,
+    meta: PropTypes.shape({
+      error: PropTypes.string,
+      dirty: PropTypes.bool,
+      touched: PropTypes.bool,
+    }),
   };
 
   render() {
     const {
       input,
-      required,
-      className,
-      errorLabel,
       placeholder,
       meta: { error, dirty, touched },
     } = this.props;
@@ -21,18 +25,10 @@ class TextInput extends Component {
     const showError = error && (dirty || touched);
 
     return (
-      <Container required={required} className={className}>
-        <Input
-          {...input}
-          error={showError}
-          required={required}
-          placeholder={placeholder}
-        />
-        {showError && (
-          <ErrorMessage error={error}>
-            {errorLabel} {error}
-          </ErrorMessage>
-        )}
+      <Container>
+        <Input {...input} error={showError} placeholder={placeholder} />
+
+        {showError && <ErrorMessage>{error}</ErrorMessage>}
       </Container>
     );
   }

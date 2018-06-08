@@ -27,7 +27,7 @@ export const ListItem = styled.li`
 `;
 
 const socialLinkStyles = `
-  color: ${colors.textLight};
+  color: ${colors.textWhite};
   cursor: pointer;
   display: inline-block;
   font-size: 14px;

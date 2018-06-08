@@ -61,7 +61,7 @@ export const Content = styled.div`
   flex-direction: row;
   flex: 1;
   font-family: ${fonts.nunitoSans};
-  font-size: ${fontSizes.default};
+  font-size: ${fontSizes.button};
   font-weight: ${props => props.theme.fontWeight};
   justify-content: center;
   margin: 2px;

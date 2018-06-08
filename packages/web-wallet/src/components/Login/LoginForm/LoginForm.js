@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-// import { string } from 'prop-types';
-import { required } from 'utils';
+import PropTypes from 'prop-types';
+
+import FormRow from 'components/shared/FormRow';
 import TextInput from 'components/shared/TextInput';
 import FileInput from 'components/shared/FileInput';
-
-import { Form, Title, TextField, UploadField, SubmitButton } from './styles';
+import Button from 'components/shared/Button';
+import { ActionsRow, StyledLink } from './styles';
 
 class LoginForm extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    change: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
   };
 
   onKeyUpload = (event, [keyfile] = []) => {
@@ -29,17 +31,24 @@ class LoginForm extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <Form onSubmit={handleSubmit}>
-        <Title>Login Form</Title>
-        <TextField name="password" component={TextInput} validate={required} />
-        <UploadField
-          name="keyfile"
+      <form onSubmit={handleSubmit}>
+        <FormRow component={TextInput} name="password" placeholder="Password" />
+
+        <FormRow
           component={FileInput}
-          validate={required}
+          name="keyfile"
           onChange={this.onKeyUpload}
+          placeholder="Keyfile"
         />
-        <SubmitButton onClick={handleSubmit}>Login</SubmitButton>
-      </Form>
+
+        <StyledLink href="#">Can’t find your keyfile?</StyledLink>
+
+        <ActionsRow>
+          <Button onClick={handleSubmit} fullWidth>
+            Login
+          </Button>
+        </ActionsRow>
+      </form>
     );
   }
 }
