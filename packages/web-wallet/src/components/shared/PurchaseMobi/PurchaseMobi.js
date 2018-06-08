@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import { string, func } from 'prop-types';
+import PropTypes from 'prop-types';
 import { debounce, noop } from 'lodash';
 import { promisifyAction } from 'redux-yo';
 import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
-import { Container, Title } from './styles';
+import Grid from 'components/shared/Grid';
+import Button from 'components/shared/Button';
+
+import {
+  Container,
+  Title,
+  Caption,
+  Price,
+  Input,
+  InputContainer,
+  ButtonContainer,
+} from './styles';
 
 class PurchaseMobi extends Component {
   static propTypes = {
-    accountId: string.isRequired,
-    onSuccess: func,
+    accountId: PropTypes.string.isRequired,
+    onSuccess: PropTypes.func,
+    classname: PropTypes.string,
   };
 
   static defaultProps = {
@@ -17,7 +29,7 @@ class PurchaseMobi extends Component {
   };
 
   state = {
-    destAmount: 0,
+    destAmount: '',
     calculating: false,
   };
 
@@ -63,27 +75,63 @@ class PurchaseMobi extends Component {
     onSuccess({ response, value: destAmount });
   };
 
-  render() {
+  renderPrice = () => {
     const { destAmount, calculating } = this.state;
     const { paymentPath } = this.props;
 
-    const pricePlaceholder = calculating ? 'calculating' : 'enter mobi amount';
+    if (paymentPath) {
+      const price = parseFloat(destAmount * parseFloat(paymentPath.source_amount)).toFixed(2);
+
+      return (
+        <Price>
+          Approximately <b>{parseFloat(price)} XLM</b>
+        </Price>
+      );
+    }
+
+    if (calculating) {
+      return <Price>Calculating...</Price>;
+    }
+
+    return <Price>Enter MOBI amount</Price>;
+  };
+
+  render() {
+    const { destAmount } = this.state;
+    const { classname } = this.props;
 
     return (
-      <Container>
+      <Container className={classname}>
         <Title>Purchase MOBI</Title>
+        <Caption>Use your XLM balance to purchase MOBI.</Caption>
+        <Grid>
+          <Grid.Row alignItems="center">
+            <InputContainer>
+              <Input
+                onChange={this.onMobiChange}
+                placeholder="0.0"
+                type="number"
+                value={destAmount}
+              />
+            </InputContainer>
+            {this.renderPrice()}
+          </Grid.Row>
 
-        <p>
-          XLM price:{' '}
-          {paymentPath ? paymentPath.source_amount : pricePlaceholder}
-        </p>
-        <input
-          type="number"
-          placeholder="mobi amount"
-          value={destAmount}
-          onChange={this.onMobiChange}
-        />
-        <button onClick={this.submitTransfer}>Submit transfer</button>
+          <Grid.Row>
+            <Grid.Col width={1 / 2} px={0}>
+              <ButtonContainer>
+                <Button
+                  theme="secondary"
+                  onClick={this.submitTransfer}
+                  fullWidth
+                  disabled={!destAmount}
+                >
+                  Submit transfer
+                </Button>
+              </ButtonContainer>
+            </Grid.Col>
+          </Grid.Row>
+        </Grid>
       </Container>
     );
   }

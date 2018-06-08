@@ -4,7 +4,7 @@ import { Container, Title, Caption } from './styles';
 
 export default class Header extends Component {
   static propTypes = {
-    caption: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    caption: PropTypes.any,
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 

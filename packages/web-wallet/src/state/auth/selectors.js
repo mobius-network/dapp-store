@@ -7,6 +7,8 @@ export const getSignupStep = state => state.auth.signupStep;
 export const getKeystore = state => state.auth.keystore;
 export const getMnemonic = state => state.auth.mnemonic;
 export const getWallet = state => state.auth.wallet;
+export const getAccountPending = state => state.auth.accountPending;
+export const getIsLoggedIn = state => state.auth.loggedIn;
 
 export const getIsAuthorized = state =>
   !!state.auth.wallet && state.auth.loggedIn;

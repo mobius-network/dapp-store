@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { number } from 'prop-types';
-import { Link } from 'react-router-dom';
+
+import Pane from 'components/shared/Pane';
+import Button from 'components/shared/Button';
 import CurrentAddress from 'components/shared/CurrentAddress';
 
-import { Container, Title } from './styles';
+import { WaitingTitle, WaitingCaption, CompleteMessage } from './styles';
 
 class TransferXlm extends Component {
   static propTypes = {
@@ -14,15 +16,52 @@ class TransferXlm extends Component {
     balance: 0,
   };
 
+  componentDidMount() {
+    this.props.watchAccount();
+  }
+
+  renderWaiting = () => (
+    <Fragment>
+      <WaitingTitle>Transfer from External Wallet</WaitingTitle>
+      <WaitingCaption>
+        Use the following address to transfer MOBI or XLM to your DApp Store
+        wallet.
+      </WaitingCaption>
+      <CurrentAddress />
+    </Fragment>
+  );
+
+  renderComplete = () => (
+    <Fragment>
+      <CompleteMessage assetName="XLM" assetValue={this.props.balance} />
+      <Button
+        fullWidth
+        to="/onboarding/mobi"
+        onClick={this.props.completeAccountCreation}
+      >
+        Continue
+      </Button>
+    </Fragment>
+  );
+
   render() {
     const { balance } = this.props;
 
     return (
-      <Container>
-        <CurrentAddress />
-        <Title>Current balance: {balance}</Title>
-        <Link to="/onboarding/mobi">Continue</Link>
-      </Container>
+      <Pane theme="wide" withGradient>
+        <Pane.Header
+          title="Transfer XLM"
+          caption={
+            <Fragment>
+              DApp store transaction fees are charged from your XLM balance. You
+              need to have a minimum balance of <b>3 XLM</b>.
+            </Fragment>
+          }
+        />
+        <Pane.Section>
+          {balance > 0 ? this.renderComplete() : this.renderWaiting()}
+        </Pane.Section>
+      </Pane>
     );
   }
 }

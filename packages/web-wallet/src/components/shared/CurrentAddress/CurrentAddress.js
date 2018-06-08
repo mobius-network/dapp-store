@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { string } from 'prop-types';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/fontawesome-free-solid';
 
-import { Container, Title } from './styles';
+import CopyField from 'components/shared/CopyField';
+import { Container, Info, InfoText, InfoIcon } from './styles';
 
 class CurrentAddress extends Component {
   static propTypes = {
@@ -13,8 +16,13 @@ class CurrentAddress extends Component {
 
     return (
       <Container>
-        <Title>Waiting for transfer</Title>
-        <p>{publicKey}</p>
+        <CopyField text={publicKey} />
+        <Info>
+          <InfoIcon>
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+          </InfoIcon>
+          <InfoText>Waiting for transfer…</InfoText>
+        </Info>
       </Container>
     );
   }

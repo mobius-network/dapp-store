@@ -16,6 +16,8 @@ export const authActions = createActions(
     'signupStart',
     'signupSuccess',
     'logout',
+    'watchAccount',
+    'completeAccountCreation',
     'set',
     'setMnemonic',
     'setKeystore',
@@ -48,6 +50,7 @@ export const authReducer = createReducer(
     [authActions.signupSuccess]: state =>
       merge(state, {
         loggedIn: true,
+        accountPending: true,
         mnemonic: undefined,
         keystore: undefined,
       }),
@@ -55,6 +58,8 @@ export const authReducer = createReducer(
       merge(state, {
         loggedIn: true,
       }),
+    [authActions.completeAccountCreation]: state =>
+      merge(state, { accountPending: false }),
     [authActions.setSignupStep]: (state, signupStep) =>
       merge(state, { signupStep }),
     [authActions.setKeystore]: (state, keystore) => merge(state, { keystore }),

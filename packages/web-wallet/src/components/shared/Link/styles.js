@@ -23,13 +23,17 @@ const linkStyles = `
 `;
 
 export const StyledLink = styled(Link)`
-  ${linkStyles} &:visited {
+  ${linkStyles};
+
+  &:visited {
     ${linkStyles};
   }
 `;
 
 export const StyledHyperlink = styled.a`
-  ${linkStyles} &:visited {
+  ${linkStyles};
+
+  &:visited {
     ${linkStyles};
   }
 `;

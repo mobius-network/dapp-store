@@ -63,7 +63,9 @@ export default class Button extends Component {
       <ThemeProvider theme={themes[theme]}>
         {to ? (
           <StyledLink to={to} onClick={onClick} {...rest}>
-            <Content wide={wide}>{children}</Content>
+            <Content wide={wide} fullWidth={fullWidth}>
+              {children}
+            </Content>
           </StyledLink>
         ) : (
           <StyledButton
@@ -73,7 +75,9 @@ export default class Button extends Component {
             type="button"
             {...rest}
           >
-            <Content wide={wide}>{children}</Content>
+            <Content wide={wide} fullWidth={fullWidth}>
+              {children}
+            </Content>
           </StyledButton>
         )}
       </ThemeProvider>
