@@ -46,7 +46,7 @@ class TransferMobi extends Component {
         message="Added successfully!"
       />
       <Button fullWidth to="/">
-        Browse DApp stor
+        Browse DApp store
       </Button>
     </Pane.Section>
   );
