@@ -1,16 +1,22 @@
+import { compose } from 'redux';
+import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { authActions, getIsAuthorized } from 'state/auth';
+import { requestActions } from 'state/requests';
+import { accountActions, getAssetBalance } from 'state/account';
+import { transfersActions } from 'state/transfers';
 
 import WithdrawForm from './WithdrawForm';
 
-const mapStateToProps = createStructuredSelector({
-  isAuthorized: getIsAuthorized,
+const mapStateToProps = (state, { asset }) => ({
+  form: `${asset}WithdrawForm`,
+  balance: getAssetBalance(state, { asset }),
 });
 
 const actions = {
-  ...authActions,
+  ...accountActions,
+  ...transfersActions,
+  ...requestActions,
 };
 
-export default connect(mapStateToProps, actions)(WithdrawForm);
+export default compose(connect(mapStateToProps, actions), reduxForm())(WithdrawForm);
