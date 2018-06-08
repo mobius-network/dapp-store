@@ -16,6 +16,10 @@ class TransferXlm extends Component {
     balance: 0,
   };
 
+  componentDidMount() {
+    this.props.watchAccount();
+  }
+
   renderWaiting = () => (
     <Fragment>
       <WaitingTitle>Transfer from External Wallet</WaitingTitle>
@@ -30,7 +34,11 @@ class TransferXlm extends Component {
   renderComplete = () => (
     <Fragment>
       <CompleteMessage assetName="XLM" assetValue={this.props.balance} />
-      <Button fullWidth to="/onboarding/mobi">
+      <Button
+        fullWidth
+        to="/onboarding/mobi"
+        onClick={this.props.completeAccountCreation}
+      >
         Continue
       </Button>
     </Fragment>
