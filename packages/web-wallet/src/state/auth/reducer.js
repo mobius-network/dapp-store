@@ -64,6 +64,7 @@ export const authReducer = createReducer(
       merge(state, { signupStep }),
     [authActions.setKeystore]: (state, keystore) => merge(state, { keystore }),
     [authActions.setMnemonic]: (state, mnemonic) => merge(state, { mnemonic }),
+    [authActions.logout]: () => initialState,
   },
   initialState
 );

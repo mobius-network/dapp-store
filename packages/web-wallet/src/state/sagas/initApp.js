@@ -3,7 +3,7 @@ import { REHYDRATE } from 'redux-persist';
 
 import { getIsAuthorized, getAccountPending } from 'state/auth/selectors';
 
-import { getMasterAccount } from 'state/balance/selectors';
+import { getMasterAccount } from 'state/account/selectors';
 import { prepareAccount } from './watchAccount';
 
 export function* initApp() {

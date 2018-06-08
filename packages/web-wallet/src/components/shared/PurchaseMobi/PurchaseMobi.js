@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { debounce, noop } from 'lodash';
 import { promisifyAction } from 'redux-yo';
-import { assets, pathPayment } from '@mobius-network/core';
+import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
 import Grid from 'components/shared/Grid';
 import Button from 'components/shared/Button';
@@ -30,16 +30,21 @@ class PurchaseMobi extends Component {
 
   state = {
     destAmount: '',
+    calculating: false,
   };
 
   calculatePrice(value) {
-    const { accountId, findBestPath } = this.props;
+    const { accountId, fetchStart } = this.props;
 
-    findBestPath({
-      source: accountId,
-      destination: accountId,
-      destinationAmount: value,
-      destinationAsset: assets.mobi,
+    fetchStart({
+      name: 'findBestPath',
+      fetcher: findBestPath,
+      payload: {
+        source: accountId,
+        destination: accountId,
+        destinationAmount: value,
+        destinationAsset: assets.mobi,
+      },
     });
   }
 
@@ -47,7 +52,7 @@ class PurchaseMobi extends Component {
 
   // eslint-disable-next-line react/sort-comp
   onMobiChange = ({ target: { value } }) => {
-    this.setState({ destAmount: value });
+    this.setState({ destAmount: value, calculating: true });
 
     this.debouncedCalculatePrice(value);
   };
@@ -62,30 +67,33 @@ class PurchaseMobi extends Component {
       destAmount,
     });
 
-    const response = await promisifyAction(transact, pathPaymentOp);
+    const response = await promisifyAction(transact, {
+      name: 'pathPayment',
+      operation: pathPaymentOp,
+    });
 
     onSuccess({ response, value: destAmount });
   };
 
   renderPrice = () => {
     const { destAmount } = this.state;
-    const { paymentPath } = this.props;
+    const { calculating, paymentPath } = this.props;
 
-    if (!destAmount) {
-      return null;
+    if (paymentPath) {
+      const price = parseFloat(destAmount * parseFloat(paymentPath.source_amount)).toFixed(2);
+
+      return (
+        <Price>
+          Approximately <b>{parseFloat(price)} XLM</b>
+        </Price>
+      );
     }
 
-    if (!paymentPath) {
+    if (calculating) {
       return <Price>Calculating...</Price>;
     }
 
-    const price = parseFloat(destAmount * parseFloat(paymentPath.source_amount)).toFixed(2);
-
-    return (
-      <Price>
-        Approximately <b>{parseFloat(price)} XLM</b>
-      </Price>
-    );
+    return <Price>Enter MOBI amount</Price>;
   };
 
   render() {
