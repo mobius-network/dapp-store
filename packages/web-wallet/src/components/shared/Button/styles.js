@@ -9,7 +9,7 @@ const buttonStyles = `
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 40px;
+  height: 42px;
   margin: 0;
   opacity: 1;
   outline: 2px;
