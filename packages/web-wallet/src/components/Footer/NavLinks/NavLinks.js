@@ -12,13 +12,13 @@ export default class NavLinks extends Component {
           <Logo />
         </ListItem>
         <ListItem>
-          <Link href="#">Terms of Service</Link>
+          <Link href="https://mobius.network/terms">Terms of Service</Link>
         </ListItem>
         <ListItem>
-          <Link href="#">Privacy</Link>
+          <Link href="https://mobius.network/privacy">Privacy</Link>
         </ListItem>
         <ListItem>
-          <Link href="#">Copyright</Link>
+          <Link href="https://mobius.network/copyright">Copyright</Link>
         </ListItem>
       </ListContainer>
     );
