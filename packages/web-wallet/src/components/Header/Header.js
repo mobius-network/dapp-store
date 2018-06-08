@@ -25,8 +25,11 @@ class Header extends Component {
           <Dropdown theme={theme}>
             <Dropdown.Toggle>sdjkhjksh</Dropdown.Toggle>
             <Dropdown.Menu align="right">
-              <Dropdown.Item to="/">Wallet Balance</Dropdown.Item>
-              <Dropdown.Item to="/">Transfer Funds</Dropdown.Item>
+              <Dropdown.Item to="/wallet">Wallet Balance</Dropdown.Item>
+              <Dropdown.Item to="/wallet/add">Add Funds</Dropdown.Item>
+              <Dropdown.Item to="/wallet/withdraw">
+                Transfer Funds
+              </Dropdown.Item>
               <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
