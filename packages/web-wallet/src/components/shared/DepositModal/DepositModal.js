@@ -23,6 +23,10 @@ class DepositModal extends Component {
     style: object,
   };
 
+  componentWillUnmount() {
+    this.props.resetRequest('depositApp');
+  }
+
   onDeposit = () => {
     const { depositApp, app } = this.props;
 
@@ -34,7 +38,12 @@ class DepositModal extends Component {
 
   render() {
     const {
-      isOpen, style = customStyles, onClose, mobiBalance,
+      isOpen,
+      style = customStyles,
+      onClose,
+      mobiBalance,
+      depositInProgress,
+      depositCompleted,
     } = this.props;
 
     return (
@@ -49,6 +58,8 @@ class DepositModal extends Component {
         <Container>
           <button onClick={this.onDeposit}>Deposit</button>
           <p>Available MOBI: {mobiBalance}</p>
+          <p>{depositInProgress && 'fetching'}</p>
+          <p>{depositCompleted && 'done!'}</p>
           <p>
             Design is wrong, here we should show MOBI instead of XLM balance
           </p>

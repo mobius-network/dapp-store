@@ -2,7 +2,7 @@ import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
 export const requestActions = createActions(
-  ['fetchStart', 'fetchSuccess', 'fetchFail'],
+  ['fetchStart', 'fetchSuccess', 'fetchFail', 'resetRequest'],
   'requests'
 );
 
@@ -36,6 +36,15 @@ export const requestsReducer = createReducer(
           isFetching: false,
         },
         requestError: error,
+      }),
+    [requestActions.resetRequest]: (state, name) =>
+      merge(state, {
+        [name]: {
+          error: undefined,
+          data: undefined,
+          success: undefined,
+          isFetching: false,
+        },
       }),
   },
   initialState
