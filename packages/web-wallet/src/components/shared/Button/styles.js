@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { fonts, fontSizes } from 'components/shared/Styleguide';
+import { fonts, fontSizes, radius } from 'components/shared/Styleguide';
 
 const buttonStyles = `
   align-items: stretch;
-  border-radius: 20px;
+  border-radius: ${radius.big};
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -39,15 +39,18 @@ export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
-  width: ${props => (props.fullWidth ? '100%' : 'auto')} ${buttonStyles};
+  width: ${props => (props.fullWidth ? '100%' : 'auto')};
+  ${buttonStyles};
 `;
 
 export const StyledLink = styled(Link)`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
-  width: ${props => (props.fullWidth ? '100%' : 'auto')}
-  ${buttonStyles} &: {
+  width: ${props => (props.fullWidth ? '100%' : 'auto')};
+  ${buttonStyles};
+
+  &:visited {
     ${buttonStyles};
   }
 `;
