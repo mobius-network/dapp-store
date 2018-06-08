@@ -18,9 +18,10 @@ export const Container = styled.div`
 `;
 
 export const Text = styled.p`
-  color: ${colors.textDefault};
+  color: ${colors.darkBlue};
   flex: 1;
   font-size: 13px;
+  line-height: 20px;
   margin: 0 10px 0 0;
   overflow: hidden;
   text-overflow: ellipsis;

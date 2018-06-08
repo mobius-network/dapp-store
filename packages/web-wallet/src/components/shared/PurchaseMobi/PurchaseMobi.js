@@ -83,7 +83,7 @@ class PurchaseMobi extends Component {
 
     return (
       <Price>
-        Approx. <b>{parseFloat(price)}</b> XLM
+        Approximately <b>{parseFloat(price)} XLM</b>
       </Price>
     );
   };
@@ -98,19 +98,15 @@ class PurchaseMobi extends Component {
         <Caption>Use your XLM balance to purchase MOBI.</Caption>
         <Grid>
           <Grid.Row alignItems="center">
-            <Grid.Col width={1 / 2} px={0}>
-              <InputContainer>
-                <Input
-                  onChange={this.onMobiChange}
-                  placeholder="0.0"
-                  type="number"
-                  value={destAmount}
-                />
-              </InputContainer>
-            </Grid.Col>
-            <Grid.Col width={1 / 2} px={0}>
-              {this.renderPrice()}
-            </Grid.Col>
+            <InputContainer>
+              <Input
+                onChange={this.onMobiChange}
+                placeholder="0.0"
+                type="number"
+                value={destAmount}
+              />
+            </InputContainer>
+            {this.renderPrice()}
           </Grid.Row>
 
           <Grid.Row>

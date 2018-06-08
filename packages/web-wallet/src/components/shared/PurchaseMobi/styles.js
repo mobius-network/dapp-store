@@ -11,7 +11,7 @@ import {
 export const Container = styled.div``;
 
 export const Title = styled.p`
-  font-size: ${fontSizes.sectionHeading};
+  font-size: 18px;
   font-weight: 700;
   margin: 0 0 5px;
 `;
@@ -33,6 +33,7 @@ export const Price = styled.p`
 export const InputContainer = styled.div`
   padding-right: 5px;
   position: relative;
+  max-width: 185px;
 
   &:after {
     color: ${colors.textPrimary};
@@ -71,5 +72,5 @@ export const Input = styled.input`
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 20px;
+  margin-top: 31px;
 `;

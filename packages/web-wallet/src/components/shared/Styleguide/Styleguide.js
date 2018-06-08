@@ -8,6 +8,7 @@ export const colors = {
   textLight: '#999999',
   textPrimary: '#3894E6',
   textSecondary: '#666666',
+  darkBlue: '#3A4372',
   error: '#EB506A',
 };
 
