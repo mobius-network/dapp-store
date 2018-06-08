@@ -1,3 +1,4 @@
+import { getMasterAccount } from 'state/account/selectors';
 import { getIsLoggedIn, getAccountPending } from './selectors';
 
 const waitForMasterAccount = store => () =>
@@ -10,7 +11,7 @@ const waitForMasterAccount = store => () =>
     }
 
     store.subscribe(() => {
-      if (store.getState().balance.masterAccount) {
+      if (getMasterAccount(store.getState())) {
         resolve();
       }
     });

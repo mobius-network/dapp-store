@@ -12,17 +12,31 @@ const sagaMiddleware =
     : createSagaMiddleware.default();
 
 function enhance(middlewareArray = []) {
+  let composeEnhancers = compose;
   const middlewares = middlewareArray;
 
   if (isDev) {
-    const { createLogger } = require('redux-logger');
+    // eslint-disable-next-line no-underscore-dangle
+    const extCompose = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
-    middlewares.push(createLogger({ collapsed: true }));
+    const devtoolsCompose =
+      extCompose &&
+      extCompose({
+        // actionsBlacklist: ['account/setMasterAccount', 'apps/setAppAccount'],
+      });
+
+    composeEnhancers = devtoolsCompose || compose;
+
+    if (!devtoolsCompose) {
+      const { createLogger } = require('redux-logger');
+
+      middlewares.push(createLogger({ collapsed: true }));
+    }
   }
 
   const enhancers = [applyMiddleware(...middlewares)];
 
-  return compose(...enhancers)(createStore);
+  return composeEnhancers(...enhancers)(createStore);
 }
 
 function makeStore(initialState = {}) {
