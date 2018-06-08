@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 
-import { getAccountId } from 'state/account';
+import { getAssetBalance } from 'state/account';
 
 import TransferMobi from './TransferMobi';
 
-const mapStateToProps = createStructuredSelector({
-  accountId: getAccountId,
+const mapStateToProps = state => ({
+  balance: getAssetBalance(state, { asset: 'mobi' }),
 });
 
 export default connect(mapStateToProps)(TransferMobi);

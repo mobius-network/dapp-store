@@ -1,22 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { LogoImage, LogoLink, LogoName } from './styles';
 
-const Logo = ({ withName }) => (
-  <LogoLink to="/" title="Mobius Wallet">
-    <LogoImage />
+export default class Logo extends Component {
+  static propTypes = {
+    withName: PropTypes.bool,
+  };
 
-    {withName && <LogoName>MOBIUS</LogoName>}
-  </LogoLink>
-);
+  static defaultProps = {
+    withName: false,
+  };
 
-Logo.propTypes = {
-  withName: PropTypes.bool,
-};
+  render() {
+    const { withName } = this.props;
 
-Logo.defaultProps = {
-  withName: false,
-};
+    return (
+      <LogoLink to="/" title="Mobius Wallet">
+        <LogoImage />
 
-export default Logo;
+        {withName && <LogoName>MOBIUS</LogoName>}
+      </LogoLink>
+    );
+  }
+}

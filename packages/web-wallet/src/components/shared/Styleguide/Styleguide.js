@@ -8,6 +8,7 @@ export const colors = {
   textLight: '#999999',
   textPrimary: '#3894E6',
   textSecondary: '#666666',
+  darkBlue: '#3A4372',
   error: '#EB506A',
 };
 
@@ -23,6 +24,7 @@ export const fontSizes = {
   formField: '16px',
   heading: '24px',
   mainHeading: '56px',
+  mini: '13px',
   paneCaption: '16px',
   paneHeading: '32px',
   sectionHeading: '16px',
@@ -41,6 +43,11 @@ export const breakpoints = {
   lg: '992px',
 };
 
+export const lineHeights = {
+  default: 1.6,
+  narrow: 1.2,
+};
+
 export const shadows = {
   buttonPrimary:
     '0 5px 15px 0 rgba(0,0,0,0.11), 0 10px 24px 0 rgba(135,46,250,0.16)',
@@ -52,4 +59,5 @@ export const radius = {
   default: '10px',
   medium: '6px',
   small: '4px',
+  big: '20px',
 };

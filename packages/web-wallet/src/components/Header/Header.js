@@ -1,21 +1,35 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import Grid from 'components/shared/Grid';
-import Button from 'components/shared/Button';
 import Link from 'components/shared/Link';
 import Logo from 'components/shared/Logo';
+import Dropdown from 'components/shared/Dropdown';
 import { Container, ListContainer, ListItem } from './styles';
 
 class Header extends Component {
+  static propTypes = {
+    theme: PropTypes.oneOf(['default', 'dark']),
+  };
+
+  static defaultProps = {
+    theme: 'default',
+  };
+
   renderSessionActions() {
-    const { isAuthorized, logout } = this.props;
+    const { isAuthorized, logout, theme } = this.props;
 
     if (isAuthorized) {
       return (
         <ListItem>
-          <Button onClick={logout} theme="secondary">
-            Logout
-          </Button>
+          <Dropdown theme={theme}>
+            <Dropdown.Toggle>sdjkhjksh</Dropdown.Toggle>
+            <Dropdown.Menu align="right">
+              <Dropdown.Item to="/">Wallet Balance</Dropdown.Item>
+              <Dropdown.Item to="/">Transfer Funds</Dropdown.Item>
+              <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </ListItem>
       );
     }
@@ -23,7 +37,7 @@ class Header extends Component {
     return (
       <Fragment>
         <ListItem>
-          <Link to="/login">Login </Link>
+          <Link to="/login">Login</Link>
         </ListItem>
         <ListItem>
           <Link to="/signup">Sign Up</Link>
@@ -46,7 +60,7 @@ class Header extends Component {
                   <Link to="/">Browse DApps</Link>
                 </ListItem>
                 <ListItem>
-                  <Link to="/">Developers</Link>
+                  <Link to="/developers">Developers</Link>
                 </ListItem>
 
                 {this.renderSessionActions()}

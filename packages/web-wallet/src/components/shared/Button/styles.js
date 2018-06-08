@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { fonts, fontSizes } from 'components/shared/Styleguide';
+import { fonts, fontSizes, radius } from 'components/shared/Styleguide';
 
 const buttonStyles = `
   align-items: stretch;
-  border-radius: 20px;
+  border-radius: ${radius.big};
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  height: 40px;
+  height: 42px;
   margin: 0;
   opacity: 1;
   outline: 2px;
@@ -39,18 +39,33 @@ export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
-  width: ${props => (props.fullWidth ? '100%' : 'auto')} ${buttonStyles};
+  width: ${props => (props.fullWidth ? '100%' : 'auto')};
+  ${buttonStyles};
 `;
 
 export const StyledLink = styled(Link)`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
-  width: ${props => (props.fullWidth ? '100%' : 'auto')}
-  ${buttonStyles} &: {
+  width: ${props => (props.fullWidth ? '100%' : 'auto')};
+  ${buttonStyles};
+
+  &:visited {
     ${buttonStyles};
   }
 `;
+
+function getContentPadding(props) {
+  if (props.fullWidth) {
+    return '0';
+  }
+
+  if (props.wide) {
+    return '0 60px';
+  }
+
+  return '0 30px';
+}
 
 export const Content = styled.div`
   align-items: center;
@@ -65,6 +80,6 @@ export const Content = styled.div`
   font-weight: ${props => props.theme.fontWeight};
   justify-content: center;
   margin: 2px;
-  padding: ${props => (props.wide ? '0 60px' : '0 30px')};
+  padding: ${props => getContentPadding(props)};
   text-transform: uppercase;
 `;
