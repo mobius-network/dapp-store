@@ -1,14 +1,15 @@
 import { connect } from 'react-redux';
 
+import { getPublicKeyFor } from 'state/auth';
 import { requestActions, getResponse } from 'state/requests';
-import { accountActions, getAccountId } from 'state/account';
+import { accountActions } from 'state/account';
 import { transfersActions } from 'state/transfers';
 
 import PurchaseMobi from './PurchaseMobi';
 
 const mapStateToProps = state => ({
   paymentPath: getResponse(state, { operation: 'findBestPath' }),
-  accountId: getAccountId(state),
+  accountId: getPublicKeyFor(state),
 });
 
 const actions = {

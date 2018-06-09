@@ -21,9 +21,11 @@ export function parseBalance(account) {
 
 export function parsedBalanceValue(h, asset) {
   const balance = h[asset];
+
   if (!balance) {
-    return null;
+    return 0;
   }
+
   return parseFloat(balance.balance);
 }
 

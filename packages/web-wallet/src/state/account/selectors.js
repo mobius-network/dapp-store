@@ -34,6 +34,7 @@ export const getNativeBalance = createAssetBalanceSelector(
   getNativeAsset
 );
 
+// TODO: fallback to getPublicKeyFor in case if account is not funded yet
 export const getAccountId = createSelector(
   getMasterAccount,
   account => account.id
@@ -43,7 +44,7 @@ export const getAssetValueFixed = createSelector(
   [getAssetBalance, getFixed],
   (assetBalance, fixed) => {
     if (!assetBalance) {
-      return undefined;
+      return 0;
     }
     return assetBalance.toFixed(fixed);
   }

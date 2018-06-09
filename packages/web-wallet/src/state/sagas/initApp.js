@@ -1,7 +1,7 @@
 import { takeLatest, call, select } from 'redux-saga/effects';
 import { REHYDRATE } from 'redux-persist';
 
-import { getIsAuthorized, getAccountPending } from 'state/auth/selectors';
+import { getIsAuthorized } from 'state/auth/selectors';
 
 import { getMasterAccount } from 'state/account/selectors';
 import { prepareAccount } from './watchAccount';
@@ -9,9 +9,8 @@ import { prepareAccount } from './watchAccount';
 export function* initApp() {
   const masterAccount = yield select(getMasterAccount);
   const isAuthorized = yield select(getIsAuthorized);
-  const accountPending = yield select(getAccountPending);
 
-  if (masterAccount || !isAuthorized || accountPending) {
+  if (masterAccount || !isAuthorized) {
     return;
   }
 
