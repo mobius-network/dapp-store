@@ -8,7 +8,6 @@ import PrivateRoute from 'components/shared/PrivateRoute';
 
 import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import DefaultLayout from 'components/layouts/DefaultLayout';
-import DappStoreLayout from 'components/layouts/DappStoreLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
 import Footer from 'components/Footer';
 import Loading from 'components/Loading';
@@ -35,7 +34,7 @@ class Root extends Component {
             <Router>
               <Fragment>
                 <Switch>
-                  <DappStoreLayout path="/" component={DappStore} exact />
+                  <Route path="/" component={DappStore} exact />
                   <PublicLayout path="/login" component={Login} exact />
                   <PublicLayout path="/signup" component={Signup} exact />
 
