@@ -33,7 +33,7 @@ export default class WalletLayout extends Component {
                       <MenuItem to="/wallet/withdraw">Withdraw Funds</MenuItem>
                     </Menu>
                   </Grid.Col>
-                  <Grid.Col width={1}>
+                  <Grid.Col width={[1, 1, 5 / 6]}>
                     <RouterComponent {...matchProps} />
                   </Grid.Col>
                 </Grid.Row>
