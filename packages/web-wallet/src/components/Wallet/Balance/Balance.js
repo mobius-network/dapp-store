@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Grid from 'components/shared/Grid';
+
 import AssetAllocation from './AssetAllocation';
 import AppAllocations from './AppAllocations';
 import { Container } from './styles';
@@ -17,14 +19,21 @@ class Balance extends Component {
     }
 
     return (
-      <Container>
-        <Container>
-          <AssetAllocation asset="mobi" />
-          <AssetAllocation asset="native" />
-        </Container>
-
-        <AppAllocations />
-      </Container>
+      <Grid>
+        <Grid.Row>
+          <Grid.Col width={[1, 1 / 2]}>
+            <AssetAllocation asset="mobi" gradient="left" />
+          </Grid.Col>
+          <Grid.Col width={[1, 1 / 2]}>
+            <AssetAllocation asset="native" gradient="right" />
+          </Grid.Col>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Col width={1}>
+            <AppAllocations />
+          </Grid.Col>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

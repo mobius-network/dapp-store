@@ -36,6 +36,8 @@ export const fontSizes = {
 export const gradients = {
   button: 'linear-gradient(90deg, #4637E6 0%, #8C2DFD 100%)',
   full: 'linear-gradient(90deg, #37CAE6 0%, #8C2DFD 100%)',
+  left: 'linear-gradient(90deg, #37CAE6 0%, #2D76FD 100%)',
+  right: 'linear-gradient(90deg, #4961EA 0%, #8C2DFD 100%)',
 };
 
 export const breakpoints = {
