@@ -32,12 +32,10 @@ class FeaturedDapp extends Component {
   };
 
   openModal = () => {
-    console.log('open');
     this.setState({ modalOpened: true });
   };
 
   closeModal = () => {
-    console.log('close');
     this.setState({ modalOpened: false });
   };
 
@@ -59,9 +57,15 @@ class FeaturedDapp extends Component {
             <AppDesc>{app.description}</AppDesc>
           </Content>
           <Footer>
-            <Button wide onClick={this.openModal}>
-              GO TO APP
-            </Button>
+            {isAuthorized ? (
+              <Button wide onClick={this.openModal}>
+                GO TO APP
+              </Button>
+            ) : (
+              <Button wide to="/login">
+                GO TO APP
+              </Button>
+            )}
           </Footer>
         </Container>
 
