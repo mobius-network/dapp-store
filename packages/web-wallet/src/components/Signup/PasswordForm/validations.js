@@ -1,9 +1,14 @@
-import { combineValidators, composeValidators, isRequired } from 'revalidate';
+import {
+  combineValidators,
+  hasLengthGreaterThan,
+  composeValidators,
+  isRequired,
+} from 'revalidate';
 
 import { isEquals } from 'utils';
 
 export const validate = combineValidators({
-  password: isRequired('Password'),
+  password: composeValidators(isRequired, hasLengthGreaterThan(5))('Password'),
   passwordConfirmation: composeValidators(
     isRequired,
     isEquals('password')({ message: 'Confirmation must match password' })
