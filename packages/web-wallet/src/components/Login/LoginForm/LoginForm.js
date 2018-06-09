@@ -5,7 +5,7 @@ import FormRow from 'components/shared/FormRow';
 import TextInput from 'components/shared/TextInput';
 import FileInput from 'components/shared/FileInput';
 import Button from 'components/shared/Button';
-import { ActionsRow, StyledLink } from './styles';
+import { ActionsRow } from './styles';
 
 class LoginForm extends Component {
   static propTypes = {
@@ -40,8 +40,6 @@ class LoginForm extends Component {
           onChange={this.onKeyUpload}
           placeholder="Keyfile"
         />
-
-        <StyledLink href="#">Can’t find your keyfile?</StyledLink>
 
         <ActionsRow>
           <Button onClick={handleSubmit} fullWidth>
