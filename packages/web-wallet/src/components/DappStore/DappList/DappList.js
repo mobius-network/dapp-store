@@ -33,7 +33,9 @@ class DappList extends Component {
               <SubmitText>
                 The Mobius SDK makes it easy to start collecting coin payments.
               </SubmitText>
-              <Button to="/developers">GET STARTED</Button>
+              <Button href="https://mobius.network/store/developer/">
+                GET STARTED
+              </Button>
             </Submit>
           </Grid.Col>
 

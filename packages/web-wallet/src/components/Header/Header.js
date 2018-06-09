@@ -61,7 +61,10 @@ class Header extends Component {
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link to="/developers" theme={this.getLinkTheme()}>
+                  <Link
+                    href="https://mobius.network/store/developer/"
+                    theme={this.getLinkTheme()}
+                  >
                     Developers
                   </Link>
                 </ListItem>
