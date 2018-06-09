@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader';
 import React, { Component, Fragment } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -54,4 +55,4 @@ class Root extends Component {
   }
 }
 
-export default Root;
+export default hot(module)(Root);

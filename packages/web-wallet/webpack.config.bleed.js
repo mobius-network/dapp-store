@@ -10,12 +10,7 @@ const config = {
 
   context: resolve(__dirname, 'src'),
 
-  entry: [
-    'react-hot-loader/patch',
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    './index.js',
-  ],
+  entry: resolve(__dirname, 'src/index.js'),
 
   output: {
     filename: 'bundle.js',
@@ -25,7 +20,7 @@ const config = {
 
   devServer: {
     stats: 'minimal',
-    hot: true,
+    hotOnly: true,
     publicPath: '/',
     historyApiFallback: true,
     contentBase: resolve(__dirname, 'dist'),
@@ -59,6 +54,7 @@ const config = {
             'react',
           ],
           plugins: [
+            'react-hot-loader/babel',
             'react-native-web',
             'syntax-object-rest-spread',
             'transform-class-properties',
@@ -154,7 +150,6 @@ const config = {
       filename: 'index.html',
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
 
   node: {
