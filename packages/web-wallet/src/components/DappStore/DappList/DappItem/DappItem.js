@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { object } from 'prop-types';
 
 import DappModal from 'components/DappStore/DappModal';
-import { Container, Title } from './styles';
+import { Container, AppDesc, AppDetails, AppName, AppPic } from './styles';
 
 class DappItem extends Component {
   static propTypes = {
@@ -26,12 +26,18 @@ class DappItem extends Component {
     const { modalOpened } = this.state;
 
     return (
-      <Container>
-        <Title>{app.name}</Title>
-        <button onClick={this.openModal}>Open Modal</button>
+      <Fragment>
+        <Container>
+          <AppPic url={app.image_url} />
 
+          <AppDetails>
+            <AppName>{app.name}</AppName>
+            <AppDesc>{app.description}</AppDesc>
+            <button onClick={this.openModal}>Open Modal</button>
+          </AppDetails>
+        </Container>
         <DappModal app={app} isOpen={modalOpened} onClose={this.closeModal} />
-      </Container>
+      </Fragment>
     );
   }
 }

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Header from 'components/Header';
 import Grid from 'components/shared/Grid';
 import FeaturedDapp from './FeaturedDapp';
+import DappList from './DappList';
 import {
   Container,
   HeaderContainer,
@@ -23,6 +24,8 @@ class DappStore extends Component {
   }
 
   render() {
+    const { apps } = this.props;
+
     return (
       <Container>
         <HeaderContainer>
@@ -43,6 +46,7 @@ class DappStore extends Component {
             </Grid.Row>
           </Grid>
         </HeaderContainer>
+        <DappList apps={apps} />
       </Container>
     );
   }
