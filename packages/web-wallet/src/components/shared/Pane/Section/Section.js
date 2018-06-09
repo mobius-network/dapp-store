@@ -4,12 +4,13 @@ import { Container } from './styles';
 
 export default class Section extends Component {
   static propTypes = {
+    className: PropTypes.string,
     children: PropTypes.any,
   };
 
   render() {
-    const { children } = this.props;
+    const { children, className } = this.props;
 
-    return <Container>{children}</Container>;
+    return <Container className={className}>{children}</Container>;
   }
 }

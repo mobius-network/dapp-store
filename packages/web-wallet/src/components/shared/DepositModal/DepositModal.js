@@ -1,19 +1,27 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { object, bool, func } from 'prop-types';
 import Modal from 'react-modal';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/fontawesome-free-solid';
 
-import { Container, Title } from './styles';
-
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+import { colors, radius } from 'components/shared/Styleguide';
+import Button from 'components/shared/Button';
+import {
+  Balance,
+  Content,
+  Desc,
+  FormInput,
+  FormInputContainer,
+  FormLabel,
+  FormRow,
+  Header,
+  HeaderAppName,
+  HeaderTitle,
+  CompleteContainer,
+  CompleteIcon,
+  CompleteMessage,
+  CompleteDetails,
+} from './styles';
 
 class DepositModal extends Component {
   static propTypes = {
@@ -23,27 +31,103 @@ class DepositModal extends Component {
     style: object,
   };
 
+  static defaultProps = {
+    style: {
+      overlay: {
+        backgroundColor: colors.overlay,
+      },
+      content: {
+        borderRadius: radius.default,
+        bottom: 'auto',
+        left: '50%',
+        marginRight: '-50%',
+        padding: '30px',
+        right: 'auto',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+      },
+    },
+  };
+
+  state = {
+    amount: 0,
+  };
+
   componentWillUnmount() {
     this.props.resetRequest('depositApp');
   }
 
+  onAmountChange = e => {
+    const amount = e.target.value;
+
+    this.setState({ amount });
+  };
+
   onDeposit = () => {
     const { depositApp, app } = this.props;
+    const { amount } = this.state;
 
-    depositApp({
-      amount: 3,
-      app,
-    });
+    depositApp({ amount, app });
+  };
+
+  renderForm = () => {
+    const { mobiBalance, depositInProgress } = this.props;
+    const { amount } = this.state;
+
+    return (
+      <Fragment>
+        <Desc>
+          Deposited MOBI will be available for use within this DApp. Withdraw at
+          any time.
+        </Desc>
+        <FormRow>
+          <FormInputContainer>
+            <FormInput
+              onChange={this.onAmountChange}
+              placeholder="0.0"
+              size="1"
+              type="number"
+              valid={amount > 0}
+              value={amount}
+            />
+          </FormInputContainer>
+          <FormLabel>MOBI</FormLabel>
+        </FormRow>
+        <Balance>
+          Available balance: <b>{mobiBalance} MOBI</b>
+        </Balance>
+
+        <Button
+          onClick={this.onDeposit}
+          fullWidth
+          disabled={!amount || depositInProgress || amount > mobiBalance}
+        >
+          DEPOSIT
+        </Button>
+      </Fragment>
+    );
+  };
+
+  renderDone = () => {
+    const { app } = this.props;
+    const { amount } = this.state;
+
+    return (
+      <CompleteContainer>
+        <CompleteIcon>
+          <FontAwesomeIcon icon={faCheck} />
+        </CompleteIcon>
+        <CompleteMessage>All done!</CompleteMessage>
+        <CompleteDetails>
+          We’ve successfully transferred {amount} MOBI to {app.name}.
+        </CompleteDetails>
+      </CompleteContainer>
+    );
   };
 
   render() {
     const {
-      isOpen,
-      style = customStyles,
-      onClose,
-      mobiBalance,
-      depositInProgress,
-      depositCompleted,
+      app, isOpen, style, onClose, depositCompleted,
     } = this.props;
 
     return (
@@ -53,17 +137,14 @@ class DepositModal extends Component {
         contentLabel="Deposit modal"
         style={style}
       >
-        <Title>Deposit</Title>
-        <button onClick={onClose}>close</button>
-        <Container>
-          <button onClick={this.onDeposit}>Deposit</button>
-          <p>Available MOBI: {mobiBalance}</p>
-          <p>{depositInProgress && 'fetching'}</p>
-          <p>{depositCompleted && 'done!'}</p>
-          <p>
-            Design is wrong, here we should show MOBI instead of XLM balance
-          </p>
-        </Container>
+        <Content>
+          <Header>
+            <HeaderTitle>Deposit</HeaderTitle>
+            <HeaderAppName>{app.name}</HeaderAppName>
+          </Header>
+
+          {depositCompleted ? this.renderDone() : this.renderForm()}
+        </Content>
       </Modal>
     );
   }

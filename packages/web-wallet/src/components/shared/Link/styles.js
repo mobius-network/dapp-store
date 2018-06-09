@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { colors, fonts, fontSizes } from 'components/shared/Styleguide';
+import { fonts, fontSizes } from 'components/shared/Styleguide';
 
 const linkStyles = `
-  color: ${colors.textPrimary};
   cursor: pointer;
   display: inline-block;
   font-family: ${fonts.nunitoSans};
@@ -23,17 +22,21 @@ const linkStyles = `
 `;
 
 export const StyledLink = styled(Link)`
+  color: ${props => props.theme.color};
   ${linkStyles};
 
   &:visited {
+    color: ${props => props.theme.color};
     ${linkStyles};
   }
 `;
 
 export const StyledHyperlink = styled.a`
+  color: ${props => props.theme.color};
   ${linkStyles};
 
   &:visited {
+    color: ${props => props.theme.color};
     ${linkStyles};
   }
 `;

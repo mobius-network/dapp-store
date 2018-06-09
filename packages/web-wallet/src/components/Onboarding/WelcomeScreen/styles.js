@@ -6,6 +6,7 @@ import {
   fonts,
   fontSizes,
   gradients,
+  radius,
 } from 'components/shared/Styleguide';
 import image from './images/logo.png';
 
@@ -13,8 +14,9 @@ export const Container = styled(Pane)``;
 
 export const Header = styled.div`
   background: ${gradients.full};
-  padding: 60px;
+  border-radius: ${radius.default} ${radius.default} 0 0;
   color: ${colors.textWhite};
+  padding: 60px;
 `;
 
 export const HeaderLogo = styled.div`

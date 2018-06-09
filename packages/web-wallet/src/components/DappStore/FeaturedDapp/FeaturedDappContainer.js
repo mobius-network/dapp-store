@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
+import { getFeaturedApp } from 'state/requests';
 import { getIsAuthorized } from 'state/auth';
 
-import Header from './Header';
+import FeaturedDapp from './FeaturedDapp';
 
 const mapStateToProps = createStructuredSelector({
   isAuthorized: getIsAuthorized,
+  app: getFeaturedApp,
 });
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(FeaturedDapp);

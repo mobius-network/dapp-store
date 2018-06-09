@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Grid from 'components/shared/Grid';
 import Link from 'components/shared/Link';
 import Logo from 'components/shared/Logo';
-import Dropdown from 'components/shared/Dropdown';
+import ActionsDropdown from './ActionsDropdown';
 import { Container, ListContainer, ListItem } from './styles';
 
 class Header extends Component {
@@ -16,23 +16,15 @@ class Header extends Component {
     theme: 'default',
   };
 
+  getLinkTheme = () => (this.props.theme === 'dark' ? 'light' : 'default');
+
   renderSessionActions() {
-    const { isAuthorized, logout, theme } = this.props;
+    const { isAuthorized, theme } = this.props;
 
     if (isAuthorized) {
       return (
         <ListItem>
-          <Dropdown theme={theme}>
-            <Dropdown.Toggle>sdjkhjksh</Dropdown.Toggle>
-            <Dropdown.Menu align="right">
-              <Dropdown.Item to="/wallet">Wallet Balance</Dropdown.Item>
-              <Dropdown.Item to="/wallet/add">Add Funds</Dropdown.Item>
-              <Dropdown.Item to="/wallet/withdraw">
-                Transfer Funds
-              </Dropdown.Item>
-              <Dropdown.Item onClick={logout}>Logout</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <ActionsDropdown theme={theme} />
         </ListItem>
       );
     }
@@ -40,10 +32,14 @@ class Header extends Component {
     return (
       <Fragment>
         <ListItem>
-          <Link to="/login">Login</Link>
+          <Link to="/login" theme={this.getLinkTheme()}>
+            Login
+          </Link>
         </ListItem>
         <ListItem>
-          <Link to="/signup">Sign Up</Link>
+          <Link to="/signup" theme={this.getLinkTheme()}>
+            Sign Up
+          </Link>
         </ListItem>
       </Fragment>
     );
@@ -60,10 +56,14 @@ class Header extends Component {
             <Grid.Col width={[1, 1 / 2]}>
               <ListContainer>
                 <ListItem>
-                  <Link to="/">Browse DApps</Link>
+                  <Link to="/" theme={this.getLinkTheme()}>
+                    Browse DApps
+                  </Link>
                 </ListItem>
                 <ListItem>
-                  <Link to="/developers">Developers</Link>
+                  <Link to="/developers" theme={this.getLinkTheme()}>
+                    Developers
+                  </Link>
                 </ListItem>
 
                 {this.renderSessionActions()}

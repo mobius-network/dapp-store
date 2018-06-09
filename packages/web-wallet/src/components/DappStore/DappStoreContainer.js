@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import { requestActions, getApps } from 'state/requests';
 import { appActions } from 'state/apps';
 
-import DappList from './DappList';
+import DappStore from './DappStore';
 
 const mapStateToProps = createStructuredSelector({
   apps: getApps,
@@ -15,4 +15,4 @@ const actions = {
   ...appActions,
 };
 
-export default connect(mapStateToProps, actions)(DappList);
+export default connect(mapStateToProps, actions)(DappStore);

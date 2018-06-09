@@ -42,6 +42,7 @@ export const Container = styled.div`
   box-shadow: 0 2px 4px 0 #f1f2f7;
   padding: 5px 0;
   position: absolute;
+  z-index: 1;
   ${props => getMenuPlacement(props.placement)};
   ${props => getMenuAlign(props.align)};
 `;

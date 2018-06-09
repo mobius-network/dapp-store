@@ -10,6 +10,7 @@ export const colors = {
   textSecondary: '#666666',
   darkBlue: '#3A4372',
   error: '#EB506A',
+  overlay: 'rgba(0, 0, 0, 0.6)',
 };
 
 export const fonts = {

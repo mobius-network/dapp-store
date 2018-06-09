@@ -38,6 +38,7 @@ const themes = {
 class Pane extends Component {
   static propTypes = {
     children: PropTypes.any,
+    className: PropTypes.string,
     theme: PropTypes.oneOf(['default', 'narrow', 'wide']),
     withGradient: PropTypes.bool,
   };
@@ -48,11 +49,13 @@ class Pane extends Component {
   };
 
   render() {
-    const { theme, withGradient, children } = this.props;
+    const {
+      theme, withGradient, children, className,
+    } = this.props;
 
     return (
       <ThemeProvider theme={themes[theme]}>
-        <Container>
+        <Container className={className}>
           {withGradient && <Gradient />}
 
           {children}

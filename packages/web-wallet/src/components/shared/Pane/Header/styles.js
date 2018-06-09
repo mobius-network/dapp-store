@@ -16,6 +16,7 @@ export const Caption = styled.p`
 
 export const Container = styled.div`
   border-bottom: 1px solid ${colors.border};
+  overflow: hidden;
   padding: ${props => props.theme.headerPadding};
 
   &:last-child {

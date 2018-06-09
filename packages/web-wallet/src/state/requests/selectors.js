@@ -19,3 +19,8 @@ export const getIsSuccess = createSelector(
 );
 
 export const getApps = state => get(state, 'requests.apps.data.apps');
+
+export const getFeaturedApp = createSelector(
+  [getApps],
+  apps => (apps || [])[0]
+);
