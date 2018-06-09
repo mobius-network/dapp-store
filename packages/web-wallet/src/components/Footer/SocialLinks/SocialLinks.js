@@ -13,6 +13,8 @@ import {
 } from '@fortawesome/fontawesome-free-brands';
 import { faEnvelope } from '@fortawesome/fontawesome-free-regular';
 
+import Grid from 'components/shared/Grid';
+
 import {
   KakaoTalkLink,
   ListContainer,
@@ -40,75 +42,89 @@ export default class SocialLinks extends Component {
 
   render() {
     return (
-      <ListContainer>
-        <ListItem>
-          <SocialLink href={socialUrls.telegram} title="Telegram">
-            <FontAwesomeIcon icon={faTelegramPlane} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+      <Grid>
+        <Grid.Row flexWrap="wrap" justifyContent={['center', 'flex-start']}>
+          <Grid.Col width={[1, 1 / 2]} mt={[10, 0]}>
+            <ListContainer>
+              <ListItem>
+                <SocialLink href={socialUrls.telegram} title="Telegram">
+                  <FontAwesomeIcon
+                    icon={faTelegramPlane}
+                    fixedWidth
+                    size="lg"
+                  />
+                </SocialLink>
+              </ListItem>
 
-        <ListItem>
-          <KakaoTalkLink href={socialUrls.kakao} title="KakaoTalk" />
-        </ListItem>
+              <ListItem>
+                <KakaoTalkLink href={socialUrls.kakao} title="KakaoTalk" />
+              </ListItem>
 
-        <ListItem>
-          <WeChatButton
-            onClick={this.toggleWeChatModal}
-            title="WeChat"
-            type="button"
-          >
-            <FontAwesomeIcon icon={faWeixin} fixedWidth size="lg" />
-          </WeChatButton>
-        </ListItem>
+              <ListItem>
+                <WeChatButton
+                  onClick={this.toggleWeChatModal}
+                  title="WeChat"
+                  type="button"
+                >
+                  <FontAwesomeIcon icon={faWeixin} fixedWidth size="lg" />
+                </WeChatButton>
+              </ListItem>
 
-        <ListItem>
-          <SocialLink href={socialUrls.meetup} title="Meetup">
-            <FontAwesomeIcon icon={faMeetup} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+              <ListItem>
+                <SocialLink href={socialUrls.meetup} title="Meetup">
+                  <FontAwesomeIcon icon={faMeetup} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
 
-        <ListItem>
-          <SocialLink href={socialUrls.twitter} title="Twitter">
-            <FontAwesomeIcon icon={faTwitter} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+              <ListItem>
+                <SocialLink href={socialUrls.twitter} title="Twitter">
+                  <FontAwesomeIcon icon={faTwitter} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
+            </ListContainer>
+          </Grid.Col>
 
-        <ListItem>
-          <SocialLink href={socialUrls.facebook} title="Facebook">
-            <FontAwesomeIcon icon={faFacebook} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+          <Grid.Col width={[1, 1 / 2]} mt={[10, 0]}>
+            <ListContainer>
+              <ListItem>
+                <SocialLink href={socialUrls.facebook} title="Facebook">
+                  <FontAwesomeIcon icon={faFacebook} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
 
-        <ListItem>
-          <SocialLink href={socialUrls.weibo} title="Weibo">
-            <FontAwesomeIcon icon={faWeibo} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+              <ListItem>
+                <SocialLink href={socialUrls.weibo} title="Weibo">
+                  <FontAwesomeIcon icon={faWeibo} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
 
-        <ListItem>
-          <SocialLink href={socialUrls.reddit} title="Reddit">
-            <FontAwesomeIcon icon={faReddit} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+              <ListItem>
+                <SocialLink href={socialUrls.reddit} title="Reddit">
+                  <FontAwesomeIcon icon={faReddit} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
 
-        <ListItem>
-          <SocialLink href={socialUrls.github} title="Github">
-            <FontAwesomeIcon icon={faGithub} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+              <ListItem>
+                <SocialLink href={socialUrls.github} title="Github">
+                  <FontAwesomeIcon icon={faGithub} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
 
-        <ListItem>
-          <SocialLink href={socialUrls.medium} title="Medium">
-            <FontAwesomeIcon icon={faMedium} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
+              <ListItem>
+                <SocialLink href={socialUrls.medium} title="Medium">
+                  <FontAwesomeIcon icon={faMedium} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
 
-        <ListItem>
-          <SocialLink href={socialUrls.email}>
-            <FontAwesomeIcon icon={faEnvelope} fixedWidth size="lg" />
-          </SocialLink>
-        </ListItem>
-      </ListContainer>
+              <ListItem>
+                <SocialLink href={socialUrls.email}>
+                  <FontAwesomeIcon icon={faEnvelope} fixedWidth size="lg" />
+                </SocialLink>
+              </ListItem>
+            </ListContainer>
+          </Grid.Col>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

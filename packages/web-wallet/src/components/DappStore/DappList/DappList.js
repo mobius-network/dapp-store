@@ -26,7 +26,7 @@ class DappList extends Component {
 
     return (
       <Grid>
-        <Grid.Row>
+        <Grid.Row flexWrap="wrap">
           <Grid.Col width={[1, 1 / 4]}>
             <Submit>
               <SubmitTitle>Submit Your Own DApps</SubmitTitle>
@@ -43,7 +43,7 @@ class DappList extends Component {
             </Submit>
           </Grid.Col>
 
-          <Grid.Col width={1}>
+          <Grid.Col width={[1, 3 / 4]}>
             {isEmpty(apps) ? (
               <Spinner>
                 <SpinnerIcon>

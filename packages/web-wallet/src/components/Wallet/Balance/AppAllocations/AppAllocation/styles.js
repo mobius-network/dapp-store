@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import Button from 'components/shared/Button';
 import Pic from 'components/shared/Pic';
 import { colors, fonts, fontSizes } from 'components/shared/Styleguide';
 
@@ -7,7 +8,6 @@ export const Container = styled.div`
   border-right: 1px solid ${colors.border};
 
   border-bottom: 1px solid ${colors.border};
-  width: 33.33%;
   padding: 30px 50px;
   text-align: center;
   box-sizing: border-box;
@@ -47,4 +47,8 @@ export const AppBalanceItem = styled.span`
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const ReleaseButton = styled(Button)`
+  min-width: 160px;
 `;

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { object } from 'prop-types';
 
-import Button from 'components/shared/Button';
 import {
   Container,
   ButtonContainer,
@@ -9,6 +8,7 @@ import {
   AppName,
   AppBalance,
   AppBalanceItem,
+  ReleaseButton,
 } from './styles';
 
 class AppAllocation extends Component {
@@ -38,9 +38,9 @@ class AppAllocation extends Component {
           <AppBalanceItem>{xlmBalance} XLM</AppBalanceItem>
         </AppBalance>
         <ButtonContainer>
-          <Button onClick={this.onRelaseBalance} theme="secondary">
+          <ReleaseButton onClick={this.onRelaseBalance} theme="secondary">
             Release balance
-          </Button>
+          </ReleaseButton>
         </ButtonContainer>
       </Container>
     );

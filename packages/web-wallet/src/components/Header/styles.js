@@ -13,6 +13,10 @@ export const Container = styled.div`
   @media screen and (min-width: ${breakpoints.md}) {
     margin-bottom: 60px;
   }
+
+  @media screen and (max-width: ${breakpoints.sm}) {
+    height: auto;
+  }
 `;
 
 export const ListContainer = styled.ul`
@@ -32,6 +36,15 @@ export const ListItem = styled.li`
 
   @media screen and (min-width: ${breakpoints.md}) {
     margin-right: 35px;
+  }
+
+  @media screen and (max-width: ${breakpoints.sm}) {
+    margin-right: 15px;
+
+    & > a,
+    & > a:visited {
+      color: #000;
+    }
   }
 
   &:last-child {

@@ -24,7 +24,7 @@ export default class WalletLayout extends Component {
 
             <Content>
               <Grid>
-                <Grid.Row>
+                <Grid.Row flexWrap="wrap">
                   <Grid.Col width={[1, 1, 1 / 6]}>
                     <Menu>
                       <MenuTitle>Wallet</MenuTitle>

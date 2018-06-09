@@ -53,24 +53,30 @@ class Header extends Component {
             <Grid.Col width={[1, 1 / 2]}>
               <Logo withName />
             </Grid.Col>
-            <Grid.Col width={[1, 1 / 2]}>
-              <ListContainer>
-                <ListItem>
-                  <Link to="/" theme={this.getLinkTheme()}>
-                    Browse DApps
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link
-                    href="https://mobius.network/store/developer/"
-                    theme={this.getLinkTheme()}
-                  >
-                    Developers
-                  </Link>
-                </ListItem>
+            <Grid.Col width={[1, 1 / 2]} px={[0, 2]}>
+              <Grid.Row alignItems={['center']} flexWrap="wrap" pt={[10, 0]}>
+                <Grid.Col width={['auto', 1 / 2]}>
+                  <ListContainer>
+                    <ListItem>
+                      <Link to="/" theme={this.getLinkTheme()}>
+                        Browse DApps
+                      </Link>
+                    </ListItem>
+                    <ListItem>
+                      <Link
+                        href="https://mobius.network/store/developer/"
+                        theme={this.getLinkTheme()}
+                      >
+                        Developers
+                      </Link>
+                    </ListItem>
+                  </ListContainer>
+                </Grid.Col>
 
-                {this.renderSessionActions()}
-              </ListContainer>
+                <Grid.Col width={['auto', 1 / 2]} pt={[10, 0]}>
+                  <ListContainer>{this.renderSessionActions()}</ListContainer>
+                </Grid.Col>
+              </Grid.Row>
             </Grid.Col>
           </Grid.Row>
         </Grid>

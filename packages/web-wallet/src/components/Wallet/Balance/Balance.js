@@ -20,7 +20,7 @@ class Balance extends Component {
 
     return (
       <Grid>
-        <Grid.Row>
+        <Grid.Row flexWrap="wrap">
           <Grid.Col width={[1, 1, 1 / 2]} mb={4}>
             <AssetAllocation asset="mobi" gradient="left" />
           </Grid.Col>
