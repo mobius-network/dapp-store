@@ -70,7 +70,7 @@ export const ContentStepIcon = styled.div`
   height: 35px;
   justify-content: center;
   margin-right: 20px;
-  width: 35px;
+  min-width: 35px;
   font-weight: bold;
 `;
 
