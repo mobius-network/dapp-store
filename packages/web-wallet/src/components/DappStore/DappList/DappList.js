@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { array } from 'prop-types';
 import { isEmpty } from 'lodash';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/fontawesome-free-solid';
 
 import Grid from 'components/shared/Grid';
 import Button from 'components/shared/Button';
-import { Submit, SubmitTitle, SubmitText } from './styles';
+import {
+  Submit,
+  SubmitTitle,
+  SubmitText,
+  Spinner,
+  SpinnerIcon,
+  SpinnerText,
+} from './styles';
 import DappItem from './DappItem';
 
 class DappList extends Component {
@@ -30,7 +39,12 @@ class DappList extends Component {
 
           <Grid.Col width={1}>
             {isEmpty(apps) ? (
-              <p>Loading</p>
+              <Spinner>
+                <SpinnerIcon>
+                  <FontAwesomeIcon icon={faCircleNotch} size="2x" spin />
+                </SpinnerIcon>
+                <SpinnerText>Loading</SpinnerText>
+              </Spinner>
             ) : (
               apps.map(app => <DappItem key={app.id} app={app} />)
             )}
