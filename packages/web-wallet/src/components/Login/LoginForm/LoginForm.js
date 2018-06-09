@@ -32,7 +32,12 @@ class LoginForm extends Component {
 
     return (
       <form onSubmit={handleSubmit}>
-        <FormRow component={TextInput} name="password" placeholder="Password" />
+        <FormRow
+          component={TextInput}
+          name="password"
+          type="password"
+          placeholder="Password"
+        />
 
         <FormRow
           component={FileInput}

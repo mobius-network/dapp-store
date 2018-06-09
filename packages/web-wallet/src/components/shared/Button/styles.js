@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import Spinner from 'components/shared/Spinner';
 import { fonts, fontSizes, radius } from 'components/shared/Styleguide';
 
 const buttonStyles = `
+  position: relative;
   align-items: stretch;
   border-radius: ${radius.big};
   cursor: pointer;
@@ -84,4 +86,12 @@ export const Content = styled.div`
   margin: 2px;
   padding: ${props => getContentPadding(props)};
   text-transform: uppercase;
+`;
+
+export const LoadingIndicator = styled(Spinner)`
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  color: white;
 `;

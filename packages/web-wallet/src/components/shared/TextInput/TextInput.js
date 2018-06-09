@@ -20,13 +20,19 @@ class TextInput extends Component {
       input,
       placeholder,
       meta: { error, dirty, touched },
+      ...rest
     } = this.props;
 
     const showError = error && (dirty || touched);
 
     return (
       <Container>
-        <Input {...input} error={showError} placeholder={placeholder} />
+        <Input
+          {...input}
+          error={showError}
+          placeholder={placeholder}
+          {...rest}
+        />
 
         {showError && <ErrorMessage>{error}</ErrorMessage>}
       </Container>

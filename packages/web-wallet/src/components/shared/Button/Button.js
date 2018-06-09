@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
 import { colors, gradients, shadows } from 'components/shared/Styleguide';
-import { StyledButton, StyledLink, Content, ExternalLink } from './styles';
+import {
+  StyledButton,
+  StyledLink,
+  Content,
+  ExternalLink,
+  LoadingIndicator,
+} from './styles';
 
 const themes = {
   primary: {
@@ -12,20 +18,22 @@ const themes = {
     color: colors.textWhite,
     contentBackground: 'transparent',
     fontWeight: 700,
+    border: 'none',
   },
   primaryOutline: {
     background: gradients.button,
     color: '#6278F1',
     contentBackground: colors.bg,
     fontWeight: 700,
+    border: 'none',
   },
   secondary: {
     background: colors.bgWhite,
-    border: `1px solid ${colors.border}`,
     boxShadow: shadows.buttonSecondary,
     color: colors.textPrimary,
     contentBackground: colors.bgWhite,
     fontWeight: 400,
+    border: `1px solid ${colors.border}`,
   },
 };
 
@@ -57,6 +65,7 @@ export default class Button extends Component {
       to,
       href,
       wide,
+      isLoading,
       ...rest
     } = this.props;
 
@@ -82,6 +91,7 @@ export default class Button extends Component {
             <Content wide={wide} fullWidth={fullWidth}>
               {children}
             </Content>
+            {isLoading && <LoadingIndicator />}
           </StyledButton>
         )}
       </ThemeProvider>

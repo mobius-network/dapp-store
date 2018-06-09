@@ -13,7 +13,7 @@ export const Content = styled.div`
   font-family: ${fonts.default};
 
   @media screen and (min-width: ${breakpoints.md}) {
-    width: 300px;
+    width: 350px;
   }
 `;
 
@@ -47,13 +47,14 @@ export const Desc = styled.p`
 `;
 
 export const FormRow = styled.div`
+  position: relative;
   display: flex;
   justify-content: center;
   margin: 0 0 10px;
 `;
 
 export const FormInputContainer = styled.div`
-  flex: 1;
+  flex: 0.75;
   display: flex;
 `;
 
@@ -68,7 +69,7 @@ export const FormInput = styled.input`
   outline: 0;
   box-shadow: none;
   width: 100%;
-  font-weight: 300;
+  font-weight: 200;
   text-align: center;
 
   &::placeholder {
@@ -83,6 +84,9 @@ export const FormInput = styled.input`
 `;
 
 export const FormLabel = styled.span`
+  position: absolute;
+  right: 0;
+  top: 25px;
   font: 700 17px ${fonts.default};
   color: ${colors.textPrimary};
 `;

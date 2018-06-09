@@ -31,12 +31,14 @@ export default class PasswordForm extends Component {
                 component={TextInput}
                 name="password"
                 label="Set Password"
+                type="password"
               />
 
               <FormRow
                 component={TextInput}
                 name="passwordConfirmation"
                 label="Confirm Password"
+                type="password"
               />
 
               <ActionsRow>

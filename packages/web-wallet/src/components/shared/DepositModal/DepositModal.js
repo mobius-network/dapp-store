@@ -102,6 +102,7 @@ class DepositModal extends Component {
         <Button
           onClick={this.onDeposit}
           fullWidth
+          isLoading={depositInProgress}
           disabled={!amount || depositInProgress || amount > mobiBalance}
         >
           DEPOSIT
@@ -115,15 +116,21 @@ class DepositModal extends Component {
     const { amount } = this.state;
 
     return (
-      <CompleteContainer>
-        <CompleteIcon>
-          <FontAwesomeIcon icon={faCheck} />
-        </CompleteIcon>
-        <CompleteMessage>All done!</CompleteMessage>
-        <CompleteDetails>
-          We’ve successfully transferred {amount} MOBI to {app.name}.
-        </CompleteDetails>
-      </CompleteContainer>
+      <Fragment>
+        <CompleteContainer>
+          <CompleteIcon>
+            <FontAwesomeIcon icon={faCheck} />
+          </CompleteIcon>
+          <CompleteMessage>All done!</CompleteMessage>
+          <CompleteDetails>
+            We’ve successfully transferred {amount} MOBI to {app.name}.
+          </CompleteDetails>
+        </CompleteContainer>
+
+        <Button onClick={this.onClose} fullWidth>
+          Back
+        </Button>
+      </Fragment>
     );
   };
 
