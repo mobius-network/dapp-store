@@ -28,6 +28,10 @@ export const HeaderContainer = styled.div`
     margin-bottom: 80px;
     height: 477px;
   }
+
+  @media screen and (max-width: ${breakpoints.sm}) {
+    background-position: left;
+  }
 `;
 
 export const TitleContainer = styled.div`

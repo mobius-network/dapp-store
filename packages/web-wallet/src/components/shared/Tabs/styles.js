@@ -26,7 +26,6 @@ export const TabButton = styled.button`
   height: 50px;
   margin: 0;
   outline: 0;
-  padding: 0 50px;
   text-align: center;
   transition: 0.3s;
   user-select: none;

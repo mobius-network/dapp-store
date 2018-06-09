@@ -15,8 +15,8 @@ const themes = {
     color: colors.textPrimary,
   },
   dark: {
-    background: 'rgba(0,90,237,0.17)',
-    borderColor: 'rgba(255,255,255,0.19)',
+    background: 'rgb(61, 153, 236)',
+    borderColor: 'rgb(98, 171, 240)',
     color: colors.textWhite,
   },
   secondary: {
