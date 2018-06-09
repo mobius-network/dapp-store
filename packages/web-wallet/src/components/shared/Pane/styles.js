@@ -12,7 +12,6 @@ export const Container = styled.div`
   box-shadow: ${props => props.theme.shadow};
   font-family: ${fonts.default};
   margin-bottom: 20px;
-  overflow: hidden;
   position: relative;
   text-align: left;
 
