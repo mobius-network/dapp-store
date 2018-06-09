@@ -22,6 +22,7 @@ export const HeaderContainer = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   margin-bottom: 100px;
+  padding-top: 10px;
 
   @media screen and (min-width: ${breakpoints.md}) {
     margin-bottom: 80px;
