@@ -118,7 +118,7 @@ class PurchaseMobi extends Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Col width={1 / 2} px={0}>
+            <Grid.Col width={1} px={0}>
               <ButtonContainer>
                 <Button
                   theme="secondary"
