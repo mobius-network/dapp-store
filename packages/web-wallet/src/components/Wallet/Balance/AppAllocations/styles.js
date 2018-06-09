@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
-
-export const Title = styled.p``;
+export const AppsList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;

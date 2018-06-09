@@ -27,13 +27,12 @@ class DappItem extends Component {
 
     return (
       <Fragment>
-        <Container>
+        <Container onClick={this.openModal}>
           <AppPic url={app.image_url} />
 
           <AppDetails>
             <AppName>{app.name}</AppName>
             <AppDesc>{app.description}</AppDesc>
-            <button onClick={this.openModal}>Open Modal</button>
           </AppDetails>
         </Container>
         <DappModal app={app} isOpen={modalOpened} onClose={this.closeModal} />

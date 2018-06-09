@@ -5,11 +5,12 @@ import { promisifyAction } from 'redux-yo';
 import { assets } from '@mobius-network/core';
 import { SubmissionError } from 'redux-form';
 
+import Grid from 'components/shared/Grid';
 import FormRow from 'components/shared/FormRow';
 import TextInput from 'components/shared/TextInput';
 import Button from 'components/shared/Button';
 
-// import { Container, Title } from './styles';
+import { FormFields, AvailableBalance, FormActions } from './styles';
 
 class WithdrawForm extends Component {
   static propTypes = {
@@ -19,6 +20,8 @@ class WithdrawForm extends Component {
   state = {
     processing: false,
   };
+
+  getAssetName = () => (this.props.asset === 'native' ? 'XLM' : 'MOBI');
 
   submitPayment = async ({ destination, amount }) => {
     const { asset, transact } = this.props;
@@ -47,24 +50,42 @@ class WithdrawForm extends Component {
 
   render() {
     const { processing } = this.state;
-    const { asset, balance, handleSubmit } = this.props;
+    const { balance, handleSubmit } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.submitPayment)}>
-        <FormRow component={TextInput} name="amount" placeholder="amount" />
-
-        <p>Asset: {asset}</p>
-        <p>Balance: {balance}</p>
-
-        <FormRow
-          component={TextInput}
-          name="destination"
-          placeholder="destination"
-        />
-
-        {processing && 'processing'}
-
-        <Button type="submit">Submit transfer</Button>
+        <FormFields>
+          <Grid>
+            <Grid.Row>
+              <Grid.Col width={1 / 2}>
+                <FormRow
+                  caption={`Enter the amount of ${this.getAssetName()} to transfer`}
+                  component={TextInput}
+                  label="Amount"
+                  name="amount"
+                  placeholder="amount"
+                />
+                <AvailableBalance>
+                  Available balance: {balance} {this.getAssetName()}
+                </AvailableBalance>
+              </Grid.Col>
+              <Grid.Col width={1 / 2}>
+                <FormRow
+                  caption="Enter the address of the external wallet"
+                  component={TextInput}
+                  label="Wallet Address"
+                  name="destination"
+                  placeholder="destination"
+                />
+              </Grid.Col>
+            </Grid.Row>
+          </Grid>
+        </FormFields>
+        <FormActions>
+          <Button disabled={processing} type="submit">
+            Submit transfer
+          </Button>
+        </FormActions>
       </form>
     );
   }

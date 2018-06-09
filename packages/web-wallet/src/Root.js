@@ -4,11 +4,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import waitForMasterAccount from 'state/auth/waitForMasterAccount';
-import PrivateRoute from 'components/shared/PrivateRoute';
 
 import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
+import WalletLayout from 'components/layouts/WalletLayout';
 import Footer from 'components/Footer';
 import Loading from 'components/Loading';
 
@@ -39,7 +39,7 @@ class Root extends Component {
                   <PublicLayout path="/signup" component={Signup} exact />
 
                   <OnboardingLayout path="/onboarding" component={Onboarding} />
-                  <PrivateRoute path="/wallet" component={Wallet} />
+                  <WalletLayout path="/wallet" component={Wallet} />
 
                   <Route path="/developers" component={Developers} />
                 </Switch>

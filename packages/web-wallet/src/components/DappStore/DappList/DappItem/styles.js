@@ -12,6 +12,7 @@ import Pic from 'components/shared/Pic';
 
 export const Container = styled.div`
   background: ${colors.bgWhite};
+  cursor: pointer;
   padding: 25px;
   display: flex;
   margin-bottom: 25px;
