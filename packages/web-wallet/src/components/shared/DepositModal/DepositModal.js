@@ -50,12 +50,14 @@ class DepositModal extends Component {
   };
 
   state = {
-    amount: 0,
+    amount: 3,
   };
 
-  componentWillUnmount() {
+  onClose = () => {
+    this.props.onClose();
     this.props.resetRequest('depositApp');
-  }
+    this.setState({ amount: 3 });
+  };
 
   onAmountChange = e => {
     const amount = e.target.value;
@@ -127,13 +129,13 @@ class DepositModal extends Component {
 
   render() {
     const {
-      app, isOpen, style, onClose, depositCompleted,
+      app, isOpen, style, depositCompleted,
     } = this.props;
 
     return (
       <Modal
         isOpen={isOpen}
-        onRequestClose={onClose}
+        onRequestClose={this.onClose}
         contentLabel="Deposit modal"
         style={style}
       >
