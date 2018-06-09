@@ -55,6 +55,8 @@ export const StyledLink = styled(Link)`
   }
 `;
 
+export const ExternalLink = StyledLink.withComponent('a');
+
 function getContentPadding(props) {
   if (props.fullWidth) {
     return '0';

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
 import { colors, gradients, shadows } from 'components/shared/Styleguide';
-import { StyledButton, StyledLink, Content } from './styles';
+import { StyledButton, StyledLink, Content, ExternalLink } from './styles';
 
 const themes = {
   primary: {
@@ -55,18 +55,22 @@ export default class Button extends Component {
       onClick,
       theme,
       to,
+      href,
       wide,
       ...rest
     } = this.props;
 
+    // TODO: separate link and button components
+    const LinkComponent = href ? ExternalLink : StyledLink;
+
     return (
       <ThemeProvider theme={themes[theme]}>
-        {to ? (
-          <StyledLink to={to} onClick={onClick} {...rest}>
+        {to || href ? (
+          <LinkComponent href={href} to={to} onClick={onClick} {...rest}>
             <Content wide={wide} fullWidth={fullWidth}>
               {children}
             </Content>
-          </StyledLink>
+          </LinkComponent>
         ) : (
           <StyledButton
             disabled={disabled}
