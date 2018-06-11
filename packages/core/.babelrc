@@ -1,0 +1,17 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "useBuiltIns": true
+    }],
+  ],
+  "plugins": [
+    "transform-object-rest-spread",
+    "transform-class-properties",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }],
+    "lodash"
+  ]
+}
