@@ -1,11 +1,11 @@
 import { getMasterAccount } from 'state/account/selectors';
-import { getIsLoggedIn, getAccountPending } from './selectors';
+import { getIsLoggedIn } from './selectors';
 
 const waitForMasterAccount = store => () =>
   new Promise(resolve => {
     const state = store.getState();
 
-    if (!getIsLoggedIn(state) || getAccountPending(state)) {
+    if (!getIsLoggedIn(state)) {
       resolve();
       return;
     }
