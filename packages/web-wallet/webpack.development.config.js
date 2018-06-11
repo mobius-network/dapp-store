@@ -11,7 +11,7 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   devServer: {
     stats: 'minimal',
-    hot: true,
+    hotOnly: true,
     publicPath: '/',
     historyApiFallback: true,
     contentBase: resolve(__dirname, 'dist'),
@@ -26,7 +26,6 @@ module.exports = merge(baseConfig, {
       template: resolve(__dirname, 'src', 'index.html'),
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   watchOptions: {
     ignored: [

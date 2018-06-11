@@ -4,7 +4,7 @@
   "description": "Mobius Network Web wallet",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config webpack.development.config.js",
+    "start": "webpack-dev-server --hot --config webpack.development.config.js",
     "start:bleed": "webpack-dev-server --hot --config webpack.config.bleed.js",
     "clean": "rimraf dist",
     "build:webpack": "webpack --config webpack.production.config.js --progress --profile --colors",
