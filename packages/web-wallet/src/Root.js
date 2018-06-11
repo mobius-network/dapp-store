@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import waitForMasterAccount from 'state/auth/waitForMasterAccount';
-
 import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
@@ -27,11 +25,7 @@ class Root extends Component {
     return (
       <Provider store={store}>
         <DefaultLayout>
-          <PersistGate
-            loading={<Loading />}
-            persistor={persistor}
-            onBeforeLift={waitForMasterAccount(store)}
-          >
+          <PersistGate loading={<Loading />} persistor={persistor}>
             <Router>
               <Fragment>
                 <Switch>
