@@ -24,6 +24,10 @@ module.exports = merge(baseConfig, {
       favicon: 'favicon.ico',
       filename: 'index.html',
       template: 'index.html',
+      chunksSortMode (a, b) {
+        const order = ['plugins', 'bundle'];
+        return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
+      },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],

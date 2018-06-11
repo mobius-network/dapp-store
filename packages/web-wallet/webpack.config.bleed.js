@@ -10,10 +10,13 @@ const config = {
 
   context: resolve(__dirname, 'src'),
 
-  entry: resolve(__dirname, 'src/index.js'),
+  entry: {
+    bundle: resolve(__dirname, 'src', 'index.js'),
+    plugins: resolve(__dirname, 'src', 'plugins.js'),
+  },
 
   output: {
-    filename: 'bundle.js',
+    filename: '[name].js',
     path: resolve(__dirname, 'dist'),
     publicPath: '',
   },
@@ -146,8 +149,13 @@ const config = {
       'process.env': require('./config/dev.env'),
     }),
     new HtmlWebpackPlugin({
+      favicon: 'favicon.ico',
       template: 'index.html',
       filename: 'index.html',
+      chunksSortMode (a, b) {
+        const order = ['plugins', 'bundle'];
+        return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
+      },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
