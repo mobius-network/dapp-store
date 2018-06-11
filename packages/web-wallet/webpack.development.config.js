@@ -11,7 +11,7 @@ module.exports = merge(baseConfig, {
   mode: 'development',
   devServer: {
     stats: 'minimal',
-    hot: true,
+    hotOnly: true,
     publicPath: '/',
     historyApiFallback: true,
     contentBase: resolve(__dirname, 'dist'),
@@ -21,12 +21,15 @@ module.exports = merge(baseConfig, {
       'process.env': require('./config/dev.env'),
     }),
     new HtmlWebpackPlugin({
-      favicon: resolve(__dirname, 'src', 'favicon.ico'),
+      favicon: 'favicon.ico',
       filename: 'index.html',
-      template: resolve(__dirname, 'src', 'index.html'),
+      template: 'index.html',
+      chunksSortMode (a, b) {
+        const order = ['plugins', 'bundle'];
+        return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
+      },
     }),
     new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   watchOptions: {
     ignored: [
