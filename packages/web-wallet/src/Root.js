@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import { notify } from 'utils/honeybadger';
+
 import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
@@ -19,6 +21,10 @@ import Wallet from 'components/Wallet';
 import Developers from 'components/Developers';
 
 class Root extends Component {
+  componentDidCatch(error, info) {
+    notify(error, info);
+  }
+
   render() {
     const { store, persistor } = this.props;
 

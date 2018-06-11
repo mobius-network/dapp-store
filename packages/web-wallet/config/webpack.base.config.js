@@ -5,7 +5,8 @@ const root = resolve(__dirname, '..');
 module.exports = {
   context: resolve(root, 'src'),
   entry: {
-    bundle: resolve(root, 'src', 'index.js'),
+    bundle: './index.js',
+    plugins: './plugins.js',
   },
   output: {
     filename: '[name].js',
@@ -15,11 +16,6 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     modules: [resolve(root, 'src'), 'node_modules'],
-  },
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
   },
   module: {
     rules: [{
