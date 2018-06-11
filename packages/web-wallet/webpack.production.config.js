@@ -15,6 +15,15 @@ module.exports = merge(baseConfig, {
   },
   optimization: {
     minimize: true,
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
   },
   plugins: [
     new webpack.DefinePlugin({
