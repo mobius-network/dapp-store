@@ -2,10 +2,10 @@ import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import { requestActions } from 'state/requests';
 import { accountActions, getAssetBalance } from 'state/account';
-import { transfersActions } from 'state/transfers';
 
+import { restMutation } from 'components/hocs';
+import { validate } from './validations';
 import WithdrawForm from './WithdrawForm';
 
 const mapStateToProps = (state, { asset }) => ({
@@ -13,10 +13,13 @@ const mapStateToProps = (state, { asset }) => ({
   balance: getAssetBalance(state, { asset }),
 });
 
-const actions = {
-  ...accountActions,
-  ...transfersActions,
-  ...requestActions,
-};
-
-export default compose(connect(mapStateToProps, actions), reduxForm())(WithdrawForm);
+export default compose(
+  connect(mapStateToProps),
+  restMutation({
+    name: 'withdrawAsset',
+    action: accountActions.transact,
+  }),
+  reduxForm({
+    validate,
+  })
+)(WithdrawForm);

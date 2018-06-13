@@ -66,15 +66,18 @@ class DepositModal extends Component {
   };
 
   onDeposit = () => {
-    const { depositApp, app } = this.props;
+    const { app } = this.props;
     const { amount } = this.state;
 
-    depositApp({ amount, app });
+    this.props.depositApp.mutate({ app, amount });
   };
 
   renderForm = () => {
-    const { mobiBalance, depositInProgress } = this.props;
     const { amount } = this.state;
+    const {
+      mobiBalance,
+      depositApp: { loading },
+    } = this.props;
 
     return (
       <Fragment>
@@ -102,8 +105,8 @@ class DepositModal extends Component {
         <Button
           onClick={this.onDeposit}
           fullWidth
-          isLoading={depositInProgress}
-          disabled={!amount || depositInProgress || amount > mobiBalance}
+          isLoading={loading}
+          disabled={!amount || loading || amount > mobiBalance}
         >
           DEPOSIT
         </Button>

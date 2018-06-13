@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Operation } from 'stellar-sdk';
 import { string } from 'prop-types';
-import { promisifyAction } from 'redux-yo';
 import { assets } from '@mobius-network/core';
 import { SubmissionError } from 'redux-form';
 
@@ -17,40 +16,32 @@ class WithdrawForm extends Component {
     asset: string.isRequired,
   };
 
-  state = {
-    processing: false,
-  };
-
   getAssetName = () => (this.props.asset === 'native' ? 'XLM' : 'MOBI');
 
   submitPayment = async ({ destination, amount }) => {
-    const { asset, transact } = this.props;
-
-    const assetObject = assets[asset];
+    const { asset, withdrawAsset } = this.props;
 
     const paymentOp = Operation.payment({
       destination,
       amount,
-      asset: assetObject,
+      asset: assets[asset],
     });
 
-    this.setState({ processing: true });
+    const { error } = await withdrawAsset.mutate({
+      operation: paymentOp,
+    });
 
-    try {
-      await promisifyAction(transact, {
-        name: `${asset}Withdraw`,
-        operation: paymentOp,
-      });
-    } catch (error) {
-      throw new SubmissionError(error);
+    if (error) {
+      throw new SubmissionError({ amount: error.message });
     }
-
-    this.setState({ processing: false });
   };
 
   render() {
-    const { processing } = this.state;
-    const { balance, handleSubmit } = this.props;
+    const {
+      balance,
+      handleSubmit,
+      withdrawAsset: { loading },
+    } = this.props;
 
     return (
       <form onSubmit={handleSubmit(this.submitPayment)}>
@@ -82,7 +73,7 @@ class WithdrawForm extends Component {
           </Grid>
         </FormFields>
         <FormActions>
-          <Button disabled={processing} type="submit">
+          <Button disabled={loading} isLoading={loading} type="submit" wide>
             Submit transfer
           </Button>
         </FormActions>
