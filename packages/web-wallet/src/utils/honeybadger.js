@@ -9,5 +9,7 @@ Honeybadger.configure({
 });
 
 export function notify(error) {
-  return Honeybadger.notify(error);
+  if (isProduction) {
+    Honeybadger.notify(error);
+  }
 }
