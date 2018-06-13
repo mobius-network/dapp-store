@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { object, bool, func } from 'prop-types';
-import Modal from 'react-modal';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/fontawesome-free-solid';
 
-import { colors, radius } from 'components/shared/Styleguide';
+import Modal from 'components/shared/Modal';
 import Button from 'components/shared/Button';
 import {
   Balance,
@@ -28,35 +27,19 @@ class DepositModal extends Component {
     app: object.isRequired,
     onClose: func.isRequired,
     isOpen: bool.isRequired,
-    style: object,
-  };
-
-  static defaultProps = {
-    style: {
-      overlay: {
-        backgroundColor: colors.overlay,
-      },
-      content: {
-        borderRadius: radius.default,
-        bottom: 'auto',
-        left: '50%',
-        marginRight: '-50%',
-        padding: '30px',
-        right: 'auto',
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-      },
-    },
   };
 
   state = {
     amount: 3,
   };
 
+  onOpen = () => {
+    this.setState({ amount: 3 });
+  };
+
   onClose = () => {
     this.props.onClose();
     this.props.resetRequest('depositApp');
-    this.setState({ amount: 3 });
   };
 
   onAmountChange = e => {
@@ -135,16 +118,15 @@ class DepositModal extends Component {
   };
 
   render() {
-    const {
-      app, isOpen, style, depositCompleted,
-    } = this.props;
+    const { app, isOpen, depositCompleted } = this.props;
 
     return (
       <Modal
+        contentLabel="Deposit Modal"
+        fluid
         isOpen={isOpen}
+        onAfterOpen={this.onOpen}
         onRequestClose={this.onClose}
-        contentLabel="Deposit modal"
-        style={style}
       >
         <Content>
           <Header>
