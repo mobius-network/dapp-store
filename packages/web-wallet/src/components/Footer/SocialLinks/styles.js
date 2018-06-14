@@ -4,6 +4,7 @@ import { colors, breakpoints } from 'components/shared/Styleguide';
 import Link from 'components/shared/Link';
 
 import kakaoTalkIcon from './images/kakao.svg';
+import weChatQrCodeImage from './images/wechat_qr.jpg';
 
 export const ListContainer = styled.ul`
   align-items: center;
@@ -73,4 +74,22 @@ export const WeChatButton = styled.button`
   margin: 0;
   outline: 0;
   padding: 0;
+`;
+
+export const WeChatModalContent = styled.div`
+  padding: 20px;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    width: 350px;
+  }
+`;
+
+export const WeChatQrCode = styled.div`
+  background-image: url(${weChatQrCodeImage});
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 344px;
+  margin: 0 auto;
+  max-width: 344px;
 `;
