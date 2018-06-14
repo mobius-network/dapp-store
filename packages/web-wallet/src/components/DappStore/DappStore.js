@@ -15,16 +15,11 @@ import {
 
 class DappStore extends Component {
   static propTypes = {
-    apps: PropTypes.array,
-    loadApps: PropTypes.func.isRequired,
+    loadApps: PropTypes.object.isRequired,
   };
 
-  componentDidMount() {
-    this.props.loadApps();
-  }
-
   render() {
-    const { apps } = this.props;
+    const { result: { apps } = {} } = this.props.loadApps;
 
     return (
       <Container>

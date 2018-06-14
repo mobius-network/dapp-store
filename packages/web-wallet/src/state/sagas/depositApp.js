@@ -15,27 +15,30 @@ import { appActions, getAppAccount } from 'state/apps';
 
 import { startAppAccountWatcher } from './loadApps';
 
-export function* addToAppAccount(app, amount) {
+export function* addToAppAccount(app, amount, meta) {
   const destination = yield select(getPublicKeyFor, {
     accountNumber: app.id,
   });
 
-  yield put(accountActions.transact({
-    name: 'depositApp',
-    operation: Operation.payment({
-      destination,
-      amount: String(amount),
-      asset: assets.mobi,
-    }),
-  }));
+  yield put(accountActions.transact(
+    {
+      name: 'depositApp',
+      operation: Operation.payment({
+        destination,
+        amount: String(amount),
+        asset: assets.mobi,
+      }),
+    },
+    meta
+  ));
 }
 
-export function* createApp(app, amount) {
+export function* createApp(app, amount, meta) {
   const account = yield select(getMasterAccount);
   const masterSecretKey = yield select(getSecretKeyFor);
   const appSecretKey = yield select(getSecretKeyFor, { accountNumber: app.id });
 
-  const transaction = createAppAccount({
+  const createAppTransaction = createAppAccount({
     developerPublicKey: app.stellar_public_key,
     masterSecretKey,
     appSecretKey,
@@ -43,22 +46,25 @@ export function* createApp(app, amount) {
     account,
   });
 
-  yield put(requestActions.fetchStart({
-    name: 'createAppAccount',
-    payload: transaction,
-    fetcher: submitTransaction,
-  }));
+  yield put(requestActions.fetchStart(
+    {
+      name: 'createAppAccount',
+      payload: createAppTransaction,
+      fetcher: submitTransaction,
+    },
+    meta
+  ));
 
   yield take(matchFetchSuccess('createAppAccount'));
   yield call(startAppAccountWatcher, app);
 }
 
-export function* depositApp({ payload: { app, amount } }) {
+export function* depositApp({ payload: { app, amount }, meta }) {
   const appAccount = yield select(getAppAccount, { appId: app.id });
 
   const handler = appAccount ? addToAppAccount : createApp;
 
-  yield spawn(handler, app, amount);
+  yield spawn(handler, app, amount, meta);
 }
 
 export default takeLatest(appActions.depositApp, depositApp);

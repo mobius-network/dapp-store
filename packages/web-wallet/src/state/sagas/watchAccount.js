@@ -56,10 +56,10 @@ export function* prepareAccount() {
   watcher = yield fork(watchAccount, publicKey);
   yield fork(cancelWatcherOnLogout, publicKey);
 
-  const state = yield select();
-
   // Wait for account activation
   yield take(accountActions.setMasterAccount);
+
+  const state = yield select();
 
   if (!getMasterTrustlineCreated(state)) {
     yield put(accountActions.transact({

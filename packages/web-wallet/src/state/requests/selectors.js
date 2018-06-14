@@ -9,10 +9,12 @@ export const getResponse = createSelector(
   [getRequests, getOperationName],
   (requests, operation) => get(requests, `${operation}.data`)
 );
+
 export const getIsFetching = createSelector(
   [getRequests, getOperationName],
   (requests, operation) => get(requests, `${operation}.isFetching`)
 );
+
 export const getIsSuccess = createSelector(
   [getRequests, getOperationName],
   (requests, operation) => get(requests, `${operation}.success`)

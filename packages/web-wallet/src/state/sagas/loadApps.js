@@ -77,11 +77,14 @@ export function* loadAppAccounts() {
   });
 }
 
-export function* fetchApps() {
-  yield put(requestActions.fetchStart({
-    name: 'apps',
-    payload: `${apiUrl}/app_store/all`,
-  }));
+export function* fetchApps({ meta }) {
+  yield put(requestActions.fetchStart(
+    {
+      name: 'apps',
+      payload: `${apiUrl}/app_store/all`,
+    },
+    meta
+  ));
 
   const isAuthorized = yield select(getIsAuthorized);
 

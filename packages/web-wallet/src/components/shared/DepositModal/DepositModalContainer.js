@@ -1,15 +1,15 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 
-import { requestActions, getIsFetching, getIsSuccess } from 'state/requests';
+import { requestActions } from 'state/requests';
 import { appActions } from 'state/apps';
 import { getMobiBalance } from 'state/account';
 
+import { restMutation } from 'components/hocs';
 import DepositModal from './DepositModal';
 
 const mapStateToProps = state => ({
   mobiBalance: getMobiBalance(state),
-  depositInProgress: getIsFetching(state, { operation: 'depositApp' }),
-  depositCompleted: getIsSuccess(state, { operation: 'depositApp' }),
 });
 
 const actions = {
@@ -17,4 +17,10 @@ const actions = {
   ...requestActions,
 };
 
-export default connect(mapStateToProps, actions)(DepositModal);
+export default compose(
+  connect(mapStateToProps, actions),
+  restMutation({
+    name: 'depositApp',
+    action: appActions.depositApp,
+  })
+)(DepositModal);
