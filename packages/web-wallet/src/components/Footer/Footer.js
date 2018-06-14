@@ -21,12 +21,12 @@ export default class Footer extends Component {
         <SecondaryRow>
           <Grid>
             <Grid.Row alignItems={['flex-start', 'center']} flexWrap="wrap">
-              <Grid.Col width={[1, 1 / 2]}>
+              <Grid.Col width={[1, 1, 1 / 2]}>
                 <CopyrightText>
                   © 2018 Mochi, Inc. All Rights Reserved.
                 </CopyrightText>
               </Grid.Col>
-              <Grid.Col width={[1, 1 / 2]}>
+              <Grid.Col width={[1, 1, 1 / 2]}>
                 <SocialLinks />
               </Grid.Col>
             </Grid.Row>

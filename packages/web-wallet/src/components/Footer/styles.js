@@ -17,13 +17,17 @@ export const MainRow = styled.div`
 
 export const SecondaryRow = styled.div`
   background: ${gradients.full};
-  padding: 8px 0;
+  padding: 10px 0 0;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    padding: 10px 0;
+  }
 `;
 
 export const CopyrightText = styled.p`
   color: ${colors.textWhite};
   font-size: ${fontSizes.small};
-  margin: 0 0 5px;
+  margin: 0 0 10px;
   padding: 0;
   text-align: center;
 

@@ -8,10 +8,11 @@ import kakaoTalkIcon from './images/kakao.svg';
 export const ListContainer = styled.ul`
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
-  justify-content: center;
 
   @media screen and (min-width: ${breakpoints.md}) {
     justify-content: flex-end;
@@ -19,10 +20,14 @@ export const ListContainer = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  margin-right: 10px;
+  margin: 0 10px 10px 0;
 
   &:last-child {
     margin-right: 0;
+  }
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin-bottom: 0;
   }
 `;
 
