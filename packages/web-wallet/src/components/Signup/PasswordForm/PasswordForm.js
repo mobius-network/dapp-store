@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Pane from 'components/shared/Pane';
 import FormRow from 'components/shared/FormRow';
-import TextInput from 'components/shared/TextInput';
+import PasswordInput from 'components/shared/PasswordInput';
 import AdditionalInfo from 'components/shared/AdditionalInfo';
 import Button from 'components/shared/Button';
 
@@ -14,8 +14,16 @@ export default class PasswordForm extends Component {
     handleSubmit: PropTypes.func.isRequired,
   };
 
+  state = {
+    isPasswordVisible: false,
+  };
+
+  handlePasswordVisibilityToggle = isPasswordVisible =>
+    this.setState({ isPasswordVisible });
+
   render() {
     const { handleSubmit } = this.props;
+    const { isPasswordVisible } = this.state;
 
     return (
       <Fragment>
@@ -28,17 +36,19 @@ export default class PasswordForm extends Component {
           <Pane.Section>
             <form onSubmit={handleSubmit}>
               <FormRow
-                component={TextInput}
-                name="password"
+                component={PasswordInput}
+                isPasswordVisible={isPasswordVisible}
                 label="Set Password"
-                type="password"
+                name="password"
+                onVisibilityToggle={this.handlePasswordVisibilityToggle}
               />
 
               <FormRow
-                component={TextInput}
-                name="passwordConfirmation"
+                component={PasswordInput}
+                isPasswordVisible={isPasswordVisible}
                 label="Confirm Password"
-                type="password"
+                name="passwordConfirmation"
+                onVisibilityToggle={this.handlePasswordVisibilityToggle}
               />
 
               <ActionsRow>

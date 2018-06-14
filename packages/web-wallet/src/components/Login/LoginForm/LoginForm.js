@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import FormRow from 'components/shared/FormRow';
-import TextInput from 'components/shared/TextInput';
+import PasswordInput from 'components/shared/PasswordInput';
 import FileInput from 'components/shared/FileInput';
 import Button from 'components/shared/Button';
 import { ActionsRow } from './styles';
@@ -33,9 +33,8 @@ class LoginForm extends Component {
     return (
       <form onSubmit={handleSubmit}>
         <FormRow
-          component={TextInput}
+          component={PasswordInput}
           name="password"
-          type="password"
           placeholder="Password"
         />
 
