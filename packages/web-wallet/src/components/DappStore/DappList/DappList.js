@@ -1,62 +1,20 @@
-import React, { Component } from 'react';
-import { array } from 'prop-types';
-import { isEmpty } from 'lodash';
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faCircleNotch } from '@fortawesome/fontawesome-free-solid';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-import Grid from 'components/shared/Grid';
-import Button from 'components/shared/Button';
-import {
-  Submit,
-  SubmitTitle,
-  SubmitText,
-  Spinner,
-  SpinnerIcon,
-  SpinnerText,
-} from './styles';
 import DappItem from './DappItem';
 
 class DappList extends Component {
   static propTypes = {
-    apps: array,
+    loadApps: PropTypes.object.isRequired,
   };
 
   render() {
-    const { apps } = this.props;
+    const { result: { apps } = {} } = this.props.loadApps;
 
     return (
-      <Grid>
-        <Grid.Row flexWrap="wrap">
-          <Grid.Col width={[1, 1 / 4]}>
-            <Submit>
-              <SubmitTitle>Submit Your Own DApps</SubmitTitle>
-              <SubmitText>
-                The Mobius SDK makes it easy to start collecting coin payments.
-              </SubmitText>
-              <Button
-                href="https://mobius.network/store/developer/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                GET STARTED
-              </Button>
-            </Submit>
-          </Grid.Col>
-
-          <Grid.Col width={[1, 3 / 4]}>
-            {isEmpty(apps) ? (
-              <Spinner>
-                <SpinnerIcon>
-                  <FontAwesomeIcon icon={faCircleNotch} size="2x" spin />
-                </SpinnerIcon>
-                <SpinnerText>Loading</SpinnerText>
-              </Spinner>
-            ) : (
-              apps.map(app => <DappItem key={app.id} app={app} />)
-            )}
-          </Grid.Col>
-        </Grid.Row>
-      </Grid>
+      <Fragment>
+        {apps.map(app => <DappItem key={app.id} app={app} />)}
+      </Fragment>
     );
   }
 }

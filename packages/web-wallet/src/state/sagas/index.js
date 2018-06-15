@@ -21,7 +21,7 @@ export default function* () {
     submitTransactionSaga,
     loginSaga,
     requestSaga,
-    loadAppsSaga,
+    loadAppsSaga.listener,
     depositAppSaga,
     openDappSaga,
     releaseBalanceSaga,

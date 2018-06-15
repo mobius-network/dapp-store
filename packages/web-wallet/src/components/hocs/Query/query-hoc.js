@@ -3,7 +3,9 @@ import { RestQuery } from './Query';
 
 export const restQuery = config => WrappedComponent => {
   let lastResultProps;
-  const { query, options, skip } = config;
+  const {
+    query, options, skip, placeholder: Placeholder,
+  } = config;
 
   class RestQueryHoc extends Component {
     applyProps = fn => {
@@ -40,6 +42,10 @@ export const restQuery = config => WrappedComponent => {
 
               lastResultProps = config.props(newResult, lastResultProps);
               childProps = lastResultProps;
+            }
+
+            if (Placeholder && result.loading) {
+              return <Placeholder {...this.props} />;
             }
 
             return <WrappedComponent {...this.props} {...childProps} />;
