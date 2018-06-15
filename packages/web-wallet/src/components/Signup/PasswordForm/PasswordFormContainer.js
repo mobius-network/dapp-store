@@ -1,6 +1,7 @@
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import { promisifyAction } from 'redux-yo';
 import { createStructuredSelector } from 'reselect';
 
 import { authActions, getSignupStep } from 'state/auth';
@@ -21,6 +22,7 @@ export default compose(
   reduxForm({
     form: 'signupPassword',
     validate,
-    onSubmit: (values, store, { signupStart }) => signupStart(values),
+    onSubmit: (values, store, { signupStart }) =>
+      promisifyAction(signupStart, values),
   })
 )(PasswordForm);
