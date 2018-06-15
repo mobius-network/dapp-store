@@ -22,6 +22,10 @@ class DappModal extends Component {
     onClose: func.isRequired,
   };
 
+  static defaultProps = {
+    mobiBalance: 0,
+  };
+
   state = {
     depositModalOpened: false,
   };
