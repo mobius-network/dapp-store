@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { debounce, noop } from 'lodash';
+import { debounce, noop, isNil, isEqual } from 'lodash';
 import { promisifyAction } from 'redux-yo';
 import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
@@ -20,18 +20,40 @@ import {
 class PurchaseMobi extends Component {
   static propTypes = {
     accountId: PropTypes.string.isRequired,
-    onSuccess: PropTypes.func,
     classname: PropTypes.string,
+    fetchStart: PropTypes.func.isRequired,
+    onSuccess: PropTypes.func,
+    paymentPath: PropTypes.object,
+    transact: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     onSuccess: noop,
   };
 
-  state = {
-    destAmount: '',
-    calculating: false,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      destAmount: '',
+      calculating: false,
+    };
+    this.calculatePrice = debounce(this.calculatePrice, 800);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (isNil(this.props.paymentPath)) {
+      return;
+    }
+
+    if (isEqual(this.props.paymentPath, prevProps.paymentPath)) {
+      return;
+    }
+
+    this.setState({
+      calculating: false,
+    });
+  }
 
   calculatePrice(value) {
     const { accountId, fetchStart } = this.props;
@@ -47,15 +69,6 @@ class PurchaseMobi extends Component {
       },
     });
   }
-
-  debouncedCalculatePrice = debounce(this.calculatePrice, 800);
-
-  // eslint-disable-next-line react/sort-comp
-  onMobiChange = ({ target: { value } }) => {
-    this.setState({ destAmount: value, calculating: true });
-
-    this.debouncedCalculatePrice(value);
-  };
 
   submitTransfer = async () => {
     const { destAmount } = this.state;
@@ -75,9 +88,19 @@ class PurchaseMobi extends Component {
     onSuccess({ response, value: destAmount });
   };
 
+  onAmountChange = ({ target: { value } }) => {
+    this.setState({ destAmount: value, calculating: true }, () => {
+      this.calculatePrice(value);
+    });
+  };
+
   renderPrice = () => {
     const { destAmount, calculating } = this.state;
     const { paymentPath } = this.props;
+
+    if (calculating) {
+      return <Price>Calculating...</Price>;
+    }
 
     if (paymentPath) {
       const price = parseFloat(destAmount * parseFloat(paymentPath.source_amount)).toFixed(2);
@@ -87,10 +110,6 @@ class PurchaseMobi extends Component {
           Approximately <b>{parseFloat(price)} XLM</b>
         </Price>
       );
-    }
-
-    if (calculating) {
-      return <Price>Calculating...</Price>;
     }
 
     return <Price>Enter MOBI amount</Price>;
@@ -108,7 +127,7 @@ class PurchaseMobi extends Component {
           <Grid.Row alignItems="center">
             <InputContainer>
               <Input
-                onChange={this.onMobiChange}
+                onChange={this.onAmountChange}
                 placeholder="0.0"
                 type="number"
                 value={destAmount}
