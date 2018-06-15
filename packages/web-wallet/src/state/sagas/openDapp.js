@@ -12,7 +12,7 @@ export function* openDapp({ payload: app }) {
   try {
     yield put(requestActions.fetchStart({
       name: 'getChallenge',
-      payload: `${app.url}/auth`,
+      payload: app.auth_url,
     }));
 
     const {
@@ -37,7 +37,7 @@ export function* openDapp({ payload: app }) {
       name: 'postChallenge',
       method: 'POST',
       payload: [
-        `${app.url}/auth`,
+        app.auth_url,
         {
           xdr: signedChallenge,
           public_key: appPublicKey,
