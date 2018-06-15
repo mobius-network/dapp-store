@@ -24,8 +24,7 @@ class TransferXlm extends Component {
     <Fragment>
       <WaitingTitle>Transfer from External Wallet</WaitingTitle>
       <WaitingCaption>
-        Use the following address to transfer MOBI or XLM to your DApp Store
-        wallet.
+        Use the following address to transfer XLM to your DApp Store wallet.
       </WaitingCaption>
       <CurrentAddress />
     </Fragment>
