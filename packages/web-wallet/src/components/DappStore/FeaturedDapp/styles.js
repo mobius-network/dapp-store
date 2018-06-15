@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import Button from 'components/shared/Button';
 import Pane from 'components/shared/Pane';
 import Pic from 'components/shared/Pic';
 import {
@@ -28,7 +29,11 @@ export const AppPic = styled(Pic)`
 `;
 
 export const Footer = styled(Pane.Footer)`
-  justify-content: center;
+  justify-content: flex-end;
+`;
+
+export const ReadMoreButton = styled(Button)`
+  margin: 0 10px;
 `;
 
 export const Title = styled.p`

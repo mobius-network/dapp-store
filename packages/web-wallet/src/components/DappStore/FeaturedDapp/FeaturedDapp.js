@@ -12,6 +12,7 @@ import {
   AppPic,
   AppName,
   AppDesc,
+  ReadMoreButton,
 } from './styles';
 
 class FeaturedDapp extends Component {
@@ -57,14 +58,21 @@ class FeaturedDapp extends Component {
             <AppDesc>{app.description}</AppDesc>
           </Content>
           <Footer>
+            {app.featured_article_url && (
+              <ReadMoreButton
+                theme="primaryOutline"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={app.featured_article_url}
+              >
+                Read More on Medium
+              </ReadMoreButton>
+            )}
+
             {isAuthorized ? (
-              <Button wide onClick={this.openModal}>
-                GO TO APP
-              </Button>
+              <Button onClick={this.openModal}>GO TO APP</Button>
             ) : (
-              <Button wide to="/login">
-                GO TO APP
-              </Button>
+              <Button to="/login">GO TO APP</Button>
             )}
           </Footer>
         </Container>
