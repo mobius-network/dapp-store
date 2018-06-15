@@ -1,10 +1,11 @@
+import { noop } from 'lodash';
 import StellarHDWallet from 'stellar-hd-wallet';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import { encrypt } from '@mobius-network/core';
 
 import { authActions, signupSteps } from 'state/auth/reducer';
 
-export function* signup({ payload }) {
+export function* signup({ payload, meta: { resolve = noop } = {} }) {
   const { password } = payload;
 
   const mnemonic = StellarHDWallet.generateMnemonic();
@@ -17,6 +18,8 @@ export function* signup({ payload }) {
     mnemonic,
     signupStep: signupSteps.download,
   }));
+
+  resolve();
 }
 
 export default takeLatest(authActions.signupStart, signup);

@@ -1,1 +1,1 @@
-export { default } from './DappList';
+export { default } from './DappListContainer';

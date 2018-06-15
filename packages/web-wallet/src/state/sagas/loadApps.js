@@ -1,18 +1,10 @@
 import { delay } from 'redux-saga';
-import {
-  all,
-  takeLatest,
-  fork,
-  call,
-  select,
-  take,
-  put,
-  cancel,
-} from 'redux-saga/effects';
+import { all, fork, call, select, take, put, cancel } from 'redux-saga/effects';
 
 import { safeLoadAccount } from '@mobius-network/core';
 import { apiUrl } from 'utils';
 
+import { createSaga } from 'state/utils';
 import { requestActions } from 'state/requests/reducer';
 import { matchFetchSuccess } from 'state/requests/matchers';
 import { getPublicKeyFor, getIsAuthorized } from 'state/auth/selectors';
@@ -77,7 +69,7 @@ export function* loadAppAccounts() {
   });
 }
 
-export function* fetchApps({ meta }) {
+export function* loadApps({ meta }) {
   yield put(requestActions.fetchStart(
     {
       name: 'apps',
@@ -93,4 +85,4 @@ export function* fetchApps({ meta }) {
   }
 }
 
-export default takeLatest(appActions.loadApps, fetchApps);
+export default createSaga('loadApps', loadApps);

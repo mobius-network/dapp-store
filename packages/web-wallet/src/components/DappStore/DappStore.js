@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Header from 'components/Header';
 import Grid from 'components/shared/Grid';
+import Button from 'components/shared/Button';
+
 import FeaturedDapp from './FeaturedDapp';
 import DappList from './DappList';
+
 import {
   Container,
   HeaderContainer,
   Subtitle,
   Title,
   TitleContainer,
+  Submit,
+  SubmitTitle,
+  SubmitText,
 } from './styles';
 
 class DappStore extends Component {
-  static propTypes = {
-    loadApps: PropTypes.object.isRequired,
-  };
-
   render() {
-    const { result: { apps } = {} } = this.props.loadApps;
-
     return (
       <Container>
         <HeaderContainer>
@@ -41,7 +40,31 @@ class DappStore extends Component {
             </Grid.Row>
           </Grid>
         </HeaderContainer>
-        <DappList apps={apps} />
+
+        <Grid>
+          <Grid.Row flexWrap="wrap">
+            <Grid.Col width={[1, 1 / 4]}>
+              <Submit>
+                <SubmitTitle>Submit Your Own DApps</SubmitTitle>
+                <SubmitText>
+                  The Mobius SDK makes it easy to start collecting coin
+                  payments.
+                </SubmitText>
+                <Button
+                  href="https://mobius.network/store/developer/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  GET STARTED
+                </Button>
+              </Submit>
+            </Grid.Col>
+
+            <Grid.Col width={[1, 3 / 4]}>
+              <DappList />
+            </Grid.Col>
+          </Grid.Row>
+        </Grid>
       </Container>
     );
   }

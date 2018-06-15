@@ -20,7 +20,7 @@ export class RestQuery extends Component {
   hasMounted = false;
 
   state = {
-    loading: false,
+    loading: true,
     error: undefined,
     result: undefined,
     networkStatus: 'string',

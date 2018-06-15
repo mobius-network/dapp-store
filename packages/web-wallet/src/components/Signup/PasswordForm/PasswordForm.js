@@ -22,7 +22,7 @@ export default class PasswordForm extends Component {
     this.setState({ isPasswordVisible });
 
   render() {
-    const { handleSubmit } = this.props;
+    const { submitting, handleSubmit } = this.props;
     const { isPasswordVisible } = this.state;
 
     return (
@@ -52,7 +52,7 @@ export default class PasswordForm extends Component {
               />
 
               <ActionsRow>
-                <Button onClick={handleSubmit} fullWidth>
+                <Button isLoading={submitting} onClick={handleSubmit} fullWidth>
                   Continue
                 </Button>
               </ActionsRow>
