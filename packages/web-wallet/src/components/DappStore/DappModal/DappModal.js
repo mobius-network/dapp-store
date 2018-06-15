@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { object, bool, func } from 'prop-types';
+import { faAngleRight } from '@fortawesome/fontawesome-free-solid';
 
 import Modal from 'components/shared/Modal';
 import Grid from 'components/shared/Grid';
@@ -13,6 +14,11 @@ import {
   AppPic,
   ButtonRow,
   Desc,
+  AppLinks,
+  AppLink,
+  AppLinkTitle,
+  AppLinkUrl,
+  AppLinkArrow,
 } from './styles';
 
 class DappModal extends Component {
@@ -90,6 +96,34 @@ class DappModal extends Component {
                   DApp balance:{' '}
                   <AppBalanceAmount>{mobiBalance} MOBI</AppBalanceAmount>
                 </AppBalance>
+
+                {(app.website_url || app.support_url) && (
+                  <AppLinks>
+                    {app.website_url && (
+                      <AppLink
+                        href={app.website_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AppLinkTitle>Website</AppLinkTitle>
+                        <AppLinkUrl>{app.website_url}</AppLinkUrl>
+                        <AppLinkArrow icon={faAngleRight} />
+                      </AppLink>
+                    )}
+
+                    {app.support_url && (
+                      <AppLink
+                        href={app.support_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <AppLinkTitle>Support</AppLinkTitle>
+                        <AppLinkUrl>{app.support_url}</AppLinkUrl>
+                        <AppLinkArrow icon={faAngleRight} />
+                      </AppLink>
+                    )}
+                  </AppLinks>
+                )}
               </Grid.Col>
             </Grid.Row>
           </Grid>
