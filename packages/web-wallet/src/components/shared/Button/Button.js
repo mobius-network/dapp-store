@@ -34,6 +34,7 @@ const themes = {
     contentBackground: colors.bgWhite,
     fontWeight: 400,
     border: `1px solid ${colors.border}`,
+    loadingIndicatorColor: colors.textPrimary,
   },
 };
 

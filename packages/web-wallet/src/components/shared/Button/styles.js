@@ -93,5 +93,5 @@ export const LoadingIndicator = styled(Spinner)`
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
-  color: white;
+  color: ${props => props.theme.loadingIndicatorColor || 'white'};
 `;

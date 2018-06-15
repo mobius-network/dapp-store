@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { debounce, noop, isNil, isEqual } from 'lodash';
-import { promisifyAction } from 'redux-yo';
 import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
 import Grid from 'components/shared/Grid';
@@ -72,18 +71,15 @@ class PurchaseMobi extends Component {
 
   submitTransfer = async () => {
     const { destAmount } = this.state;
-    const { accountId, onSuccess, transact } = this.props;
+    const { accountId, onSuccess } = this.props;
 
-    const pathPaymentOp = pathPayment({
+    const operation = pathPayment({
       destination: accountId,
       destAsset: assets.mobi,
       destAmount,
     });
 
-    const response = await promisifyAction(transact, {
-      name: 'pathPayment',
-      operation: pathPaymentOp,
-    });
+    const response = await this.props.pathPayment.mutate({ operation });
 
     onSuccess({ response, value: destAmount });
   };
@@ -117,7 +113,10 @@ class PurchaseMobi extends Component {
 
   render() {
     const { destAmount } = this.state;
-    const { classname } = this.props;
+    const {
+      classname,
+      pathPayment: { loading },
+    } = this.props;
 
     return (
       <Container className={classname}>
@@ -143,6 +142,7 @@ class PurchaseMobi extends Component {
                   theme="secondary"
                   onClick={this.submitTransfer}
                   fullWidth
+                  isLoading={loading}
                   disabled={!destAmount}
                 >
                   Submit transfer
