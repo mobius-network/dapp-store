@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get, isEmpty } from 'lodash';
 import { createSelector } from 'reselect';
 
 export const getOperationName = (_, { operation } = {}) => operation;
@@ -22,7 +22,16 @@ export const getIsSuccess = createSelector(
 
 export const getApps = state => get(state, 'requests.apps.data.apps');
 
-export const getFeaturedApp = createSelector(
-  [getApps],
-  apps => (apps || [])[0]
-);
+export const getFeaturedApp = createSelector([getApps], apps => {
+  if (isEmpty(apps)) {
+    return undefined;
+  }
+
+  const featuredApps = apps.filter(app => app.featured);
+
+  if (isEmpty(featuredApps)) {
+    return apps[0];
+  }
+
+  return featuredApps[Math.floor(Math.random() * featuredApps.length)];
+});
