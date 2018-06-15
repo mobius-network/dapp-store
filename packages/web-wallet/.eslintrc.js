@@ -19,7 +19,7 @@ module.exports = {
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": resolve(__dirname, 'config', 'webpack.base.config.js')
+        "config": resolve(__dirname, 'webpack.development.config.js')
       }
     },
     "flowtype": {

@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-import { LogoImage, LogoLink, LogoName } from './styles';
+import { isProduction } from 'utils/env';
+import { LogoImage, LogoLink, LogoName, LogoBetaShield } from './styles';
 
 export default class Logo extends Component {
   static propTypes = {
@@ -19,7 +20,14 @@ export default class Logo extends Component {
       <LogoLink to="/" title="Mobius Wallet">
         <LogoImage />
 
-        {withName && <LogoName>MOBIUS</LogoName>}
+        {withName && (
+          <Fragment>
+            <LogoName>MOBIUS</LogoName>
+            <LogoBetaShield withTestNetShield={!isProduction}>
+              &#946;
+            </LogoBetaShield>
+          </Fragment>
+        )}
       </LogoLink>
     );
   }

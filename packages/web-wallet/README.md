@@ -17,6 +17,21 @@
 yarn start
 ```
 
+## Build
+
+### Beta
+
+```sh
+yarn run build:beta
+```
+
+### Production
+
+```sh
+yarn run build:production
+```
+
+
 ## Project structure
 
 ```sh
