@@ -1,9 +1,11 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { merge } = require('lodash');
 
-const baseConfig = require('./config/webpack.base.config');
+const { baseConfig, webAppPluginConfig, copyPluginPatterns } = require('./config/webpack.base.config');
 
 module.exports = merge(baseConfig, {
   stats: 'minimal',
@@ -21,7 +23,6 @@ module.exports = merge(baseConfig, {
       'process.env': require('./config/dev.env'),
     }),
     new HtmlWebpackPlugin({
-      favicon: 'favicon.ico',
       filename: 'index.html',
       template: 'index.html',
       chunksSortMode (a, b) {
@@ -29,6 +30,8 @@ module.exports = merge(baseConfig, {
         return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
       },
     }),
+    new WebappWebpackPlugin(webAppPluginConfig),
+    new CopyWebpackPlugin(copyPluginPatterns),
     new webpack.optimize.ModuleConcatenationPlugin(),
   ],
   watchOptions: {

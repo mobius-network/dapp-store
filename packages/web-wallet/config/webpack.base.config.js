@@ -2,7 +2,7 @@ const { resolve } = require('path');
 
 const root = resolve(__dirname, '..');
 
-module.exports = {
+const baseConfig = {
   context: resolve(root, 'src'),
   entry: {
     bundle: './index.js',
@@ -92,4 +92,39 @@ module.exports = {
   node: {
     fs: 'empty',
   },
+};
+
+const webAppPluginConfig = {
+  logo: './favicons/master-favicon.png',
+  prefix: 'images/favicons/',
+  inject: true,
+  favicons: {
+    appDescription: 'Mobius DApp Store',
+    appName: 'DApp Store',
+    developerURL: null,
+    orientation: 'portrait',
+    start_url: 'https://store.mobius.network',
+    theme_color: '#3894E6',
+    icons: {
+      appleIcon: {
+        offset: 8.8,
+      },
+      appleStartup: false,
+      coast: false,
+      firefox: false,
+      yandex: false,
+    },
+  },
+};
+
+const copyPluginPatterns = [
+  {
+    from: './favicons/safari-pinned-tab.svg',
+    to: 'images/safari-pinned-tab',
+    toType: 'file',
+  },
+];
+
+module.exports = {
+  baseConfig, webAppPluginConfig, copyPluginPatterns,
 };
