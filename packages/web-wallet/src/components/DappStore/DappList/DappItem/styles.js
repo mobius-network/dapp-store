@@ -36,7 +36,7 @@ export const AppName = styled.p`
   margin: 0 0 10px;
 `;
 
-export const AppDesc = styled.p`
+export const AppTagline = styled.p`
   font-size: ${fontSizes.paneCaption};
   line-height: ${lineHeights.default};
   margin: 0;

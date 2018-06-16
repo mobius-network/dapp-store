@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { object } from 'prop-types';
 
 import DappModal from 'components/DappStore/DappModal';
-import { Container, AppDesc, AppDetails, AppName, AppPic } from './styles';
+import { Container, AppTagline, AppDetails, AppName, AppPic } from './styles';
 
 class DappItem extends Component {
   static propTypes = {
@@ -32,7 +32,7 @@ class DappItem extends Component {
 
           <AppDetails>
             <AppName>{app.name}</AppName>
-            <AppDesc>{app.description}</AppDesc>
+            <AppTagline>{app.tagline}</AppTagline>
           </AppDetails>
         </Container>
         <DappModal app={app} isOpen={modalOpened} onClose={this.closeModal} />

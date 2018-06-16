@@ -11,7 +11,7 @@ import {
   Footer,
   AppPic,
   AppName,
-  AppDesc,
+  AppTagline,
   ReadMoreButton,
 } from './styles';
 
@@ -55,7 +55,7 @@ class FeaturedDapp extends Component {
             <AppPic url={app.image_url} />
             <Title>Featured DApp</Title>
             <AppName>{app.name}</AppName>
-            <AppDesc>{app.description}</AppDesc>
+            <AppTagline>{app.tagline}</AppTagline>
           </Content>
           <Footer>
             {app.featured_article_url && (

@@ -49,7 +49,7 @@ export const AppName = styled.p`
   margin: 0 0 15px;
 `;
 
-export const AppDesc = styled.p`
+export const AppTagline = styled.p`
   color: ${colors.textDefault};
   font-size: ${fontSizes.paneCaption};
   margin: 0 0 30px;
