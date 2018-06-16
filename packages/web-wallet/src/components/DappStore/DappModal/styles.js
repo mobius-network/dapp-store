@@ -17,7 +17,7 @@ export const Content = styled.div`
   }
 `;
 
-export const AppDetails = styled.div`
+export const AppHeader = styled.div`
   display: flex;
   align-items: center;
   margin: 0 0 40px;
@@ -29,12 +29,21 @@ export const AppPic = styled(Pic)`
   height: 90px;
 `;
 
-export const AppName = styled.p`
-  font-size: 20px;
-  margin: 0;
+export const AppDetails = styled.div`
+  font-family: ${fonts.default};
   flex: 1;
+`;
+
+export const AppName = styled.p`
+  font-size: ${fontSizes.subHeading};
+  margin: 0;
   font-weight: 700;
-  font: 700 ${fontSizes.subHeading} ${fonts.default};
+`;
+
+export const AppTagline = styled.p`
+  font-size: ${fontSizes.default};
+  margin: 5px 0;
+  color: ${colors.textSecondary};
 `;
 
 export const Desc = styled.p`

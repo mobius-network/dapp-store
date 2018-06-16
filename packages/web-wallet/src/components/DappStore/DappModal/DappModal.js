@@ -9,8 +9,10 @@ import DepositModal from 'components/shared/DepositModal';
 import {
   AppBalance,
   AppBalanceAmount,
+  AppHeader,
   AppDetails,
   AppName,
+  AppTagline,
   AppPic,
   ButtonRow,
   Desc,
@@ -66,11 +68,14 @@ class DappModal extends Component {
         >
           <Grid>
             <Grid.Row>
-              <Grid.Col px={0}>
-                <AppDetails>
+              <Grid.Col px={0} width={1}>
+                <AppHeader>
                   <AppPic url={app.image_url} />
-                  <AppName>{app.name}</AppName>
-                </AppDetails>
+                  <AppDetails>
+                    <AppName>{app.name}</AppName>
+                    {app.tagline && <AppTagline>{app.tagline}</AppTagline>}
+                  </AppDetails>
+                </AppHeader>
               </Grid.Col>
             </Grid.Row>
             <Grid.Row>
