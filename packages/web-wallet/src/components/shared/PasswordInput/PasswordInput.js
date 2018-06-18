@@ -75,7 +75,11 @@ class PasswordInput extends Component {
             type={isPasswordVisible ? 'text' : 'password'}
             {...rest}
           />
-          <VisibilityToggle type="button" onClick={this.handleVisibiltyToggle}>
+          <VisibilityToggle
+            onClick={this.handleVisibiltyToggle}
+            tabIndex="-1"
+            type="button"
+          >
             <FontAwesomeIcon icon={isPasswordVisible ? faEye : faEyeSlash} />
           </VisibilityToggle>
         </InputContainer>
