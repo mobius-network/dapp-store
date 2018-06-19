@@ -43,7 +43,7 @@ class DappStore extends Component {
 
         <Grid>
           <Grid.Row flexWrap="wrap">
-            <Grid.Col width={[1, 1 / 4]}>
+            <Grid.Col width={[1, 1, 1 / 4]}>
               <Submit>
                 <SubmitTitle>Submit Your Own DApps</SubmitTitle>
                 <SubmitText>
@@ -60,7 +60,7 @@ class DappStore extends Component {
               </Submit>
             </Grid.Col>
 
-            <Grid.Col width={[1, 3 / 4]}>
+            <Grid.Col width={[1, 1, 3 / 4]}>
               <DappList />
             </Grid.Col>
           </Grid.Row>

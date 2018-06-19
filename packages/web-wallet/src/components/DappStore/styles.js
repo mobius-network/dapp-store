@@ -58,7 +58,13 @@ export const Subtitle = styled.h2`
   margin: 0;
 `;
 
-export const Submit = styled(AdditionalInfo)``;
+export const Submit = styled(AdditionalInfo)`
+  margin-bottom: 30px;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin-bottom: 60px;
+  }
+`;
 
 export const SubmitTitle = styled.p`
   font-size: ${fontSizes.heading};

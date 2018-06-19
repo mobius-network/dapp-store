@@ -1,16 +1,15 @@
 import { hot } from 'react-hot-loader';
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { notify } from 'utils/honeybadger';
 
-import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import DefaultLayout from 'components/layouts/DefaultLayout';
+import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
 import WalletLayout from 'components/layouts/WalletLayout';
-import Footer from 'components/Footer';
 import Loading from 'components/Loading';
 
 import DappStore from 'components/DappStore';
@@ -30,26 +29,20 @@ class Root extends Component {
 
     return (
       <Provider store={store}>
-        <DefaultLayout>
-          <PersistGate loading={<Loading />} persistor={persistor}>
-            <Router>
-              <Fragment>
-                <Switch>
-                  <Route path="/" component={DappStore} exact />
-                  <PublicLayout path="/login" component={Login} exact />
-                  <PublicLayout path="/signup" component={Signup} exact />
-
-                  <OnboardingLayout path="/onboarding" component={Onboarding} />
-                  <WalletLayout path="/wallet" component={Wallet} />
-
-                  <Route path="/developers" component={Developers} />
-                </Switch>
-
-                <Footer />
-              </Fragment>
-            </Router>
-          </PersistGate>
-        </DefaultLayout>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <Router>
+            <DefaultLayout>
+              <Switch>
+                <Route path="/" component={DappStore} exact />
+                <PublicLayout path="/login" component={Login} exact />
+                <PublicLayout path="/signup" component={Signup} exact />
+                <OnboardingLayout path="/onboarding" component={Onboarding} />
+                <WalletLayout path="/wallet" component={Wallet} />
+                <Route path="/developers" component={Developers} />
+              </Switch>
+            </DefaultLayout>
+          </Router>
+        </PersistGate>
       </Provider>
     );
   }

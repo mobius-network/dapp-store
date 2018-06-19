@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import PrivateRoute from 'components/shared/PrivateRoute';
 import Grid from 'components/shared/Grid';
 import Header from 'components/Header';
-
-import { Container, Content } from './styles';
 
 export default class OnboardingLayout extends Component {
   static propTypes = {
@@ -19,19 +17,17 @@ export default class OnboardingLayout extends Component {
       <PrivateRoute
         {...rest}
         component={matchProps => (
-          <Container>
+          <Fragment>
             <Header />
 
-            <Content>
-              <Grid>
-                <Grid.Row justifyContent="center">
-                  <Grid.Col width={[1, 1, 1 / 2]}>
-                    <RouterComponent {...matchProps} />
-                  </Grid.Col>
-                </Grid.Row>
-              </Grid>
-            </Content>
-          </Container>
+            <Grid>
+              <Grid.Row justifyContent="center">
+                <Grid.Col width={[1, 1, 1 / 2]}>
+                  <RouterComponent {...matchProps} />
+                </Grid.Col>
+              </Grid.Row>
+            </Grid>
+          </Fragment>
         )}
       />
     );

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 import {
-  radius,
-  fonts,
-  colors,
   breakpoints,
+  colors,
+  fonts,
+  radius,
 } from 'components/shared/Styleguide';
 
 export const Container = styled.div`
@@ -17,13 +17,5 @@ export const Container = styled.div`
 
   @media screen and (min-width: ${breakpoints.md}) {
     margin-bottom: 40px;
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-
-    @media screen and (min-width: ${breakpoints.md}) {
-      margin-bottom: 0;
-    }
   }
 `;
