@@ -1,11 +1,17 @@
 import { connect } from 'react-redux';
 
 import { getAssetBalance } from 'state/account';
+import { requestActions, getIsSuccess } from 'state/requests';
 
 import AddFunds from './AddFunds';
 
 const mapStateToProps = (state, { match }) => ({
   balance: getAssetBalance(state, { asset: match.params.asset || 'mobi' }),
+  pathPaymentCompleted: getIsSuccess(state, { operation: 'pathPayment' }),
 });
 
-export default connect(mapStateToProps)(AddFunds);
+const actions = {
+  ...requestActions,
+};
+
+export default connect(mapStateToProps, actions)(AddFunds);
