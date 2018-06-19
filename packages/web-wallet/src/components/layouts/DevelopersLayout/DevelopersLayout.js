@@ -25,7 +25,7 @@ export default class DevelopersLayout extends Component {
               <Grid.Row flexWrap="wrap">
                 <Grid.Col width={[1, 1, 1 / 6]}>
                   <SidebarNav title="DEVELOPERS">
-                    <SidebarNav.Item to="/developers/start">
+                    <SidebarNav.Item to="/developers">
                       Getting Started
                     </SidebarNav.Item>
                   </SidebarNav>
