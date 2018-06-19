@@ -15,12 +15,11 @@ export const restMutation = config => WrappedComponent => {
     };
 
     render() {
-      if (options) {
-        config.query = {
-          ...query,
-          ...this.applyProps(options),
-        };
-      }
+      config.query = {
+        name: config.name,
+        ...query,
+        ...this.applyProps(options),
+      };
 
       return (
         <RestMutation {...config} {...this.props}>

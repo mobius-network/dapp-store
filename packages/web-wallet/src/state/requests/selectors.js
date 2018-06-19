@@ -4,6 +4,7 @@ import { createSelector } from 'reselect';
 export const getOperationName = (_, { operation } = {}) => operation;
 
 export const getRequests = state => state.requests;
+export const getLastError = state => state.requests.errors[0];
 
 export const getResponse = createSelector(
   [getRequests, getOperationName],
@@ -35,3 +36,8 @@ export const getFeaturedApp = createSelector([getApps], apps => {
 
   return featuredApps[Math.floor(Math.random() * featuredApps.length)];
 });
+
+export const getLastErrorMessage = createSelector(
+  [getLastError],
+  (error = {}) => error.message
+);
