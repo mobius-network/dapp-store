@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { notify } from 'utils/honeybadger';
 
 import DefaultLayout from 'components/layouts/DefaultLayout';
+import DevelopersLayout from 'components/layouts/DevelopersLayout';
 import OnboardingLayout from 'components/layouts/OnboardingLayout';
 import PublicLayout from 'components/layouts/PublicLayout';
 import WalletLayout from 'components/layouts/WalletLayout';
@@ -38,7 +39,7 @@ class Root extends Component {
                 <PublicLayout path="/signup" component={Signup} exact />
                 <OnboardingLayout path="/onboarding" component={Onboarding} />
                 <WalletLayout path="/wallet" component={Wallet} />
-                <Route path="/developers" component={Developers} />
+                <DevelopersLayout path="/developers" component={Developers} />
               </Switch>
             </DefaultLayout>
           </Router>
