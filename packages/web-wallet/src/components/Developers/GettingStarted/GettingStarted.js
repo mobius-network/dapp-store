@@ -87,12 +87,12 @@ class GettingStarted extends Component {
             </LinkContainer>
             <LinkContainer>
               <LinkItem
-                href="https://mobius.slack.com/developer"
+                href="https://mobius-network.slack.com"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <LinkItemTitle>MOBI Developer Slack</LinkItemTitle>
-                <LinkItemUrl>mobius.slack.com/developer</LinkItemUrl>
+                <LinkItemUrl>mobius-network.slack.com</LinkItemUrl>
               </LinkItem>
             </LinkContainer>
           </Links>
