@@ -78,11 +78,11 @@ class DappModal extends Component {
                 </AppHeader>
               </Grid.Col>
             </Grid.Row>
-            <Grid.Row>
-              <Grid.Col px={0} width={7 / 10}>
+            <Grid.Row flexWrap="wrap">
+              <Grid.Col px={0} mb={[30, 30, 0]} width={[1, 1, 7 / 10]}>
                 <Desc>{app.description}</Desc>
               </Grid.Col>
-              <Grid.Col px={0} width={3 / 10}>
+              <Grid.Col px={0} width={[1, 1, 3 / 10]}>
                 <ButtonRow>
                   <Button onClick={this.openApp} fullWidth>
                     Go to App

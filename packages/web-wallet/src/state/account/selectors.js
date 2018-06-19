@@ -17,7 +17,7 @@ export const createAssetBalanceSelector = (
 ) =>
   createSelector([balanceSelector, assetSelector], (balance, asset) => {
     if (!balance) {
-      return undefined;
+      return 0;
     }
 
     return parsedBalanceValue(balance, asset);
