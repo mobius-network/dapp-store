@@ -12,7 +12,7 @@ class Developers extends Component {
       <Switch>
         <PrivateRoute
           path="/developers"
-          redirectTo="/developers/start"
+          redirectTo="/login"
           component={MyDapps}
           exact
         />
