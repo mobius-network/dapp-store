@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-import { colors, fonts, gradients } from 'components/shared/Styleguide';
+import {
+  colors,
+  fonts,
+  gradients,
+  breakpoints,
+} from 'components/shared/Styleguide';
 
 export const Container = styled.div`
   background: ${colors.bgLight};
@@ -21,4 +26,9 @@ export const Content = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  margin-bottom: 30px;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin-bottom: 60px;
+  }
 `;

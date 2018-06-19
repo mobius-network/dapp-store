@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import Footer from 'components/Footer';
+
 import { Container, Content } from './styles';
 
 export default class DefaultLayout extends Component {
@@ -14,6 +16,7 @@ export default class DefaultLayout extends Component {
     return (
       <Container>
         <Content>{children}</Content>
+        <Footer />
       </Container>
     );
   }

@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
-import { colors, fonts } from 'components/shared/Styleguide';
+import { colors, fonts, breakpoints } from 'components/shared/Styleguide';
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin-bottom: 30px;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin-bottom: 60px;
+  }
+`;
 
 export const Title = styled.p`
   color: ${colors.textLight};
