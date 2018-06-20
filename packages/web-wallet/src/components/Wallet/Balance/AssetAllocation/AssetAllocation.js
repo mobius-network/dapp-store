@@ -66,7 +66,7 @@ class AssetAllocation extends Component {
                 {appsBalance ? `+ ${this.getFormattedBalance(appsBalance)}` : 0}{' '}
                 {this.getFormattedAsset()}
               </b>{' '}
-              Allocated to Dapps
+              Allocated to DApps
             </AllocatedBalance>
           </Header>
           <Content>
@@ -76,7 +76,7 @@ class AssetAllocation extends Component {
                 <ButtonIcon>
                   <FontAwesomeIcon icon={faPlus} />
                 </ButtonIcon>
-                <span>Transfer {this.getFormattedAsset()}</span>
+                <span>Deposit {this.getFormattedAsset()}</span>
               </Button>
             </ButtonContainer>
           </Content>
