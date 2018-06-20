@@ -5,6 +5,7 @@ import {
   fontSizes,
   gradients,
   breakpoints,
+  lineHeights,
 } from 'components/shared/Styleguide';
 
 export const MainRow = styled.div`
@@ -27,6 +28,7 @@ export const SecondaryRow = styled.div`
 export const CopyrightText = styled.p`
   color: ${colors.textWhite};
   font-size: ${fontSizes.small};
+  line-height: ${lineHeights.default};
   margin: 0 0 10px;
   padding: 0;
   text-align: center;
