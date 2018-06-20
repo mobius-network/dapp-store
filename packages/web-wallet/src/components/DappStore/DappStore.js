@@ -50,13 +50,7 @@ class DappStore extends Component {
                   The Mobius SDK makes it easy to start collecting coin
                   payments.
                 </SubmitText>
-                <Button
-                  href="https://mobius.network/store/developer/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  GET STARTED
-                </Button>
+                <Button to="/developers/">GET STARTED</Button>
               </Submit>
             </Grid.Col>
 
