@@ -122,6 +122,7 @@ export const AppLinkUrl = styled.span`
   font-size: 13px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const AppLinkArrow = styled(FontAwesomeIcon)`
