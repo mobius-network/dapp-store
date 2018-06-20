@@ -19,3 +19,14 @@ export const isEquals = comparisonValue =>
     field =>
       formatMessage(field, f => `${f} must be equal to "${comparisonValue}"`)
   );
+
+export const isRationalNumber = createValidator(
+  message => value => {
+    if (!/^(\d*\.)?\d+$/i.test(value)) {
+      return message;
+    }
+
+    return undefined;
+  },
+  field => `${field} must be a rational number`
+);
