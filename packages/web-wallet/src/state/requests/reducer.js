@@ -1,13 +1,14 @@
+import { pick } from 'lodash';
 import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
 export const requestActions = createActions(
-  ['fetchStart', 'fetchSuccess', 'fetchFail', 'resetRequest', 'resetError'],
+  ['fetchStart', 'fetchSuccess', 'fetchFail', 'resetRequest', 'shiftError'],
   'requests'
 );
 
 const initialState = {
-  requestError: undefined,
+  errors: [],
 };
 
 export const requestsReducer = createReducer(
@@ -28,21 +29,18 @@ export const requestsReducer = createReducer(
         },
       }),
     [requestActions.fetchFail]: (state, { name, error }) => {
-      const serializedError = {
-        message: error.message,
-        stack: error.stack,
-        response: error.response,
-      };
+      const serializedError = pick(error, ['message', 'stack', 'response']);
 
-      return merge(state, {
+      return {
+        ...state,
         [name]: {
           error: serializedError,
           data: undefined,
           success: false,
           isFetching: false,
         },
-        requestError: serializedError,
-      });
+        errors: [serializedError, ...state.errors],
+      };
     },
     [requestActions.resetRequest]: (state, name) =>
       merge(state, {
@@ -53,10 +51,10 @@ export const requestsReducer = createReducer(
           isFetching: false,
         },
       }),
-    [requestActions.resetError]: state =>
-      merge(state, {
-        requestError: undefined,
-      }),
+    [requestActions.shiftError]: state => ({
+      ...state,
+      errors: state.errors.slice(1),
+    }),
   },
   initialState
 );
