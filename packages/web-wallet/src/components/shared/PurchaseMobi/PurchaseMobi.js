@@ -143,7 +143,7 @@ class PurchaseMobi extends Component {
                   onClick={this.submitTransfer}
                   fullWidth
                   isLoading={loading}
-                  disabled={!destAmount}
+                  disabled={!destAmount || loading}
                 >
                   Buy MOBI
                 </Button>
