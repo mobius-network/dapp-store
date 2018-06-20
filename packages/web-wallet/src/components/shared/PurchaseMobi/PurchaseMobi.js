@@ -145,7 +145,7 @@ class PurchaseMobi extends Component {
                   isLoading={loading}
                   disabled={!destAmount}
                 >
-                  Submit transfer
+                  Buy MOBI
                 </Button>
               </ButtonContainer>
             </Grid.Col>
