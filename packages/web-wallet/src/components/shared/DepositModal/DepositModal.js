@@ -39,7 +39,6 @@ class DepositModal extends Component {
 
   onClose = () => {
     this.props.onClose();
-    this.props.resetRequest('depositApp');
   };
 
   onAmountChange = e => {
