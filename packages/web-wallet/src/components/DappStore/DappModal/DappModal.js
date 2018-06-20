@@ -123,7 +123,6 @@ class DappModal extends Component {
                         rel="noopener noreferrer"
                       >
                         <AppLinkTitle>Support</AppLinkTitle>
-                        <AppLinkUrl>{app.support_url}</AppLinkUrl>
                         <AppLinkArrow icon={faAngleRight} />
                       </AppLink>
                     )}

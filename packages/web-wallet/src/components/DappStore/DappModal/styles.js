@@ -113,13 +113,14 @@ export const AppLinkTitle = styled.span`
   display: block;
   font-size: 15px;
   font-weight: 700;
-  margin: 0 0 10px;
+  margin: 0;
 `;
 
 export const AppLinkUrl = styled.span`
   color: ${colors.textPrimary};
   display: block;
   font-size: 13px;
+  margin: 10px 0 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
