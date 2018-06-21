@@ -1,13 +1,16 @@
 import React, { Component, Fragment } from 'react';
-// import { string } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import Button from 'components/shared/Button';
-import DepositModal from 'components/shared/DepositModal';
+import AppDepositForm from './AppDepositForm';
 import { ButtonRow, AppBalance, AppBalanceAmount } from './styles';
 
 class BalanceButtons extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    openDapp: PropTypes.func.isRequired,
+    mobiBalance: PropTypes.number.isRequired,
+    app: PropTypes.object.isRequired,
+    releaseAppBalance: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -15,15 +18,15 @@ class BalanceButtons extends Component {
   };
 
   state = {
-    depositModalOpened: false,
+    depositFormActive: false,
   };
 
-  openDepositModal = () => {
-    this.setState({ depositModalOpened: true });
+  showDepositForm = () => {
+    this.setState({ depositFormActive: true });
   };
 
-  closeDepositModal = () => {
-    this.setState({ depositModalOpened: false });
+  hideDepositForm = () => {
+    this.setState({ depositFormActive: false });
   };
 
   openApp = () => {
@@ -33,7 +36,7 @@ class BalanceButtons extends Component {
   };
 
   render() {
-    const { depositModalOpened } = this.state;
+    const { depositFormActive } = this.state;
 
     const { app, mobiBalance, releaseAppBalance } = this.props;
 
@@ -44,11 +47,17 @@ class BalanceButtons extends Component {
             Go to App
           </Button>
         </ButtonRow>
+
         <ButtonRow>
-          <Button onClick={this.openDepositModal} fullWidth theme="secondary">
-            Deposit Funds
-          </Button>
+          {depositFormActive ? (
+            <AppDepositForm app={app} onSuccess={this.hideDepositForm} />
+          ) : (
+            <Button onClick={this.showDepositForm} fullWidth theme="secondary">
+              Deposit Funds
+            </Button>
+          )}
         </ButtonRow>
+
         <ButtonRow>
           <Button
             fullWidth
@@ -59,15 +68,10 @@ class BalanceButtons extends Component {
             Release Funds
           </Button>
         </ButtonRow>
+
         <AppBalance>
           DApp balance: <AppBalanceAmount>{mobiBalance} MOBI</AppBalanceAmount>
         </AppBalance>
-
-        <DepositModal
-          app={app}
-          isOpen={depositModalOpened}
-          onClose={this.closeDepositModal}
-        />
       </Fragment>
     );
   }

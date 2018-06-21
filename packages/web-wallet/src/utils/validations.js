@@ -1,11 +1,20 @@
-import { createValidator } from 'revalidate';
-import _ from 'lodash';
+import {
+  createValidator,
+  combineValidators as sourceCombine,
+} from 'revalidate';
+import { isObject } from 'lodash';
 
-function formatMessage(message, defaultMessage) {
-  return _.isObject(message) && message.message
+// Allows to access `props` in validator
+export const combineValidators = config => {
+  const validator = sourceCombine(config);
+
+  return (values, props) => validator({ ...props, ...values });
+};
+
+const formatMessage = (message, defaultMessage) =>
+  isObject(message) && message.message
     ? message.message
     : defaultMessage(message);
-}
 
 export const isEquals = comparisonValue =>
   createValidator(
@@ -30,3 +39,15 @@ export const isRationalNumber = createValidator(
   },
   field => `${field} must be a rational number`
 );
+
+export const isLessThanProp = ({ name, label }) =>
+  createValidator(
+    message => (value, props) => {
+      if (Number(value) > Number(props[name])) {
+        return message;
+      }
+
+      return undefined;
+    },
+    field => `${field} must be a less than ${label}`
+  );
