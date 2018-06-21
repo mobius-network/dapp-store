@@ -31,6 +31,7 @@ class Modal extends Component {
       contentLabel,
       fluid,
       isOpen,
+      className,
       onAfterOpen,
       onRequestClose,
       ...rest
@@ -47,7 +48,7 @@ class Modal extends Component {
         style={style}
         {...rest}
       >
-        <Content>{children}</Content>
+        <Content className={className}>{children}</Content>
       </StyledReactModal>
     );
   }

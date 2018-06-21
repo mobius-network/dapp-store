@@ -3,6 +3,7 @@ export const colors = {
   bgLight: '#FAFBFC',
   bgWhite: '#FFFFFF',
   border: '#DFDFE9',
+  lightBorder: '#E6E6E6',
   textDefault: '#000000',
   textWhite: '#FFFFFF',
   textLight: '#999999',
