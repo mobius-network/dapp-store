@@ -36,7 +36,11 @@ module.exports = {
     "no-return-assign": 0,
     "no-confusing-arrow": 0,
     "no-mixed-operators": 0,
-    "max-len": ["error", 100],
+    "max-len": ["error", {
+      "code": 100,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+    }],
     "no-constant-condition": 0,
     "class-methods-use-this": 0,
     "space-before-function-paren": 0,

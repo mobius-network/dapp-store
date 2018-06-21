@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 
-import { Container, Input, ErrorMessage } from './styles';
+import { themes, Container, Input, ErrorMessage, InnerLabel } from './styles';
 
 class TextInput extends Component {
   static propTypes = {
@@ -18,24 +19,31 @@ class TextInput extends Component {
   render() {
     const {
       input,
+      className,
+      innerLabel,
       placeholder,
       meta: { error, dirty, touched },
       ...rest
     } = this.props;
 
     const showError = error && (dirty || touched);
+    const theme = innerLabel ? 'innerLabel' : 'primary';
 
     return (
-      <Container>
-        <Input
-          {...input}
-          error={showError}
-          placeholder={placeholder}
-          {...rest}
-        />
+      <ThemeProvider theme={themes[theme]}>
+        <Container className={className}>
+          <Input
+            {...input}
+            error={showError}
+            placeholder={placeholder}
+            {...rest}
+          />
 
-        {showError && <ErrorMessage>{error}</ErrorMessage>}
-      </Container>
+          {innerLabel && <InnerLabel>{innerLabel}</InnerLabel>}
+
+          {showError && <ErrorMessage>{error}</ErrorMessage>}
+        </Container>
+      </ThemeProvider>
     );
   }
 }

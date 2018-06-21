@@ -35,7 +35,9 @@ export function* watchAppAccount(app, delayDuration = 2000) {
 }
 
 export function* startAppAccountWatcher(app) {
-  watchers[app.id] = yield fork(watchAppAccount, app);
+  if (!watchers[app.id]) {
+    watchers[app.id] = yield fork(watchAppAccount, app);
+  }
 }
 
 export function* stopAppAccountWatcher() {
@@ -43,6 +45,8 @@ export function* stopAppAccountWatcher() {
     const { payload: appId } = yield take(appActions.stopWatching);
     yield cancel(watchers[appId]);
     delete watchers[appId];
+
+    yield put(appActions.setAppAccount({ account: undefined, app: { id: appId } }));
   }
 }
 

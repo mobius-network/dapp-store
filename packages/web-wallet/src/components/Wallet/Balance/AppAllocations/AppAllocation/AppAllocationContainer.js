@@ -1,6 +1,9 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import releaseAppBalanceSaga from 'state/sagas/releaseBalance';
 
-import { getAppAssetBalance, appActions } from 'state/apps';
+import { restMutation } from 'components/hocs';
+import { getAppAssetBalance } from 'state/apps';
 
 import AppAllocation from './AppAllocation';
 
@@ -9,8 +12,10 @@ const mapStateToProps = (state, { app: { id: appId } }) => ({
   xlmBalance: getAppAssetBalance(state, { appId, asset: 'native' }),
 });
 
-const actions = {
-  ...appActions,
-};
-
-export default connect(mapStateToProps, actions)(AppAllocation);
+export default compose(
+  connect(mapStateToProps),
+  restMutation({
+    ...releaseAppBalanceSaga,
+    options: ({ app }) => ({ app }),
+  })
+)(AppAllocation);

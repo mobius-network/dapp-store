@@ -16,14 +16,9 @@ class AppAllocation extends Component {
     app: object.isRequired,
   };
 
-  onRelaseBalance = () => {
-    const { app, releaseBalance } = this.props;
-
-    releaseBalance(app);
-  };
-
   render() {
     const { app, mobiBalance, xlmBalance } = this.props;
+    const { loading, mutate } = this.props.releaseAppBalance;
 
     if (!xlmBalance && !mobiBalance) {
       return null;
@@ -38,7 +33,7 @@ class AppAllocation extends Component {
           <AppBalanceItem>{xlmBalance} XLM</AppBalanceItem>
         </AppBalance>
         <ButtonContainer>
-          <ReleaseButton onClick={this.onRelaseBalance} theme="secondary">
+          <ReleaseButton theme="secondary" onClick={mutate} isLoading={loading}>
             Release balance
           </ReleaseButton>
         </ButtonContainer>
