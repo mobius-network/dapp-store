@@ -48,12 +48,13 @@ export class RestMutation extends Component {
   runMutation = async options => {
     const { store } = this.context;
     const { query, action } = this.props;
+    const dynamicPayload = options.nativeEvent ? undefined : options;
 
     this.setState({ loading: true });
 
     try {
       const result = await new Promise((resolve, reject) => {
-        const requestAction = action(merge(query, options), {
+        const requestAction = action(merge(query, dynamicPayload), {
           resolve,
           reject,
         });

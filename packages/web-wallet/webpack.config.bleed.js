@@ -149,7 +149,6 @@ const config = {
       'process.env': require('./config/dev.env'),
     }),
     new HtmlWebpackPlugin({
-      favicon: 'favicon.ico',
       template: 'index.html',
       filename: 'index.html',
       chunksSortMode (a, b) {

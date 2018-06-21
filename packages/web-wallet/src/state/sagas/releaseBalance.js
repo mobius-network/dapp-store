@@ -1,13 +1,14 @@
-import { takeLatest, select, put, take } from 'redux-saga/effects';
+import { select, put, take } from 'redux-saga/effects';
 
 import { submitTransaction, mergeAppAccount } from '@mobius-network/core';
 
+import { createSaga } from 'state/utils';
 import { requestActions } from 'state/requests/reducer';
 import { matchFetchSuccess } from 'state/requests/matchers';
 import { getPublicKeyFor, getSecretKeyFor } from 'state/auth/selectors';
 import { appActions, getAppAccount } from 'state/apps';
 
-export function* depositApp({ payload: app }) {
+export function* releaseAppBalance({ payload: { app, name }, meta }) {
   const appAccount = yield select(getAppAccount, { appId: app.id });
   const appSecretKey = yield select(getSecretKeyFor, {
     accountNumber: app.id,
@@ -22,15 +23,17 @@ export function* depositApp({ payload: app }) {
   });
 
   yield put(requestActions.fetchStart({
-    name: 'releaseBalance',
+    name,
     payload: transaction,
     fetcher: submitTransaction,
   }));
 
-  yield take(matchFetchSuccess('releaseBalance'));
+  yield take(matchFetchSuccess(name));
 
   // TODO: verify which app was just released
   yield put(appActions.stopWatching(app.id));
+
+  meta.resolve();
 }
 
-export default takeLatest(appActions.releaseBalance, depositApp);
+export default createSaga('releaseAppBalance', releaseAppBalance);

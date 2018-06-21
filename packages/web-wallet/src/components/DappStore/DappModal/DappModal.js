@@ -4,17 +4,13 @@ import { faAngleRight } from '@fortawesome/fontawesome-free-solid';
 
 import Modal from 'components/shared/Modal';
 import Grid from 'components/shared/Grid';
-import Button from 'components/shared/Button';
-import DepositModal from 'components/shared/DepositModal';
+import BalanceButtons from './BalanceButtons';
 import {
-  AppBalance,
-  AppBalanceAmount,
   AppHeader,
   AppDetails,
   AppName,
   AppTagline,
   AppPic,
-  ButtonRow,
   Desc,
   AppLinks,
   AppLink,
@@ -30,31 +26,7 @@ class DappModal extends Component {
     onClose: func.isRequired,
   };
 
-  static defaultProps = {
-    mobiBalance: 0,
-  };
-
-  state = {
-    depositModalOpened: false,
-  };
-
-  openDepositModal = () => {
-    this.setState({ depositModalOpened: true });
-  };
-
-  closeDepositModal = () => {
-    this.setState({ depositModalOpened: false });
-  };
-
-  openApp = () => {
-    const { openDapp, app } = this.props;
-
-    openDapp(app);
-  };
-
   render() {
-    const { depositModalOpened } = this.state;
-
     const {
       isOpen, onClose, app, mobiBalance,
     } = this.props;
@@ -83,24 +55,7 @@ class DappModal extends Component {
                 <Desc>{app.description}</Desc>
               </Grid.Col>
               <Grid.Col px={0} width={[1, 1, 3 / 10]}>
-                <ButtonRow>
-                  <Button onClick={this.openApp} fullWidth>
-                    Go to App
-                  </Button>
-                </ButtonRow>
-                <ButtonRow>
-                  <Button
-                    onClick={this.openDepositModal}
-                    fullWidth
-                    theme="secondary"
-                  >
-                    Deposit Funds
-                  </Button>
-                </ButtonRow>
-                <AppBalance>
-                  DApp balance:{' '}
-                  <AppBalanceAmount>{mobiBalance} MOBI</AppBalanceAmount>
-                </AppBalance>
+                <BalanceButtons app={app} mobiBalance={mobiBalance} />
 
                 {(app.website_url || app.support_url) && (
                   <AppLinks>
@@ -132,12 +87,6 @@ class DappModal extends Component {
             </Grid.Row>
           </Grid>
         </Modal>
-
-        <DepositModal
-          app={app}
-          isOpen={depositModalOpened}
-          onClose={this.closeDepositModal}
-        />
       </Fragment>
     );
   }

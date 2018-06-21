@@ -4,14 +4,7 @@ import { createActions, createReducer } from 'redux-yo';
 import { authActions } from 'state/auth/reducer';
 
 export const appActions = createActions(
-  [
-    'loadApps',
-    'stopWatching',
-    'depositApp',
-    'setAppAccount',
-    'openDapp',
-    'releaseBalance',
-  ],
+  ['loadApps', 'stopWatching', 'depositApp', 'setAppAccount', 'openDapp'],
   'apps'
 );
 

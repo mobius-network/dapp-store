@@ -24,6 +24,6 @@ export default function* () {
     loadAppsSaga.listener,
     depositAppSaga,
     openDappSaga,
-    releaseBalanceSaga,
+    releaseBalanceSaga.listener,
   ]);
 }
