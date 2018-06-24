@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
@@ -31,18 +31,20 @@ class TextInput extends Component {
 
     return (
       <ThemeProvider theme={themes[theme]}>
-        <Container className={className}>
-          <Input
-            {...input}
-            error={showError}
-            placeholder={placeholder}
-            {...rest}
-          />
+        <Fragment>
+          <Container className={className}>
+            <Input
+              {...input}
+              error={showError}
+              placeholder={placeholder}
+              {...rest}
+            />
 
-          {innerLabel && <InnerLabel>{innerLabel}</InnerLabel>}
+            {innerLabel && <InnerLabel>{innerLabel}</InnerLabel>}
+          </Container>
 
           {showError && <ErrorMessage>{error}</ErrorMessage>}
-        </Container>
+        </Fragment>
       </ThemeProvider>
     );
   }

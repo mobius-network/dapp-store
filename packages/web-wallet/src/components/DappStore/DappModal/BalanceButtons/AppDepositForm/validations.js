@@ -11,8 +11,8 @@ export const validate = combineValidators({
     isRequired,
     isRationalNumber,
     isLessThanProp({
-      name: 'xlmAmount',
-      label: 'XLM balance',
-    })({ message: 'Insufficient XLM balance' })
+      name: 'mobiBalance',
+      label: 'MOBI balance',
+    })({ message: 'Insufficient MOBI balance' })
   )('Amount'),
 });

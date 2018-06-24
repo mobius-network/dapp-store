@@ -43,9 +43,9 @@ export const Input = styled.input`
 `;
 
 export const ErrorMessage = styled.p`
+  margin: 0;
   color: ${colors.error};
   font: ${fontSizes.default} ${fonts.nunitoSans};
-  margin: 0;
 `;
 
 export const InnerLabel = styled.p`
