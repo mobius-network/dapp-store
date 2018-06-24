@@ -10,7 +10,7 @@ import { validate } from './validations';
 import AppDepositForm from './AppDepositForm';
 
 const mapStateToProps = state => ({
-  xlmAmount: getAssetBalance(state, { asset: 'native' }),
+  mobiBalance: getAssetBalance(state, { asset: 'mobi' }),
 });
 
 export default compose(

@@ -8,7 +8,7 @@ import { appActions, getAppAssetBalance } from 'state/apps';
 import BalanceButtons from './BalanceButtons';
 
 const mapStateToProps = (state, { app }) => ({
-  mobiBalance: getAppAssetBalance(state, { appId: app.id }),
+  mobiAppBalance: getAppAssetBalance(state, { appId: app.id }),
 });
 
 const actions = {

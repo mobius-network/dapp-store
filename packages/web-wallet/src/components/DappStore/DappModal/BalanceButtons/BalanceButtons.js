@@ -8,13 +8,13 @@ import { ButtonRow, AppBalance, AppBalanceAmount } from './styles';
 class BalanceButtons extends Component {
   static propTypes = {
     openDapp: PropTypes.func.isRequired,
-    mobiBalance: PropTypes.number.isRequired,
+    mobiAppBalance: PropTypes.number.isRequired,
     app: PropTypes.object.isRequired,
     releaseAppBalance: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
-    mobiBalance: 0,
+    mobiAppBalance: 0,
   };
 
   state = {
@@ -38,7 +38,7 @@ class BalanceButtons extends Component {
   render() {
     const { depositFormActive } = this.state;
 
-    const { app, mobiBalance, releaseAppBalance } = this.props;
+    const { app, mobiAppBalance, releaseAppBalance } = this.props;
 
     return (
       <Fragment>
@@ -70,7 +70,8 @@ class BalanceButtons extends Component {
         </ButtonRow>
 
         <AppBalance>
-          DApp balance: <AppBalanceAmount>{mobiBalance} MOBI</AppBalanceAmount>
+          DApp balance:{' '}
+          <AppBalanceAmount>{mobiAppBalance} MOBI</AppBalanceAmount>
         </AppBalance>
       </Fragment>
     );
