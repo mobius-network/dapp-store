@@ -122,10 +122,12 @@ export default class SocialLinks extends Component {
         </ListContainer>
 
         <Modal
+          closeButton
           contentLabel="WeChat QR Code Modal"
           fluid
           isOpen={isWeChatModalVisible}
           onRequestClose={this.toggleWeChatModal}
+          title="WeChat QR Code"
         >
           <WeChatModalContent>
             <WeChatQrCode />
