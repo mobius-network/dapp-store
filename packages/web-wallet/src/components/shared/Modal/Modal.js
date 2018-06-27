@@ -27,14 +27,26 @@ class Modal extends Component {
     contentLabel: PropTypes.string,
     fluid: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
+    isClosable: PropTypes.bool,
     onAfterOpen: PropTypes.func,
-    onRequestClose: PropTypes.func.isRequired,
+    onRequestClose: PropTypes.func,
     title: PropTypes.string,
   };
 
   static defaultProps = {
     closeButton: false,
     fluid: false,
+    isClosable: true,
+  };
+
+  handleClose = e => {
+    const { isClosable, onRequestClose } = this.props;
+
+    if (!isClosable) {
+      return false;
+    }
+
+    return onRequestClose(e);
   };
 
   render() {
@@ -58,7 +70,8 @@ class Modal extends Component {
         fluid={fluid}
         isOpen={isOpen}
         onAfterOpen={onAfterOpen}
-        onRequestClose={onRequestClose}
+        onRequestClose={this.handleClose}
+        shouldCloseOnEsc={false}
         style={style}
         {...rest}
       >
@@ -70,7 +83,7 @@ class Modal extends Component {
           )}
 
           {closeButton && (
-            <CloseButton onClick={onRequestClose} title="Close" type="button">
+            <CloseButton onClick={this.handleClose} title="Close" type="button">
               <FontAwesomeIcon icon={faTimes} />
             </CloseButton>
           )}
