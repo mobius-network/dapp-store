@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 import ReactModal from 'react-modal';
 
 import {
@@ -10,20 +10,30 @@ import {
   fontSizes,
 } from 'components/shared/Styleguide';
 
+// eslint-disable-next-line no-unused-expressions
+injectGlobal`
+  .ReactModal__Body--open {
+    overflow: hidden;
+  }
+
+  .ReactModal__Overlay {
+    overflow: auto;
+  }
+`;
+
 export const StyledReactModal = styled(ReactModal)`
   bottom: auto;
   box-sizing: border-box;
   left: auto;
   outline: 0;
-  padding: 0 12px;
-  position: absolute;
-  right: auto;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 12px;
   width: 100%;
 
   @media screen and (min-width: ${breakpoints.md}) {
     left: 50%;
+    position: absolute;
+    right: auto;
+    top: 50%;
     transform: translate(-50%, -50%);
     width: ${props => (props.fluid ? 'auto' : breakpoints.md)};
   }

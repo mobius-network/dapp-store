@@ -34,9 +34,10 @@ class DappModal extends Component {
     return (
       <Fragment>
         <Modal
+          closeButton
+          contentLabel="DApp Modal"
           isOpen={isOpen}
           onRequestClose={onClose}
-          contentLabel="DApp Modal"
         >
           <Grid>
             <Grid.Row>
