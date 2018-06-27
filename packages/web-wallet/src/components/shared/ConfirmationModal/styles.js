@@ -1,43 +1,47 @@
 import styled from 'styled-components';
 
-import Modal from 'components/shared/Modal';
-import { fonts, fontSizes, colors } from 'components/shared/Styleguide';
+import Button from 'components/shared/Button';
+import {
+  breakpoints,
+  colors,
+  fonts,
+  fontSizes,
+  lineHeights,
+} from 'components/shared/Styleguide';
 
-export const Container = styled(Modal)`
-  div > & {
-    padding: 20px 0 30px 0;
-    position: absolute;
-    width: 70%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+export const Content = styled.div`
+  @media screen and (min-width: ${breakpoints.md}) {
+    width: 450px;
   }
 `;
-export const Title = styled.p`
-  margin: 0;
-  padding: 0 30px;
-  color: ${colors.textDefault};
-  font-family: ${fonts.default};
-  font-size: ${fontSizes.heading};
-  font-weight: 300;
-`;
-export const Description = styled.p`
-  padding: 20px 30px;
-  border-top: 1px solid ${colors.lightBorder};
-  border-bottom: 1px solid ${colors.lightBorder};
 
+export const Message = styled.p`
+  border-bottom: 1px solid ${colors.border};
   color: ${colors.textDefault};
   font-family: ${fonts.default};
   font-size: ${fontSizes.default};
+  line-height: ${lineHeights.default};
+  margin: 0 0 30px;
+  padding-bottom: 30px;
 `;
-export const ButtonRow = styled.div`
+
+export const Actions = styled.div`
+  align-items: center;
   display: flex;
-  padding: 0 30px;
+  flex-direction: column;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    flex-direction: row;
+    width: 450px;
+  }
 `;
-export const CancelButton = styled.button`
-  margin-left: 35px;
-  border: none;
-  background: none;
-  color: ${colors.textPrimary};
-  font-family: ${fonts.nunitoSans};
-  font-size: ${fontSizes.button};
+
+export const Action = styled(Button)`
+  margin: 0 0 10px;
+  width: 100%;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin: 0;
+    width: auto;
+  }
 `;
