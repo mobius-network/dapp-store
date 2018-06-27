@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
+import Grid from 'components/shared/Grid';
 import Button from 'components/shared/Button';
 import Pic from 'components/shared/Pic';
 import { colors, fonts, fontSizes } from 'components/shared/Styleguide';
 
-export const Container = styled.div`
+export const Container = styled(Grid.Col)`
   border-right: 1px solid ${colors.border};
 
   border-bottom: 1px solid ${colors.border};

@@ -19,11 +19,7 @@ class AppAllocations extends Component {
         <AppsList>
           <Grid>
             <Grid.Row flexWrap="wrap">
-              {apps.map(app => (
-                <Grid.Col key={app.id} width={[1, 1 / 3]} px={0}>
-                  <AppAllocation app={app} />
-                </Grid.Col>
-              ))}
+              {apps.map(app => <AppAllocation app={app} key={app.id} />)}
             </Grid.Row>
           </Grid>
         </AppsList>
