@@ -25,7 +25,7 @@ class AppAllocation extends Component {
     }
 
     return (
-      <Container>
+      <Container width={[1, 1 / 3]} px={0}>
         <AppPic url={app.image_url} />
         <AppName>{app.name}</AppName>
         <AppBalance>
