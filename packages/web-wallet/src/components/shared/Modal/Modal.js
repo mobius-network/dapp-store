@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/fontawesome-free-solid';
 
 import { colors } from 'components/shared/Styleguide';
 
-import { Content, StyledReactModal } from './styles';
+import {
+  Body,
+  Content,
+  Header,
+  HeaderTitle,
+  CloseButton,
+  StyledReactModal,
+} from './styles';
 
 const style = {
   overlay: {
@@ -14,26 +23,31 @@ const style = {
 class Modal extends Component {
   static propTypes = {
     children: PropTypes.any,
+    closeButton: PropTypes.bool,
     contentLabel: PropTypes.string,
     fluid: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
     onAfterOpen: PropTypes.func,
     onRequestClose: PropTypes.func.isRequired,
+    title: PropTypes.string,
   };
 
   static defaultProps = {
+    closeButton: false,
     fluid: false,
   };
 
   render() {
     const {
       children,
+      className,
+      closeButton,
       contentLabel,
       fluid,
       isOpen,
-      className,
       onAfterOpen,
       onRequestClose,
+      title,
       ...rest
     } = this.props;
 
@@ -48,7 +62,21 @@ class Modal extends Component {
         style={style}
         {...rest}
       >
-        <Content className={className}>{children}</Content>
+        <Content className={className}>
+          {title && (
+            <Header>
+              <HeaderTitle>{title}</HeaderTitle>
+            </Header>
+          )}
+
+          {closeButton && (
+            <CloseButton onClick={onRequestClose} title="Close" type="button">
+              <FontAwesomeIcon icon={faTimes} />
+            </CloseButton>
+          )}
+
+          <Body>{children}</Body>
+        </Content>
       </StyledReactModal>
     );
   }
