@@ -36,6 +36,15 @@ const themes = {
     border: `1px solid ${colors.border}`,
     loadingIndicatorColor: colors.textPrimary,
   },
+  text: {
+    background: 'none',
+    border: 'none',
+    boxShadow: 'none',
+    color: colors.textPrimary,
+    contentBackground: 'none',
+    fontWeight: 400,
+    loadingIndicatorColor: colors.textPrimary,
+  },
 };
 
 export default class Button extends Component {
@@ -44,7 +53,7 @@ export default class Button extends Component {
     disabled: PropTypes.bool,
     fullWidth: PropTypes.bool,
     onClick: PropTypes.func,
-    theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary']),
+    theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary', 'text']),
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     wide: PropTypes.bool,
   };

@@ -1,66 +1,55 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { noop } from 'lodash';
 
-import Button from 'components/shared/Button';
-import {
-  Container,
-  Description,
-  Title,
-  ButtonRow,
-  CancelButton,
-} from './styles';
+import Modal from 'components/shared/Modal';
+
+import { Actions, Action, Content, Message } from './styles';
 
 class ConfirmationModal extends Component {
   static propTypes = {
+    children: PropTypes.any,
+    isConfirming: PropTypes.bool,
     isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onConfirm: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
-    onClose: noop,
-  };
-
-  onConfirm = async () => {
-    const { onClose, onConfirm } = this.props;
-
-    await onConfirm();
-    onClose();
+    isConfirming: false,
   };
 
   render() {
     const {
-      isOpen,
-      submitting,
-      onClose,
-      onCancel,
-      title,
       children,
+      isConfirming,
+      isOpen,
+      onCancel,
+      onConfirm,
+      title,
     } = this.props;
 
     return (
-      <Container
+      <Modal
+        contentLabel="Confirmation Modal"
+        fluid
         isOpen={isOpen}
-        onRequestClose={onClose}
-        contentLabel="DApp Modal"
+        shouldCloseOnOverlayClick={false}
+        title={title}
       >
-        <Title>{title}</Title>
-        <Description>{children}</Description>
+        <Content>
+          {children && <Message>{children}</Message>}
 
-        <ButtonRow>
-          <Button
-            wide
-            disabled={submitting}
-            isLoading={submitting}
-            onClick={this.onConfirm}
-          >
-            Confirm
-          </Button>
-          <CancelButton onClick={onCancel} disabled={submitting}>
-            Cancel
-          </CancelButton>
-        </ButtonRow>
-      </Container>
+          <Actions>
+            <Action isLoading={isConfirming} onClick={onConfirm} wide>
+              Continue
+            </Action>
+            <Action onClick={onCancel} theme="text">
+              Cancel
+            </Action>
+          </Actions>
+        </Content>
+      </Modal>
     );
   }
 }

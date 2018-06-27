@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 
@@ -36,38 +36,40 @@ class AppDepositForm extends Component {
     } = this.props;
 
     return (
-      <form onSubmit={handleSubmit}>
-        <Field
-          component={AmountInput}
-          autofocus
-          type="number"
-          label="Amount"
-          name="amount"
-          placeholder="0.0"
-          innerLabel="MOBI"
-        />
-        <Caption>Only put in as much as you’re willing to spend.</Caption>
-        <Button
-          fullWidth
-          theme="secondary"
-          disabled={invalid || loading}
-          onClick={this.showConfirmation}
-        >
-          Submit Deposit
-        </Button>
+      <Fragment>
+        <form onSubmit={handleSubmit}>
+          <Field
+            component={AmountInput}
+            autofocus
+            type="number"
+            label="Amount"
+            name="amount"
+            placeholder="0.0"
+            innerLabel="MOBI"
+          />
+          <Caption>Only put in as much as you’re willing to spend.</Caption>
+          <Button
+            fullWidth
+            theme="secondary"
+            disabled={invalid || loading}
+            onClick={this.showConfirmation}
+          >
+            Submit Deposit
+          </Button>
+        </form>
 
         <ConfirmationModal
-          title="Are you sure you want to deposit this much?"
-          submitting={loading}
-          onConfirm={handleSubmit}
+          isConfirming={loading}
           isOpen={confirmationShown}
+          onCancel={this.hideConfirmation}
+          onConfirm={handleSubmit}
+          title="Are you sure you want to deposit this much?"
         >
-          {
-            'The developer can take these coins at any point in time. We recommend depositing in smaller increments of '
-          }
-          <b>10</b> or <b>100</b>, depending on how much you need to play.
+          The developer can take these coins at any point in time. We recommend
+          depositing in smaller increments of <b>10</b> or <b>100</b>, depending
+          on how much you need to play.
         </ConfirmationModal>
-      </form>
+      </Fragment>
     );
   }
 }
