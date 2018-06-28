@@ -74,7 +74,8 @@ export const requestsReducer = createReducer(
           success: false,
           isFetching: false,
         },
-        errors: [serializedError, ...state.errors],
+        // Keep only 10 latest errors in redux store
+        errors: [serializedError, ...state.errors.slice(0, 4)],
       };
     },
     [requestActions.resetRequest]: (state, name) =>
