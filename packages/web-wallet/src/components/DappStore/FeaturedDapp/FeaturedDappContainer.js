@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { getFeaturedApp } from 'state/requests';
+import { getFeaturedApp } from 'state/apps';
 import { getIsAuthorized } from 'state/auth';
 
 import FeaturedDapp from './FeaturedDapp';

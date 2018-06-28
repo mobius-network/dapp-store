@@ -1,5 +1,5 @@
 import { Operation } from 'stellar-sdk';
-import { takeLatest, take, select, spawn, call, put } from 'redux-saga/effects';
+import { takeLatest, select, spawn, call, put } from 'redux-saga/effects';
 
 import {
   submitTransaction,
@@ -7,8 +7,7 @@ import {
   assets,
 } from '@mobius-network/core';
 
-import { requestActions } from 'state/requests/reducer';
-import { matchFetchSuccess } from 'state/requests/matchers';
+import { fetchStart } from 'state/requests/reducer';
 import { accountActions, getMasterAccount } from 'state/account';
 import { getPublicKeyFor, getSecretKeyFor } from 'state/auth/selectors';
 import { appActions, getAppAccount } from 'state/apps';
@@ -46,16 +45,16 @@ export function* createApp(app, amount, meta) {
     account,
   });
 
-  yield put(requestActions.fetchStart(
+  yield call(
+    fetchStart,
     {
       name: 'createAppAccount',
       payload: createAppTransaction,
       fetcher: submitTransaction,
     },
     meta
-  ));
+  );
 
-  yield take(matchFetchSuccess('createAppAccount'));
   yield call(startAppAccountWatcher, app);
 }
 

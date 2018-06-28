@@ -1,23 +1,18 @@
-import { takeLatest, take, select, put } from 'redux-saga/effects';
+import { takeLatest, call, select } from 'redux-saga/effects';
 import { Auth } from '@mobius-network/mobius-client-js';
 
 import { getSecretKeyFor, getPublicKeyFor } from 'state/auth/selectors';
 import { appActions } from 'state/apps/reducer';
-import { requestActions } from 'state/requests/reducer';
-import { matchFetchSuccess } from 'state/requests/matchers';
+import { fetchStart } from 'state/requests/reducer';
 
 export function* openDapp({ payload: app }) {
   const tab = window.open('', '_blank');
 
   try {
-    yield put(requestActions.fetchStart({
+    const { data: challenge } = yield call(fetchStart, {
       name: 'getChallenge',
       payload: app.auth_url,
-    }));
-
-    const {
-      payload: { data: challenge },
-    } = yield take(matchFetchSuccess('getChallenge'));
+    });
 
     const appSecretKey = yield select(getSecretKeyFor, {
       accountNumber: app.id,
@@ -33,7 +28,7 @@ export function* openDapp({ payload: app }) {
       accountNumber: app.id,
     });
 
-    yield put(requestActions.fetchStart({
+    const { data: token } = yield call(fetchStart, {
       name: 'postChallenge',
       method: 'POST',
       payload: [
@@ -43,11 +38,7 @@ export function* openDapp({ payload: app }) {
           public_key: appPublicKey,
         },
       ],
-    }));
-
-    const {
-      payload: { data: token },
-    } = yield take(matchFetchSuccess('postChallenge'));
+    });
 
     const finalUrl = `${app.url}/?token=${token}`;
     tab.location.href = finalUrl;

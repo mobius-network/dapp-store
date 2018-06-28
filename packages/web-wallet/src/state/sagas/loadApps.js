@@ -1,28 +1,39 @@
 import { delay } from 'redux-saga';
 import { all, fork, call, select, take, put, cancel } from 'redux-saga/effects';
+import { normalize, schema } from 'normalizr';
 
 import { safeLoadAccount } from '@mobius-network/core';
 import { apiUrl } from 'utils';
 
 import { createSaga } from 'state/utils';
-import { requestActions } from 'state/requests/reducer';
-import { matchFetchSuccess } from 'state/requests/matchers';
+import { fetchStart, requestActions } from 'state/requests/reducer';
 import { getPublicKeyFor, getIsAuthorized } from 'state/auth/selectors';
 import { authActions } from 'state/auth/reducer';
 import { appActions } from 'state/apps/reducer';
+import { getApps } from 'state/apps/selectors';
 
 const watchers = {};
 
 export function* loadAppAccount(app) {
-  try {
-    const publicKey = yield select(getPublicKeyFor, { accountNumber: app.id });
-    const account = yield call(safeLoadAccount, publicKey);
+  const publicKey = yield select(getPublicKeyFor, { accountNumber: app.id });
 
-    yield put(appActions.setAppAccount({ account, app }));
-    return { account, app };
+  try {
+    const { appAccount } = yield call(fetchStart, {
+      name: 'loadAppAccount',
+      fetcher: safeLoadAccount,
+      payload: publicKey,
+      serialize: result => ({
+        appAccount: result,
+        entities: {
+          appAccounts: {
+            [app.id]: result,
+          },
+        },
+      }),
+    });
+
+    return { account: appAccount, app };
   } catch (error) {
-    // TODO: use fetchStart to `safeLoadAccount` and error handling
-    yield put(requestActions.fetchFail({ name: 'loadAppAccount', error }));
     return {};
   }
 }
@@ -46,17 +57,17 @@ export function* stopAppAccountWatcher() {
     yield cancel(watchers[appId]);
     delete watchers[appId];
 
-    yield put(appActions.setAppAccount({ account: undefined, app: { id: appId } }));
+    yield put(requestActions.deleteEntities({
+      appAccounts: [appId],
+    }));
   }
 }
 
 export function* loadAppAccounts() {
-  const {
-    payload: { data },
-  } = yield take(matchFetchSuccess('apps'));
+  const apps = yield select(getApps);
 
   // Attempt to load all accounts
-  const pairs = yield all(data.apps.map(app => call(loadAppAccount, app)));
+  const pairs = yield all(apps.map(app => call(loadAppAccount, app)));
 
   // Start watching only apps with created accounts
   yield all(pairs
@@ -67,6 +78,7 @@ export function* loadAppAccounts() {
 
   // Cancel all watchers on logout
   yield take(authActions.logout);
+
   Object.entries(watchers).forEach(([appId, watcher]) => {
     watcher.cancel();
     delete watchers[appId];
@@ -74,13 +86,19 @@ export function* loadAppAccounts() {
 }
 
 export function* loadApps({ meta }) {
-  yield put(requestActions.fetchStart(
+  yield call(
+    fetchStart,
     {
       name: 'apps',
       payload: `${apiUrl}/app_store/all`,
+      serialize: ({ apps }) => {
+        const appModel = new schema.Entity('apps');
+
+        return normalize(apps, [appModel]);
+      },
     },
     meta
-  ));
+  );
 
   const isAuthorized = yield select(getIsAuthorized);
 

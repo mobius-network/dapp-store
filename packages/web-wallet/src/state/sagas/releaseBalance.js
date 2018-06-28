@@ -1,10 +1,9 @@
-import { select, put, take } from 'redux-saga/effects';
+import { call, select, put } from 'redux-saga/effects';
 
 import { submitTransaction, mergeAppAccount } from '@mobius-network/core';
 
 import { createSaga } from 'state/utils';
-import { requestActions } from 'state/requests/reducer';
-import { matchFetchSuccess } from 'state/requests/matchers';
+import { fetchStart } from 'state/requests/reducer';
 import { getPublicKeyFor, getSecretKeyFor } from 'state/auth/selectors';
 import { appActions, getAppAccount } from 'state/apps';
 
@@ -22,15 +21,12 @@ export function* releaseAppBalance({ payload: { app, name }, meta }) {
     masterAccountPublicKey,
   });
 
-  yield put(requestActions.fetchStart({
+  yield call(fetchStart, {
     name,
     payload: transaction,
     fetcher: submitTransaction,
-  }));
+  });
 
-  yield take(matchFetchSuccess(name));
-
-  // TODO: verify which app was just released
   yield put(appActions.stopWatching(app.id));
 
   meta.resolve();

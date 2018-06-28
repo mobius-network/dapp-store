@@ -1,9 +1,11 @@
-import { get, isEmpty } from 'lodash';
+import { get } from 'lodash';
 import { createSelector } from 'reselect';
 
 export const getOperationName = (_, { operation } = {}) => operation;
+export const getEntityName = (_, { entity } = {}) => entity;
 
 export const getRequests = state => state.requests;
+export const getAllEntities = state => state.requests.entities;
 export const getLastError = state => state.requests.errors[0];
 
 export const getResponse = createSelector(
@@ -21,21 +23,13 @@ export const getIsSuccess = createSelector(
   (requests, operation) => get(requests, `${operation}.success`)
 );
 
-export const getApps = state => get(state, 'requests.apps.data.apps');
+export const getEntitiesObject = createSelector(
+  [getAllEntities, getEntityName],
+  (entities, name) => entities[name] || {}
+);
 
-export const getFeaturedApp = createSelector([getApps], apps => {
-  if (isEmpty(apps)) {
-    return undefined;
-  }
-
-  const featuredApps = apps.filter(app => app.featured);
-
-  if (isEmpty(featuredApps)) {
-    return apps[0];
-  }
-
-  return featuredApps[Math.floor(Math.random() * featuredApps.length)];
-});
+export const getEntities = createSelector([getEntitiesObject], entities =>
+  Object.values(entities));
 
 export const getLastErrorMessage = createSelector(
   [getLastError],
