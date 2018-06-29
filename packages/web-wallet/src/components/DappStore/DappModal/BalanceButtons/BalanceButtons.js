@@ -58,16 +58,18 @@ class BalanceButtons extends Component {
           )}
         </ButtonRow>
 
-        <ButtonRow>
-          <Button
-            fullWidth
-            theme="secondary"
-            onClick={releaseAppBalance.mutate}
-            isLoading={releaseAppBalance.loading}
-          >
-            Release Funds
-          </Button>
-        </ButtonRow>
+        {mobiAppBalance > 0 && (
+          <ButtonRow>
+            <Button
+              fullWidth
+              theme="secondary"
+              onClick={releaseAppBalance.mutate}
+              isLoading={releaseAppBalance.loading}
+            >
+              Release Funds
+            </Button>
+          </ButtonRow>
+        )}
 
         <AppBalance>
           DApp balance:{' '}
