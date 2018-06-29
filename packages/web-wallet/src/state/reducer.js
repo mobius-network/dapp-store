@@ -6,14 +6,12 @@ import { reducer as formReducer } from 'redux-form';
 import { authReducer } from './auth';
 import { accountReducer } from './account';
 import { transfersReducer } from './transfers';
-import { appsReducer } from './apps';
 import { requestsReducer } from './requests';
 
 const rootReducer = combineReducers({
   auth: authReducer,
   masterAccount: accountReducer,
   transfers: transfersReducer,
-  apps: appsReducer,
   requests: requestsReducer,
   form: formReducer,
 });

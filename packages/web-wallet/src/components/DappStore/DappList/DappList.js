@@ -9,7 +9,7 @@ class DappList extends Component {
   };
 
   render() {
-    const { result: { apps } = {} } = this.props.loadApps;
+    const { apps } = this.props;
 
     return (
       <Fragment>

@@ -63,7 +63,11 @@ export class RestQuery extends Component {
         return store.dispatch(requestAction);
       });
 
-      this.updateState({ loading: false, result });
+      this.updateState({
+        result,
+        loading: false,
+        entities: result.entities,
+      });
 
       return result;
     } catch (error) {

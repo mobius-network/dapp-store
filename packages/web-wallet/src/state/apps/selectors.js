@@ -1,4 +1,4 @@
-// import { get } from 'lodash';
+import { isEmpty } from 'lodash';
 import { createSelector } from 'reselect';
 import {
   getAsset,
@@ -6,12 +6,34 @@ import {
   createAssetBalanceSelector,
 } from 'state/account/selectors';
 
+import { getEntities, getEntitiesObject } from 'state/requests';
+
 export const getAppId = (_, { appId } = {}) => appId;
 
-export const getAppAccounts = state => state.apps;
+export const getApps = state => getEntities(state, { entity: 'apps' });
+
+export const getFeaturedApp = createSelector([getApps], apps => {
+  if (isEmpty(apps)) {
+    return undefined;
+  }
+
+  const featuredApps = apps.filter(app => app.featured);
+
+  if (isEmpty(featuredApps)) {
+    return apps[0];
+  }
+
+  return featuredApps[Math.floor(Math.random() * featuredApps.length)];
+});
+
+export const getAppAccountsObject = state =>
+  getEntitiesObject(state, { entity: 'appAccounts' });
+
+export const getAppAccounts = state =>
+  getEntities(state, { entity: 'appAccounts' });
 
 export const getAppAccount = createSelector(
-  [getAppAccounts, getAppId],
+  [getAppAccountsObject, getAppId],
   (accounts, id) => accounts[id]
 );
 
