@@ -52,7 +52,12 @@ export default class PasswordForm extends Component {
               />
 
               <ActionsRow>
-                <Button isLoading={submitting} onClick={handleSubmit} fullWidth>
+                <Button
+                  type="submit"
+                  isLoading={submitting}
+                  onClick={handleSubmit}
+                  fullWidth
+                >
                   Continue
                 </Button>
               </ActionsRow>
