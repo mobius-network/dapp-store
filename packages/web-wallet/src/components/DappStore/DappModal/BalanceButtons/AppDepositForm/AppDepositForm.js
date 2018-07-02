@@ -30,6 +30,7 @@ class AppDepositForm extends Component {
     const { confirmationShown } = this.state;
 
     const {
+      amount,
       invalid,
       handleSubmit,
       depositApp: { loading },
@@ -52,7 +53,8 @@ class AppDepositForm extends Component {
             fullWidth
             theme="secondary"
             disabled={invalid || loading}
-            onClick={this.showConfirmation}
+            isLoading={amount < 100 && loading}
+            onClick={amount > 100 ? this.showConfirmation : handleSubmit}
           >
             Submit Deposit
           </Button>

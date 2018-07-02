@@ -1,5 +1,5 @@
 import { compose } from 'redux';
-import { reduxForm, SubmissionError } from 'redux-form';
+import { formValues, reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 
 import { getAssetBalance } from 'state/account';
@@ -33,5 +33,6 @@ export default compose(
         throw new SubmissionError(error);
       }
     },
-  })
+  }),
+  formValues('amount')
 )(AppDepositForm);
