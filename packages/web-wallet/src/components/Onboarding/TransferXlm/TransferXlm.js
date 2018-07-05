@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { number } from 'prop-types';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
@@ -9,7 +10,8 @@ import { WaitingTitle, WaitingCaption, CompleteMessage } from './styles';
 
 class TransferXlm extends Component {
   static propTypes = {
-    balance: number,
+    balance: PropTypes.number,
+    t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -20,40 +22,45 @@ class TransferXlm extends Component {
     this.props.watchAccount();
   }
 
-  renderWaiting = () => (
-    <Fragment>
-      <WaitingTitle>Transfer from External Wallet</WaitingTitle>
-      <WaitingCaption>
-        Use the following address to transfer XLM to your DApp Store wallet.
-      </WaitingCaption>
-      <CurrentAddress />
-    </Fragment>
-  );
+  renderWaiting = () => {
+    const { t } = this.props;
 
-  renderComplete = () => (
-    <Fragment>
-      <CompleteMessage assetName="XLM" assetValue={this.props.balance} />
-      <Button
-        fullWidth
-        to="/onboarding/mobi"
-        onClick={this.props.completeAccountCreation}
-      >
-        Continue
-      </Button>
-    </Fragment>
-  );
+    return (
+      <Fragment>
+        <WaitingTitle>{t('transferXlm.waitingTitle')}</WaitingTitle>
+        <WaitingCaption>{t('transferXlm.waitingCaption')}</WaitingCaption>
+        <CurrentAddress />
+      </Fragment>
+    );
+  };
+
+  renderComplete = () => {
+    const { t } = this.props;
+
+    return (
+      <Fragment>
+        <CompleteMessage assetName="XLM" assetValue={this.props.balance} />
+        <Button
+          fullWidth
+          to="/onboarding/mobi"
+          onClick={this.props.completeAccountCreation}
+        >
+          {t('shared.continue')}
+        </Button>
+      </Fragment>
+    );
+  };
 
   render() {
-    const { balance } = this.props;
+    const { balance, t } = this.props;
 
     return (
       <Pane theme="wide" withGradient>
         <Pane.Header
-          title="Transfer XLM"
+          title={t('transferXlm.title')}
           caption={
             <Fragment>
-              DApp store transaction fees are charged from your XLM balance. You
-              need to have a minimum balance of <b>3 XLM</b>.
+              {t('transferXlm.caption')} <b>3 XLM</b>.
             </Fragment>
           }
         />
@@ -65,4 +72,4 @@ class TransferXlm extends Component {
   }
 }
 
-export default TransferXlm;
+export default translate()(TransferXlm);

@@ -1,0 +1,12 @@
+{
+  "translation": {
+    "passwordForm": {
+      "caption": "We’ll create a new Mobius wallet for you to make purchases in the DApp store.",
+      "loginButton": "Login",
+      "loginText": "Already have an account?",
+      "passwordConfirmationLabel": "Confirm Password",
+      "passwordFieldLabel": "Set Password",
+      "title": "Sign Up"
+    }
+  }
+}

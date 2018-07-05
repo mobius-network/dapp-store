@@ -1,0 +1,14 @@
+{
+  "translation": {
+    "transferMobi": {
+      "caption": "You’ll use your MOBI to make purchases within DApps.",
+      "title": "Add MOBI",
+      "completeText": "Added successfully!",
+      "completeButton": "Browse DApp store",
+      "purchaseTabTitle": "Use XLM",
+      "externalTransferTabTitle": "External Transfer",
+      "externalTransferTitle": "Transfer from External Wallet",
+      "externalTransferCaption": "Use the following address to transfer MOBI to your DApp Store wallet."
+    }
+  }
+}

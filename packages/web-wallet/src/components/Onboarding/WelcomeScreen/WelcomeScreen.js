@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Button from 'components/shared/Button';
 import {
@@ -15,34 +17,38 @@ import {
 } from './styles';
 
 class WelcomeScreen extends Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
+
   render() {
+    const { t } = this.props;
+
     return (
       <Container theme="wide">
         <Header>
           <HeaderLogo theme="dark" />
-          <HeaderTitle>Welcome to Mobius!</HeaderTitle>
-          <HeaderCaption>
-            Let’s finish setting up your Mobius wallet
-          </HeaderCaption>
+          <HeaderTitle>{t('welcomeScreen.title')}</HeaderTitle>
+          <HeaderCaption>{t('welcomeScreen.caption')}</HeaderCaption>
         </Header>
 
         <Content>
           <ContentSteps>
             <ContentStep>
               <ContentStepIcon>1</ContentStepIcon>
-              <ContentStepText>Transfer XLM to your new wallet</ContentStepText>
+              <ContentStepText>{t('welcomeScreen.firstStep')}</ContentStepText>
             </ContentStep>
             <ContentStep>
               <ContentStepIcon>2</ContentStepIcon>
-              <ContentStepText>Add MOBI to your wallet</ContentStepText>
+              <ContentStepText>{t('welcomeScreen.secondStep')}</ContentStepText>
             </ContentStep>
             <ContentStep>
               <ContentStepIcon>3</ContentStepIcon>
-              <ContentStepText>Start making purchases in DApps</ContentStepText>
+              <ContentStepText>{t('welcomeScreen.thirdStep')}</ContentStepText>
             </ContentStep>
           </ContentSteps>
           <Button to="/onboarding/xlm" fullWidth>
-            Continue
+            {t('shared.continue')}
           </Button>
         </Content>
       </Container>
@@ -50,4 +56,4 @@ class WelcomeScreen extends Component {
   }
 }
 
-export default WelcomeScreen;
+export default translate()(WelcomeScreen);

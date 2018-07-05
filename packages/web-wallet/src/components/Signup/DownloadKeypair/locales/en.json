@@ -1,0 +1,9 @@
+{
+  "translation": {
+    "downloadKeypair": {
+      "caption": "You will need your key pair file in order to login to you wallet in the future. Store it in a safe place.",
+      "downloadButton": "Download Now",
+      "title": "Download Your Key Pair"
+    }
+  }
+}

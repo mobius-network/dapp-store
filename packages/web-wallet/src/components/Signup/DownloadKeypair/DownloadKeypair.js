@@ -1,31 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
 
-export default class DownloadKeypair extends Component {
+class DownloadKeypair extends Component {
   static propTypes = {
     downloadKeypair: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   render() {
-    const { downloadKeypair } = this.props;
+    const { downloadKeypair, t } = this.props;
 
     return (
       <Pane theme="wide" withGradient>
         <Pane.Header
-          title="Download Your Key Pair"
-          caption="You will need your key pair file in order to login to you wallet in the future.
-            Store it in a safe place."
+          title={t('downloadKeypair.title')}
+          caption={t('downloadKeypair.caption')}
         />
 
         <Pane.Section>
           <Button theme="secondary" onClick={downloadKeypair} fullWidth>
-            Download Now
+            {t('downloadKeypair.downloadButton')}
           </Button>
         </Pane.Section>
       </Pane>
     );
   }
 }
+
+export default translate()(DownloadKeypair);
