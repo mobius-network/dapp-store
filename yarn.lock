@@ -5512,6 +5512,10 @@ hoist-non-react-statics@^2.3.0, hoist-non-react-statics@^2.5.0:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.0.tgz#d2ca2dfc19c5a91c5a6615ce8e564ef0347e2a40"
 
+hoist-non-react-statics@^2.3.1:
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
+
 home-or-tmp@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-2.0.0.tgz#e36c3f2d2cae7d746a857e38d18d5f32a7882db8"
@@ -5571,6 +5575,12 @@ html-minifier@^3.2.3:
     param-case "2.1.x"
     relateurl "0.2.x"
     uglify-js "3.3.x"
+
+html-parse-stringify2@2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/html-parse-stringify2/-/html-parse-stringify2-2.0.1.tgz#dc5670b7292ca158b7bc916c9a6735ac8872834a"
+  dependencies:
+    void-elements "^2.0.1"
 
 html-tags@^2.0.0:
   version "2.0.0"
@@ -5701,6 +5711,14 @@ husky@^0.14.3:
 hyphenate-style-name@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/hyphenate-style-name/-/hyphenate-style-name-1.0.2.tgz#31160a36930adaf1fc04c6074f7eb41465d4ec4b"
+
+i18next-browser-languagedetector@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/i18next-browser-languagedetector/-/i18next-browser-languagedetector-2.2.0.tgz#5f41abe61964a56dce70102ab31c3ed5d5866edc"
+
+i18next@^11.3.3:
+  version "11.3.3"
+  resolved "https://registry.yarnpkg.com/i18next/-/i18next-11.3.3.tgz#a6ca3c2a93237c94e242bda7df3411588ac37ea1"
 
 iconv-lite@0.4.19:
   version "0.4.19"
@@ -9421,6 +9439,14 @@ react-hot-loader@^4.1.2:
     react-lifecycles-compat "^3.0.4"
     shallowequal "^1.0.2"
 
+react-i18next@^7.7.0:
+  version "7.7.0"
+  resolved "https://registry.yarnpkg.com/react-i18next/-/react-i18next-7.7.0.tgz#0cf044b9222179a6ddc5af248a2291ac580652fd"
+  dependencies:
+    hoist-non-react-statics "^2.3.1"
+    html-parse-stringify2 "2.0.1"
+    prop-types "^15.6.0"
+
 react-icon-base@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-icon-base/-/react-icon-base-2.1.0.tgz#a196e33fdf1e7aaa1fda3aefbb68bdad9e82a79d"
@@ -11746,6 +11772,10 @@ vm-browserify@0.0.4:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+void-elements@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
 w3c-hr-time@^1.0.1:
   version "1.0.1"

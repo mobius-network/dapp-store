@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { merge } = require('lodash');
 const HoneybadgerSourceMapPlugin = require('@honeybadger-io/webpack');
 
