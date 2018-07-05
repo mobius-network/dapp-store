@@ -1,18 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
+import { translate } from 'react-i18next';
 
 import Grid from 'components/shared/Grid';
 import Header from 'components/Header';
 import SidebarNav from 'components/shared/SidebarNav';
 
-export default class DevelopersLayout extends Component {
+class DevelopersLayout extends Component {
   static propTypes = {
     component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+    t: PropTypes.func.isRequired,
   };
 
   render() {
-    const { component: RouterComponent, ...rest } = this.props;
+    const { component: RouterComponent, t, ...rest } = this.props;
 
     return (
       <Route
@@ -26,7 +28,7 @@ export default class DevelopersLayout extends Component {
                 <Grid.Col width={[1, 1, 1 / 6]}>
                   <SidebarNav title="DEVELOPERS">
                     <SidebarNav.Item to="/developers">
-                      Getting Started
+                      {t('navigation.developers.gettingStarted')}
                     </SidebarNav.Item>
                   </SidebarNav>
                 </Grid.Col>
@@ -41,3 +43,5 @@ export default class DevelopersLayout extends Component {
     );
   }
 }
+
+export default translate()(DevelopersLayout);

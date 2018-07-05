@@ -1,18 +1,20 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import PrivateRoute from 'components/shared/PrivateRoute';
 import Grid from 'components/shared/Grid';
 import SidebarNav from 'components/shared/SidebarNav';
 import Header from 'components/Header';
 
-export default class WalletLayout extends Component {
+class WalletLayout extends Component {
   static propTypes = {
     component: PropTypes.oneOfType([PropTypes.element, PropTypes.func]),
+    t: PropTypes.func.isRequired,
   };
 
   render() {
-    const { component: RouterComponent, ...rest } = this.props;
+    const { component: RouterComponent, t, ...rest } = this.props;
 
     return (
       <PrivateRoute
@@ -26,13 +28,13 @@ export default class WalletLayout extends Component {
                 <Grid.Col width={[1, 1, 1 / 6]}>
                   <SidebarNav title="WALLET">
                     <SidebarNav.Item to="/wallet">
-                      Wallet Balance
+                      {t('navigation.wallet.balance')}
                     </SidebarNav.Item>
                     <SidebarNav.Item to="/wallet/add">
-                      Add Funds
+                      {t('navigation.wallet.addFunds')}
                     </SidebarNav.Item>
                     <SidebarNav.Item to="/wallet/withdraw">
-                      Withdraw Funds
+                      {t('navigation.wallet.withdrawFunds')}
                     </SidebarNav.Item>
                   </SidebarNav>
                 </Grid.Col>
@@ -47,3 +49,5 @@ export default class WalletLayout extends Component {
     );
   }
 }
+
+export default translate()(WalletLayout);

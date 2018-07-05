@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Grid from 'components/shared/Grid';
 import Link from 'components/shared/Link';
@@ -9,6 +10,7 @@ import { Container, ListContainer, ListItem } from './styles';
 
 class Header extends Component {
   static propTypes = {
+    t: PropTypes.func.isRequired,
     theme: PropTypes.oneOf(['default', 'dark']),
   };
 
@@ -19,7 +21,7 @@ class Header extends Component {
   getLinkTheme = () => (this.props.theme === 'dark' ? 'light' : 'default');
 
   renderSessionActions() {
-    const { isAuthorized, theme } = this.props;
+    const { isAuthorized, t, theme } = this.props;
 
     if (isAuthorized) {
       return (
@@ -33,11 +35,13 @@ class Header extends Component {
       <Fragment>
         <ListItem>
           <Link to="/login" theme={this.getLinkTheme()}>
+            {t('navigation.login')}
             Login
           </Link>
         </ListItem>
         <ListItem>
           <Link to="/signup" theme={this.getLinkTheme()}>
+            {t('navigation.signUp')}
             Sign Up
           </Link>
         </ListItem>
@@ -46,7 +50,7 @@ class Header extends Component {
   }
 
   render() {
-    const { isAuthorized } = this.props;
+    const { isAuthorized, t } = this.props;
 
     return (
       <Container>
@@ -66,12 +70,12 @@ class Header extends Component {
                   <ListContainer>
                     <ListItem>
                       <Link to="/" theme={this.getLinkTheme()}>
-                        Browse DApps
+                        {t('navigation.browseDapps')}
                       </Link>
                     </ListItem>
                     <ListItem>
                       <Link to="/developers" theme={this.getLinkTheme()}>
-                        Developers
+                        {t('navigation.developers.developers')}
                       </Link>
                     </ListItem>
                   </ListContainer>
@@ -92,4 +96,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default translate()(Header);

@@ -1,3 +1,22 @@
 {
-  "translation": {}
+  "translation": {
+    "navigation": {
+      "browseDapps": "Browse DApps",
+      "copyright": "Copyright",
+      "developers": {
+        "developers": "Developers",
+        "gettingStarted": "Getting Started"
+      },
+      "login": "Login",
+      "logout": "Logout",
+      "privacy": "Privacy",
+      "signUp": "Sign Up",
+      "terms": "Terms of Service",
+      "wallet": {
+        "addFunds": "Add Funds",
+        "balance": "Wallet Balance",
+        "withdrawFunds": "Withdraw Funds"
+      }
+    }
+  }
 }

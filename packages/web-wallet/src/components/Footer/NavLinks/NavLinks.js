@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Grid from 'components/shared/Grid';
 import Logo from 'components/shared/Logo';
 import Link from 'components/shared/Link';
 import { ListContainer, ListItem } from './styles';
 
-export default class NavLinks extends Component {
+class NavLinks extends Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
+
   render() {
+    const { t } = this.props;
+
     return (
       <Grid>
         <Grid.Row flexWrap="wrap" justifyContent={['center', 'flex-start']}>
@@ -15,17 +23,20 @@ export default class NavLinks extends Component {
           </Grid.Col>
           <Grid.Col width={[1, 3 / 4]}>
             <ListContainer>
-              <ListItem />
               <ListItem>
                 <Link href="https://mobius.network/terms">
-                  Terms of Service
+                  {t('navigation.terms')}
                 </Link>
               </ListItem>
               <ListItem>
-                <Link href="https://mobius.network/privacy">Privacy</Link>
+                <Link href="https://mobius.network/privacy">
+                  {t('navigation.privacy')}
+                </Link>
               </ListItem>
               <ListItem>
-                <Link href="https://mobius.network/copyright">Copyright</Link>
+                <Link href="https://mobius.network/copyright">
+                  {t('navigation.copyright')}
+                </Link>
               </ListItem>
             </ListContainer>
           </Grid.Col>
@@ -34,3 +45,5 @@ export default class NavLinks extends Component {
     );
   }
 }
+
+export default translate()(NavLinks);
