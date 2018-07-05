@@ -10,18 +10,15 @@ export const Container = styled.div`
   width: 128px;
 `;
 
-export const Image = styled.div`
-  background-image: url(${props => props.url});
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  height: 100%;
-  width: 100%;
+export const Image = styled.img`
+  border: none;
+  left: 50%;
+  max-height: 100%;
+  max-width: 100%;
   position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const Placeholder = styled.div`

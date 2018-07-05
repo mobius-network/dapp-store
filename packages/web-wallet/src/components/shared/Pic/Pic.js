@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isString } from 'lodash';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/fontawesome-free-regular';
 
@@ -11,16 +12,29 @@ class Pic extends Component {
     url: PropTypes.string.isRequired,
   };
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isPlaceholderVisible: !isString(props.url),
+    };
+  }
+
+  handleImageError = () => this.setState({ isPlaceholderVisible: true });
+
   render() {
     const { className, url } = this.props;
+    const { isPlaceholderVisible } = this.state;
 
     return (
       <Container className={className}>
-        {url && <Image url={url} />}
-
-        <Placeholder>
-          <FontAwesomeIcon icon={faImage} />
-        </Placeholder>
+        {isPlaceholderVisible ? (
+          <Placeholder>
+            <FontAwesomeIcon icon={faImage} />
+          </Placeholder>
+        ) : (
+          <Image src={url} onError={this.handleImageError} />
+        )}
       </Container>
     );
   }
