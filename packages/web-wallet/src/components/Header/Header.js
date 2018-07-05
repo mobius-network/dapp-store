@@ -36,13 +36,11 @@ class Header extends Component {
         <ListItem>
           <Link to="/login" theme={this.getLinkTheme()}>
             {t('navigation.login')}
-            Login
           </Link>
         </ListItem>
         <ListItem>
           <Link to="/signup" theme={this.getLinkTheme()}>
             {t('navigation.signUp')}
-            Sign Up
           </Link>
         </ListItem>
       </Fragment>
@@ -50,7 +48,7 @@ class Header extends Component {
   }
 
   render() {
-    const { isAuthorized, t } = this.props;
+    const { t } = this.props;
 
     return (
       <Container>
@@ -61,33 +59,19 @@ class Header extends Component {
             </Grid.Col>
 
             <Grid.Col width={[1, 2 / 3]} px={[0, 2]}>
-              <Grid.Row alignItems={['center']} flexWrap="wrap" pt={[10, 0]}>
-                <Grid.Col
-                  justifyContent={['flex-end']}
-                  width={['auto', 1 / 2]}
-                  pr={[0, 25]}
-                >
-                  <ListContainer>
-                    <ListItem>
-                      <Link to="/" theme={this.getLinkTheme()}>
-                        {t('navigation.browseDapps')}
-                      </Link>
-                    </ListItem>
-                    <ListItem>
-                      <Link to="/developers" theme={this.getLinkTheme()}>
-                        {t('navigation.developers.developers')}
-                      </Link>
-                    </ListItem>
-                  </ListContainer>
-                </Grid.Col>
-
-                <Grid.Col
-                  width={['auto', 1 / 2]}
-                  pt={[isAuthorized ? 10 : 0, 0]}
-                >
-                  <ListContainer>{this.renderSessionActions()}</ListContainer>
-                </Grid.Col>
-              </Grid.Row>
+              <ListContainer>
+                <ListItem>
+                  <Link to="/" theme={this.getLinkTheme()}>
+                    {t('navigation.browseDapps')}
+                  </Link>
+                </ListItem>
+                <ListItem>
+                  <Link to="/developers" theme={this.getLinkTheme()}>
+                    {t('navigation.developers.developers')}
+                  </Link>
+                </ListItem>
+                {this.renderSessionActions()}
+              </ListContainer>
             </Grid.Col>
           </Grid.Row>
         </Grid>
