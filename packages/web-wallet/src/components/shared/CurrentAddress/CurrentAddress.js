@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/fontawesome-free-solid';
 
@@ -8,11 +9,12 @@ import { Container, Info, InfoText, InfoIcon } from './styles';
 
 class CurrentAddress extends Component {
   static propTypes = {
-    publicKey: string.isRequired,
+    publicKey: PropTypes.string.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   render() {
-    const { publicKey } = this.props;
+    const { publicKey, t } = this.props;
 
     return (
       <Container>
@@ -21,11 +23,11 @@ class CurrentAddress extends Component {
           <InfoIcon>
             <FontAwesomeIcon icon={faCircleNotch} spin />
           </InfoIcon>
-          <InfoText>Waiting for transfer…</InfoText>
+          <InfoText>{t('currentAddress.statusText')}</InfoText>
         </Info>
       </Container>
     );
   }
 }
 
-export default CurrentAddress;
+export default translate()(CurrentAddress);

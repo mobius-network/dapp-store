@@ -1,0 +1,10 @@
+{
+  "translation": {
+    "login": {
+      "caption": "Access your wallet and submit DApps.",
+      "signupButton": "Sign Up",
+      "signupText": "Don’t have an account?",
+      "title": "Login"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { object } from 'prop-types';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import {
   Container,
@@ -13,11 +14,14 @@ import {
 
 class AppAllocation extends Component {
   static propTypes = {
-    app: object.isRequired,
+    app: PropTypes.object.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   render() {
-    const { app, mobiBalance, xlmBalance } = this.props;
+    const {
+      app, mobiBalance, t, xlmBalance,
+    } = this.props;
     const { loading, mutate } = this.props.releaseAppBalance;
 
     if (!xlmBalance && !mobiBalance) {
@@ -34,7 +38,7 @@ class AppAllocation extends Component {
         </AppBalance>
         <ButtonContainer>
           <ReleaseButton theme="secondary" onClick={mutate} isLoading={loading}>
-            Release balance
+            {t('appAllocation.releaseButton')}
           </ReleaseButton>
         </ButtonContainer>
       </Container>
@@ -42,4 +46,4 @@ class AppAllocation extends Component {
   }
 }
 
-export default AppAllocation;
+export default translate()(AppAllocation);

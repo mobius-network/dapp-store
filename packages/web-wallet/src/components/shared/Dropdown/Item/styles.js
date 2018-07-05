@@ -33,6 +33,8 @@ const itemStyles = `
   }
 
   &:disabled {
+    background: ${colors.bgLight};
+    color: ${colors.textLight}
     opacity: 0.8;
     pointer-events: none;
   }

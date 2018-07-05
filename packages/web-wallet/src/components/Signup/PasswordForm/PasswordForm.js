@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import FormRow from 'components/shared/FormRow';
@@ -9,9 +10,10 @@ import Button from 'components/shared/Button';
 
 import { LoginBlock, LoginBlockText, ActionsRow } from './styles';
 
-export default class PasswordForm extends Component {
+class PasswordForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   state = {
@@ -22,15 +24,15 @@ export default class PasswordForm extends Component {
     this.setState({ isPasswordVisible });
 
   render() {
-    const { submitting, handleSubmit } = this.props;
+    const { submitting, handleSubmit, t } = this.props;
     const { isPasswordVisible } = this.state;
 
     return (
       <Fragment>
         <Pane theme="wide" withGradient>
           <Pane.Header
-            title="Sign Up"
-            caption="We’ll create a new Mobius wallet for you to make purchases in the DApp store."
+            title={t('passwordForm.title')}
+            caption={t('passwordForm.caption')}
           />
 
           <Pane.Section>
@@ -38,7 +40,7 @@ export default class PasswordForm extends Component {
               <FormRow
                 component={PasswordInput}
                 isPasswordVisible={isPasswordVisible}
-                label="Set Password"
+                label={t('passwordForm.passwordFieldLabel')}
                 name="password"
                 onVisibilityToggle={this.handlePasswordVisibilityToggle}
               />
@@ -46,7 +48,7 @@ export default class PasswordForm extends Component {
               <FormRow
                 component={PasswordInput}
                 isPasswordVisible={isPasswordVisible}
-                label="Confirm Password"
+                label={t('passwordForm.passwordConfirmationLabel')}
                 name="passwordConfirmation"
                 onVisibilityToggle={this.handlePasswordVisibilityToggle}
               />
@@ -58,7 +60,7 @@ export default class PasswordForm extends Component {
                   onClick={handleSubmit}
                   fullWidth
                 >
-                  Continue
+                  {t('shared.continue')}
                 </Button>
               </ActionsRow>
             </form>
@@ -67,10 +69,10 @@ export default class PasswordForm extends Component {
 
         <AdditionalInfo>
           <LoginBlock>
-            <LoginBlockText>Already have an account?</LoginBlockText>
+            <LoginBlockText>{t('passwordForm.loginText')}</LoginBlockText>
 
             <Button to="/login" theme="primaryOutline" wide>
-              Login
+              {t('passwordForm.loginButton')}
             </Button>
           </LoginBlock>
         </AdditionalInfo>
@@ -78,3 +80,5 @@ export default class PasswordForm extends Component {
     );
   }
 }
+
+export default translate()(PasswordForm);

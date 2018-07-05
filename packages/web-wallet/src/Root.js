@@ -3,8 +3,10 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { I18nextProvider } from 'react-i18next';
 
 import { notify } from 'utils/honeybadger';
+import i18n from 'utils/i18n';
 
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import DevelopersLayout from 'components/layouts/DevelopersLayout';
@@ -30,20 +32,22 @@ class Root extends Component {
 
     return (
       <Provider store={store}>
-        <PersistGate loading={<Loading />} persistor={persistor}>
-          <Router>
-            <DefaultLayout>
-              <Switch>
-                <Route path="/" component={DappStore} exact />
-                <PublicLayout path="/login" component={Login} exact />
-                <PublicLayout path="/signup" component={Signup} exact />
-                <OnboardingLayout path="/onboarding" component={Onboarding} />
-                <WalletLayout path="/wallet" component={Wallet} />
-                <DevelopersLayout path="/developers" component={Developers} />
-              </Switch>
-            </DefaultLayout>
-          </Router>
-        </PersistGate>
+        <I18nextProvider i18n={i18n}>
+          <PersistGate loading={<Loading />} persistor={persistor}>
+            <Router>
+              <DefaultLayout>
+                <Switch>
+                  <Route path="/" component={DappStore} exact />
+                  <PublicLayout path="/login" component={Login} exact />
+                  <PublicLayout path="/signup" component={Signup} exact />
+                  <OnboardingLayout path="/onboarding" component={Onboarding} />
+                  <WalletLayout path="/wallet" component={Wallet} />
+                  <DevelopersLayout path="/developers" component={Developers} />
+                </Switch>
+              </DefaultLayout>
+            </Router>
+          </PersistGate>
+        </I18nextProvider>
       </Provider>
     );
   }

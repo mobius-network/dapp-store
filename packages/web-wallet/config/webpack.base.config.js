@@ -18,75 +18,85 @@ const baseConfig = {
     modules: [resolve(root, 'src'), 'node_modules'],
   },
   module: {
-    rules: [{
-      test: /\.js?$/,
-      loader: 'babel-loader',
-      exclude: /node_modules/,
-      include: [
-        resolve(root, 'src'),
-        resolve(root, 'node_modules', 'js-xdr'),
-        resolve(root, '../core/src'),
-        resolve(root, '../components/src'),
-      ],
-    },
-    {
-      test: /\.(png|jpg|gif)$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          mimetype: 'image/png',
-          name: 'images/[name].[ext]',
-        },
-      }],
-    },
-    {
-      test: /\.eot(\?v=\d+.\d+.\d+)?$/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]',
-        },
-      }],
-    },
-    {
-      test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          mimetype: 'application/font-woff',
-          name: 'fonts/[name].[ext]',
-        },
-      }],
-    },
-    {
-      test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          mimetype: 'application/octet-stream',
-          name: 'fonts/[name].[ext]',
-        },
-      }],
-    },
-    {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: [{
-        loader: 'url-loader',
-        options: {
-          limit: 8192,
-          mimetype: 'image/svg+xml',
-          name: 'images/[name].[ext]',
-        },
-      }],
-    },
-    {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader',
-      include: /flexboxgrid/,
-    },
+    rules: [
+      {
+        test: /\.js?$/,
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        include: [
+          resolve(root, 'src'),
+          resolve(root, 'node_modules', 'js-xdr'),
+          resolve(root, '../core/src'),
+          resolve(root, '../components/src'),
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            mimetype: 'image/png',
+            name: 'images/[name].[ext]',
+          },
+        }],
+      },
+      {
+        test: /\.eot(\?v=\d+.\d+.\d+)?$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'fonts/[name].[ext]',
+          },
+        }],
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            mimetype: 'application/font-woff',
+            name: 'fonts/[name].[ext]',
+          },
+        }],
+      },
+      {
+        test: /\.[ot]tf(\?v=\d+.\d+.\d+)?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            mimetype: 'application/octet-stream',
+            name: 'fonts/[name].[ext]',
+          },
+        }],
+      },
+      {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            mimetype: 'image/svg+xml',
+            name: 'images/[name].[ext]',
+          },
+        }],
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+        include: /flexboxgrid/,
+      },
+      {
+        test: /locales\/.*?\.json$/,
+        use: [{
+          loader: resolve(root, 'src', 'utils', 'locale-loader', 'index.js'),
+          options: {
+            pattern: '/components/**/locales/[locale].json',
+          },
+        }],
+      },
     ],
   },
   node: {
@@ -126,5 +136,7 @@ const copyPluginPatterns = [
 ];
 
 module.exports = {
-  baseConfig, webAppPluginConfig, copyPluginPatterns,
+  baseConfig,
+  copyPluginPatterns,
+  webAppPluginConfig,
 };

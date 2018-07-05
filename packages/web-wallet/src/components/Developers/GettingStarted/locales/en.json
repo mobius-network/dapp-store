@@ -1,0 +1,17 @@
+{
+  "translation": {
+    "gettingStarted": {
+      "apiDocsLink": "API Docs",
+      "caption": "Everything you need to start developing and earning money in the DApp store.",
+      "mobiDeveloperSlack": "MOBI Developer Slack",
+      "mobiusWhitePaperLink": "Mobius White Paper",
+      "overviewDesc": "Watch this video to get an overview of how DApps allow you to quickly and easily accept cryptocurrency payments.",
+      "overviewTitle": "Overview",
+      "resourcesDesc": "Use these resources to begin learning how to create and launch your DApp.",
+      "resourcesTitle": "Resources",
+      "stellarSdkLink": "Stellar SDK",
+      "stellarVideosLink": "Stellar Explainer Videos",
+      "title": "Getting Started"
+    }
+  }
+}

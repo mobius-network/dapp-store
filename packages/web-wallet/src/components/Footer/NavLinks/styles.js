@@ -9,10 +9,6 @@ export const ListContainer = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-
-  @media screen and (min-width: ${breakpoints.md}) {
-    justify-content: start;
-  }
 `;
 
 export const ListItem = styled.li`

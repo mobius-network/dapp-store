@@ -7,16 +7,29 @@ import { ToggleButton, Title, Icon } from './styles';
 
 class Toggle extends Component {
   static propTypes = {
+    fluid: PropTypes.bool,
     children: PropTypes.any,
     disabled: PropTypes.bool,
     toggle: PropTypes.func,
   };
 
+  static defaultProps = {
+    fluid: false,
+    disabled: false,
+  };
+
   render() {
-    const { children, disabled, toggle } = this.props;
+    const {
+      className, children, disabled, fluid, toggle,
+    } = this.props;
 
     return (
-      <ToggleButton onClick={toggle} disabled={disabled}>
+      <ToggleButton
+        className={className}
+        disabled={disabled}
+        fluid={fluid}
+        onClick={toggle}
+      >
         <Title>{children}</Title>
         <Icon>
           <FontAwesomeIcon icon={faCaretDown} />

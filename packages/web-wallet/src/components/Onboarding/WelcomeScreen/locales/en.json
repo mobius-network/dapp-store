@@ -1,0 +1,11 @@
+{
+  "translation": {
+    "welcomeScreen": {
+      "caption": "Let’s finish setting up your Mobius wallet",
+      "firstStep": "Transfer XLM to your new wallet",
+      "secondStep": "Add MOBI to your wallet",
+      "thirdStep": "Start making purchases in DApps",
+      "title": "Welcome to Mobius!"
+    }
+  }
+}

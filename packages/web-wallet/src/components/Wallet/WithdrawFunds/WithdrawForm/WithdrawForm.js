@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Operation } from 'stellar-sdk';
-import { string } from 'prop-types';
+import PropTypes from 'prop-types';
+import { translate, Trans } from 'react-i18next';
 import { assets } from '@mobius-network/core';
 import { SubmissionError } from 'redux-form';
 
@@ -13,7 +14,8 @@ import { FormFields, AvailableBalance, FormActions } from './styles';
 
 class WithdrawForm extends Component {
   static propTypes = {
-    asset: string.isRequired,
+    asset: PropTypes.string.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   getAssetName = () => (this.props.asset === 'native' ? 'XLM' : 'MOBI');
@@ -40,6 +42,7 @@ class WithdrawForm extends Component {
     const {
       balance,
       handleSubmit,
+      t,
       withdrawAsset: { loading },
     } = this.props;
 
@@ -50,11 +53,14 @@ class WithdrawForm extends Component {
             <Grid.Row>
               <Grid.Col width={1 / 2}>
                 <FormRow
-                  caption={`Enter the amount of ${this.getAssetName()} to transfer`}
+                  caption={
+                    <Trans i18nKey="withdrawForm.amountFieldCaption">
+                      {this.getAssetName()}
+                    </Trans>
+                  }
                   component={TextInput}
-                  label="Amount"
+                  label={t('withdrawForm.amountFieldLabel')}
                   name="amount"
-                  placeholder="amount"
                 />
                 <AvailableBalance>
                   Available balance: {balance} {this.getAssetName()}
@@ -62,11 +68,10 @@ class WithdrawForm extends Component {
               </Grid.Col>
               <Grid.Col width={1 / 2}>
                 <FormRow
-                  caption="Enter the address of the external wallet"
+                  caption={t('withdrawForm.destinationFieldCaption')}
                   component={TextInput}
-                  label="Wallet Address"
+                  label={t('withdrawForm.destinationFieldLabel')}
                   name="destination"
-                  placeholder="destination"
                 />
               </Grid.Col>
             </Grid.Row>
@@ -74,7 +79,7 @@ class WithdrawForm extends Component {
         </FormFields>
         <FormActions>
           <Button disabled={loading} isLoading={loading} type="submit" wide>
-            Submit transfer
+            {t('withdrawForm.submitButton')}
           </Button>
         </FormActions>
       </form>
@@ -82,4 +87,4 @@ class WithdrawForm extends Component {
   }
 }
 
-export default WithdrawForm;
+export default translate()(WithdrawForm);

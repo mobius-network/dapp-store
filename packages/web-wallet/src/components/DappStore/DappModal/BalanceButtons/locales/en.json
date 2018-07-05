@@ -1,0 +1,9 @@
+{
+  "translation": {
+    "balanceButtons": {
+      "depositFunds": "Deposit Funds",
+      "releaseFunds": "Release Funds",
+      "balance": "DApp balance: "
+    }
+  }
+}

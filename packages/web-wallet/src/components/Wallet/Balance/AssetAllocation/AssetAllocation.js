@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/fontawesome-free-solid';
 
@@ -24,6 +25,7 @@ class AssetAllocation extends Component {
     asset: PropTypes.string.isRequired,
     balance: PropTypes.number.isRequired,
     gradient: PropTypes.oneOf(['left', 'right']),
+    t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -35,16 +37,16 @@ class AssetAllocation extends Component {
   getFormattedAsset = () => (this.props.asset === 'native' ? 'XLM' : 'MOBI');
 
   renderCaption = () => {
-    const { asset } = this.props;
+    const { asset, t } = this.props;
 
     return asset === 'native'
-      ? 'Each DApp you use puts a hold on 3 XLM until you close out the DApp balance.'
-      : 'Use your MOBI to make purchases within DApps.';
+      ? t('assetAllocation.captionNative')
+      : t('assetAllocation.captionMobi');
   };
 
   render() {
     const {
-      asset, balance, appsBalance, gradient,
+      asset, balance, appsBalance, gradient, t,
     } = this.props;
 
     return (
@@ -66,7 +68,7 @@ class AssetAllocation extends Component {
                 {appsBalance ? `+ ${this.getFormattedBalance(appsBalance)}` : 0}{' '}
                 {this.getFormattedAsset()}
               </b>{' '}
-              Allocated to DApps
+              {t('assetAllocation.allocatedBalance')}
             </AllocatedBalance>
           </Header>
           <Content>
@@ -76,7 +78,9 @@ class AssetAllocation extends Component {
                 <ButtonIcon>
                   <FontAwesomeIcon icon={faPlus} />
                 </ButtonIcon>
-                <span>Deposit {this.getFormattedAsset()}</span>
+                <span>
+                  {t('assetAllocation.deposit')} {this.getFormattedAsset()}
+                </span>
               </Button>
             </ButtonContainer>
           </Content>
@@ -86,4 +90,4 @@ class AssetAllocation extends Component {
   }
 }
 
-export default AssetAllocation;
+export default translate()(AssetAllocation);

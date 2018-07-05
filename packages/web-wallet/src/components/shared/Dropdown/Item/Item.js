@@ -31,7 +31,7 @@ class Item extends Component {
         {children}
       </LinkItem>
     ) : (
-      <ButtonItem {...rest} onClick={this.handleClick}>
+      <ButtonItem {...rest} disabled={disabled} onClick={this.handleClick}>
         {children}
       </ButtonItem>
     );

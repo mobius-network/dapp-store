@@ -1,0 +1,8 @@
+{
+  "translation": {
+    "appAllocations": {
+      "title": "Balance Allocation",
+      "caption": "These are the DApps that you’ve transferred MOBI to but haven’t spent yet. Release a DApp balance if you’d like to return the coins to your primary balance."
+    }
+  }
+}

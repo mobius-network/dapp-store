@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Header from 'components/Header';
 import Grid from 'components/shared/Grid';
@@ -19,7 +21,13 @@ import {
 } from './styles';
 
 class DappStore extends Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
+
   render() {
+    const { t } = this.props;
+
     return (
       <Container>
         <HeaderContainer>
@@ -28,10 +36,8 @@ class DappStore extends Component {
             <Grid.Row flexWrap="wrap">
               <Grid.Col width={[1, 1, 1 / 2]}>
                 <TitleContainer>
-                  <Title>DApp Store</Title>
-                  <Subtitle>
-                    Checkout great apps that you can pay for using MOBI.
-                  </Subtitle>
+                  <Title>{t('dappStore.title')}</Title>
+                  <Subtitle>{t('dappStore.subtitle')}</Subtitle>
                 </TitleContainer>
               </Grid.Col>
               <Grid.Col width={[1, 1, 1 / 2]}>
@@ -45,12 +51,9 @@ class DappStore extends Component {
           <Grid.Row flexWrap="wrap">
             <Grid.Col width={[1, 1, 1 / 4]}>
               <Submit>
-                <SubmitTitle>Submit Your Own DApps</SubmitTitle>
-                <SubmitText>
-                  The Mobius SDK makes it easy to start collecting coin
-                  payments.
-                </SubmitText>
-                <Button to="/developers/">GET STARTED</Button>
+                <SubmitTitle>{t('dappStore.submitTitle')}</SubmitTitle>
+                <SubmitText>{t('dappStore.submitText')}</SubmitText>
+                <Button to="/developers/">{t('dappStore.submitButton')}</Button>
               </Submit>
             </Grid.Col>
 
@@ -64,4 +67,4 @@ class DappStore extends Component {
   }
 }
 
-export default DappStore;
+export default translate()(DappStore);

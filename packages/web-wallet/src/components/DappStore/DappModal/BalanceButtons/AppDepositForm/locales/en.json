@@ -1,0 +1,11 @@
+{
+  "translation": {
+    "appDepositForm": {
+      "amountLabel": "Amount",
+      "caption": "Only put in as much as you’re willing to spend.",
+      "confirmationText": "The developer can take these coins at any point in time. We recommend depositing in smaller increments of 10 or 100, depending on how much you need to play.",
+      "confirmationTitle": "Are you sure you want to deposit this much?",
+      "submitButton": "Submit Deposit"
+    }
+  }
+}
