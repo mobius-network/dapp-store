@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import FormRow from 'components/shared/FormRow';
 import PasswordInput from 'components/shared/PasswordInput';
@@ -11,6 +12,7 @@ class LoginForm extends Component {
   static propTypes = {
     change: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   onKeyUpload = (event, [keyfile] = []) => {
@@ -28,26 +30,26 @@ class LoginForm extends Component {
   };
 
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, t } = this.props;
 
     return (
       <form onSubmit={handleSubmit}>
         <FormRow
           component={PasswordInput}
           name="password"
-          placeholder="Password"
+          placeholder={t('loginForm.passwordField')}
         />
 
         <FormRow
           component={FileInput}
           name="keyfile"
           onChange={this.onKeyUpload}
-          placeholder="Keyfile"
+          placeholder={t('loginForm.keyfileField')}
         />
 
         <ActionsRow>
           <Button onClick={handleSubmit} fullWidth>
-            Login
+            {t('loginForm.submitButton')}
           </Button>
         </ActionsRow>
       </form>
@@ -55,4 +57,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default translate()(LoginForm);

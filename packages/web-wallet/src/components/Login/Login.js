@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import AdditionalInfo from 'components/shared/AdditionalInfo';
@@ -6,15 +8,18 @@ import Button from 'components/shared/Button';
 
 import { LoginForm, SignupBlock, SignupBlockText } from './styles';
 
-export default class Login extends Component {
+class Login extends Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
+
   render() {
+    const { t } = this.props;
+
     return (
       <Fragment>
         <Pane theme="wide" withGradient>
-          <Pane.Header
-            title="Login"
-            caption="Access your wallet and submit DApps."
-          />
+          <Pane.Header title={t('login.title')} caption={t('login.caption')} />
 
           <Pane.Section>
             <LoginForm />
@@ -23,10 +28,10 @@ export default class Login extends Component {
 
         <AdditionalInfo>
           <SignupBlock>
-            <SignupBlockText>Don’t have an account?</SignupBlockText>
+            <SignupBlockText>{t('login.signupText')}</SignupBlockText>
 
             <Button to="/signup" theme="primaryOutline" wide>
-              Sign Up
+              {t('login.signupButton')}
             </Button>
           </SignupBlock>
         </AdditionalInfo>
@@ -34,3 +39,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default translate()(Login);
