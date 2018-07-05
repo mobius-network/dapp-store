@@ -21,7 +21,7 @@ const themes = {
   },
   secondary: {
     background: 'transparent',
-    borderColor: '#587894',
+    borderColor: '#C9CDDF',
     color: '#587894',
   },
 };
@@ -75,12 +75,12 @@ class Dropdown extends Component {
   };
 
   render() {
-    const { children, theme } = this.props;
+    const { className, children, theme } = this.props;
     const { isOpen } = this.state;
 
     return (
       <ThemeProvider theme={themes[theme]}>
-        <Container>
+        <Container className={className}>
           <div ref={this.dropdownRef}>
             {Children.map(children, child =>
               cloneElement(child, {

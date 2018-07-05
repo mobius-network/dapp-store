@@ -21,6 +21,7 @@ export const ToggleButton = styled.button`
   transition: 0.3s;
   user-select: none;
   white-space: nowrap;
+  width: ${props => (props.fluid ? '100%' : 'auto')};
 
   &:hover {
     opacity: 0.8;
@@ -40,6 +41,8 @@ export const ToggleButton = styled.button`
 export const Icon = styled.span``;
 
 export const Title = styled.span`
+  align-items: center;
+  display: flex;
   flex: 1;
   font-family: ${fonts.nunitoSans};
   font-size: ${fontSizes.default};

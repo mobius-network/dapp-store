@@ -14,10 +14,10 @@ export default class Logo extends Component {
   };
 
   render() {
-    const { withName } = this.props;
+    const { className, withName } = this.props;
 
     return (
-      <LogoLink to="/" title="Mobius Wallet">
+      <LogoLink to="/" title="Mobius Wallet" className={className}>
         <LogoImage />
 
         {withName && (

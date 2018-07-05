@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import Logo from 'components/shared/Logo';
 import {
   colors,
   fontSizes,
@@ -14,6 +15,26 @@ export const MainRow = styled.div`
   display: flex;
   min-height: 30px;
   padding: 15px 0;
+`;
+
+export const MainRowContent = styled.div`
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0 0 15px;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    justify-content: flex-start;
+    margin: 0;
+  }
+`;
+
+export const MainRowLogo = styled(Logo)`
+  margin-right: 25px;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    margin-right: 35px;
+  }
 `;
 
 export const SecondaryRow = styled.div`
