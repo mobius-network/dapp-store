@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { number } from 'prop-types';
+import PropTypes from 'prop-types';
+import { translate, Trans } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import Tabs from 'components/shared/Tabs';
@@ -11,7 +12,8 @@ import { CompleteMessage, WaitingTitle, WaitingCaption } from './styles';
 
 class AddFunds extends Component {
   static propTypes = {
-    balance: number,
+    balance: PropTypes.number,
+    t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -45,17 +47,22 @@ class AddFunds extends Component {
   getAssetName = () =>
     this.props.match.params.asset === 'native' ? 'XLM' : 'MOBI';
 
-  renderPurchase = () =>
-    this.props.match.params.asset === 'native' ? (
-      <Pane.Section>
-        <WaitingTitle>Transfer from External Wallet</WaitingTitle>
-        <WaitingCaption>
-          Use the following address to transfer {this.getAssetName()} to your
-          DApp Store wallet.
-        </WaitingCaption>
-        <CurrentAddress />
-      </Pane.Section>
-    ) : (
+  renderPurchase = () => {
+    const { match, t } = this.props;
+
+    if (match.params.asset === 'native') {
+      return (
+        <Pane.Section>
+          <WaitingTitle>{t('addFunds.waitingTitle')}</WaitingTitle>
+          <WaitingCaption>
+            <Trans i18nKey="addFunds.waitingText">{this.getAssetName()}</Trans>
+          </WaitingCaption>
+          <CurrentAddress />
+        </Pane.Section>
+      );
+    }
+
+    return (
       <Tabs>
         <Tabs.Tab title="Use XLM" fluid>
           <Pane.Section>
@@ -64,37 +71,43 @@ class AddFunds extends Component {
         </Tabs.Tab>
         <Tabs.Tab title="External Transfer" fluid>
           <Pane.Section>
-            <WaitingTitle>Transfer from External Wallet</WaitingTitle>
+            <WaitingTitle>{t('addFunds.waitingTitle')}</WaitingTitle>
             <WaitingCaption>
-              Use the following address to transfer {this.getAssetName()} to
-              your DApp Store wallet.
+              <Trans i18nKey="addFunds.waitingText">
+                {this.getAssetName()}
+              </Trans>
             </WaitingCaption>
             <CurrentAddress />
           </Pane.Section>
         </Tabs.Tab>
       </Tabs>
     );
+  };
 
-  renderComplete = () => (
-    <Pane.Section>
-      <CompleteMessage
-        assetName={this.getAssetName()}
-        assetValue={this.state.delta}
-        message="Added successfully!"
-      />
-      <Button theme="secondary" onClick={this.resetPathPayment} fullWidth>
-        Done
-      </Button>
-    </Pane.Section>
-  );
+  renderComplete = () => {
+    const { t } = this.props;
+
+    return (
+      <Pane.Section>
+        <CompleteMessage
+          assetName={this.getAssetName()}
+          assetValue={this.state.delta}
+          message={t('addFunds.completeText')}
+        />
+        <Button theme="secondary" onClick={this.resetPathPayment} fullWidth>
+          {t('addFunds.completeButton')}
+        </Button>
+      </Pane.Section>
+    );
+  };
 
   render() {
     const { delta } = this.state;
-    const { pathPaymentCompleted } = this.props;
+    const { pathPaymentCompleted, t } = this.props;
 
     return (
       <Pane theme="narrow">
-        <Pane.Header title={`Add ${this.getAssetName()}`} />
+        <Pane.Header title={`${t('addFunds.title')} ${this.getAssetName()}`} />
 
         {delta > 0 && pathPaymentCompleted
           ? this.renderComplete()
@@ -104,4 +117,4 @@ class AddFunds extends Component {
   }
 }
 
-export default AddFunds;
+export default translate()(AddFunds);

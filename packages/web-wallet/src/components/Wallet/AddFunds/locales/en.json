@@ -1,0 +1,11 @@
+{
+  "translation": {
+    "addFunds": {
+      "title": "Add",
+      "completeText": "Added successfully!",
+      "completeButton": "Done",
+      "waitingTitle": "Transfer from External Wallet",
+      "waitingText": "Use the following address to transfer <0>{{assetName}}</0> to your DApp Store wallet."
+    }
+  }
+}

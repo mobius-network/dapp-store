@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Grid from 'components/shared/Grid';
 import Pane from 'components/shared/Pane';
@@ -6,15 +8,18 @@ import AppAllocation from './AppAllocation';
 import { AppsList } from './styles';
 
 class AppAllocations extends Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
+
   render() {
-    const { apps } = this.props;
+    const { apps, t } = this.props;
 
     return (
       <Pane theme="narrow">
         <Pane.Header
-          title="Balance Allocation"
-          caption="These are the DApps that you’ve transferred MOBI to but haven’t spent yet.
-            Release a DApp balance if you’d like to return the coins to your primary balance."
+          title={t('appAllocations.title')}
+          caption={t('appAllocations.caption')}
         />
         <AppsList>
           <Grid>
@@ -28,4 +33,4 @@ class AppAllocations extends Component {
   }
 }
 
-export default AppAllocations;
+export default translate()(AppAllocations);

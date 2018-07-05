@@ -11,7 +11,7 @@ class FormRow extends Component {
     disabled: PropTypes.bool,
     name: PropTypes.string,
     label: PropTypes.string,
-    caption: PropTypes.string,
+    caption: PropTypes.any,
     validate: PropTypes.func,
     placeholder: PropTypes.string,
   };

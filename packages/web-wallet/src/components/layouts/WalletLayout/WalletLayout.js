@@ -26,7 +26,7 @@ class WalletLayout extends Component {
             <Grid>
               <Grid.Row flexWrap="wrap">
                 <Grid.Col width={[1, 1, 1 / 6]}>
-                  <SidebarNav title="WALLET">
+                  <SidebarNav title={t('walletLayout.navigationTitle')}>
                     <SidebarNav.Item to="/wallet">
                       {t('navigation.wallet.balance')}
                     </SidebarNav.Item>

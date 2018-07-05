@@ -26,7 +26,7 @@ class DevelopersLayout extends Component {
             <Grid>
               <Grid.Row flexWrap="wrap">
                 <Grid.Col width={[1, 1, 1 / 6]}>
-                  <SidebarNav title="DEVELOPERS">
+                  <SidebarNav title={t('developersLayout.navigationTitle')}>
                     <SidebarNav.Item to="/developers">
                       {t('navigation.developers.gettingStarted')}
                     </SidebarNav.Item>
