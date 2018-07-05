@@ -1,33 +1,38 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 
 import {
-  SectionHeading,
-  SectionDesc,
-  VideoContainer,
-  VideoElement,
-  Links,
   LinkContainer,
   LinkItem,
   LinkItemTitle,
   LinkItemUrl,
+  Links,
+  SectionDesc,
+  SectionHeading,
+  VideoContainer,
+  VideoElement,
 } from './styles';
 
 class GettingStarted extends Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
+
   render() {
+    const { t } = this.props;
+
     return (
       <Pane theme="wide">
         <Pane.Header
-          title="Getting Started"
-          caption="Everything you need to start developing and earning money in the DApp store."
+          title={t('gettingStarted.title')}
+          caption={t('gettingStarted.caption')}
         />
         <Pane.Section>
-          <SectionHeading>Overview</SectionHeading>
-          <SectionDesc>
-            Watch this video to get an overview of how DApps allow you to
-            quickly and easily accept cryptocurrency payments.
-          </SectionDesc>
+          <SectionHeading>{t('gettingStarted.overviewTitle')}</SectionHeading>
+          <SectionDesc>{t('gettingStarted.overviewDesc')}</SectionDesc>
 
           <VideoContainer>
             <VideoElement
@@ -37,11 +42,8 @@ class GettingStarted extends Component {
             />
           </VideoContainer>
 
-          <SectionHeading>Resources</SectionHeading>
-          <SectionDesc>
-            Use these resources to begin learning how to create and launch your
-            DApp.
-          </SectionDesc>
+          <SectionHeading>{t('gettingStarted.resourcesTitle')}</SectionHeading>
+          <SectionDesc>{t('gettingStarted.resourcesDesc')}</SectionDesc>
           <Links>
             <LinkContainer>
               <LinkItem
@@ -49,7 +51,7 @@ class GettingStarted extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <LinkItemTitle>API Docs</LinkItemTitle>
+                <LinkItemTitle>{t('gettingStarted.apiDocsLink')}</LinkItemTitle>
                 <LinkItemUrl>mobius.network/docs</LinkItemUrl>
               </LinkItem>
             </LinkContainer>
@@ -59,7 +61,9 @@ class GettingStarted extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <LinkItemTitle>Mobius White Paper</LinkItemTitle>
+                <LinkItemTitle>
+                  {t('gettingStarted.mobiusWhitePaperLink')}
+                </LinkItemTitle>
                 <LinkItemUrl>docsend.com/view/ru9kz86</LinkItemUrl>
               </LinkItem>
             </LinkContainer>
@@ -69,7 +73,9 @@ class GettingStarted extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <LinkItemTitle>Stellar SDK</LinkItemTitle>
+                <LinkItemTitle>
+                  {t('gettingStarted.stellarSdkLink')}
+                </LinkItemTitle>
                 <LinkItemUrl>
                   stellar.org/developers/js-stellar-sdk/reference/
                 </LinkItemUrl>
@@ -81,7 +87,9 @@ class GettingStarted extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <LinkItemTitle>Stellar Explainer Videos</LinkItemTitle>
+                <LinkItemTitle>
+                  {t('gettingStarted.stellarVideosLink')}
+                </LinkItemTitle>
                 <LinkItemUrl>lumenauts.com</LinkItemUrl>
               </LinkItem>
             </LinkContainer>
@@ -91,7 +99,9 @@ class GettingStarted extends Component {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <LinkItemTitle>MOBI Developer Slack</LinkItemTitle>
+                <LinkItemTitle>
+                  {t('gettingStarted.mobiDeveloperSlack')}
+                </LinkItemTitle>
                 <LinkItemUrl>mobius-network.slack.com</LinkItemUrl>
               </LinkItem>
             </LinkContainer>
@@ -102,4 +112,4 @@ class GettingStarted extends Component {
   }
 }
 
-export default GettingStarted;
+export default translate()(GettingStarted);
