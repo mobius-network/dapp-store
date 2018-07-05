@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {
   faTelegramPlane,
@@ -12,6 +13,7 @@ import {
   faMedium,
 } from '@fortawesome/fontawesome-free-brands';
 import { faEnvelope } from '@fortawesome/fontawesome-free-regular';
+import { translate } from 'react-i18next';
 
 import Modal from 'components/shared/Modal';
 
@@ -38,7 +40,11 @@ const socialUrls = {
   email: 'mailto:hello@mobius.network',
 };
 
-export default class SocialLinks extends Component {
+class SocialLinks extends Component {
+  static propTypes = {
+    t: PropTypes.func.isRequired,
+  };
+
   state = {
     isWeChatModalVisible: false,
   };
@@ -47,6 +53,7 @@ export default class SocialLinks extends Component {
     this.setState({ isWeChatModalVisible: !this.state.isWeChatModalVisible });
 
   render() {
+    const { t } = this.props;
     const { isWeChatModalVisible } = this.state;
 
     return (
@@ -127,7 +134,7 @@ export default class SocialLinks extends Component {
           fluid
           isOpen={isWeChatModalVisible}
           onRequestClose={this.toggleWeChatModal}
-          title="WeChat QR Code"
+          title={t('socialLinks.weChatModalTitle')}
         >
           <WeChatModalContent>
             <WeChatQrCode />
@@ -137,3 +144,5 @@ export default class SocialLinks extends Component {
     );
   }
 }
+
+export default translate()(SocialLinks);
