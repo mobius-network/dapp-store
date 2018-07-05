@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Button from 'components/shared/Button';
 import AppDepositForm from './AppDepositForm';
@@ -7,10 +8,11 @@ import { ButtonRow, AppBalance, AppBalanceAmount } from './styles';
 
 class BalanceButtons extends Component {
   static propTypes = {
-    openDapp: PropTypes.func.isRequired,
-    mobiAppBalance: PropTypes.number.isRequired,
     app: PropTypes.object.isRequired,
+    mobiAppBalance: PropTypes.number.isRequired,
+    openDapp: PropTypes.func.isRequired,
     releaseAppBalance: PropTypes.object.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -38,7 +40,9 @@ class BalanceButtons extends Component {
   render() {
     const { depositFormActive } = this.state;
 
-    const { app, mobiAppBalance, releaseAppBalance } = this.props;
+    const {
+      app, mobiAppBalance, releaseAppBalance, t,
+    } = this.props;
 
     return (
       <Fragment>
@@ -53,7 +57,7 @@ class BalanceButtons extends Component {
             <AppDepositForm app={app} onSuccess={this.hideDepositForm} />
           ) : (
             <Button onClick={this.showDepositForm} fullWidth theme="secondary">
-              Deposit Funds
+              {t('balanceButtons.depositFunds')}
             </Button>
           )}
         </ButtonRow>
@@ -66,13 +70,13 @@ class BalanceButtons extends Component {
               onClick={releaseAppBalance.mutate}
               isLoading={releaseAppBalance.loading}
             >
-              Release Funds
+              {t('balanceButtons.releaseFunds')}
             </Button>
           </ButtonRow>
         )}
 
         <AppBalance>
-          DApp balance:{' '}
+          {t('balanceButtons.balance')}
           <AppBalanceAmount>{mobiAppBalance} MOBI</AppBalanceAmount>
         </AppBalance>
       </Fragment>
@@ -80,4 +84,4 @@ class BalanceButtons extends Component {
   }
 }
 
-export default BalanceButtons;
+export default translate()(BalanceButtons);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { object, bool, func } from 'prop-types';
+import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import { faAngleRight } from '@fortawesome/fontawesome-free-solid';
 
 import Modal from 'components/shared/Modal';
@@ -21,14 +22,15 @@ import {
 
 class DappModal extends Component {
   static propTypes = {
-    app: object.isRequired,
-    isOpen: bool.isRequired,
-    onClose: func.isRequired,
+    app: PropTypes.object.isRequired,
+    isOpen: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   render() {
     const {
-      isOpen, onClose, app, mobiBalance,
+      isOpen, onClose, app, mobiBalance, t,
     } = this.props;
 
     return (
@@ -65,7 +67,9 @@ class DappModal extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <AppLinkTitle>Website</AppLinkTitle>
+                      <AppLinkTitle>
+                        {t('dappModal.appWebsiteLink')}
+                      </AppLinkTitle>
                       <AppLinkUrl>{app.website_url}</AppLinkUrl>
                       <AppLinkArrow icon={faAngleRight} />
                     </AppLink>
@@ -77,7 +81,9 @@ class DappModal extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <AppLinkTitle>Support</AppLinkTitle>
+                      <AppLinkTitle>
+                        {t('dappModal.appSupportLink')}
+                      </AppLinkTitle>
                       <AppLinkArrow icon={faAngleRight} />
                     </AppLink>
                   )}
@@ -91,4 +97,4 @@ class DappModal extends Component {
   }
 }
 
-export default DappModal;
+export default translate()(DappModal);

@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Button from 'components/shared/Button';
 import ConfirmationModal from 'components/shared/ConfirmationModal';
@@ -9,9 +10,10 @@ import { AmountInput, Caption } from './styles';
 
 class AppDepositForm extends Component {
   static propTypes = {
-    invalid: PropTypes.bool.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
     depositApp: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    invalid: PropTypes.bool.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
   state = {
@@ -34,6 +36,7 @@ class AppDepositForm extends Component {
       invalid,
       handleSubmit,
       depositApp: { loading },
+      t,
     } = this.props;
 
     return (
@@ -43,12 +46,12 @@ class AppDepositForm extends Component {
             component={AmountInput}
             autofocus
             type="number"
-            label="Amount"
+            label={t('appDepositForm.amountLabel')}
             name="amount"
             placeholder="0.0"
             innerLabel="MOBI"
           />
-          <Caption>Only put in as much as you’re willing to spend.</Caption>
+          <Caption>{t('appDepositForm.caption')}</Caption>
           <Button
             fullWidth
             theme="secondary"
@@ -56,7 +59,7 @@ class AppDepositForm extends Component {
             isLoading={amount < 100 && loading}
             onClick={amount > 100 ? this.showConfirmation : handleSubmit}
           >
-            Submit Deposit
+            {t('appDepositForm.submitButton')}
           </Button>
         </form>
 
@@ -65,15 +68,13 @@ class AppDepositForm extends Component {
           isOpen={confirmationShown}
           onCancel={this.hideConfirmation}
           onConfirm={handleSubmit}
-          title="Are you sure you want to deposit this much?"
+          title={t('appDepositForm.confirmationTitle')}
         >
-          The developer can take these coins at any point in time. We recommend
-          depositing in smaller increments of <b>10</b> or <b>100</b>, depending
-          on how much you need to play.
+          {t('appDepositForm.confirmationText')}
         </ConfirmationModal>
       </Fragment>
     );
   }
 }
 
-export default AppDepositForm;
+export default translate()(AppDepositForm);

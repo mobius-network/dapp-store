@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
+import { translate } from 'react-i18next';
 
 import Button from 'components/shared/Button';
 import DappModal from 'components/DappStore/DappModal';
@@ -26,6 +27,7 @@ class FeaturedDapp extends Component {
       url: PropTypes.string,
     }),
     isAuthorized: PropTypes.bool,
+    t: PropTypes.func.isRequired,
   };
 
   state = {
@@ -41,7 +43,7 @@ class FeaturedDapp extends Component {
   };
 
   render() {
-    const { app, isAuthorized } = this.props;
+    const { app, isAuthorized, t } = this.props;
     const { modalOpened } = this.state;
 
     if (isEmpty(app)) {
@@ -53,7 +55,7 @@ class FeaturedDapp extends Component {
         <Container theme="wide">
           <Content>
             <AppPic url={app.image_url} />
-            <Title>Featured DApp</Title>
+            <Title>{t('featuredDapp.title')}</Title>
             <AppName>{app.name}</AppName>
             <AppTagline>{app.tagline}</AppTagline>
           </Content>
@@ -65,14 +67,16 @@ class FeaturedDapp extends Component {
                 rel="noopener noreferrer"
                 href={app.featured_article_url}
               >
-                Read More on Medium
+                {t('featuredDapp.readMoreButton')}
               </ReadMoreButton>
             )}
 
             {isAuthorized ? (
-              <Button onClick={this.openModal}>GO TO APP</Button>
+              <Button onClick={this.openModal}>
+                {t('featuredDapp.goToAppButton')}
+              </Button>
             ) : (
-              <Button to="/login">GO TO APP</Button>
+              <Button to="/login">{t('featuredDapp.goToAppButton')}</Button>
             )}
           </Footer>
         </Container>
@@ -85,4 +89,4 @@ class FeaturedDapp extends Component {
   }
 }
 
-export default FeaturedDapp;
+export default translate()(FeaturedDapp);

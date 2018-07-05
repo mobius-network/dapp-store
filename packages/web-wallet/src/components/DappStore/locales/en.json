@@ -1,0 +1,11 @@
+{
+  "translation": {
+    "dappStore": {
+      "submitButton": "GET STARTED",
+      "submitText": "The Mobius SDK makes it easy to start collecting coin payments.",
+      "submitTitle": "Submit Your Own DApps",
+      "subtitle": "Checkout great apps that you can pay for using MOBI.",
+      "title": "DApp Store"
+    }
+  }
+}
