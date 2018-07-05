@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -8,18 +9,19 @@ import { Container, Text, CopyButton } from './styles';
 
 class CopyField extends Component {
   static propTypes = {
-    text: PropTypes.string,
     onCopy: PropTypes.func,
+    t: PropTypes.func.isRequired,
+    text: PropTypes.string,
   };
 
   render() {
-    const { onCopy, text } = this.props;
+    const { onCopy, t, text } = this.props;
 
     return (
       <Container>
         <Text>{text}</Text>
         <CopyToClipboard text={text} onCopy={onCopy}>
-          <CopyButton title="Copy to clipboard">
+          <CopyButton title={t('copyField.title')}>
             <FontAwesomeIcon icon={faCopy} fixedWidth />
           </CopyButton>
         </CopyToClipboard>
@@ -28,4 +30,4 @@ class CopyField extends Component {
   }
 }
 
-export default CopyField;
+export default translate()(CopyField);

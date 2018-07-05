@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import {
   Container,
@@ -14,12 +15,13 @@ class FileInput extends Component {
   static propTypes = {
     disabled: PropTypes.bool,
     input: PropTypes.object,
-    placeholder: PropTypes.string,
     meta: PropTypes.shape({
       error: PropTypes.string,
       dirty: PropTypes.bool,
       touched: PropTypes.bool,
     }),
+    placeholder: PropTypes.string,
+    t: PropTypes.func.isRequired,
   };
 
   constructor(props) {
@@ -47,8 +49,9 @@ class FileInput extends Component {
   render() {
     const {
       input: { name, value },
-      placeholder,
       meta: { error, dirty, touched },
+      placeholder,
+      t,
     } = this.props;
 
     const showError = error && (dirty || touched);
@@ -68,7 +71,7 @@ class FileInput extends Component {
           <LabelText showPlaceholder={showPlaceholder}>
             {showPlaceholder ? placeholder : fileName}
           </LabelText>
-          <LabelButton>Choose File</LabelButton>
+          <LabelButton>{t('fileInput.buttonText')}</LabelButton>
         </Label>
 
         {showError && <ErrorMessage>{error}</ErrorMessage>}
@@ -77,4 +80,4 @@ class FileInput extends Component {
   }
 }
 
-export default FileInput;
+export default translate()(FileInput);

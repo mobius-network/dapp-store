@@ -32,8 +32,8 @@ class Root extends Component {
 
     return (
       <Provider store={store}>
-        <PersistGate loading={<Loading />} persistor={persistor}>
-          <I18nextProvider i18n={i18n}>
+        <I18nextProvider i18n={i18n}>
+          <PersistGate loading={<Loading />} persistor={persistor}>
             <Router>
               <DefaultLayout>
                 <Switch>
@@ -46,8 +46,8 @@ class Root extends Component {
                 </Switch>
               </DefaultLayout>
             </Router>
-          </I18nextProvider>
-        </PersistGate>
+          </PersistGate>
+        </I18nextProvider>
       </Provider>
     );
   }

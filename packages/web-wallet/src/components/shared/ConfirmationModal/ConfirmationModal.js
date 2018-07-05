@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
 import Modal from 'components/shared/Modal';
 
@@ -12,6 +13,7 @@ class ConfirmationModal extends Component {
     isOpen: PropTypes.bool.isRequired,
     onCancel: PropTypes.func.isRequired,
     onConfirm: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
     title: PropTypes.string.isRequired,
   };
 
@@ -26,6 +28,7 @@ class ConfirmationModal extends Component {
       isOpen,
       onCancel,
       onConfirm,
+      t,
       title,
     } = this.props;
 
@@ -42,10 +45,10 @@ class ConfirmationModal extends Component {
 
           <Actions>
             <Action isLoading={isConfirming} onClick={onConfirm} wide>
-              Continue
+              {t('shared.continue')}
             </Action>
             <Action onClick={onCancel} theme="text">
-              Cancel
+              {t('shared.cancel')}
             </Action>
           </Actions>
         </Content>
@@ -54,4 +57,4 @@ class ConfirmationModal extends Component {
   }
 }
 
-export default ConfirmationModal;
+export default translate()(ConfirmationModal);

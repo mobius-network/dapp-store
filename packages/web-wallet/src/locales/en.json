@@ -17,6 +17,12 @@
         "balance": "Wallet Balance",
         "withdrawFunds": "Withdraw Funds"
       }
+    },
+    "shared": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "continue": "Continue",
+      "loading": "Loading"
     }
   }
 }

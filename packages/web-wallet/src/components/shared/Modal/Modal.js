@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/fontawesome-free-solid';
 
@@ -26,10 +27,11 @@ class Modal extends Component {
     closeButton: PropTypes.bool,
     contentLabel: PropTypes.string,
     fluid: PropTypes.bool,
-    isOpen: PropTypes.bool.isRequired,
     isClosable: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
     onAfterOpen: PropTypes.func,
     onRequestClose: PropTypes.func,
+    t: PropTypes.func.isRequired,
     title: PropTypes.string,
   };
 
@@ -59,6 +61,7 @@ class Modal extends Component {
       isOpen,
       onAfterOpen,
       onRequestClose,
+      t,
       title,
       ...rest
     } = this.props;
@@ -83,7 +86,11 @@ class Modal extends Component {
           )}
 
           {closeButton && (
-            <CloseButton onClick={this.handleClose} title="Close" type="button">
+            <CloseButton
+              onClick={this.handleClose}
+              title={t('shared.close')}
+              type="button"
+            >
               <FontAwesomeIcon icon={faTimes} />
             </CloseButton>
           )}
@@ -95,4 +102,4 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+export default translate()(Modal);

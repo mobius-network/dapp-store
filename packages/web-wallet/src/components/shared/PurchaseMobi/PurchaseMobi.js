@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 import { debounce, noop, isNil, isEqual } from 'lodash';
 import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
@@ -23,6 +24,7 @@ class PurchaseMobi extends Component {
     fetchStart: PropTypes.func.isRequired,
     onSuccess: PropTypes.func,
     paymentPath: PropTypes.object,
+    t: PropTypes.func.isRequired,
     transact: PropTypes.func.isRequired,
   };
 
@@ -92,10 +94,10 @@ class PurchaseMobi extends Component {
 
   renderPrice = () => {
     const { calculating } = this.state;
-    const { paymentPath } = this.props;
+    const { paymentPath, t } = this.props;
 
     if (calculating) {
-      return <Price>Calculating...</Price>;
+      return <Price>{t('purchaseMobi.calculating')}</Price>;
     }
 
     if (paymentPath) {
@@ -103,12 +105,12 @@ class PurchaseMobi extends Component {
 
       return (
         <Price>
-          Approximately <b>{parseFloat(price)} XLM</b>
+          {t('purchaseMobi.approx')} <b>{parseFloat(price)} XLM</b>
         </Price>
       );
     }
 
-    return <Price>Enter MOBI amount</Price>;
+    return <Price>{t('purchaseMobi.enterAmount')}</Price>;
   };
 
   render() {
@@ -116,12 +118,13 @@ class PurchaseMobi extends Component {
     const {
       classname,
       pathPayment: { loading },
+      t,
     } = this.props;
 
     return (
       <Container className={classname}>
-        <Title>Purchase MOBI</Title>
-        <Caption>Use your XLM balance to purchase MOBI.</Caption>
+        <Title>{t('purchaseMobi.title')}</Title>
+        <Caption>{t('purchaseMobi.caption')}</Caption>
         <Grid>
           <Grid.Row alignItems="center">
             <InputContainer>
@@ -145,7 +148,7 @@ class PurchaseMobi extends Component {
                   isLoading={loading}
                   disabled={!destAmount || loading}
                 >
-                  Buy MOBI
+                  {t('purchaseMobi.submitButton')}
                 </Button>
               </ButtonContainer>
             </Grid.Col>
@@ -156,4 +159,4 @@ class PurchaseMobi extends Component {
   }
 }
 
-export default PurchaseMobi;
+export default translate()(PurchaseMobi);
