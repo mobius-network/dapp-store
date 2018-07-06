@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 
@@ -112,4 +111,4 @@ class GettingStarted extends Component {
   }
 }
 
-export default translate()(GettingStarted);
+export default GettingStarted;

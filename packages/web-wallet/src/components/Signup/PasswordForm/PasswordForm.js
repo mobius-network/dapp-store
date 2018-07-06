@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import FormRow from 'components/shared/FormRow';
@@ -81,4 +80,4 @@ class PasswordForm extends Component {
   }
 }
 
-export default translate()(PasswordForm);
+export default PasswordForm;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Modal from 'components/shared/Modal';
 
@@ -57,4 +56,4 @@ class ConfirmationModal extends Component {
   }
 }
 
-export default translate()(ConfirmationModal);
+export default ConfirmationModal;

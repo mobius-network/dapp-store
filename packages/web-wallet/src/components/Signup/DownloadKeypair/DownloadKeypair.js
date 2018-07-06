@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
@@ -31,4 +30,4 @@ class DownloadKeypair extends Component {
   }
 }
 
-export default translate()(DownloadKeypair);
+export default DownloadKeypair;

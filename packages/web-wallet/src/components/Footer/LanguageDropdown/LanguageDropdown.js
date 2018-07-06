@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import { faGlobe } from '@fortawesome/fontawesome-free-solid';
 
 import Dropdown from 'components/shared/Dropdown';
@@ -41,4 +40,4 @@ class LanguageDropdown extends Component {
   }
 }
 
-export default translate()(LanguageDropdown);
+export default LanguageDropdown;

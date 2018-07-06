@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Header from 'components/Header';
 import Grid from 'components/shared/Grid';
@@ -67,4 +66,4 @@ class DappStore extends Component {
   }
 }
 
-export default translate()(DappStore);
+export default DappStore;

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import { faAngleRight } from '@fortawesome/fontawesome-free-solid';
 
 import Modal from 'components/shared/Modal';
@@ -97,4 +96,4 @@ class DappModal extends Component {
   }
 }
 
-export default translate()(DappModal);
+export default DappModal;

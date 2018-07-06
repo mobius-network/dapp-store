@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/fontawesome-free-solid';
 
@@ -27,4 +26,4 @@ class Loading extends Component {
   }
 }
 
-export default translate()(Loading);
+export default Loading;

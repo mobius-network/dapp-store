@@ -1,4 +1,6 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { authActions } from 'state/auth';
 import { getAssetBalance } from 'state/account';
@@ -14,4 +16,7 @@ const actions = {
   ...authActions,
 };
 
-export default connect(mapStateToProps, actions)(ActionsDropdown);
+export default compose(
+  connect(mapStateToProps, actions),
+  translate('translation')
+)(ActionsDropdown);

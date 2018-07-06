@@ -1,4 +1,6 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { appActions, getAppAssetBalance } from 'state/apps';
 
@@ -12,4 +14,7 @@ const actions = {
   ...appActions,
 };
 
-export default connect(mapStateToProps, actions)(DappModal);
+export default compose(
+  connect(mapStateToProps, actions),
+  translate('translation')
+)(DappModal);

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Link from 'components/shared/Link';
 import { ListContainer, ListItem } from './styles';
@@ -35,4 +34,4 @@ class NavLinks extends Component {
   }
 }
 
-export default translate()(NavLinks);
+export default NavLinks;

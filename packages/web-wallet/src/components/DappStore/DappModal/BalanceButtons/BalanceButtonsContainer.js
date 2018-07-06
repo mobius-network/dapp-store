@@ -1,5 +1,6 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 import releaseAppBalanceSaga from 'state/sagas/releaseBalance';
 
 import { restMutation } from 'components/hocs';
@@ -17,6 +18,7 @@ const actions = {
 
 export default compose(
   connect(mapStateToProps, actions),
+  translate('translation'),
   restMutation({
     ...releaseAppBalanceSaga,
     options: ({ app }) => ({ app }),

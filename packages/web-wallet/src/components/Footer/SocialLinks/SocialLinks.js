@@ -13,7 +13,6 @@ import {
   faMedium,
 } from '@fortawesome/fontawesome-free-brands';
 import { faEnvelope } from '@fortawesome/fontawesome-free-regular';
-import { translate } from 'react-i18next';
 
 import Modal from 'components/shared/Modal';
 
@@ -145,4 +144,4 @@ class SocialLinks extends Component {
   }
 }
 
-export default translate()(SocialLinks);
+export default SocialLinks;

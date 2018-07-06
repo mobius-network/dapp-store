@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
@@ -38,4 +37,4 @@ class Mnemonic extends Component {
   }
 }
 
-export default translate()(Mnemonic);
+export default Mnemonic;

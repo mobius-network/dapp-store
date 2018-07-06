@@ -1,4 +1,6 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { getAssetBalance } from 'state/account';
 import { requestActions, getIsSuccess } from 'state/requests';
@@ -14,4 +16,7 @@ const actions = {
   ...requestActions,
 };
 
-export default connect(mapStateToProps, actions)(AddFunds);
+export default compose(
+  connect(mapStateToProps, actions),
+  translate('translation')
+)(AddFunds);

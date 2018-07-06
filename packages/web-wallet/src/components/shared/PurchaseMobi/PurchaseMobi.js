@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 import { debounce, noop, isNil, isEqual } from 'lodash';
 import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
@@ -159,4 +158,4 @@ class PurchaseMobi extends Component {
   }
 }
 
-export default translate()(PurchaseMobi);
+export default PurchaseMobi;

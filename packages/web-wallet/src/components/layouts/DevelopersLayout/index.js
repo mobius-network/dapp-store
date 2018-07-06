@@ -1,1 +1,1 @@
-export { default } from './DevelopersLayout';
+export { default } from './DevelopersLayoutContainer';

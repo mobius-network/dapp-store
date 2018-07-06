@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import PrivateRoute from 'components/shared/PrivateRoute';
 import Grid from 'components/shared/Grid';
@@ -50,4 +49,4 @@ class WalletLayout extends Component {
   }
 }
 
-export default translate()(WalletLayout);
+export default WalletLayout;

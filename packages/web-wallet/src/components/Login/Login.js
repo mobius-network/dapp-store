@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import AdditionalInfo from 'components/shared/AdditionalInfo';
@@ -40,4 +39,4 @@ class Login extends Component {
   }
 }
 
-export default translate()(Login);
+export default Login;

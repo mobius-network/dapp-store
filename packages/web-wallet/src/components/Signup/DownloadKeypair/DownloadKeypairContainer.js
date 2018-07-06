@@ -1,5 +1,7 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { translate } from 'react-i18next';
 
 import { accountActions } from 'state/account';
 
@@ -11,4 +13,7 @@ const actions = {
   ...accountActions,
 };
 
-export default connect(mapStateToProps, actions)(DownloadKeypair);
+export default compose(
+  connect(mapStateToProps, actions),
+  translate('translation')
+)(DownloadKeypair);

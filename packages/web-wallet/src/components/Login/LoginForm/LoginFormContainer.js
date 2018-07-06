@@ -3,6 +3,7 @@ import { reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
 import { promisifyAction } from 'redux-yo';
 import { createStructuredSelector } from 'reselect';
+import { translate } from 'react-i18next';
 
 import { authActions, getSignupStep } from 'state/auth';
 
@@ -19,6 +20,7 @@ const actions = {
 
 export default compose(
   connect(mapStateToProps, actions),
+  translate('translation'),
   reduxForm({
     form: 'loginForm',
     validate,

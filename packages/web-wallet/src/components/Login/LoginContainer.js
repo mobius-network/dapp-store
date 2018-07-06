@@ -1,5 +1,7 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { translate } from 'react-i18next';
 
 import { authActions, getSignupStep } from 'state/auth';
 
@@ -13,4 +15,7 @@ const actions = {
   ...authActions,
 };
 
-export default connect(mapStateToProps, actions)(Login);
+export default compose(
+  connect(mapStateToProps, actions),
+  translate('translation')
+)(Login);

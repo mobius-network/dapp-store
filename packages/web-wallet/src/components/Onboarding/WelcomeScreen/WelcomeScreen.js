@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Button from 'components/shared/Button';
 import {
@@ -56,4 +55,4 @@ class WelcomeScreen extends Component {
   }
 }
 
-export default translate()(WelcomeScreen);
+export default WelcomeScreen;

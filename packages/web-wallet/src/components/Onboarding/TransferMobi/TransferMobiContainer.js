@@ -1,4 +1,6 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { getAssetBalance } from 'state/account';
 
@@ -8,4 +10,4 @@ const mapStateToProps = state => ({
   balance: getAssetBalance(state, { asset: 'mobi' }),
 });
 
-export default connect(mapStateToProps)(TransferMobi);
+export default compose(connect(mapStateToProps), translate('translation'))(TransferMobi);

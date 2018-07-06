@@ -1,6 +1,7 @@
 import { compose } from 'redux';
 import { formValues, reduxForm, SubmissionError } from 'redux-form';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { getAssetBalance } from 'state/account';
 import { appActions } from 'state/apps';
@@ -15,6 +16,7 @@ const mapStateToProps = state => ({
 
 export default compose(
   connect(mapStateToProps),
+  translate('translation'),
   restMutation({
     name: 'depositApp',
     action: appActions.depositApp,

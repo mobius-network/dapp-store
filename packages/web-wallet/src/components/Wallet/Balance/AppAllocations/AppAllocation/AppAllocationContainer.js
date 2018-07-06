@@ -1,6 +1,7 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import releaseAppBalanceSaga from 'state/sagas/releaseBalance';
+import { translate } from 'react-i18next';
 
 import { restMutation } from 'components/hocs';
 import { getAppAssetBalance } from 'state/apps';
@@ -14,6 +15,7 @@ const mapStateToProps = (state, { app: { id: appId } }) => ({
 
 export default compose(
   connect(mapStateToProps),
+  translate('translation'),
   restMutation({
     ...releaseAppBalanceSaga,
     options: ({ app }) => ({ app }),

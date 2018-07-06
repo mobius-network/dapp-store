@@ -1,1 +1,1 @@
-export { default } from './CopyField';
+export { default } from './CopyFieldContainer';
