@@ -1,9 +1,0 @@
-{
-  "translation": {
-    "mnemonic": {
-      "caption": "If you ever lose your key pair you can use your mnemonic phrase to recover your account.",
-      "submitButton": "I’ve Written it Down",
-      "title": "Write Down Your Mnemonic Phrase"
-    }
-  }
-}

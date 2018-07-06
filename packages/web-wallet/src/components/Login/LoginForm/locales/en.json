@@ -1,9 +1,0 @@
-{
-  "translation": {
-    "loginForm": {
-      "keyfileField": "Keyfile",
-      "passwordField": "Password",
-      "submitButton": "Login"
-    }
-  }
-}
