@@ -1,17 +1,46 @@
-import React, { Component } from 'react';
-// import { string } from 'prop-types';
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
-import { StyledTextarea } from './styles';
+import { Container, StyledTextarea, ErrorMessage } from './styles';
 
 class Textarea extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    disabled: PropTypes.bool,
+    input: PropTypes.object,
+    meta: PropTypes.shape({
+      error: PropTypes.string,
+      dirty: PropTypes.bool,
+      touched: PropTypes.bool,
+    }),
+    placeholder: PropTypes.string,
   };
 
   render() {
-    const { input, ...rest } = this.props;
+    const {
+      input,
+      className,
+      innerLabel,
+      placeholder,
+      meta: { error, dirty, touched },
+      ...rest
+    } = this.props;
 
-    return <StyledTextarea {...input} {...rest} />;
+    const showError = error && (dirty || touched);
+
+    return (
+      <Fragment>
+        <Container className={className}>
+          <StyledTextarea
+            {...input}
+            error={showError}
+            placeholder={placeholder}
+            {...rest}
+          />
+        </Container>
+
+        {showError && <ErrorMessage>{error}</ErrorMessage>}
+      </Fragment>
+    );
   }
 }
 
