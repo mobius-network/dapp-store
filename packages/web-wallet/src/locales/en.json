@@ -5,7 +5,8 @@
       "copyright": "Copyright",
       "developers": {
         "developers": "Developers",
-        "gettingStarted": "Getting Started"
+        "gettingStarted": "Getting Started",
+        "submitDApp": "Submit DApp"
       },
       "login": "Login",
       "logout": "Logout",
@@ -185,6 +186,24 @@
     },
     "appAllocation": {
       "releaseButton": "Release balance"
+    },
+    "submitDapp": {
+      "descriptionFieldCaption": "Give people a brief description of your DApp to help them better understand it’s purpose and value.",
+      "descriptionFieldLabel": "Description",
+      "imageUrlFieldCaption": "Must be a PNG image with 1024x1024 dimensions",
+      "imageUrlFieldLabel": "App Icon",
+      "nameFieldCaption": "What’s your DApp called?",
+      "nameFieldLabel": "Name",
+      "submitButton": "Submit",
+      "supportUrlFieldCaption": "Add your customer contact email, phone number, or other contact channel",
+      "supportUrlFieldLabel": "Customer Support",
+      "taglineFieldLabel": "Short Description",
+      "taglineFieldCaption": "In one sentence, what does your DApp do? (max 60 characters)",
+      "title": "Submit DApp",
+      "urlFieldCaption": "This is where we will send users to visit your DApp",
+      "urlFieldLabel": "DApp URL",
+      "websiteUrlFieldCaption": "Do you have an informational home page?",
+      "websiteUrlFieldLabel": "Homepage URL"
     }
   }
 }
