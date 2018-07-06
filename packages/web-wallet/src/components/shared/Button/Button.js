@@ -92,7 +92,7 @@ export default class Button extends Component {
           </LinkComponent>
         ) : (
           <StyledButton
-            disabled={disabled}
+            disabled={disabled || isLoading}
             fullWidth={fullWidth}
             onClick={onClick}
             type="button"

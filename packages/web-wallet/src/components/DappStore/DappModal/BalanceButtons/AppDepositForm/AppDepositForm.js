@@ -52,7 +52,7 @@ class AppDepositForm extends Component {
           />
           <Caption>{t('appDepositForm.caption')}</Caption>
           <Button
-            disabled={invalid || loading}
+            disabled={invalid}
             fullWidth
             isLoading={amount < 100 && loading}
             onClick={amount > 100 ? this.showConfirmation : handleSubmit}
