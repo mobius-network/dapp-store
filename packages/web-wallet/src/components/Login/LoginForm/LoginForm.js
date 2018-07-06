@@ -47,7 +47,7 @@ class LoginForm extends Component {
         />
 
         <ActionsRow>
-          <Button onClick={handleSubmit} fullWidth>
+          <Button fullWidth onClick={handleSubmit} type="submit">
             {t('loginForm.submitButton')}
           </Button>
         </ActionsRow>

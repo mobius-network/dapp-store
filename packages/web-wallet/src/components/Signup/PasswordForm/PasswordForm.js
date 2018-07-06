@@ -54,10 +54,10 @@ class PasswordForm extends Component {
 
               <ActionsRow>
                 <Button
-                  type="submit"
+                  fullWidth
                   isLoading={submitting}
                   onClick={handleSubmit}
-                  fullWidth
+                  type="submit"
                 >
                   {t('shared.continue')}
                 </Button>
