@@ -47,7 +47,11 @@ class BalanceButtons extends Component {
     return (
       <Fragment>
         <ButtonRow>
-          <Button onClick={this.openApp} fullWidth>
+          <Button
+            disabled={mobiAppBalance === 0}
+            onClick={this.openApp}
+            fullWidth
+          >
             Go to App
           </Button>
         </ButtonRow>
