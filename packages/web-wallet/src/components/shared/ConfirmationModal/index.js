@@ -1,1 +1,1 @@
-export { default } from './ConfirmationModal';
+export { default } from './ConfirmationModalContainer';

@@ -1,5 +1,7 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { translate } from 'react-i18next';
 
 import { getFeaturedApp } from 'state/apps';
 import { getIsAuthorized } from 'state/auth';
@@ -11,4 +13,4 @@ const mapStateToProps = createStructuredSelector({
   app: getFeaturedApp,
 });
 
-export default connect(mapStateToProps)(FeaturedDapp);
+export default compose(connect(mapStateToProps), translate('translation'))(FeaturedDapp);

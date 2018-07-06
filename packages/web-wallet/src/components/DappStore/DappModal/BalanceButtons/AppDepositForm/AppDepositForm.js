@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Button from 'components/shared/Button';
 import ConfirmationModal from 'components/shared/ConfirmationModal';
@@ -77,4 +76,4 @@ class AppDepositForm extends Component {
   }
 }
 
-export default translate()(AppDepositForm);
+export default AppDepositForm;

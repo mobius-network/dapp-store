@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Grid from 'components/shared/Grid';
 import NavLinks from './NavLinks';
@@ -65,4 +64,4 @@ class Footer extends Component {
   }
 }
 
-export default translate()(Footer);
+export default Footer;

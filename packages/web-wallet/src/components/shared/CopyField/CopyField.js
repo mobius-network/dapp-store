@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -30,4 +29,4 @@ class CopyField extends Component {
   }
 }
 
-export default translate()(CopyField);
+export default CopyField;

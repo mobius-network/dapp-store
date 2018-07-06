@@ -88,15 +88,6 @@ const baseConfig = {
         loader: 'style-loader!css-loader',
         include: /flexboxgrid/,
       },
-      {
-        test: /locales\/.*?\.json$/,
-        use: [{
-          loader: resolve(root, 'src', 'utils', 'locale-loader', 'index.js'),
-          options: {
-            pattern: '/components/**/locales/[locale].json',
-          },
-        }],
-      },
     ],
   },
   node: {

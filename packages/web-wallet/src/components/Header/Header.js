@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Grid from 'components/shared/Grid';
 import Link from 'components/shared/Link';
@@ -80,4 +79,4 @@ class Header extends Component {
   }
 }
 
-export default translate()(Header);
+export default Header;

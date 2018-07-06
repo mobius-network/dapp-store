@@ -1,5 +1,7 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { translate } from 'react-i18next';
 
 import { getIsAuthorized } from 'state/auth';
 
@@ -9,4 +11,4 @@ const mapStateToProps = createStructuredSelector({
   isAuthorized: getIsAuthorized,
 });
 
-export default connect(mapStateToProps)(Header);
+export default compose(connect(mapStateToProps), translate('translation'))(Header);

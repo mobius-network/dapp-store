@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import {
   Container,
@@ -80,4 +79,4 @@ class FileInput extends Component {
   }
 }
 
-export default translate()(FileInput);
+export default FileInput;

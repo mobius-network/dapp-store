@@ -1,1 +1,1 @@
-export { default } from './WithdrawFunds';
+export { default } from './WithdrawFundsContainer';

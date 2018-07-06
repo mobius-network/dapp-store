@@ -1,4 +1,6 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { getApps } from 'state/apps';
 
@@ -8,4 +10,4 @@ const mapStateToProps = state => ({
   apps: getApps(state),
 });
 
-export default connect(mapStateToProps)(AppAllocations);
+export default compose(connect(mapStateToProps), translate('translation'))(AppAllocations);

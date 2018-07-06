@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import Tabs from 'components/shared/Tabs';
@@ -78,4 +77,4 @@ class TransferMobi extends Component {
   }
 }
 
-export default translate()(TransferMobi);
+export default TransferMobi;

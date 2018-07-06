@@ -1,1 +1,1 @@
-export { default } from './WelcomeScreen';
+export { default } from './WelcomeScreenContainer';

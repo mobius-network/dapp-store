@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
@@ -72,4 +71,4 @@ class TransferXlm extends Component {
   }
 }
 
-export default translate()(TransferXlm);
+export default TransferXlm;

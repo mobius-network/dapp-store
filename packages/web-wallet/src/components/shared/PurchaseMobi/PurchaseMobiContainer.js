@@ -1,5 +1,6 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { getPublicKeyFor } from 'state/auth';
 import { requestActions } from 'state/requests';
@@ -21,6 +22,7 @@ const actions = {
 
 export default compose(
   connect(mapStateToProps, actions),
+  translate('translation'),
   restMutation({
     name: 'pathPayment',
     action: accountActions.transact,

@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
-import { translate } from 'react-i18next';
 
 import Grid from 'components/shared/Grid';
 import Header from 'components/Header';
@@ -44,4 +43,4 @@ class DevelopersLayout extends Component {
   }
 }
 
-export default translate()(DevelopersLayout);
+export default DevelopersLayout;

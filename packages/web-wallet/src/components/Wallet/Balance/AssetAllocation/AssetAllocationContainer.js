@@ -1,5 +1,7 @@
+import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import { translate } from 'react-i18next';
 
 import { getAssetBalance } from 'state/account';
 import { getAppAssetSumBalance } from 'state/apps';
@@ -11,4 +13,4 @@ const mapStateToProps = createStructuredSelector({
   appsBalance: getAppAssetSumBalance,
 });
 
-export default connect(mapStateToProps)(AssetAllocation);
+export default compose(connect(mapStateToProps), translate('translation'))(AssetAllocation);

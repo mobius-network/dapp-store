@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Operation } from 'stellar-sdk';
 import PropTypes from 'prop-types';
-import { translate, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import { assets } from '@mobius-network/core';
 import { SubmissionError } from 'redux-form';
 
@@ -87,4 +87,4 @@ class WithdrawForm extends Component {
   }
 }
 
-export default translate()(WithdrawForm);
+export default WithdrawForm;

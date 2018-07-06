@@ -1,1 +1,1 @@
-export { default } from './NavLinks';
+export { default } from './NavLinksContainer';

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
 
 import Dropdown from 'components/shared/Dropdown';
 
@@ -50,4 +49,4 @@ class ActionsDropdown extends Component {
   }
 }
 
-export default translate()(ActionsDropdown);
+export default ActionsDropdown;
