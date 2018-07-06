@@ -41,3 +41,11 @@ export const StyledLink = styled(NavLink)`
     ${linkStyles};
   }
 `;
+
+export const StyledHyperlink = styled.a`
+  ${linkStyles};
+
+  &:visited {
+    ${linkStyles};
+  }
+`;

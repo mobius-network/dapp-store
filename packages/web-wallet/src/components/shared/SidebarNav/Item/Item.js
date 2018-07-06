@@ -1,22 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, StyledLink } from './styles';
+import { Container, StyledLink, StyledHyperlink } from './styles';
 
 class Item extends Component {
   static propTypes = {
     children: PropTypes.any,
-    to: PropTypes.string.isRequired,
+    href: PropTypes.string,
+    to: PropTypes.string,
   };
 
   render() {
-    const { children, to } = this.props;
+    const {
+      children, href, to, ...rest
+    } = this.props;
 
     return (
       <Container>
-        <StyledLink to={to} exact>
-          {children}
-        </StyledLink>
+        {to ? (
+          <StyledLink to={to} exact>
+            {children}
+          </StyledLink>
+        ) : (
+          <StyledHyperlink
+            href={href}
+            rel="noopener noreferrer"
+            target="_blank"
+            {...rest}
+          >
+            {children}
+          </StyledHyperlink>
+        )}
       </Container>
     );
   }
