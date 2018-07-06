@@ -52,7 +52,13 @@ class DappStore extends Component {
               <Submit>
                 <SubmitTitle>{t('dappStore.submitTitle')}</SubmitTitle>
                 <SubmitText>{t('dappStore.submitText')}</SubmitText>
-                <Button to="/developers/">{t('dappStore.submitButton')}</Button>
+                <Button
+                  href="https://docs.mobius.network/docs/getting-started"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  {t('dappStore.submitButton')}
+                </Button>
               </Submit>
             </Grid.Col>
 
