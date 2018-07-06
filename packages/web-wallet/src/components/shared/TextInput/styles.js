@@ -37,6 +37,12 @@ export const Input = styled.input`
     color: ${colors.textLight};
   }
 
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
   &:last-child {
     margin: 0;
   }
