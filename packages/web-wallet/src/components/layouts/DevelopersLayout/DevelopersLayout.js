@@ -29,6 +29,9 @@ class DevelopersLayout extends Component {
                     <SidebarNav.Item to="/developers">
                       {t('navigation.developers.gettingStarted')}
                     </SidebarNav.Item>
+                    <SidebarNav.Item to="/developers/submit">
+                      {t('navigation.developers.submitDApp')}
+                    </SidebarNav.Item>
                   </SidebarNav>
                 </Grid.Col>
                 <Grid.Col width={[1, 1, 5 / 6]}>

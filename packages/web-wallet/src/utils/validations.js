@@ -31,7 +31,9 @@ export const isEquals = comparisonValue =>
 
 export const isRationalNumber = createValidator(
   message => value => {
-    if (!/^(\d*\.)?\d+$/i.test(value)) {
+    const regexp = /^(\d*\.)?\d+$/i;
+
+    if (!regexp.test(value)) {
       return message;
     }
 
@@ -51,3 +53,16 @@ export const isLessThanProp = ({ name, label }) =>
     },
     field => `${field} must be a less than ${label}`
   );
+
+export const isUrl = createValidator(
+  message => value => {
+    const regexp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/;
+
+    if (!regexp.test(value)) {
+      return message;
+    }
+
+    return undefined;
+  },
+  field => `${field} must be an URL string`
+);

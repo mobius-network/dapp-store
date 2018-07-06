@@ -1,11 +1,12 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
-import { promisifyAction } from 'redux-yo';
 import { createStructuredSelector } from 'reselect';
+import { translate } from 'react-i18next';
 
 import { authActions, getIsAuthorized } from 'state/auth';
 
+import { validate } from './validations';
 import SubmitDapp from './SubmitDapp';
 
 const mapStateToProps = createStructuredSelector({
@@ -18,9 +19,10 @@ const actions = {
 
 export default compose(
   connect(mapStateToProps, actions),
+  translate('translation'),
   reduxForm({
     form: 'submitDapp',
-    onSubmit: (values, store, { submitDapp }) =>
-      promisifyAction(submitDapp, values),
+    validate,
+    onSubmit: () => {},
   })
 )(SubmitDapp);
