@@ -9,9 +9,10 @@ export function* openDapp({ payload: app }) {
   const tab = window.open('', '_blank');
 
   try {
-    const { data: challenge } = yield call(fetchStart, {
+    const { challenge } = yield call(fetchStart, {
       name: 'getChallenge',
       payload: app.auth_url,
+      serialize: result => ({ challenge: result }),
     });
 
     const appSecretKey = yield select(getSecretKeyFor, {
@@ -28,7 +29,7 @@ export function* openDapp({ payload: app }) {
       accountNumber: app.id,
     });
 
-    const { data: token } = yield call(fetchStart, {
+    const { token } = yield call(fetchStart, {
       name: 'postChallenge',
       method: 'POST',
       payload: [
@@ -38,6 +39,7 @@ export function* openDapp({ payload: app }) {
           public_key: appPublicKey,
         },
       ],
+      serialize: result => ({ token: result }),
     });
 
     const finalUrl = `${app.url}/?token=${token}`;
