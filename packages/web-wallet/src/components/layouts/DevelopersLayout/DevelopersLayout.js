@@ -26,11 +26,11 @@ class DevelopersLayout extends Component {
               <Grid.Row flexWrap="wrap">
                 <Grid.Col width={[1, 1, 1 / 6]}>
                   <SidebarNav title={t('developersLayout.navigationTitle')}>
-                    <SidebarNav.Item to="/developers">
-                      {t('navigation.developers.gettingStarted')}
-                    </SidebarNav.Item>
                     <SidebarNav.Item to="/developers/submit">
                       {t('navigation.developers.submitDApp')}
+                    </SidebarNav.Item>
+                    <SidebarNav.Item href="https://docs.mobius.network">
+                      {t('navigation.developers.documentation')}
                     </SidebarNav.Item>
                   </SidebarNav>
                 </Grid.Col>
