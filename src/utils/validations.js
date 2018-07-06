@@ -5,30 +5,35 @@ import {
 import { isObject } from 'lodash';
 
 // Allows to access `props` in validator
-export const combineValidators = (config) => {
+export const combineValidators = config => {
   const validator = sourceCombine(config);
 
   return (values, props) => validator({ ...props, ...values });
 };
 
-const formatMessage = (message, defaultMessage) => (isObject(message) && message.message
-  ? message.message
-  : defaultMessage(message));
+const formatMessage = (message, defaultMessage) =>
+  isObject(message) && message.message
+    ? message.message
+    : defaultMessage(message);
 
-export const isEquals = comparisonValue => createValidator(
-  message => (value, allValues) => {
-    if (value !== allValues[comparisonValue]) {
-      return message;
-    }
+export const isEquals = comparisonValue =>
+  createValidator(
+    message => (value, allValues) => {
+      if (value !== allValues[comparisonValue]) {
+        return message;
+      }
 
-    return undefined;
-  },
-  field => formatMessage(field, f => `${f} must be equal to "${comparisonValue}"`)
-);
+      return undefined;
+    },
+    field =>
+      formatMessage(field, f => `${f} must be equal to "${comparisonValue}"`)
+  );
 
 export const isRationalNumber = createValidator(
-  message => (value) => {
-    if (!/^(\d*\.)?\d+$/i.test(value)) {
+  message => value => {
+    const regexp = /^(\d*\.)?\d+$/i;
+
+    if (!regexp.test(value)) {
       return message;
     }
 
@@ -37,13 +42,27 @@ export const isRationalNumber = createValidator(
   field => `${field} must be a rational number`
 );
 
-export const isLessThanProp = ({ name, label }) => createValidator(
-  message => (value, props) => {
-    if (Number(value) > Number(props[name])) {
+export const isLessThanProp = ({ name, label }) =>
+  createValidator(
+    message => (value, props) => {
+      if (Number(value) > Number(props[name])) {
+        return message;
+      }
+
+      return undefined;
+    },
+    field => `${field} must be a less than ${label}`
+  );
+
+export const isUrl = createValidator(
+  message => value => {
+    const regexp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/;
+
+    if (!regexp.test(value)) {
       return message;
     }
 
     return undefined;
   },
-  field => `${field} must be a less than ${label}`
+  field => `${field} must be an URL string`
 );
