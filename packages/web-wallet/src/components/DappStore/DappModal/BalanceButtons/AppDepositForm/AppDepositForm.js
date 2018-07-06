@@ -52,11 +52,12 @@ class AppDepositForm extends Component {
           />
           <Caption>{t('appDepositForm.caption')}</Caption>
           <Button
-            fullWidth
-            theme="secondary"
             disabled={invalid || loading}
+            fullWidth
             isLoading={amount < 100 && loading}
             onClick={amount > 100 ? this.showConfirmation : handleSubmit}
+            theme="secondary"
+            type="submit"
           >
             {t('appDepositForm.submitButton')}
           </Button>
