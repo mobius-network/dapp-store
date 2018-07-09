@@ -51,7 +51,7 @@ class BalanceButtons extends Component {
             onClick={this.openApp}
             fullWidth
           >
-            Go to App
+            {t('balanceButtons.goToAppButton')}
           </Button>
         </ButtonRow>
 

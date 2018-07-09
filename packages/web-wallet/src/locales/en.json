@@ -151,9 +151,10 @@
       "title": "Purchase MOBI"
     },
     "balanceButtons": {
+      "balance": "DApp balance: ",
       "depositFunds": "Deposit Funds",
-      "releaseFunds": "Release Funds",
-      "balance": "DApp balance: "
+      "goToAppButton": "GO TO APP",
+      "releaseFunds": "Release Funds"
     },
     "appAllocations": {
       "title": "Balance Allocation",

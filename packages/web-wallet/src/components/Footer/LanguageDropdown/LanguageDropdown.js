@@ -7,6 +7,7 @@ import { LangDropdownToggle, LangDropdownIcon } from './styles';
 
 const availableLangs = {
   en: 'English',
+  ch: '繁體中文',
 };
 
 class LanguageDropdown extends Component {
@@ -20,7 +21,7 @@ class LanguageDropdown extends Component {
 
     return (
       <Dropdown theme="secondary">
-        <LangDropdownToggle disabled fluid>
+        <LangDropdownToggle fluid>
           <LangDropdownIcon icon={faGlobe} />
           {availableLangs[currentLanguage] || availableLangs.en}
         </LangDropdownToggle>
