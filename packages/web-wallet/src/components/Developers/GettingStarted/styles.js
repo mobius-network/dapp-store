@@ -23,24 +23,12 @@ export const SectionDesc = styled.p`
   margin: 0 0 20px;
 `;
 
-export const VideoContainer = styled.div`
-  height: 0;
+export const VideoContentContainer = styled.div`
   margin-bottom: 30px;
-  padding-bottom: 56.25%;
-  position: relative;
-  width: 100%;
 
   @media screen and (min-width: ${breakpoints.md}) {
     margin-bottom: 60px;
   }
-`;
-
-export const VideoElement = styled.iframe`
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
 `;
 
 export const Links = styled.ul`

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Pane from 'components/shared/Pane';
+import VideoContent from 'components/shared/VideoContent';
 
 import {
   LinkContainer,
@@ -11,8 +12,7 @@ import {
   Links,
   SectionDesc,
   SectionHeading,
-  VideoContainer,
-  VideoElement,
+  VideoContentContainer,
 } from './styles';
 
 class GettingStarted extends Component {
@@ -33,13 +33,9 @@ class GettingStarted extends Component {
           <SectionHeading>{t('gettingStarted.overviewTitle')}</SectionHeading>
           <SectionDesc>{t('gettingStarted.overviewDesc')}</SectionDesc>
 
-          <VideoContainer>
-            <VideoElement
-              allowFullScreen
-              frameBorder="0"
-              src="https://www.youtube.com/embed/GzIaUn8Wtw8"
-            />
-          </VideoContainer>
+          <VideoContentContainer>
+            <VideoContent src="https://www.youtube.com/embed/GzIaUn8Wtw8" />
+          </VideoContentContainer>
 
           <SectionHeading>{t('gettingStarted.resourcesTitle')}</SectionHeading>
           <SectionDesc>{t('gettingStarted.resourcesDesc')}</SectionDesc>

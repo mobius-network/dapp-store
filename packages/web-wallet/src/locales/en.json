@@ -29,7 +29,10 @@
       "submitText": "The Mobius SDK makes it easy to start collecting coin payments.",
       "submitTitle": "Submit Your Own DApps",
       "subtitle": "Checkout great apps that you can pay for using MOBI.",
-      "title": "DApp Store"
+      "title": "DApp Store",
+      "userWalkThroughIcon": "See how it works",
+      "userWalkThroughTitle": "Mobius DApp Store User Walk-Through",
+      "devWalkThroughTitle": "Mobius DApp Store Developer Walk-Through"
     },
     "footer": {
       "copyright": "© 2018 Mochi, Inc. All Rights Reserved.",
