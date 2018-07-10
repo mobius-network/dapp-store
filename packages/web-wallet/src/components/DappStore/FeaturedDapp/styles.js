@@ -11,10 +11,10 @@ import {
 } from 'components/shared/Styleguide';
 
 export const Container = styled(Pane)`
-  margin-bottom: 60px;
+  margin: 60px 0;
 
   @media screen and (min-width: ${breakpoints.md}) {
-    margin-bottom: 0;
+    margin: 0;
   }
 `;
 

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 
 import {
   colors,
@@ -6,6 +7,7 @@ import {
   fontSizes,
   breakpoints,
   lineHeights,
+  radius,
 } from 'components/shared/Styleguide';
 import AdditionalInfo from 'components/shared/AdditionalInfo';
 
@@ -37,10 +39,9 @@ export const HeaderContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 
   @media screen and (min-width: ${breakpoints.md}) {
-    margin-bottom: 0;
     padding-top: 30px;
     padding-right: 100px;
   }
@@ -50,6 +51,10 @@ export const Title = styled.h1`
   color: ${colors.textDefault};
   font: 300 ${fontSizes.mainHeading} ${fonts.default};
   margin: 0 0 10px;
+`;
+
+export const UserWalkThroughIcon = styled(FontAwesomeIcon)`
+  margin-right: 15px;
 `;
 
 export const Subtitle = styled.h2`
@@ -63,6 +68,22 @@ export const Submit = styled(AdditionalInfo)`
 
   @media screen and (min-width: ${breakpoints.md}) {
     margin-bottom: 60px;
+  }
+`;
+
+export const DevWalkThroughButton = styled.button`
+  border-radius: ${radius.medium};
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  margin-bottom: 20px;
+  outline: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+
+  & > div {
+    pointer-events: none;
   }
 `;
 

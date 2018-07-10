@@ -9,11 +9,11 @@ class VideoContent extends Component {
   };
 
   render() {
-    const { src } = this.props;
+    const { src, ...rest } = this.props;
 
     return (
       <Container>
-        <Content allowFullScreen frameBorder="0" src={src} />
+        <Content allowFullScreen frameBorder="0" src={src} {...rest} />
       </Container>
     );
   }
