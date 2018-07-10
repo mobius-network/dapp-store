@@ -86,7 +86,6 @@ const baseConfig = {
       {
         test: /\.css$/,
         loader: 'style-loader!css-loader',
-        include: /flexboxgrid/,
       },
     ],
   },

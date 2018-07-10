@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Footer from 'components/Footer';
+import Notifications from './Notifications';
 
 import { Container, Content } from './styles';
 
@@ -15,6 +16,7 @@ export default class DefaultLayout extends Component {
 
     return (
       <Container>
+        <Notifications />
         <Content>{children}</Content>
         <Footer />
       </Container>

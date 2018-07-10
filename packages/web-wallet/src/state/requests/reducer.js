@@ -1,6 +1,7 @@
 import { pick } from 'lodash';
-import { update, merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
+import nanoid from 'nanoid';
+import { update, merge } from 'state/utils';
 import store from '../configureStore';
 
 export const requestActions = createActions(
@@ -12,6 +13,7 @@ export const requestActions = createActions(
     'shiftError',
     'setEntities',
     'deleteEntities',
+    'deleteError',
   ],
   'requests'
 );
@@ -64,7 +66,10 @@ export const requestsReducer = createReducer(
       return update(state, updates);
     },
     [requestActions.fetchFail]: (state, { name, error }) => {
-      const serializedError = pick(error, ['message', 'stack', 'response']);
+      const serializedError = {
+        id: nanoid(),
+        ...pick(error, ['message', 'stack', 'response']),
+      };
 
       return {
         ...state,
@@ -90,6 +95,10 @@ export const requestsReducer = createReducer(
     [requestActions.shiftError]: state => ({
       ...state,
       errors: state.errors.slice(1),
+    }),
+    [requestActions.deleteError]: (state, error) => ({
+      ...state,
+      errors: state.errors.filter(err => err.id !== error.id),
     }),
     [requestActions.setEntities]: (state, entities) =>
       update(state, {
