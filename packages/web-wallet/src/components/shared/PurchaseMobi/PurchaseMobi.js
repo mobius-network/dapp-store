@@ -19,10 +19,10 @@ import {
 class PurchaseMobi extends Component {
   static propTypes = {
     accountId: PropTypes.string.isRequired,
+    bestPaymentPath: PropTypes.object,
     classname: PropTypes.string,
     fetchStart: PropTypes.func.isRequired,
     onSuccess: PropTypes.func,
-    paymentPath: PropTypes.object,
     t: PropTypes.func.isRequired,
     transact: PropTypes.func.isRequired,
   };
@@ -42,17 +42,21 @@ class PurchaseMobi extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (isNil(this.props.paymentPath)) {
+    if (isNil(this.props.bestPaymentPath)) {
       return;
     }
 
-    if (isEqual(this.props.paymentPath, prevProps.paymentPath)) {
+    if (isEqual(this.props.bestPaymentPath, prevProps.bestPaymentPath)) {
       return;
     }
 
     this.setState({
       calculating: false,
     });
+  }
+
+  componentWillUnmount() {
+    this.props.resetRequest('findBestPath');
   }
 
   calculatePrice(value) {
@@ -93,14 +97,14 @@ class PurchaseMobi extends Component {
 
   renderPrice = () => {
     const { calculating } = this.state;
-    const { paymentPath, t } = this.props;
+    const { bestPaymentPath, t } = this.props;
 
     if (calculating) {
       return <Price>{t('purchaseMobi.calculating')}</Price>;
     }
 
-    if (paymentPath) {
-      const price = parseFloat(paymentPath.source_amount).toFixed(2);
+    if (bestPaymentPath) {
+      const price = parseFloat(bestPaymentPath.source_amount).toFixed(2);
 
       return (
         <Price>

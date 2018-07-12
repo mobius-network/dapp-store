@@ -1,4 +1,4 @@
-import { noop } from 'lodash';
+import { identity, noop } from 'lodash';
 import axios from 'axios';
 import { takeEvery, call, put } from 'redux-saga/effects';
 
@@ -6,7 +6,11 @@ import { requestActions } from 'state/requests/reducer';
 
 function* request({
   payload: {
-    name, payload, fetcher = axios, method = 'get', serialize = noop,
+    name,
+    payload,
+    fetcher = axios,
+    method = 'get',
+    serialize = identity,
   },
   meta: { resolve = noop, reject = noop } = {},
 }) {
