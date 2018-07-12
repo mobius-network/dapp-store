@@ -6,7 +6,6 @@ export const getEntityName = (_, { entity } = {}) => entity;
 
 export const getRequests = state => state.requests;
 export const getAllEntities = state => state.requests.entities;
-export const getLastError = state => state.requests.errors[0];
 
 export const getResponse = createSelector(
   [getRequests, getOperationName],
@@ -30,8 +29,3 @@ export const getEntitiesObject = createSelector(
 
 export const getEntities = createSelector([getEntitiesObject], entities =>
   Object.values(entities));
-
-export const getLastErrorMessage = createSelector(
-  [getLastError],
-  (error = {}) => error.message
-);
