@@ -1,6 +1,4 @@
-import { pick } from 'lodash';
 import { createActions, createReducer } from 'redux-yo';
-import nanoid from 'nanoid';
 import { update, merge } from 'state/utils';
 import store from '../configureStore';
 
@@ -10,10 +8,8 @@ export const requestActions = createActions(
     'fetchSuccess',
     'fetchFail',
     'resetRequest',
-    'shiftError',
     'setEntities',
     'deleteEntities',
-    'deleteError',
   ],
   'requests'
 );
@@ -65,24 +61,16 @@ export const requestsReducer = createReducer(
 
       return update(state, updates);
     },
-    [requestActions.fetchFail]: (state, { name, error }) => {
-      const serializedError = {
-        id: nanoid(),
-        ...pick(error, ['message', 'stack', 'response']),
-      };
-
-      return {
-        ...state,
-        [name]: {
-          error: serializedError,
-          data: undefined,
-          success: false,
-          isFetching: false,
-        },
-        // Keep only 10 latest errors in redux store
-        errors: [serializedError, ...state.errors.slice(0, 4)],
-      };
-    },
+    [requestActions.fetchFail]: (state, { name, error }) => ({
+      ...state,
+      [name]: {
+        error,
+        data: undefined,
+        success: false,
+        isFetching: false,
+      },
+      errors: [error, ...state.errors.slice(0, 4)],
+    }),
     [requestActions.resetRequest]: (state, name) =>
       merge(state, {
         [name]: {
@@ -92,14 +80,6 @@ export const requestsReducer = createReducer(
           isFetching: false,
         },
       }),
-    [requestActions.shiftError]: state => ({
-      ...state,
-      errors: state.errors.slice(1),
-    }),
-    [requestActions.deleteError]: (state, error) => ({
-      ...state,
-      errors: state.errors.filter(err => err.id !== error.id),
-    }),
     [requestActions.setEntities]: (state, entities) =>
       update(state, {
         entities: entitiesUpdate(state, entities),

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { takeEvery, call, put } from 'redux-saga/effects';
 
 import { requestActions } from 'state/requests/reducer';
+import { notificationsActions } from 'state/notifications';
 
 function* request({
   payload: {
@@ -27,6 +28,10 @@ function* request({
   } catch (error) {
     reject(error);
     yield put(requestActions.fetchFail({ name, error }));
+    yield put(notificationsActions.addNotification({
+      type: 'error',
+      message: error.message,
+    }));
 
     // eslint-disable-next-line no-console
     console.error(error);

@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { requestActions, getLastError } from 'state/requests';
+import { notificationsActions, getLastNotification } from 'state/notifications';
 
 import Notifications from './Notifications';
 
 const mapStateToProps = createStructuredSelector({
-  error: getLastError,
+  notification: getLastNotification,
 });
 
 const actions = {
-  ...requestActions,
+  ...notificationsActions,
 };
 
 export default connect(mapStateToProps, actions)(Notifications);

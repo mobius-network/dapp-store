@@ -1,8 +1,9 @@
-import { takeLatest, call, select } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { Auth } from '@mobius-network/mobius-client-js';
 
 import { getSecretKeyFor, getPublicKeyFor } from 'state/auth/selectors';
 import { appActions } from 'state/apps/reducer';
+import { notificationsActions } from 'state/notifications';
 import { fetchStart } from 'state/requests/reducer';
 
 export function* openDapp({ payload: app }) {
@@ -45,6 +46,10 @@ export function* openDapp({ payload: app }) {
     const finalUrl = `${app.url}/?token=${token}`;
     tab.location.href = finalUrl;
   } catch (error) {
+    yield put(notificationsActions.addNotification({
+      type: 'error',
+      message: error.message,
+    }));
     tab.close();
   }
 }

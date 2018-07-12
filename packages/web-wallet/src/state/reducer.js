@@ -3,17 +3,19 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { reducer as formReducer } from 'redux-form';
 
-import { authReducer } from './auth';
 import { accountReducer } from './account';
-import { transfersReducer } from './transfers';
+import { authReducer } from './auth';
+import { notificationsReducer } from './notifications';
 import { requestsReducer } from './requests';
+import { transfersReducer } from './transfers';
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  masterAccount: accountReducer,
-  transfers: transfersReducer,
-  requests: requestsReducer,
   form: formReducer,
+  masterAccount: accountReducer,
+  notifications: notificationsReducer,
+  requests: requestsReducer,
+  transfers: transfersReducer,
 });
 
 const persistConfig = {

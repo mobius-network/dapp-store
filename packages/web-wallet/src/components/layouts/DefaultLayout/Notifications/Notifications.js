@@ -8,27 +8,28 @@ import { Container } from './styles';
 
 class Notifications extends Component {
   static propTypes = {
-    deleteError: PropTypes.func.isRequired,
-    error: PropTypes.shape({
+    deleteNotification: PropTypes.func.isRequired,
+    notification: PropTypes.shape({
       id: PropTypes.string,
       message: PropTypes.string,
+      type: PropTypes.string,
     }),
   };
 
   componentDidUpdate(prevProps) {
-    const { error, deleteError } = this.props;
+    const { notification, deleteNotification } = this.props;
 
-    if (!error) {
+    if (!notification) {
       return;
     }
 
-    if ((prevProps.error || {}).id === error.id) {
+    if ((prevProps.notification || {}).id === notification.id) {
       return;
     }
 
-    toast(error.message, {
-      onClose: () => deleteError(error),
-      type: toast.TYPE.ERROR,
+    toast(notification.message, {
+      onClose: () => deleteNotification(notification),
+      type: notification.type,
     });
   }
 

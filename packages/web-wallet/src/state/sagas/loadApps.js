@@ -11,6 +11,7 @@ import { getPublicKeyFor, getIsAuthorized } from 'state/auth/selectors';
 import { authActions } from 'state/auth/reducer';
 import { appActions } from 'state/apps/reducer';
 import { getApps } from 'state/apps/selectors';
+import { notificationsActions } from 'state/notifications';
 
 const watchers = {};
 
@@ -34,6 +35,10 @@ export function* loadAppAccount(app) {
 
     return { account: appAccount, app };
   } catch (error) {
+    yield put(notificationsActions.addNotification({
+      type: 'error',
+      message: error.message,
+    }));
     return {};
   }
 }

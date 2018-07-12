@@ -16,6 +16,7 @@ import { getPublicKeyFor } from 'state/auth/selectors';
 
 import { accountActions } from 'state/account/reducer';
 import { getMasterTrustlineCreated } from 'state/account/selectors';
+import { notificationsActions } from 'state/notifications';
 
 let watcher;
 
@@ -29,6 +30,10 @@ export function* loadAccount(publicKey) {
   } catch (error) {
     // TODO: use fetchStart to `safeLoadAccount` and error handling
     yield put(requestActions.fetchFail({ name: 'loadAccount', error }));
+    yield put(notificationsActions.addNotification({
+      type: 'error',
+      message: error.message,
+    }));
   }
 }
 

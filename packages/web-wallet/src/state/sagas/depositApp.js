@@ -11,6 +11,7 @@ import { fetchStart } from 'state/requests/reducer';
 import { accountActions, getMasterAccount } from 'state/account';
 import { getPublicKeyFor, getSecretKeyFor } from 'state/auth/selectors';
 import { appActions, getAppAccount } from 'state/apps';
+import { notificationsActions } from 'state/notifications';
 
 import { startAppAccountWatcher } from './loadApps';
 
@@ -59,11 +60,18 @@ export function* createApp(app, amount, meta) {
 }
 
 export function* depositApp({ payload: { app, amount }, meta }) {
-  const appAccount = yield select(getAppAccount, { appId: app.id });
+  try {
+    const appAccount = yield select(getAppAccount, { appId: app.id });
 
-  const handler = appAccount ? addToAppAccount : createApp;
+    const handler = appAccount ? addToAppAccount : createApp;
 
-  yield spawn(handler, app, amount, meta);
+    yield spawn(handler, app, amount, meta);
+  } catch (error) {
+    yield put(notificationsActions.addNotification({
+      type: 'error',
+      message: error.message,
+    }));
+  }
 }
 
 export default takeLatest(appActions.depositApp, depositApp);

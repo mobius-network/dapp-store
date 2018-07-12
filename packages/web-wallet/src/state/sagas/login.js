@@ -3,6 +3,7 @@ import { takeLatest, call, put } from 'redux-saga/effects';
 import { decrypt } from '@mobius-network/core';
 
 import { authActions } from 'state/auth/reducer';
+import { notificationsActions } from 'state/notifications';
 
 export function* login({
   payload,
@@ -17,8 +18,13 @@ export function* login({
 
     yield put(authActions.set({ wallet }));
     yield put(authActions.loginSuccess());
-  } catch (err) {
-    if (err.message === 'Network Error') {
+  } catch (error) {
+    yield put(notificationsActions.addNotification({
+      type: 'error',
+      message: error.message,
+    }));
+
+    if (error.message === 'Network Error') {
       reject({ keyfile: 'Network error occured!' });
     } else {
       reject({
