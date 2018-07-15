@@ -52,8 +52,9 @@ export const requestsReducer = createReducer(
           $merge: {
             [name]: {
               data,
-              success: true,
               isFetching: false,
+              result,
+              success: true,
             },
           },
         });

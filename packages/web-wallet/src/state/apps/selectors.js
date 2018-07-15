@@ -1,4 +1,4 @@
-import { isEmpty } from 'lodash';
+import { isEmpty, find } from 'lodash';
 import { createSelector } from 'reselect';
 import {
   getAsset,
@@ -6,11 +6,21 @@ import {
   createAssetBalanceSelector,
 } from 'state/account/selectors';
 
-import { getEntities, getEntitiesObject } from 'state/requests';
+import { getEntities, getResult, getEntitiesObject } from 'state/requests';
 
 export const getAppId = (_, { appId } = {}) => appId;
 
-export const getApps = state => getEntities(state, { entity: 'apps' });
+export const getApps = createSelector(
+  state => getEntities(state, { entity: 'apps' }),
+  state => getResult(state, { operation: 'apps' }),
+  (apps, result) => {
+    if (isEmpty(result)) {
+      return apps;
+    }
+
+    return result.map(id => find(apps, ['id', id]));
+  }
+);
 
 export const getFeaturedApp = createSelector([getApps], apps => {
   if (isEmpty(apps)) {
