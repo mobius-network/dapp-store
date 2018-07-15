@@ -29,7 +29,7 @@ class Notifications extends Component {
 
     toast(notification.message, {
       onClose: () => deleteNotification(notification),
-      type: notification.type,
+      type: notification.type || toast.TYPE.DEFAULT,
     });
   }
 
