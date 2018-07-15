@@ -23,6 +23,7 @@ export const Image = styled.img`
 
 export const Placeholder = styled.div`
   align-items: center;
+  background-color: ${colors.bgWhite};
   border-radius: 8px;
   border: 1px solid ${colors.border};
   box-sizing: border-box;
