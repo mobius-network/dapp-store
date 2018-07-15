@@ -12,6 +12,11 @@ export const getResponse = createSelector(
   (requests, operation) => get(requests, `${operation}.data`)
 );
 
+export const getResult = createSelector(
+  [getRequests, getOperationName],
+  (requests, operation) => get(requests, `${operation}.result`)
+);
+
 export const getIsFetching = createSelector(
   [getRequests, getOperationName],
   (requests, operation) => get(requests, `${operation}.isFetching`)
