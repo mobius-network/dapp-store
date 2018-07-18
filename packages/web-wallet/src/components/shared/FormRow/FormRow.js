@@ -8,29 +8,36 @@ class FormRow extends Component {
   static propTypes = {
     component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
       .isRequired,
-    disabled: PropTypes.bool,
-    name: PropTypes.string,
-    label: PropTypes.string,
     caption: PropTypes.any,
-    validate: PropTypes.func,
+    disabled: PropTypes.bool,
+    label: PropTypes.string,
+    name: PropTypes.string,
     placeholder: PropTypes.string,
+    required: PropTypes.bool,
+    validate: PropTypes.func,
+  };
+
+  static defaultProps = {
+    required: false,
+    disabled: false,
   };
 
   render() {
     const {
+      caption,
       component,
-      name,
       disabled,
       label,
-      caption,
-      validate,
+      name,
       placeholder,
+      required,
+      validate,
       ...rest
     } = this.props;
 
     return (
       <Container>
-        {label && <Label>{label}</Label>}
+        {label && <Label required={required}>{label}</Label>}
 
         {caption && <Caption>{caption}</Caption>}
 
