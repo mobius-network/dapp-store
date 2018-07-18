@@ -1,11 +1,15 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { Keypair, Operation, TransactionBuilder } from 'stellar-sdk';
-import { safeLoadAccount, submitTransaction } from '@mobius-network/core';
+import { Operation, TransactionBuilder } from 'stellar-sdk';
+import {
+  safeLoadAccount,
+  submitTransaction,
+  assets,
+} from '@mobius-network/core';
 
 import { submitDappActions, submitSteps } from 'state/submitDapp';
-import { fetchStart } from 'state/requests';
+import { fetchStart, requestActions } from 'state/requests';
 import { getMasterAccount, getMasterAccountData } from 'state/account';
-import { getWallet } from 'state/auth';
+import { getKeypairFor, getUserAccountKeypair } from 'state/auth';
 
 import { reloadMasterAccount } from './reloadMasterAccount';
 
@@ -13,20 +17,26 @@ function* createUserAccount() {
   yield call(reloadMasterAccount);
 
   const masterAccount = yield select(getMasterAccount);
+  const masterAccountKeypair = yield select(getKeypairFor);
   const data = yield select(getMasterAccountData);
-  const wallet = yield select(getWallet);
 
   const appCount = Object.prototype.hasOwnProperty.call(data, 'appCount')
     ? data.appCount + 1
     : 1;
-  const masterAccountKeypair = wallet.getKeypair(0);
-  const userAccountKeypair = Keypair.fromRawEd25519Seed(wallet.derive(`m/44'/148'/1868'/0'/${appCount}'`));
+
+  const userAccountKeypair = yield select(getUserAccountKeypair, {
+    accountNumber: appCount,
+  });
 
   const tx = new TransactionBuilder(masterAccount)
     .addOperation(Operation.createAccount({
       destination: userAccountKeypair.publicKey(),
       source: masterAccountKeypair.publicKey(),
       startingBalance: '3',
+    }))
+    .addOperation(Operation.changeTrust({
+      source: userAccountKeypair.publicKey(),
+      asset: assets.mobi,
     }))
     .addOperation(Operation.manageData({
       name: 'mobius.store.meta',
@@ -38,6 +48,7 @@ function* createUserAccount() {
     .build();
 
   tx.sign(masterAccountKeypair);
+  tx.sign(userAccountKeypair);
 
   yield call(fetchStart, {
     name: 'createUserAccount',
@@ -55,9 +66,15 @@ function* createUserAccount() {
   });
 
   if (userAccount) {
-    yield put(submitDappActions.setUserAccount(userAccount));
+    yield put(submitDappActions.setUserAccount({
+      userAccount,
+      userAccountNumber: appCount,
+    }));
     yield put(submitDappActions.setSubmitStep(submitSteps.form));
   }
+
+  yield put(requestActions.resetRequest('createUserAccount'));
+  yield put(requestActions.resetRequest('loadUserAccount'));
 }
 
 export default takeLatest(
