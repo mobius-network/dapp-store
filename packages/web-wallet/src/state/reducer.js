@@ -7,6 +7,7 @@ import { accountReducer } from './account';
 import { authReducer } from './auth';
 import { notificationsReducer } from './notifications';
 import { requestsReducer } from './requests';
+import { storeAccountReducer } from './storeAccount';
 import { submitDappReducer } from './submitDapp';
 import { transfersReducer } from './transfers';
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   masterAccount: accountReducer,
   notifications: notificationsReducer,
   requests: requestsReducer,
+  storeAccount: storeAccountReducer,
   submitDapp: submitDappReducer,
   transfers: transfersReducer,
 });
