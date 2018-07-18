@@ -27,6 +27,7 @@ export const getMobiBalance = createAssetBalanceSelector(
   getBalance,
   getMobiAsset
 );
+
 export const getNativeBalance = createAssetBalanceSelector(
   getBalance,
   getNativeAsset
