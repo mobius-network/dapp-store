@@ -14,6 +14,7 @@ import signupSaga from './signup';
 import submitDappSaga from './submitDapp';
 import submitTransactionSaga from './submitTransaction';
 import watchAccountSaga from './watchAccount';
+import watchStoreAccountSaga from './watchStoreAccount';
 
 export default function* () {
   yield all([
@@ -31,5 +32,6 @@ export default function* () {
     submitDappSaga,
     submitTransactionSaga,
     watchAccountSaga,
+    watchStoreAccountSaga,
   ]);
 }
