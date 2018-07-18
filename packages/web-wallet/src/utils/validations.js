@@ -56,7 +56,7 @@ export const isLessThanProp = ({ name, label }) =>
 
 export const isUrl = createValidator(
   message => value => {
-    const regexp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/;
+    const regexp = /^https:\/\/[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/;
 
     if (!regexp.test(value)) {
       return message;
