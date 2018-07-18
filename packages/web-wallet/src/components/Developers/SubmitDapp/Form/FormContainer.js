@@ -7,6 +7,8 @@ import { createStructuredSelector } from 'reselect';
 
 import { getIsFetching } from 'state/requests';
 import { submitDappActions } from 'state/submitDapp';
+import { storeAccountActions } from 'state/storeAccount';
+
 import { validate } from './validations';
 
 import Form from './Form';
@@ -23,6 +25,7 @@ const mapStateToProps = createStructuredSelector({
 
 const actions = {
   ...submitDappActions,
+  ...storeAccountActions,
 };
 
 export default compose(

@@ -16,11 +16,16 @@ class Form extends Component {
     isUserAccountFunding: PropTypes.bool,
     isUserAccountLoading: PropTypes.bool,
     t: PropTypes.func.isRequired,
+    watchStoreAccount: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     isDataUploadingToIpfs: false,
   };
+
+  componentDidMount() {
+    this.props.watchStoreAccount();
+  }
 
   render() {
     const {
