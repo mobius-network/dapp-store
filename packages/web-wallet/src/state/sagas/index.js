@@ -1,5 +1,6 @@
 import { all } from 'redux-saga/effects';
 
+import createUserAccountSaga from './createUserAccount';
 import depositAppSaga from './depositApp';
 import downloadKeypairSaga from './downloadKeypair';
 import initAppSaga from './initApp';
@@ -15,6 +16,7 @@ import watchAccountSaga from './watchAccount';
 
 export default function* () {
   yield all([
+    createUserAccountSaga,
     depositAppSaga,
     downloadKeypairSaga,
     initAppSaga,
