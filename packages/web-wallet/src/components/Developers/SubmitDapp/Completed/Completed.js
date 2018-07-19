@@ -37,8 +37,8 @@ class Completed extends Component {
                   <Content>
                     <Message>{t('submitDapp.completed.message')}</Message>
 
-                    <Button to="/developers/mydapps" wide>
-                      {t('submitDapp.completed.goToMyDappsButton')}
+                    <Button to="/" wide>
+                      {t('navigation.browseDapps')}
                     </Button>
                   </Content>
                 ) : (
