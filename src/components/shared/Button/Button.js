@@ -85,7 +85,13 @@ export default class Button extends Component {
     return (
       <ThemeProvider theme={themes[theme]}>
         {to || href ? (
-          <LinkComponent href={href} onClick={onClick} to={to} {...rest}>
+          <LinkComponent
+            fullWidth={fullWidth}
+            href={href}
+            onClick={onClick}
+            to={to}
+            {...rest}
+          >
             <Content fullWidth={fullWidth} wide={wide}>
               {children}
             </Content>
@@ -101,6 +107,7 @@ export default class Button extends Component {
             <Content fullWidth={fullWidth} wide={wide}>
               {children}
             </Content>
+
             {isLoading && <LoadingIndicator />}
           </StyledButton>
         )}
