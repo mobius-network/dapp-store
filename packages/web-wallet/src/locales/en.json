@@ -157,6 +157,7 @@
       "balance": "DApp balance: ",
       "depositFunds": "Deposit Funds",
       "goToAppButton": "GO TO APP",
+      "goToAppUnauthorizedButton": "LOGIN TO OPEN APP",
       "releaseFunds": "Release Funds"
     },
     "appAllocations": {
