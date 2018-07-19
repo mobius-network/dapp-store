@@ -32,7 +32,7 @@ class Account extends Component {
         <Pane.Section>
           <p>{t('submitDapp.account.explanation')}</p>
         </Pane.Section>
-        <Pane.Section>
+        <Pane.Footer>
           <Button
             disabled={isBusy}
             isLoading={isBusy}
@@ -41,7 +41,7 @@ class Account extends Component {
           >
             {t('shared.continue')}
           </Button>
-        </Pane.Section>
+        </Pane.Footer>
       </Pane>
     );
   }

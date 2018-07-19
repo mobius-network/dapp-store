@@ -156,22 +156,24 @@
         "explanation": "You need to create DApp-specific account"
       },
       "form": {
-        "descriptionFieldCaption": "Give people a brief description of your DApp to help them better understand it’s purpose and value.",
+        "descriptionFieldCaption": "Full description of your app (1-3 paragraphs). Please include pricing details.",
         "descriptionFieldLabel": "Description",
-        "imageUrlFieldCaption": "Must be a PNG image with 1024x1024 dimensions",
+        "imageUrlFieldCaption": "Full URL of your application logo image (ex. https://mygame.com/logo.png). HTTPS-only. JPEG or PNG image, recommended size: 225x225.",
         "imageUrlFieldLabel": "DApp Icon",
         "nameFieldCaption": "What’s your DApp called?",
         "nameFieldLabel": "Name",
         "submitButton": "Submit",
-        "supportUrlFieldCaption": "Add your customer contact email, phone number, or other contact channel",
+        "supportUrlFieldCaption": "Either a link to your customer support portal (HTTP/HTTPS) or an email in 'mailto:support@example.com' format.",
         "supportUrlFieldLabel": "Customer Support",
-        "taglineFieldCaption": "In one sentence, what does your DApp do? (max 60 characters)",
-        "taglineFieldLabel": "Short Description",
-        "title": "Step 2: DApp Info",
-        "urlFieldCaption": "This is where we will send users to visit your DApp",
+        "taglineFieldCaption": "Short one-phrase description of your app (max 60 characters)",
+        "taglineFieldLabel": "Tagline",
+        "title": "Step 2: DApp Details",
+        "urlFieldCaption": "Full URL of your application starting page (ex. https://app.mygame.com). HTTPS-only. After successful authentication DApp Store will redirect the user to this URL, passing the token acquired from your authentication endpoint as a query string 'token' param.",
         "urlFieldLabel": "DApp URL",
-        "websiteUrlFieldCaption": "Do you have an informational home page?",
-        "websiteUrlFieldLabel": "Homepage URL"
+        "websiteUrlFieldCaption": "Full URL of your application landing page or developer website (ex. https://mygame.com).",
+        "websiteUrlFieldLabel": "Homepage URL",
+        "authUrlFieldCaption": "Full URL of your authentication endpoint (ex. https://mygame.com/auth). HTTPS-only. Should be configured to allow CORS requests from the DApp Store (store.mobius.network or store.beta.mobius.network).",
+        "authUrlFieldLabel": "Authentication URL"
       }
     },
     "transferMobi": {
