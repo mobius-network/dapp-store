@@ -32,8 +32,3 @@ export const getMobiBalance = createAssetBalanceSelector(
   getBalance,
   getMobiAsset
 );
-
-export const getUserAccountTrustlineCreated = createSelector(
-  getBalance,
-  balance => balance && balance.mobi !== undefined
-);
