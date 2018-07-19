@@ -6,6 +6,7 @@ import downloadKeypairSaga from './downloadKeypair';
 import initAppSaga from './initApp';
 import loadAppsSaga from './loadApps';
 import loginSaga from './login';
+import mergeUserAccountSaga from './mergeUserAccount';
 import openDappSaga from './openDapp';
 import releaseBalanceSaga from './releaseBalance';
 import reloadMasterAccountSaga from './reloadMasterAccount';
@@ -24,6 +25,7 @@ export default function* () {
     initAppSaga,
     loadAppsSaga.listener,
     loginSaga,
+    mergeUserAccountSaga,
     openDappSaga,
     releaseBalanceSaga.listener,
     reloadMasterAccountSaga,

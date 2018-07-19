@@ -13,7 +13,7 @@ import { getKeypairFor, getUserAccountKeypair } from 'state/auth';
 
 import { reloadMasterAccount } from './reloadMasterAccount';
 
-function* createUserAccount() {
+function* run() {
   yield call(reloadMasterAccount);
 
   const masterAccount = yield select(getMasterAccount);
@@ -77,7 +77,4 @@ function* createUserAccount() {
   yield put(requestActions.resetRequest('loadUserAccount'));
 }
 
-export default takeLatest(
-  submitDappActions.createUserAccount,
-  createUserAccount
-);
+export default takeLatest(submitDappActions.createUserAccount, run);

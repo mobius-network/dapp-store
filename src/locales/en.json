@@ -156,7 +156,11 @@
         "title": "Step 1: Create DApp Account",
         "explanation": "You need to create DApp-specific account"
       },
-      "form": {
+      "detailsForm": {
+        "authUrlFieldCaption": "Full URL of your authentication endpoint (ex. https://mygame.com/auth). HTTPS-only. Should be configured to allow CORS requests from the DApp Store (store.mobius.network or store.beta.mobius.network).",
+        "authUrlFieldLabel": "Authentication URL",
+        "cancelConfirmationText": "Are you sure?",
+        "cancelConfirmationTitle": "Cancel confirm",
         "descriptionFieldCaption": "Full description of your app (1-3 paragraphs). Please include pricing details.",
         "descriptionFieldLabel": "Description",
         "imageUrlFieldCaption": "Full URL of your application logo image (ex. https://mygame.com/logo.png). HTTPS-only. JPEG or PNG image, recommended size: 225x225.",
@@ -164,6 +168,8 @@
         "nameFieldCaption": "What’s your DApp called?",
         "nameFieldLabel": "Name",
         "submitButton": "Submit",
+        "submitConfirmationText": "Are you sure?",
+        "submitConfirmationTitle": "Submit confirm",
         "supportUrlFieldCaption": "Either a link to your customer support portal (HTTP/HTTPS) or an email in 'mailto:support@example.com' format.",
         "supportUrlFieldLabel": "Customer Support",
         "taglineFieldCaption": "Short one-phrase description of your app (max 60 characters)",
@@ -172,9 +178,7 @@
         "urlFieldCaption": "Full URL of your application starting page (ex. https://app.mygame.com). HTTPS-only. After successful authentication DApp Store will redirect the user to this URL, passing the token acquired from your authentication endpoint as a query string 'token' param.",
         "urlFieldLabel": "DApp URL",
         "websiteUrlFieldCaption": "Full URL of your application landing page or developer website (ex. https://mygame.com).",
-        "websiteUrlFieldLabel": "Homepage URL",
-        "authUrlFieldCaption": "Full URL of your authentication endpoint (ex. https://mygame.com/auth). HTTPS-only. Should be configured to allow CORS requests from the DApp Store (store.mobius.network or store.beta.mobius.network).",
-        "authUrlFieldLabel": "Authentication URL"
+        "websiteUrlFieldLabel": "Homepage URL"
       }
     },
     "transferMobi": {
