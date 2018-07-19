@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { debounce, noop, isNil, isEqual } from 'lodash';
+import { debounce, noop } from 'lodash';
+import { toast } from 'react-toastify';
 import { assets, pathPayment, findBestPath } from '@mobius-network/core';
 
 import Grid from 'components/shared/Grid';
@@ -19,16 +20,22 @@ import {
 class PurchaseMobi extends Component {
   static propTypes = {
     accountId: PropTypes.string.isRequired,
+    addNotification: PropTypes.func.isRequired,
     bestPaymentPath: PropTypes.object,
     classname: PropTypes.string,
     fetchStart: PropTypes.func.isRequired,
+    isBestPathFetching: PropTypes.bool.isRequired,
     onSuccess: PropTypes.func,
+    resetRequest: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     transact: PropTypes.func.isRequired,
+    xlmBalance: PropTypes.number,
   };
 
   static defaultProps = {
+    isBestPathFetching: false,
     onSuccess: noop,
+    xlmBalance: 0,
   };
 
   constructor(props) {
@@ -36,23 +43,8 @@ class PurchaseMobi extends Component {
 
     this.state = {
       destAmount: '',
-      calculating: false,
     };
     this.calculatePrice = debounce(this.calculatePrice, 800);
-  }
-
-  componentDidUpdate(prevProps) {
-    if (isNil(this.props.bestPaymentPath)) {
-      return;
-    }
-
-    if (isEqual(this.props.bestPaymentPath, prevProps.bestPaymentPath)) {
-      return;
-    }
-
-    this.setState({
-      calculating: false,
-    });
   }
 
   componentWillUnmount() {
@@ -63,8 +55,8 @@ class PurchaseMobi extends Component {
     const { accountId, fetchStart } = this.props;
 
     fetchStart({
-      name: 'findBestPath',
       fetcher: findBestPath,
+      name: 'findBestPath',
       payload: {
         source: accountId,
         destination: accountId,
@@ -76,12 +68,30 @@ class PurchaseMobi extends Component {
 
   submitTransfer = async () => {
     const { destAmount } = this.state;
-    const { accountId, onSuccess } = this.props;
+    const {
+      accountId,
+      addNotification,
+      bestPaymentPath,
+      onSuccess,
+      xlmBalance,
+    } = this.props;
+
+    if (
+      bestPaymentPath &&
+      parseFloat(bestPaymentPath.source_amount) > xlmBalance
+    ) {
+      addNotification({
+        type: toast.TYPE.ERROR,
+        message: 'Insufficient XLM balance',
+      });
+
+      return;
+    }
 
     const operation = pathPayment({
-      destination: accountId,
-      destAsset: assets.mobi,
       destAmount,
+      destAsset: assets.mobi,
+      destination: accountId,
     });
 
     const response = await this.props.pathPayment.mutate({ operation });
@@ -90,16 +100,16 @@ class PurchaseMobi extends Component {
   };
 
   onAmountChange = ({ target: { value } }) => {
-    this.setState({ destAmount: value, calculating: true }, () => {
+    this.setState({ destAmount: value }, () => {
       this.calculatePrice(value);
     });
   };
 
   renderPrice = () => {
-    const { calculating } = this.state;
-    const { bestPaymentPath, t } = this.props;
+    const { destAmount } = this.state;
+    const { bestPaymentPath, isBestPathFetching, t } = this.props;
 
-    if (calculating) {
+    if (isBestPathFetching) {
       return <Price>{t('purchaseMobi.calculating')}</Price>;
     }
 
@@ -113,6 +123,10 @@ class PurchaseMobi extends Component {
       );
     }
 
+    if (destAmount) {
+      return null;
+    }
+
     return <Price>{t('purchaseMobi.enterAmount')}</Price>;
   };
 
@@ -120,6 +134,7 @@ class PurchaseMobi extends Component {
     const { destAmount } = this.state;
     const {
       classname,
+      isBestPathFetching,
       pathPayment: { loading },
       t,
     } = this.props;
@@ -145,11 +160,11 @@ class PurchaseMobi extends Component {
             <Grid.Col width={1} px={0}>
               <ButtonContainer>
                 <Button
-                  theme="secondary"
-                  onClick={this.submitTransfer}
+                  disabled={!destAmount || loading || isBestPathFetching}
                   fullWidth
-                  isLoading={loading}
-                  disabled={!destAmount || loading}
+                  isLoading={loading || isBestPathFetching}
+                  onClick={this.submitTransfer}
+                  theme="secondary"
                 >
                   {t('purchaseMobi.submitButton')}
                 </Button>
