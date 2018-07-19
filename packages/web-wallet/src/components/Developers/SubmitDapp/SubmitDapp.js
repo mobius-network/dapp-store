@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import { submitSteps } from 'state/submitDapp';
 import Account from './Account';
-import Form from './Form';
+import DetailsForm from './DetailsForm';
 
 const submitDappComponents = {
   [submitSteps.account]: Account,
-  [submitSteps.form]: Form,
+  [submitSteps.detailsForm]: DetailsForm,
 };
 
 class SubmitDapp extends Component {

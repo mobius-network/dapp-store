@@ -3,7 +3,7 @@ import { createActions, createReducer } from 'redux-yo';
 
 export const submitSteps = {
   account: 'account',
-  form: 'form',
+  detailsForm: 'detailsForm',
   submitted: 'submitted',
 };
 

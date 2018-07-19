@@ -54,9 +54,11 @@ export const isLessThanProp = ({ name, label }) =>
     field => `${field} must be a less than ${label}`
   );
 
+export const urlPattern = /^https:\/\/[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/;
+
 export const isUrl = createValidator(
   message => value => {
-    const regexp = /^https:\/\/[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/;
+    const regexp = urlPattern;
 
     if (!regexp.test(value)) {
       return message;
@@ -65,4 +67,19 @@ export const isUrl = createValidator(
     return undefined;
   },
   field => `${field} must be an URL string`
+);
+
+export const mailtoUrlPattern = /^mailto:[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const isMailtoUrl = createValidator(
+  message => value => {
+    const regexp = mailtoUrlPattern;
+
+    if (!regexp.test(value)) {
+      return message;
+    }
+
+    return undefined;
+  },
+  field => `${field} must be vaild mailto link`
 );
