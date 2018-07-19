@@ -13,6 +13,7 @@ import {
   getUserAccount,
   getUserAccountNumber,
   getMobiBalance,
+  submitSteps,
 } from 'state/submitDapp';
 import { fetchStart, requestActions } from 'state/requests';
 import { getMasterAccount } from 'state/account';
@@ -112,6 +113,7 @@ function* submitDapp({ payload }) {
   }
 
   yield call(submit, memoValue);
+  yield put(submitDappActions.setSubmitStep(submitSteps.completed));
 }
 
 export default takeLatest(submitDappActions.submitDapp, submitDapp);

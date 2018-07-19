@@ -151,7 +151,12 @@
       "weChatModalTitle": "WeChat QR Code"
     },
     "submitDapp": {
-      "account": {
+      "completed": {
+        "goToMyDappsButton": "GO TO MY DAPPS",
+        "message": "Your DApp was successfully submitted",
+        "title": "Completed"
+      },
+      "createAccount": {
         "title": "Step 1: Create DApp Account",
         "explanation": "You need to create DApp-specific account"
       },

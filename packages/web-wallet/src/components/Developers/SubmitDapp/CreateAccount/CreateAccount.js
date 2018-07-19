@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
 
-class Account extends Component {
+class CreateAccount extends Component {
   static propTypes = {
     createUserAccount: PropTypes.func.isRequired,
     isUserAccountCreating: PropTypes.bool,
@@ -28,9 +28,9 @@ class Account extends Component {
 
     return (
       <Pane theme="narrow">
-        <Pane.Header title={t('submitDapp.account.title')} />
+        <Pane.Header title={t('submitDapp.createAccount.title')} />
         <Pane.Section>
-          <p>{t('submitDapp.account.explanation')}</p>
+          <p>{t('submitDapp.createAccount.explanation')}</p>
         </Pane.Section>
         <Pane.Footer>
           <Button
@@ -47,4 +47,4 @@ class Account extends Component {
   }
 }
 
-export default Account;
+export default CreateAccount;
