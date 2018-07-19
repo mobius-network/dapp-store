@@ -70,7 +70,7 @@ function* createUserAccount() {
       userAccount,
       userAccountNumber: appCount,
     }));
-    yield put(submitDappActions.setSubmitStep(submitSteps.form));
+    yield put(submitDappActions.setSubmitStep(submitSteps.detailsForm));
   }
 
   yield put(requestActions.resetRequest('createUserAccount'));

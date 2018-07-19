@@ -11,7 +11,7 @@ import { storeAccountActions } from 'state/storeAccount';
 
 import { validate } from './validations';
 
-import Form from './Form';
+import DetailsForm from './DetailsForm';
 
 const mapStateToProps = createStructuredSelector({
   isDataUploadingToIpfs: state =>
@@ -39,4 +39,4 @@ export default compose(
         throw new SubmissionError(error);
       }),
   })
-)(Form);
+)(DetailsForm);
