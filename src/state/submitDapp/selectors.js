@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
+import { parseBalance, parsedBalanceValue } from 'core';
 
 export const getSubmitStep = state => state.submitDapp.submitStep;
 

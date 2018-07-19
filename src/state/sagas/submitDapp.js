@@ -4,7 +4,7 @@ import {
   safeLoadAccount,
   submitTransaction,
   assets,
-} from '@mobius-network/core';
+} from 'core';
 import { addIpfsFiles } from 'utils/ipfs';
 import { mobiusStoreAddress, mobiusStoreRegPrice } from 'utils/env';
 

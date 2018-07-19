@@ -4,7 +4,7 @@ import {
   safeLoadAccount,
   submitTransaction,
   assets,
-} from '@mobius-network/core';
+} from 'core';
 
 import { submitDappActions, submitSteps } from 'state/submitDapp';
 import { fetchStart, requestActions } from 'state/requests';
@@ -70,7 +70,7 @@ function* createUserAccount() {
       userAccount,
       userAccountNumber: appCount,
     }));
-    yield put(submitDappActions.setSubmitStep(submitSteps.form));
+    yield put(submitDappActions.setSubmitStep(submitSteps.detailsForm));
   }
 
   yield put(requestActions.resetRequest('createUserAccount'));
