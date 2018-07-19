@@ -16,22 +16,24 @@ class DetailsForm extends Component {
     isSubmitting: PropTypes.bool,
     isUserAccountFunding: PropTypes.bool,
     isUserAccountLoading: PropTypes.bool,
+    isUserAccountMerging: PropTypes.bool,
+    mergeUserAccount: PropTypes.func.isRequired,
     submit: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    watchStoreAccount: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     isDataUploadingToIpfs: false,
+    isSubmitting: false,
+    isUserAccountFunding: false,
+    isUserAccountLoading: false,
+    isUserAccountMerging: false,
   };
 
   state = {
     submitConfirmationVisible: false,
+    cancelConfirmationVisible: false,
   };
-
-  componentDidMount() {
-    this.props.watchStoreAccount();
-  }
 
   toggleSubmitConfirmation = () => {
     this.setState({
@@ -39,36 +41,43 @@ class DetailsForm extends Component {
     });
   };
 
+  toggleCancelConfirmation = () =>
+    this.setState({
+      cancelConfirmationVisible: !this.state.cancelConfirmationVisible,
+    });
+
   render() {
     const {
       handleSubmit,
-      t,
       isDataUploadingToIpfs,
       isSubmitting,
       isUserAccountFunding,
       isUserAccountLoading,
+      isUserAccountMerging,
+      mergeUserAccount,
       submit,
+      t,
     } = this.props;
     const isSubmissionBusy =
       isDataUploadingToIpfs ||
       isUserAccountFunding ||
       isUserAccountLoading ||
       isSubmitting;
-    const { submitConfirmationVisible } = this.state;
+    const { submitConfirmationVisible, cancelConfirmationVisible } = this.state;
 
     return (
       <Fragment>
         <Pane theme="narrow">
-          <Pane.Header title={t('submitDapp.form.title')} />
+          <Pane.Header title={t('submitDapp.detailsForm.title')} />
           <form onSubmit={handleSubmit(this.toggleSubmitConfirmation)}>
             <Pane.Section>
               <Grid>
                 <Grid.Row>
                   <Grid.Col width={1} mb={20}>
                     <FormRow
-                      caption={t('submitDapp.form.nameFieldCaption')}
+                      caption={t('submitDapp.detailsForm.nameFieldCaption')}
                       component={TextInput}
-                      label={t('submitDapp.form.nameFieldLabel')}
+                      label={t('submitDapp.detailsForm.nameFieldLabel')}
                       name="name"
                       required
                     />
@@ -78,9 +87,9 @@ class DetailsForm extends Component {
                 <Grid.Row>
                   <Grid.Col width={1} mb={20}>
                     <FormRow
-                      caption={t('submitDapp.form.taglineFieldCaption')}
+                      caption={t('submitDapp.detailsForm.taglineFieldCaption')}
                       component={TextInput}
-                      label={t('submitDapp.form.taglineFieldLabel')}
+                      label={t('submitDapp.detailsForm.taglineFieldLabel')}
                       name="tagline"
                       required
                     />
@@ -90,9 +99,9 @@ class DetailsForm extends Component {
                 <Grid.Row>
                   <Grid.Col width={1} mb={20}>
                     <FormRow
-                      caption={t('submitDapp.form.descriptionFieldCaption')}
+                      caption={t('submitDapp.detailsForm.descriptionFieldCaption')}
                       component={Textarea}
-                      label={t('submitDapp.form.descriptionFieldLabel')}
+                      label={t('submitDapp.detailsForm.descriptionFieldLabel')}
                       name="description"
                       required
                     />
@@ -102,9 +111,9 @@ class DetailsForm extends Component {
                 <Grid.Row>
                   <Grid.Col width={1} mb={20}>
                     <FormRow
-                      caption={t('submitDapp.form.imageUrlFieldCaption')}
+                      caption={t('submitDapp.detailsForm.imageUrlFieldCaption')}
                       component={TextInput}
-                      label={t('submitDapp.form.imageUrlFieldLabel')}
+                      label={t('submitDapp.detailsForm.imageUrlFieldLabel')}
                       name="image_url"
                       placeholder="https://"
                       required
@@ -115,9 +124,9 @@ class DetailsForm extends Component {
                 <Grid.Row>
                   <Grid.Col width={1} mb={20}>
                     <FormRow
-                      caption={t('submitDapp.form.websiteUrlFieldCaption')}
+                      caption={t('submitDapp.detailsForm.websiteUrlFieldCaption')}
                       component={TextInput}
-                      label={t('submitDapp.form.websiteUrlFieldLabel')}
+                      label={t('submitDapp.detailsForm.websiteUrlFieldLabel')}
                       name="website_url"
                       placeholder="https://"
                       required
@@ -128,9 +137,9 @@ class DetailsForm extends Component {
                 <Grid.Row>
                   <Grid.Col width={1}>
                     <FormRow
-                      caption={t('submitDapp.form.supportUrlFieldCaption')}
+                      caption={t('submitDapp.detailsForm.supportUrlFieldCaption')}
                       component={TextInput}
-                      label={t('submitDapp.form.supportUrlFieldLabel')}
+                      label={t('submitDapp.detailsForm.supportUrlFieldLabel')}
                       name="support_url"
                       required
                     />
@@ -144,9 +153,9 @@ class DetailsForm extends Component {
                 <Grid.Row>
                   <Grid.Col width={1} mb={20}>
                     <FormRow
-                      caption={t('submitDapp.form.urlFieldCaption')}
+                      caption={t('submitDapp.detailsForm.urlFieldCaption')}
                       component={TextInput}
-                      label={t('submitDapp.form.urlFieldLabel')}
+                      label={t('submitDapp.detailsForm.urlFieldLabel')}
                       name="url"
                       placeholder="https://"
                       required
@@ -157,9 +166,9 @@ class DetailsForm extends Component {
                 <Grid.Row>
                   <Grid.Col width={1} mb={20}>
                     <FormRow
-                      caption={t('submitDapp.form.authUrlFieldCaption')}
+                      caption={t('submitDapp.detailsForm.authUrlFieldCaption')}
                       component={TextInput}
-                      label={t('submitDapp.form.authUrlFieldLabel')}
+                      label={t('submitDapp.detailsForm.authUrlFieldLabel')}
                       name="auth_url"
                       placeholder="https://"
                       required
@@ -176,7 +185,15 @@ class DetailsForm extends Component {
                 type="submit"
                 wide
               >
-                {t('submitDapp.form.submitButton')}
+                {t('submitDapp.detailsForm.submitButton')}
+              </Button>
+              <Button
+                onClick={this.toggleCancelConfirmation}
+                type="button"
+                theme="text"
+                wide
+              >
+                {t('shared.cancel')}
               </Button>
             </Pane.Footer>
           </form>
@@ -187,9 +204,19 @@ class DetailsForm extends Component {
           isOpen={submitConfirmationVisible}
           onCancel={this.toggleSubmitConfirmation}
           onConfirm={submit}
-          title="Submit confirm"
+          title={t('submitDapp.detailsForm.submitConfirmationTitle')}
         >
-          Are you sure?
+          {t('submitDapp.detailsForm.submitConfirmationText')}
+        </ConfirmationModal>
+
+        <ConfirmationModal
+          isConfirming={isUserAccountMerging}
+          isOpen={cancelConfirmationVisible}
+          onCancel={this.toggleCancelConfirmation}
+          onConfirm={mergeUserAccount}
+          title={t('submitDapp.detailsForm.cancelConfirmationTitle')}
+        >
+          {t('submitDapp.detailsForm.cancelConfirmationText')}
         </ConfirmationModal>
       </Fragment>
     );

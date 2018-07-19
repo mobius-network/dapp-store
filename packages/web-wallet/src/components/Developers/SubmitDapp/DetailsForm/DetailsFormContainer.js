@@ -7,7 +7,6 @@ import { createStructuredSelector } from 'reselect';
 
 import { getIsFetching } from 'state/requests';
 import { submitDappActions } from 'state/submitDapp';
-import { storeAccountActions } from 'state/storeAccount';
 
 import { validate } from './validations';
 
@@ -21,11 +20,12 @@ const mapStateToProps = createStructuredSelector({
     getIsFetching(state, { operation: 'fundUserAccount' }),
   isUserAccountLoading: state =>
     getIsFetching(state, { operation: 'loadUserAccount' }),
+  isUserAccountMerging: state =>
+    getIsFetching(state, { operation: 'mergeUserAccount' }),
 });
 
 const actions = {
   ...submitDappActions,
-  ...storeAccountActions,
 };
 
 export default compose(
