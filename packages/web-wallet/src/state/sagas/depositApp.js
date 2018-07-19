@@ -56,7 +56,7 @@ export function* createApp(app, amount, meta) {
     meta
   );
 
-  yield call(startAppAccountWatcher, app);
+  yield spawn(startAppAccountWatcher, app);
 }
 
 export function* depositApp({ payload: { app, amount }, meta }) {
@@ -65,7 +65,7 @@ export function* depositApp({ payload: { app, amount }, meta }) {
 
     const handler = appAccount ? addToAppAccount : createApp;
 
-    yield spawn(handler, app, amount, meta);
+    yield call(handler, app, amount, meta);
   } catch (error) {
     yield put(notificationsActions.addNotification({
       type: 'error',

@@ -6,7 +6,12 @@ import {
   createAssetBalanceSelector,
 } from 'state/account/selectors';
 
-import { getEntities, getResult, getEntitiesObject } from 'state/requests';
+import {
+  getEntities,
+  getResult,
+  getEntitiesObject,
+  getIsFetching,
+} from 'state/requests';
 
 export const getAppId = (_, { appId } = {}) => appId;
 
@@ -64,4 +69,12 @@ export const getAppAssetSumBalance = createSelector(
 
         return acc + parseFloat(balance);
       }, 0)
+);
+
+export const getAppIsOpening = createSelector(
+  state => getIsFetching(state, { operation: 'getChallenge' }),
+  state => getIsFetching(state, { operation: 'getToken' }),
+  state => getIsFetching(state, { operation: 'createAppAccount' }),
+  (isChallengeFetching, isTokenFetching, isAccountCreating) =>
+    isChallengeFetching || isTokenFetching || isAccountCreating
 );
