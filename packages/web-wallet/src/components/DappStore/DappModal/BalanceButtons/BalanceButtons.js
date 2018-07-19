@@ -10,6 +10,7 @@ class BalanceButtons extends Component {
     app: PropTypes.object.isRequired,
     mobiAppBalance: PropTypes.number.isRequired,
     openDapp: PropTypes.func.isRequired,
+    isAuthorized: PropTypes.bool.isRequired,
     releaseAppBalance: PropTypes.object.isRequired,
     t: PropTypes.func.isRequired,
   };
@@ -40,19 +41,25 @@ class BalanceButtons extends Component {
     const { depositFormActive } = this.state;
 
     const {
-      app, mobiAppBalance, releaseAppBalance, t,
+      app,
+      isAuthorized,
+      mobiAppBalance,
+      releaseAppBalance,
+      t,
     } = this.props;
 
     return (
       <Fragment>
         <ButtonRow>
-          <Button
-            disabled={mobiAppBalance === 0}
-            onClick={this.openApp}
-            fullWidth
-          >
-            {t('balanceButtons.goToAppButton')}
-          </Button>
+          {isAuthorized ? (
+            <Button onClick={this.openApp} fullWidth>
+              {t('balanceButtons.goToAppButton')}
+            </Button>
+          ) : (
+            <Button to="/login" fullWidth>
+              {t('balanceButtons.goToAppUnauthorizedButton')}
+            </Button>
+          )}
         </ButtonRow>
 
         <ButtonRow>
