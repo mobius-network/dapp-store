@@ -24,13 +24,6 @@ export function createAppAccount(args) {
     asset: assets.mobi,
   });
 
-  const paymentOp = Operation.payment({
-    source: masterKeyPair.publicKey(),
-    destination: appKeyPair.publicKey(),
-    amount: amount.toString(),
-    asset: assets.mobi,
-  });
-
   const setSignerOp = Operation.setOptions({
     source: appKeyPair.publicKey(),
     signer: {
@@ -47,10 +40,22 @@ export function createAppAccount(args) {
     lowThreshold: 1,
   });
 
-  const transaction = new TransactionBuilder(account)
+  let transaction = new TransactionBuilder(account)
     .addOperation(createAccountOp)
-    .addOperation(changeTrustOp)
-    .addOperation(paymentOp)
+    .addOperation(changeTrustOp);
+
+  if (amount) {
+    const paymentOp = Operation.payment({
+      source: masterKeyPair.publicKey(),
+      destination: appKeyPair.publicKey(),
+      amount: amount.toString(),
+      asset: assets.mobi,
+    });
+
+    transaction = transaction.addOperation(paymentOp);
+  }
+
+  transaction = transaction
     .addOperation(setSignerOp)
     .addOperation(setWeightsOp)
     .build();
