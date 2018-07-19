@@ -158,7 +158,9 @@
       "depositFunds": "Deposit Funds",
       "goToAppButton": "GO TO APP",
       "goToAppUnauthorizedButton": "LOGIN TO OPEN APP",
-      "releaseFunds": "Release Funds"
+      "releaseFunds": "Release Funds",
+      "submitReserveConfirmationTitle": "Reserve XLM for App?",
+      "submitReserveConfirmationText": "Opening this app will reserve 3 XLM in order to open a stellar account. You can release this account and receive the XLM back at any time from your account dashboard."
     },
     "appAllocations": {
       "title": "Balance Allocation",

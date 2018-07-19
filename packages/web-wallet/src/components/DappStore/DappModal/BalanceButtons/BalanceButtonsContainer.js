@@ -5,15 +5,22 @@ import { createStructuredSelector } from 'reselect';
 import releaseAppBalanceSaga from 'state/sagas/releaseBalance';
 
 import { restMutation } from 'components/hocs';
-import { appActions, getAppAssetBalance } from 'state/apps';
+import {
+  appActions,
+  getAppAssetBalance,
+  getAppAccount,
+  getAppIsOpening,
+} from 'state/apps';
 import { getIsAuthorized } from 'state/auth';
 
 import BalanceButtons from './BalanceButtons';
 
 const mapStateToProps = createStructuredSelector({
   isAuthorized: getIsAuthorized,
+  appAccount: (state, { app }) => getAppAccount(state, { appId: app.id }),
   mobiAppBalance: (state, { app }) =>
     getAppAssetBalance(state, { appId: app.id }),
+  isAppOpening: getAppIsOpening,
 });
 
 const actions = {
