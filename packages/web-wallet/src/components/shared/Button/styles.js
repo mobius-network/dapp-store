@@ -5,7 +5,6 @@ import Spinner from 'components/shared/Spinner';
 import { fonts, fontSizes, radius } from 'components/shared/Styleguide';
 
 const buttonStyles = `
-  position: relative;
   align-items: stretch;
   border-radius: ${radius.big};
   cursor: pointer;
@@ -17,6 +16,7 @@ const buttonStyles = `
   outline: 2px;
   overflow: hidden;
   padding: 0;
+  position: relative;
   text-decoration: none;
   transition: 0.3s;
   user-select: none;

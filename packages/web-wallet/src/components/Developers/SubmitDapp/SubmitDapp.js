@@ -1,56 +1,27 @@
 import React, { Component } from 'react';
-import TextInput from 'components/shared/TextInput';
-import FileInput from 'components/shared/FileInput';
-import Textarea from 'components/shared/Textarea';
+import PropTypes from 'prop-types';
 
-import {
-  Container,
-  Title,
-  Form,
-  TextField,
-  UploadField,
-  SubmitButton,
-} from './styles';
+import { submitSteps } from 'state/submitDapp';
+import Completed from './Completed';
+import CreateAccount from './CreateAccount';
+import DetailsForm from './DetailsForm';
 
-// TODO: move to utils
-const required = v => !!v;
+const submitDappComponents = {
+  [submitSteps.completed]: Completed,
+  [submitSteps.createAccount]: CreateAccount,
+  [submitSteps.detailsForm]: DetailsForm,
+};
 
 class SubmitDapp extends Component {
+  static propTypes = {
+    submitStep: PropTypes.string.isRequired,
+  };
+
   render() {
-    const { handleSubmit } = this.props;
+    const { submitStep } = this.props;
+    const StepComponent = submitDappComponents[submitStep];
 
-    return (
-      <Container>
-        <Title>Submit DApp</Title>
-
-        <Form onSubmit={handleSubmit}>
-          <TextField name="name" component={TextInput} validate={required} />
-          <TextField name="url" component={TextInput} validate={required} />
-
-          <TextField name="summary" component={TextInput} validate={required} />
-          <TextField
-            name="description"
-            component={Textarea}
-            validate={required}
-          />
-
-          <UploadField
-            name="icon"
-            component={FileInput}
-            validate={required}
-            onChange={this.onKeyUpload}
-          />
-          <UploadField
-            name="screenshots"
-            component={FileInput}
-            validate={required}
-            onChange={this.onKeyUpload}
-          />
-
-          <SubmitButton onClick={handleSubmit}>Submit Draft</SubmitButton>
-        </Form>
-      </Container>
-    );
+    return <StepComponent />;
   }
 }
 

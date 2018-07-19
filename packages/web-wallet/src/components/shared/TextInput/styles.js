@@ -16,8 +16,12 @@ export const themes = {
 };
 
 export const Container = styled.div`
-  margin: 0;
   position: relative;
+  margin: 0 0 5px;
+
+  &:last-child {
+    margin: 0;
+  }
 `;
 
 export const Input = styled.input`

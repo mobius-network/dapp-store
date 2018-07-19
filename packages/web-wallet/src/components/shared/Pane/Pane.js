@@ -11,6 +11,7 @@ import { Container, Gradient } from './styles';
 const themes = {
   default: {
     background: colors.bgWhite,
+    footerPadding: '10px 10px',
     headerFontSize: fontSizes.subHeading,
     headerPadding: '10px',
     headerSpacing: '5px',
@@ -19,6 +20,7 @@ const themes = {
   },
   narrow: {
     background: colors.bgWhite,
+    footerPadding: '10px 25px',
     headerFontSize: fontSizes.heading,
     headerPadding: '25px',
     headerSpacing: '10px',
@@ -27,6 +29,7 @@ const themes = {
   },
   wide: {
     background: colors.bgWhite,
+    footerPadding: '10px 15px',
     headerFontSize: fontSizes.paneHeading,
     headerPadding: '50px 60px',
     headerSpacing: '15px',
