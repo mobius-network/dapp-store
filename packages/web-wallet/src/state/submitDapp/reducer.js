@@ -2,9 +2,9 @@ import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
 export const submitSteps = {
-  account: 'account',
+  completed: 'completed',
+  createAccount: 'createAccount',
   detailsForm: 'detailsForm',
-  submitted: 'submitted',
 };
 
 export const submitDappActions = createActions(
@@ -21,7 +21,7 @@ export const submitDappActions = createActions(
 
 const initialState = {
   isAppSubmitted: false,
-  submitStep: submitSteps.account,
+  submitStep: submitSteps.createAccount,
   userAccount: undefined,
   userAccountNumber: undefined,
 };

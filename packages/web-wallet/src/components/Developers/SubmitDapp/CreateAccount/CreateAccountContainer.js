@@ -6,7 +6,7 @@ import { createStructuredSelector } from 'reselect';
 import { submitDappActions } from 'state/submitDapp';
 import { getIsFetching } from 'state/requests';
 
-import Account from './Account';
+import CreateAccount from './CreateAccount';
 
 const mapStateToProps = createStructuredSelector({
   isUserAccountCreating: state =>
@@ -22,4 +22,4 @@ const actions = {
 export default compose(
   connect(mapStateToProps, actions),
   translate('translation')
-)(Account);
+)(CreateAccount);
