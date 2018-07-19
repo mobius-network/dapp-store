@@ -10,6 +10,7 @@ export const submitSteps = {
 export const submitDappActions = createActions(
   [
     'createUserAccount',
+    'mergeUserAccount',
     'reset',
     'setSubmitStep',
     'setUserAccount',
