@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { fontSizes } from 'components/shared/Styleguide';
 
-export const Content = styled.p`
+export const Content = styled.div`
   text-align: center;
 `;
 
