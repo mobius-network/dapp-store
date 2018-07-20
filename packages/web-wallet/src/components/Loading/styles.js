@@ -7,6 +7,8 @@ export const Container = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
+
+  ${props => props.fullScreen && 'height: 100vh;'};
 `;
 
 export const Spinner = styled.div`

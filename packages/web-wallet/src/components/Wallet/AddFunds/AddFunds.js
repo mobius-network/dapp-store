@@ -22,6 +22,7 @@ class AddFunds extends Component {
 
   state = {
     delta: 0,
+    currentTabIndex: 0,
     balance: this.props.balance,
   };
 
@@ -31,21 +32,25 @@ class AddFunds extends Component {
     }
 
     return {
+      ...state,
       balance: props.balance,
       delta: props.balance - state.balance,
     };
   }
 
   componentDidMount() {
-    this.resetPathPayment();
+    this.props.resetRequest('pathPayment');
   }
 
-  resetPathPayment = () => {
+  resetForm = () => {
     this.props.resetRequest('pathPayment');
+    this.setState({ delta: 0 });
   };
 
   getAssetName = () =>
     this.props.match.params.asset === 'native' ? 'XLM' : 'MOBI';
+
+  onTabChange = currentTabIndex => this.setState({ currentTabIndex });
 
   renderPurchase = () => {
     const { match, t } = this.props;
@@ -63,7 +68,10 @@ class AddFunds extends Component {
     }
 
     return (
-      <Tabs>
+      <Tabs
+        onTabChange={this.onTabChange}
+        defaultTabIndex={this.state.currentTabIndex}
+      >
         <Tabs.Tab title="Use XLM" fluid>
           <Pane.Section>
             <PurchaseMobi />
@@ -94,7 +102,7 @@ class AddFunds extends Component {
           assetValue={this.state.delta}
           message={t('addFunds.completeText')}
         />
-        <Button theme="secondary" onClick={this.resetPathPayment} fullWidth>
+        <Button theme="secondary" onClick={this.resetForm} fullWidth>
           {t('addFunds.completeButton')}
         </Button>
       </Pane.Section>
@@ -102,14 +110,14 @@ class AddFunds extends Component {
   };
 
   render() {
-    const { delta } = this.state;
+    const { delta, currentTabIndex } = this.state;
     const { pathPaymentCompleted, t } = this.props;
 
     return (
       <Pane theme="narrow">
         <Pane.Header title={`${t('addFunds.title')} ${this.getAssetName()}`} />
 
-        {delta > 0 && pathPaymentCompleted
+        {delta > 0 && (currentTabIndex === 0 ? pathPaymentCompleted : true)
           ? this.renderComplete()
           : this.renderPurchase()}
       </Pane>

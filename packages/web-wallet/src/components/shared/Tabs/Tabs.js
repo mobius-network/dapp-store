@@ -1,6 +1,6 @@
 import React, { Children, Component } from 'react';
 import PropTypes from 'prop-types';
-import { camelCase } from 'lodash';
+import { camelCase, noop } from 'lodash';
 
 import Tab from './Tab';
 import { Container, TabButtons, TabButton } from './styles';
@@ -8,7 +8,12 @@ import { Container, TabButtons, TabButton } from './styles';
 class Tabs extends Component {
   static propTypes = {
     className: PropTypes.string,
-    defaultTabIndex: PropTypes.string,
+    defaultTabIndex: PropTypes.number,
+    onTabChange: PropTypes.func,
+  };
+
+  static defaultProps = {
+    onTabChange: noop,
   };
 
   constructor(props) {
@@ -19,7 +24,11 @@ class Tabs extends Component {
     };
   }
 
-  handleTabSwitch = index => () => this.setState({ activeTabIndex: index });
+  handleTabSwitch = index => () => {
+    this.setState({ activeTabIndex: index }, () => {
+      this.props.onTabChange(index);
+    });
+  };
 
   renderTabs = () => {
     const { children } = this.props;

@@ -11,10 +11,10 @@ class Loading extends Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, ...rest } = this.props;
 
     return (
-      <Container>
+      <Container {...rest}>
         <Spinner>
           <SpinnerIcon>
             <FontAwesomeIcon icon={faCircleNotch} size="2x" spin />
