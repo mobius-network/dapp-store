@@ -1,6 +1,6 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { Auth } from '@mobius-network/mobius-client-js';
-import { isNil } from 'lodash';
+import { isEmpty, isNil } from 'lodash';
 
 import { getSecretKeyFor, getPublicKeyFor } from 'state/auth/selectors';
 import { appActions, getAppAccount } from 'state/apps';
@@ -79,7 +79,8 @@ export function* run({ payload: dapp }) {
 
     const token = yield call(getToken, signedChallenge, dapp);
 
-    const finalUrl = `${dapp.url}/?token=${token}`;
+    const finalUrl =
+      isNil(token) || isEmpty(token) ? dapp.url : `${dapp.url}/?token=${token}`;
 
     tab.location.href = finalUrl;
   } catch (error) {
