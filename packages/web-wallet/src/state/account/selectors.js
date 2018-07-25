@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect';
+import { isEmpty, isNil } from 'lodash';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
 export const getAsset = (_, { asset = 'mobi' } = {}) => asset;
@@ -59,10 +60,26 @@ export const getMasterTrustlineCreated = createSelector(
 export const getMasterAccountData = createSelector(
   getMasterAccount,
   account => {
-    if (!account.data_attr['mobius.store.meta']) {
-      return {};
+    if (isEmpty(account) || isNil(account)) {
+      return undefined;
+    }
+
+    if (
+      isEmpty(account.data_attr['mobius.store.meta']) ||
+      isNil(account.data_attr['mobius.store.meta'])
+    ) {
+      return undefined;
     }
 
     return JSON.parse(atob(account.data_attr['mobius.store.meta']));
   }
 );
+
+export const getMasterAccountDataEntry = name =>
+  createSelector(getMasterAccountData, data => {
+    if (isEmpty(data) || isNil(data)) {
+      return undefined;
+    }
+
+    return data[name];
+  });

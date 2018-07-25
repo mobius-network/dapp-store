@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div``;
-
-export const Title = styled.p``;
+export const ButtonIcon = styled.div`
+  font-size: 16px;
+  margin-right: 10px;
+`;

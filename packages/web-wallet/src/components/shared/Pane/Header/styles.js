@@ -16,12 +16,20 @@ export const Caption = styled.p`
 
 export const Container = styled.div`
   border-bottom: 1px solid ${colors.border};
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   overflow: hidden;
   padding: ${props => props.theme.headerPadding};
 
   &:last-child {
     border-bottom: none;
   }
+`;
+
+export const TextContainer = styled.div`
+  flex: 1;
 `;
 
 export const Title = styled.p`
