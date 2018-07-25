@@ -125,14 +125,34 @@
       "submitButton": "I’ve Written it Down",
       "title": "Write Down Your Mnemonic Phrase"
     },
+    "myDapps": {
+      "placeholderActions": {
+        "docs": {
+          "title": "Read the API Docs",
+          "desc": "Complete API reference"
+        },
+        "gettingStarted": {
+          "title": "Getting Started",
+          "desc": "Learn the basics"
+        },
+        "submit": {
+          "title": "Submit DApp",
+          "desc": "This is where you get started"
+        }
+      },
+      "placeholderMessage": "You haven’t created any DApps…",
+      "submitDappButton": "Submit DApp",
+      "title": "My DApps"
+    },
     "navigation": {
       "browseDapps": "Browse DApps",
       "copyright": "Copyright",
       "developers": {
         "developers": "Developers",
-        "gettingStarted": "Getting Started",
         "documentation": "Documentation",
-        "submitDApp": "Submit Dapp"
+        "gettingStarted": "Getting Started",
+        "myDapps": "My DApps",
+        "submitDapp": "Submit Dapp"
       },
       "login": "Login",
       "logout": "Logout",
