@@ -37,11 +37,23 @@ const buttonStyles = `
   }
 `;
 
+function getButtonWidth(props) {
+  if (props.fullWidth) {
+    return '100%';
+  }
+
+  if (props.square) {
+    return '42px';
+  }
+
+  return 'auto';
+}
+
 export const StyledButton = styled.button`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
-  width: ${props => (props.fullWidth ? '100%' : 'auto')};
+  width: ${props => getButtonWidth(props)};
   ${buttonStyles};
 `;
 
@@ -49,7 +61,7 @@ export const StyledLink = styled(Link)`
   background: ${props => props.theme.background};
   border: ${props => props.theme.border};
   box-shadow: ${props => props.theme.boxShadow};
-  width: ${props => (props.fullWidth ? '100%' : 'auto')};
+  width: ${props => getButtonWidth(props)};
   ${buttonStyles};
 
   &:visited {
@@ -66,6 +78,10 @@ function getContentPadding(props) {
 
   if (props.wide) {
     return '0 60px';
+  }
+
+  if (props.square) {
+    return '0';
   }
 
   return '0 30px';

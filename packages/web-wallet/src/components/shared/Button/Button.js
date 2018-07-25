@@ -53,6 +53,7 @@ export default class Button extends Component {
     disabled: PropTypes.bool,
     fullWidth: PropTypes.bool,
     onClick: PropTypes.func,
+    square: PropTypes.bool,
     theme: PropTypes.oneOf(['primary', 'primaryOutline', 'secondary', 'text']),
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     wide: PropTypes.bool,
@@ -60,9 +61,7 @@ export default class Button extends Component {
 
   static defaultProps = {
     disabled: false,
-    fullWidth: false,
     theme: 'primary',
-    wide: false,
   };
 
   render() {
@@ -71,6 +70,7 @@ export default class Button extends Component {
       disabled,
       fullWidth,
       onClick,
+      square,
       theme,
       to,
       href,
@@ -89,10 +89,11 @@ export default class Button extends Component {
             fullWidth={fullWidth}
             href={href}
             onClick={onClick}
+            square={square}
             to={to}
             {...rest}
           >
-            <Content wide={wide} fullWidth={fullWidth}>
+            <Content fullWidth={fullWidth} square={square} wide={wide}>
               {children}
             </Content>
           </LinkComponent>
@@ -101,10 +102,11 @@ export default class Button extends Component {
             disabled={disabled || isLoading}
             fullWidth={fullWidth}
             onClick={onClick}
+            square={square}
             type="button"
             {...rest}
           >
-            <Content wide={wide} fullWidth={fullWidth}>
+            <Content fullWidth={fullWidth} square={square} wide={wide}>
               {children}
             </Content>
 
