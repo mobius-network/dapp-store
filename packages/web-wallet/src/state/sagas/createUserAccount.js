@@ -73,8 +73,7 @@ function* run() {
     yield put(submitDappActions.setSubmitStep(submitSteps.detailsForm));
   }
 
-  yield put(requestActions.resetRequest('createUserAccount'));
-  yield put(requestActions.resetRequest('loadUserAccount'));
+  yield put(requestActions.resetRequests(['createUserAccount', 'loadUserAccount']));
 }
 
 export default takeLatest(submitDappActions.createUserAccount, run);

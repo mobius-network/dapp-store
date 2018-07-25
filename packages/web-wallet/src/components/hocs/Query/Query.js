@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { requestActions } from 'state/requests/reducer';
+import { requestActions } from 'state/requests';
 
 const { requestStart } = requestActions;
 
