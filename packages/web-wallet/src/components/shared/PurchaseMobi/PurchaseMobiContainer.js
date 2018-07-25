@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import { getPublicKeyFor } from 'state/auth';
-import { getResponse, requestActions } from 'state/requests';
-import { accountActions } from 'state/account';
+import { getResponse, getIsFetching, requestActions } from 'state/requests';
+import { accountActions, getAssetBalance } from 'state/account';
 import { transfersActions } from 'state/transfers';
+import { notificationsActions } from 'state/notifications';
 
 import { restMutation } from 'components/hocs';
 import PurchaseMobi from './PurchaseMobi';
@@ -13,12 +14,15 @@ import PurchaseMobi from './PurchaseMobi';
 const mapStateToProps = state => ({
   accountId: getPublicKeyFor(state),
   bestPaymentPath: getResponse(state, { operation: 'findBestPath' }),
+  isBestPathFetching: getIsFetching(state, { operation: 'findBestPath' }),
+  xlmBalance: getAssetBalance(state, { asset: 'native' }),
 });
 
 const actions = {
   ...accountActions,
-  ...transfersActions,
+  ...notificationsActions,
   ...requestActions,
+  ...transfersActions,
 };
 
 export default compose(
