@@ -61,8 +61,7 @@ function* fundUserAccount() {
     }));
   }
 
-  yield put(requestActions.resetRequest('fundUserAccount'));
-  yield put(requestActions.resetRequest('loadUserAccount'));
+  yield put(requestActions.resetRequests('fundUserAccount', 'loadUserAccount'));
 }
 
 function* submit(memoValue) {

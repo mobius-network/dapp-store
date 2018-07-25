@@ -8,7 +8,7 @@ import { safeLoadAccount } from 'core';
 import { apiUrl } from 'utils';
 
 import { createSaga } from 'state/utils';
-import { fetchStart, requestActions } from 'state/requests/reducer';
+import { fetchStart, requestActions } from 'state/requests';
 import { getPublicKeyFor, getIsAuthorized } from 'state/auth/selectors';
 import { authActions } from 'state/auth/reducer';
 import { appActions } from 'state/apps/reducer';
