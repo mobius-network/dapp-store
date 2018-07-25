@@ -3,7 +3,7 @@ import axios from 'axios';
 import { call, put } from 'redux-saga/effects';
 
 import { dedupeEvery } from 'state/utils';
-import { requestActions } from 'state/requests/reducer';
+import { requestActions } from 'state/requests';
 import { notificationsActions } from 'state/notifications';
 
 function* request({

@@ -1,7 +1,7 @@
 import { takeLatest, put, select } from 'redux-saga/effects';
 import { submitOperation } from '@mobius-network/core';
 
-import { requestActions } from 'state/requests/reducer';
+import { requestActions } from 'state/requests';
 import { accountActions } from 'state/account/reducer';
 import { getKeypairFor } from 'state/auth/selectors';
 import { getMasterAccount } from 'state/account/selectors';

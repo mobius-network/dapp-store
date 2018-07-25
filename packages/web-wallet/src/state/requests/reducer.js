@@ -1,18 +1,8 @@
-import { createActions, createReducer } from 'redux-yo';
+import { createReducer } from 'redux-yo';
 import { update, merge } from 'state/utils';
 import store from '../configureStore';
 
-export const requestActions = createActions(
-  [
-    'fetchStart',
-    'fetchSuccess',
-    'fetchFail',
-    'resetRequest',
-    'setEntities',
-    'deleteEntities',
-  ],
-  'requests'
-);
+import { requestActions } from './actions';
 
 const initialState = {
   errors: [],
@@ -75,12 +65,29 @@ export const requestsReducer = createReducer(
     [requestActions.resetRequest]: (state, name) =>
       merge(state, {
         [name]: {
-          error: undefined,
           data: undefined,
-          success: undefined,
+          error: undefined,
           isFetching: false,
+          success: undefined,
         },
       }),
+    [requestActions.resetRequests]: (state, names) => {
+      const updates = names.reduce((acc, name) => {
+        acc[name] = {
+          data: undefined,
+          error: undefined,
+          isFetching: false,
+          success: undefined,
+        };
+
+        return acc;
+      }, {});
+
+      return {
+        ...state,
+        ...updates,
+      };
+    },
     [requestActions.setEntities]: (state, entities) =>
       update(state, {
         entities: entitiesUpdate(state, entities),
