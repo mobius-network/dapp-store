@@ -2,7 +2,7 @@ import {
   createValidator,
   combineValidators as sourceCombine,
 } from 'revalidate';
-import { isObject } from 'lodash';
+import { isObject, isNil } from 'lodash';
 
 // Allows to access `props` in validator
 export const combineValidators = config => {
@@ -82,4 +82,19 @@ export const isMailtoUrl = createValidator(
     return undefined;
   },
   field => `${field} must be vaild mailto link`
+);
+
+export const isTrueIsh = createValidator(
+  message => value => {
+    if (isNil(value)) {
+      return message;
+    }
+
+    if (!value) {
+      return message;
+    }
+
+    return undefined;
+  },
+  field => `${field} must be trueish`
 );
