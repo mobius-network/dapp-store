@@ -22,7 +22,6 @@ const baseConfig = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
         include: [
           resolve(root, 'src'),
           resolve(root, 'node_modules', 'js-xdr'),

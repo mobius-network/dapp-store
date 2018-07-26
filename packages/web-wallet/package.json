@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --hot --config webpack.development.config.js",
-    "start:bleed": "webpack-dev-server --hot --config webpack.config.bleed.js",
+    "start:bleed": "webpack-dev-server --hot --config webpack.bleed.config.js",
     "clean": "rimraf dist",
     "build:beta": "cross-env npm run clean && webpack --config webpack.beta.config.js --progress --profile --colors",
     "build:production": "cross-env npm run clean && webpack --config webpack.production.config.js --progress --profile --colors",

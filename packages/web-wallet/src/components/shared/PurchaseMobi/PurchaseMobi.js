@@ -57,6 +57,7 @@ class PurchaseMobi extends Component {
     fetchStart({
       fetcher: findBestPath,
       name: 'findBestPath',
+      deduplicate: true,
       payload: {
         source: accountId,
         destination: accountId,

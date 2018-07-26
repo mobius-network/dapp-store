@@ -1,7 +1,8 @@
 import { identity, noop } from 'lodash';
 import axios from 'axios';
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { call, put } from 'redux-saga/effects';
 
+import { dedupeEvery } from 'state/utils';
 import { requestActions } from 'state/requests/reducer';
 import { notificationsActions } from 'state/notifications';
 
@@ -24,9 +25,11 @@ function* request({
     const serialized = serialize(data);
 
     resolve(serialized);
+
     yield put(requestActions.fetchSuccess({ name, data: serialized }));
   } catch (error) {
     reject(error);
+
     yield put(requestActions.fetchFail({ name, error }));
     yield put(notificationsActions.addNotification({
       type: 'error',
@@ -38,4 +41,4 @@ function* request({
   }
 }
 
-export default takeEvery(requestActions.fetchStart, request);
+export default dedupeEvery(requestActions.fetchStart, request);
