@@ -1,7 +1,12 @@
 import StellarHDWallet from 'stellar-hd-wallet';
 import { REHYDRATE } from 'redux-persist';
+
 import { merge } from 'state/utils';
-import { createActions, createReducer } from 'redux-yo';
+import { createReducer } from 'redux-yo';
+import { accountActions } from 'state/account/reducer';
+import { authActions } from './actions';
+
+export * from './actions';
 
 export const signupSteps = {
   password: 'password',
@@ -9,29 +14,13 @@ export const signupSteps = {
   mnemonic: 'mnemonic',
 };
 
-export const authActions = createActions(
-  [
-    'loginStart',
-    'loginSuccess',
-    'signupStart',
-    'signupSuccess',
-    'logout',
-    'watchAccount',
-    'completeAccountCreation',
-    'set',
-    'setMnemonic',
-    'setKeystore',
-    'setSignupStep',
-  ],
-  'auth'
-);
-
 const initialState = {
   loggedIn: false,
   signupStep: 'password',
   wallet: null,
   mnemonic: undefined,
   keystore: undefined,
+  accountFunded: false,
 };
 
 export const authReducer = createReducer(
@@ -50,7 +39,6 @@ export const authReducer = createReducer(
     [authActions.signupSuccess]: state =>
       merge(state, {
         loggedIn: true,
-        accountPending: true,
         mnemonic: undefined,
         keystore: undefined,
       }),
@@ -58,13 +46,19 @@ export const authReducer = createReducer(
       merge(state, {
         loggedIn: true,
       }),
-    [authActions.completeAccountCreation]: state =>
-      merge(state, { accountPending: false }),
     [authActions.setSignupStep]: (state, signupStep) =>
       merge(state, { signupStep }),
     [authActions.setKeystore]: (state, keystore) => merge(state, { keystore }),
     [authActions.setMnemonic]: (state, mnemonic) => merge(state, { mnemonic }),
     [authActions.logout]: () => initialState,
+
+    [accountActions.setMasterAccount]: (state, masterAccount) => {
+      if (masterAccount) {
+        return merge(state, { accountFunded: true });
+      }
+
+      return state;
+    },
   },
   initialState
 );

@@ -7,6 +7,7 @@ import { I18nextProvider } from 'react-i18next';
 
 import { notify } from 'utils/honeybadger';
 import i18n from 'utils/i18n';
+import waitForMasterAccount from 'state/auth/waitForMasterAccount';
 
 import DefaultLayout from 'components/layouts/DefaultLayout';
 import DevelopersLayout from 'components/layouts/DevelopersLayout';
@@ -33,7 +34,11 @@ class Root extends Component {
     return (
       <Provider store={store}>
         <I18nextProvider i18n={i18n}>
-          <PersistGate loading={<Loading />} persistor={persistor}>
+          <PersistGate
+            loading={<Loading fullScreen />}
+            persistor={persistor}
+            onBeforeLift={waitForMasterAccount(store)}
+          >
             <Router>
               <DefaultLayout>
                 <Switch>

@@ -36,16 +36,14 @@ class AddFunds extends Component {
     };
   }
 
-  componentDidMount() {
-    this.resetPathPayment();
-  }
-
-  resetPathPayment = () => {
-    this.props.resetRequest('pathPayment');
+  resetForm = () => {
+    this.setState({ delta: 0 });
   };
 
   getAssetName = () =>
     this.props.match.params.asset === 'native' ? 'XLM' : 'MOBI';
+
+  onTabChange = index => (this.currentTabIndex = index);
 
   renderPurchase = () => {
     const { match, t } = this.props;
@@ -63,7 +61,10 @@ class AddFunds extends Component {
     }
 
     return (
-      <Tabs>
+      <Tabs
+        onTabChange={this.onTabChange}
+        defaultTabIndex={this.currentTabIndex}
+      >
         <Tabs.Tab title="Use XLM" fluid>
           <Pane.Section>
             <PurchaseMobi />
@@ -94,7 +95,7 @@ class AddFunds extends Component {
           assetValue={this.state.delta}
           message={t('addFunds.completeText')}
         />
-        <Button theme="secondary" onClick={this.resetPathPayment} fullWidth>
+        <Button theme="secondary" onClick={this.resetForm} fullWidth>
           {t('addFunds.completeButton')}
         </Button>
       </Pane.Section>
@@ -103,15 +104,13 @@ class AddFunds extends Component {
 
   render() {
     const { delta } = this.state;
-    const { pathPaymentCompleted, t } = this.props;
+    const { t } = this.props;
 
     return (
       <Pane theme="narrow">
         <Pane.Header title={`${t('addFunds.title')} ${this.getAssetName()}`} />
 
-        {delta > 0 && pathPaymentCompleted
-          ? this.renderComplete()
-          : this.renderPurchase()}
+        {delta > 0 ? this.renderComplete() : this.renderPurchase()}
       </Pane>
     );
   }

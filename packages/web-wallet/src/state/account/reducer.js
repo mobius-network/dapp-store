@@ -1,7 +1,7 @@
 // import { merge } from 'state/utils';
 import { createActions, createReducer } from 'redux-yo';
 
-import { authActions } from 'state/auth/reducer';
+import { authActions } from 'state/auth/actions';
 
 export const accountActions = createActions(
   ['setMasterAccount', 'downloadKeypair', 'transact'],

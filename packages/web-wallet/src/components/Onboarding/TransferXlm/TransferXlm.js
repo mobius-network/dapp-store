@@ -39,11 +39,7 @@ class TransferXlm extends Component {
     return (
       <Fragment>
         <CompleteMessage assetName="XLM" assetValue={this.props.balance} />
-        <Button
-          fullWidth
-          to="/onboarding/mobi"
-          onClick={this.props.completeAccountCreation}
-        >
+        <Button fullWidth to="/onboarding/mobi">
           {t('shared.continue')}
         </Button>
       </Fragment>
