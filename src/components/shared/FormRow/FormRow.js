@@ -10,6 +10,7 @@ class FormRow extends Component {
     component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
       .isRequired,
     disabled: PropTypes.bool,
+    inputProps: PropTypes.object,
     label: PropTypes.string,
     name: PropTypes.string,
     placeholder: PropTypes.string,
@@ -27,6 +28,7 @@ class FormRow extends Component {
       caption,
       component,
       disabled,
+      inputProps,
       label,
       name,
       placeholder,
@@ -37,13 +39,18 @@ class FormRow extends Component {
 
     return (
       <Container>
-        {label && <Label required={required}>{label}</Label>}
+        {label && (
+          <Label htmlFor={name} required={required}>
+            {label}
+          </Label>
+        )}
 
         {caption && <Caption>{caption}</Caption>}
 
         <Field
           component={component}
           disabled={disabled}
+          inputProps={inputProps}
           name={name}
           placeholder={placeholder}
           validate={validate}
