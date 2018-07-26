@@ -3,6 +3,7 @@ import { isNil, isEmpty } from 'lodash';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
 import { getDappCatalog } from 'state/storeAccount';
+import { getIsFetching } from 'state/requests';
 
 export const getSubmitStep = state => state.submitDapp.submitStep;
 
@@ -56,4 +57,21 @@ export const getIsDappSubmitted = createSelector(
 
     return true;
   }
+);
+
+export const getDAppIsSubmitting = createSelector(
+  state => getIsFetching(state, { operation: 'addFilesToIpfs' }),
+  state => getIsFetching(state, { operation: 'submitDapp' }),
+  state => getIsFetching(state, { operation: 'fundUserAccount' }),
+  state => getIsFetching(state, { operation: 'loadUserAccount' }),
+  (
+    isDataUploadingToIpfs,
+    isSubmitting,
+    isUserAccountFunding,
+    isUserAccountLoading
+  ) =>
+    isDataUploadingToIpfs ||
+    isSubmitting ||
+    isUserAccountFunding ||
+    isUserAccountLoading
 );
