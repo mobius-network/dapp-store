@@ -2,212 +2,70 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import Pane from 'components/shared/Pane';
-import Grid from 'components/shared/Grid';
-import FormRow from 'components/shared/FormRow';
-import TextInput from 'components/shared/TextInput';
-import Textarea from 'components/shared/Textarea';
-import Button from 'components/shared/Button';
 import ConfirmationModal from 'components/shared/ConfirmationModal';
+import DappForm from 'components/shared/DappForm';
+
+import AgreementModal from './AgreementModal';
 
 class DetailsForm extends Component {
   static propTypes = {
-    handleSubmit: PropTypes.func.isRequired,
-    isDataUploadingToIpfs: PropTypes.bool,
     isSubmitting: PropTypes.bool,
-    isUserAccountFunding: PropTypes.bool,
-    isUserAccountLoading: PropTypes.bool,
     isUserAccountMerging: PropTypes.bool,
     mergeUserAccount: PropTypes.func.isRequired,
-    submit: PropTypes.func.isRequired,
+    submitDapp: PropTypes.func.isRequired,
+    submitDappForm: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    isDataUploadingToIpfs: false,
-    isSubmitting: false,
-    isUserAccountFunding: false,
-    isUserAccountLoading: false,
     isUserAccountMerging: false,
+    isSubmitting: false,
   };
 
   state = {
-    submitConfirmationVisible: false,
+    agreementModalVisible: false,
     cancelConfirmationVisible: false,
   };
 
-  toggleSubmitConfirmation = () => {
+  toggleAgreementModal = () => {
     this.setState({
-      submitConfirmationVisible: !this.state.submitConfirmationVisible,
+      agreementModalVisible: !this.state.agreementModalVisible,
     });
   };
 
-  toggleCancelConfirmation = () =>
-    this.setState({
-      cancelConfirmationVisible: !this.state.cancelConfirmationVisible,
-    });
+  toggleCancelConfirmation = () => this.setState({
+    cancelConfirmationVisible: !this.state.cancelConfirmationVisible,
+  });
 
   render() {
     const {
-      handleSubmit,
-      isDataUploadingToIpfs,
       isSubmitting,
-      isUserAccountFunding,
-      isUserAccountLoading,
       isUserAccountMerging,
       mergeUserAccount,
-      submit,
+      submitDapp,
+      submitDappForm,
       t,
     } = this.props;
-    const isSubmissionBusy =
-      isDataUploadingToIpfs ||
-      isUserAccountFunding ||
-      isUserAccountLoading ||
-      isSubmitting;
-    const { submitConfirmationVisible, cancelConfirmationVisible } = this.state;
+    const { agreementModalVisible, cancelConfirmationVisible } = this.state;
 
     return (
       <Fragment>
         <Pane theme="narrow">
           <Pane.Header title={t('submitDapp.detailsForm.title')} />
-          <form onSubmit={handleSubmit(this.toggleSubmitConfirmation)}>
-            <Pane.Section>
-              <Grid>
-                <Grid.Row>
-                  <Grid.Col width={1} mb={20}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.nameFieldCaption')}
-                      component={TextInput}
-                      label={t('submitDapp.detailsForm.nameFieldLabel')}
-                      name="name"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-
-                <Grid.Row>
-                  <Grid.Col width={1} mb={20}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.taglineFieldCaption')}
-                      component={TextInput}
-                      label={t('submitDapp.detailsForm.taglineFieldLabel')}
-                      name="tagline"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-
-                <Grid.Row>
-                  <Grid.Col width={1} mb={20}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.descriptionFieldCaption')}
-                      component={Textarea}
-                      label={t('submitDapp.detailsForm.descriptionFieldLabel')}
-                      name="description"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-
-                <Grid.Row>
-                  <Grid.Col width={1} mb={20}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.imageUrlFieldCaption')}
-                      component={TextInput}
-                      label={t('submitDapp.detailsForm.imageUrlFieldLabel')}
-                      name="image_url"
-                      placeholder="https://"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-
-                <Grid.Row>
-                  <Grid.Col width={1} mb={20}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.websiteUrlFieldCaption')}
-                      component={TextInput}
-                      label={t('submitDapp.detailsForm.websiteUrlFieldLabel')}
-                      name="website_url"
-                      placeholder="https://"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-
-                <Grid.Row>
-                  <Grid.Col width={1}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.supportUrlFieldCaption')}
-                      component={TextInput}
-                      label={t('submitDapp.detailsForm.supportUrlFieldLabel')}
-                      name="support_url"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-              </Grid>
-            </Pane.Section>
-
-            <Pane.Section>
-              <Grid>
-                <Grid.Row>
-                  <Grid.Col width={1} mb={20}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.urlFieldCaption')}
-                      component={TextInput}
-                      label={t('submitDapp.detailsForm.urlFieldLabel')}
-                      name="url"
-                      placeholder="https://"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-
-                <Grid.Row>
-                  <Grid.Col width={1} mb={20}>
-                    <FormRow
-                      caption={t('submitDapp.detailsForm.authUrlFieldCaption')}
-                      component={TextInput}
-                      label={t('submitDapp.detailsForm.authUrlFieldLabel')}
-                      name="auth_url"
-                      placeholder="https://"
-                      required
-                    />
-                  </Grid.Col>
-                </Grid.Row>
-              </Grid>
-            </Pane.Section>
-
-            <Pane.Footer>
-              <Button
-                disabled={isSubmissionBusy}
-                onClick={handleSubmit(this.toggleSubmitConfirmation)}
-                type="submit"
-                wide
-              >
-                {t('submitDapp.detailsForm.submitButton')}
-              </Button>
-              <Button
-                onClick={this.toggleCancelConfirmation}
-                type="button"
-                theme="text"
-                wide
-              >
-                {t('shared.cancel')}
-              </Button>
-            </Pane.Footer>
-          </form>
+          <DappForm
+            isBusy={isSubmitting}
+            onBeforeSubmit={this.toggleAgreementModal}
+            onCancel={this.toggleCancelConfirmation}
+            onSubmit={submitDapp}
+          />
         </Pane>
 
-        <ConfirmationModal
-          isConfirming={isSubmissionBusy}
-          isOpen={submitConfirmationVisible}
-          onCancel={this.toggleSubmitConfirmation}
-          onConfirm={submit}
-          title={t('submitDapp.detailsForm.submitConfirmationTitle')}
-        >
-          {t('submitDapp.detailsForm.submitConfirmationText')}
-        </ConfirmationModal>
+        <AgreementModal
+          isConfirming={isSubmitting}
+          isOpen={agreementModalVisible}
+          onCancel={this.toggleAgreementModal}
+          onSubmit={submitDappForm}
+        />
 
         <ConfirmationModal
           isConfirming={isUserAccountMerging}
