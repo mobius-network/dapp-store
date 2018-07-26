@@ -11,7 +11,6 @@ export const submitSteps = {
 };
 
 const initialState = {
-  isAppSubmitted: false,
   submitStep: submitSteps.createAccount,
   userAccount: undefined,
   userAccountNumber: undefined,
