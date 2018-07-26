@@ -172,6 +172,13 @@
       "weChatModalTitle": "WeChat QR Code"
     },
     "submitDapp": {
+      "agreementModal": {
+        "agree": "I agree to the DApp store guideliness.",
+        "header": "By submitting an app to the DApp store, you acknowledge the following:",
+        "submitButton": "SUBMIT",
+        "text": "You must only withdraw coins from the user’s account when the user “spends” the coins within your app. \n Violation of guidelines may result in the removal of your app from the DApp store.",
+        "title": "DApp Store Guidelines"
+      },
       "completed": {
         "goToMyDappsButton": "GO TO MY DAPPS",
         "message": "Your DApp was successfully submitted",
