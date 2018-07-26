@@ -1,23 +1,14 @@
 import { merge } from 'state/utils';
-import { createActions, createReducer } from 'redux-yo';
+import { createReducer } from 'redux-yo';
+
+import { submitDappActions } from './actions';
 
 export const submitSteps = {
   completed: 'completed',
   createAccount: 'createAccount',
   detailsForm: 'detailsForm',
+  setup: 'setup',
 };
-
-export const submitDappActions = createActions(
-  [
-    'createUserAccount',
-    'mergeUserAccount',
-    'reset',
-    'setSubmitStep',
-    'setUserAccount',
-    'submitDapp',
-  ],
-  'submitDapp'
-);
 
 const initialState = {
   isAppSubmitted: false,
