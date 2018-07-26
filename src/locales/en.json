@@ -179,11 +179,17 @@
         "supportUrlFieldLabel": "Customer Support",
         "taglineFieldCaption": "Short one-phrase description of your app (max 60 characters)",
         "taglineFieldLabel": "Tagline",
-        "title": "Step 2: DApp Details",
+        "title": "Step 3: DApp Details",
         "urlFieldCaption": "Full URL of your application starting page (ex. https://app.mygame.com). HTTPS-only. After successful authentication DApp Store will redirect the user to this URL, passing the token acquired from your authentication endpoint as a query string 'token' param.",
         "urlFieldLabel": "DApp URL",
         "websiteUrlFieldCaption": "Full URL of your application landing page or developer website (ex. https://mygame.com).",
         "websiteUrlFieldLabel": "Homepage URL"
+      },
+      "setup": {
+        "title": "Step 2: Setup your DApp",
+        "explanation": "Setup your DApp using the following keypair to receive payments:",
+        "publicKey": "Public Key:",
+        "secretkey": "Secret Key:"
       }
     },
     "transferMobi": {

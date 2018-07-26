@@ -1,10 +1,6 @@
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import { Operation, TransactionBuilder, Memo, MemoHash } from 'stellar-sdk';
-import {
-  safeLoadAccount,
-  submitTransaction,
-  assets,
-} from 'core';
+import { submitTransaction, assets } from 'core';
 import { addIpfsFiles } from 'utils/ipfs';
 import { mobiusStoreAddress, mobiusStoreRegPrice } from 'utils/env';
 
@@ -16,53 +12,9 @@ import {
   submitSteps,
 } from 'state/submitDapp';
 import { fetchStart, requestActions } from 'state/requests';
-import { getMasterAccount } from 'state/account';
-import { getKeypairFor, getUserAccountKeypair } from 'state/auth';
+import { getUserAccountKeypair } from 'state/auth';
 
-function* fundUserAccount() {
-  const masterAccount = yield select(getMasterAccount);
-  const masterAccountKeypair = yield select(getKeypairFor);
-  const accountNumber = yield select(getUserAccountNumber);
-  const userAccountKeypair = yield select(getUserAccountKeypair, {
-    accountNumber,
-  });
-
-  const paymentOp = Operation.payment({
-    amount: mobiusStoreRegPrice,
-    asset: assets.mobi,
-    destination: userAccountKeypair.publicKey(),
-  });
-
-  const tx = new TransactionBuilder(masterAccount)
-    .addOperation(paymentOp)
-    .build();
-
-  tx.sign(masterAccountKeypair);
-
-  yield call(fetchStart, {
-    name: 'fundUserAccount',
-    fetcher: submitTransaction,
-    payload: tx,
-  });
-
-  const { userAccount } = yield call(fetchStart, {
-    name: 'loadUserAccount',
-    fetcher: safeLoadAccount,
-    payload: userAccountKeypair.publicKey(),
-    serialize: result => ({
-      userAccount: result,
-    }),
-  });
-
-  if (userAccount) {
-    yield put(submitDappActions.setUserAccount({
-      userAccount,
-      userAccountNumber: accountNumber,
-    }));
-  }
-
-  yield put(requestActions.resetRequests('fundUserAccount', 'loadUserAccount'));
-}
+import fundUserAccount from './fundUserAccount';
 
 function* submit(memoValue) {
   const accountNumber = yield select(getUserAccountNumber);
@@ -95,8 +47,9 @@ function* submit(memoValue) {
   yield put(requestActions.resetRequest('submitDapp'));
 }
 
-function* submitDapp({ payload }) {
+function* run({ payload }) {
   const mobiBalance = yield select(getMobiBalance);
+  const accountNumber = yield select(getUserAccountNumber);
 
   const { memoValue } = yield call(fetchStart, {
     name: 'addFilesToIpfs',
@@ -108,11 +61,19 @@ function* submitDapp({ payload }) {
   });
 
   if (mobiBalance <= parseInt(mobiusStoreRegPrice, 10)) {
-    yield call(fundUserAccount);
+    const userAccount = yield call(fundUserAccount, accountNumber);
+
+    if (userAccount) {
+      yield put(submitDappActions.setUserAccount({
+        userAccount,
+        userAccountNumber: accountNumber,
+      }));
+    }
   }
 
   yield call(submit, memoValue);
+
   yield put(submitDappActions.setSubmitStep(submitSteps.completed));
 }
 
-export default takeLatest(submitDappActions.submitDapp, submitDapp);
+export default takeLatest(submitDappActions.submitDapp, run);

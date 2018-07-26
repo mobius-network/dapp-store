@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Container } from './styles';
+import { Container, Label } from './styles';
 
 class AdditionalInfo extends Component {
   static propTypes = {
     children: PropTypes.any,
     className: PropTypes.string,
+    label: PropTypes.string,
   };
 
   render() {
-    const { children, className } = this.props;
+    const { children, className, label } = this.props;
 
-    return <Container className={className}>{children}</Container>;
+    return (
+      <Container className={className}>
+        {label && <Label>{label}</Label>}
+        {children}
+      </Container>
+    );
   }
 }
 
