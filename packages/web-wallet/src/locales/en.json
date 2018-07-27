@@ -126,6 +126,18 @@
       "title": "Write Down Your Mnemonic Phrase"
     },
     "myDapps": {
+      "dappItem": {
+        "draft": "Draft",
+        "editButton": "Edit",
+        "namePlaceholder": "New DApp",
+        "publishButton": "Publish",
+        "status": {
+          "pending": "Pending",
+          "revoked": "Revoked",
+          "approved": "Approved"
+        },
+        "viewAccountButton": "View Account"
+      },
       "placeholderActions": {
         "docs": {
           "title": "Read the API Docs",

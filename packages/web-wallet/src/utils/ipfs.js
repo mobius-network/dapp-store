@@ -18,24 +18,46 @@ export function getBytes32FromIpfsHash(ipfsListing) {
     .toString('hex');
 }
 
+export const ipfs = ipfsAPI({
+  host: ipfsApiUrl,
+  port: 5001,
+  protocol: 'https',
+});
+
 export function addIpfsFiles(data) {
   const buffer = Buffer.from(JSON.stringify(data));
 
   return new Promise((resolve, reject) => {
-    const ipfs = ipfsAPI({
-      host: ipfsApiUrl,
-      port: 5001,
-      protocol: 'https',
-    });
-
     ipfs.files.add(buffer, { pin: true }, (err, ipfsHash) => {
       if (err) {
         reject(err);
       }
 
-      const memo = getBytes32FromIpfsHash(ipfsHash[0].path);
+      try {
+        const memo = getBytes32FromIpfsHash(ipfsHash[0].path);
 
-      resolve(memo);
+        resolve(memo);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  });
+}
+
+export function getIpfsFiles(ipfsPath) {
+  return new Promise((resolve, reject) => {
+    ipfs.files.get(ipfsPath, (err, files) => {
+      if (err) {
+        reject(err);
+      }
+
+      try {
+        const result = JSON.parse(files[0].content.toString('utf8'));
+
+        resolve(result);
+      } catch (error) {
+        reject(error);
+      }
     });
   });
 }
