@@ -2,12 +2,25 @@ import styled from 'styled-components';
 
 import { colors } from 'components/shared/Styleguide';
 
+export const themes = {
+  default: {
+    height: '128px',
+    placeholderFontSize: '50px',
+    width: '128px',
+  },
+  small: {
+    height: '54px',
+    placeholderFontSize: '21px',
+    width: '54px',
+  },
+};
+
 export const Container = styled.div`
   border-radius: 8px;
-  height: 128px;
+  height: ${props => props.theme.height};
   overflow: hidden;
   position: relative;
-  width: 128px;
+  width: ${props => props.theme.width};
 `;
 
 export const Image = styled.img`
@@ -29,7 +42,7 @@ export const Placeholder = styled.div`
   box-sizing: border-box;
   color: #e7e3e3;
   display: flex;
-  font-size: 50px;
+  font-size: ${props => props.theme.placeholderFontSize};
   height: 100%;
   justify-content: center;
   width: 100%;
