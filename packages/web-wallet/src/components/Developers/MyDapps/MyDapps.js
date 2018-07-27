@@ -7,22 +7,18 @@ import Pane from 'components/shared/Pane';
 import Button from 'components/shared/Button';
 
 import Placeholder from './Placeholder';
+import DappsList from './DappList';
 import { ButtonIcon } from './styles';
 
 class MyDapps extends Component {
   static propTypes = {
     t: PropTypes.func.isRequired,
     userAccountsCount: PropTypes.number,
-    watchStoreAccount: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     userAccountsCount: 0,
   };
-
-  componentDidMount() {
-    this.props.watchStoreAccount();
-  }
 
   render() {
     const { t, userAccountsCount } = this.props;
@@ -38,7 +34,7 @@ class MyDapps extends Component {
           </Button>
         </Pane.Header>
 
-        {userAccountsCount > 0 ? <Pane.Section /> : <Placeholder />}
+        {userAccountsCount > 0 ? <DappsList /> : <Placeholder />}
       </Pane>
     );
   }

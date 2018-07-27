@@ -11,7 +11,7 @@ class Pic extends Component {
   static propTypes = {
     className: PropTypes.string,
     theme: PropTypes.oneOf(['default', 'small']),
-    url: PropTypes.string.isRequired,
+    url: PropTypes.string,
   };
 
   static defaultProps = {

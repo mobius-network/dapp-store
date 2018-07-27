@@ -10,6 +10,7 @@ import { requestsReducer } from './requests';
 import { storeAccountReducer } from './storeAccount';
 import { submitDappReducer } from './submitDapp';
 import { transfersReducer } from './transfers';
+import { userAccountsReducer } from './userAccounts';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   storeAccount: storeAccountReducer,
   submitDapp: submitDappReducer,
   transfers: transfersReducer,
+  userAccounts: userAccountsReducer,
 });
 
 const persistConfig = {
