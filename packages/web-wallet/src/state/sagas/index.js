@@ -17,7 +17,7 @@ import requestSaga from './request';
 import signupSaga from './signup';
 import submitTransactionSaga from './submitTransaction';
 import watchAccountSaga from './watchAccount';
-import watchStoreAccountSaga from './watchStoreAccount';
+import { loadStoreAccountSaga, watchStoreAccountSaga } from './storeAccount';
 
 export default function* () {
   yield all([
@@ -26,6 +26,7 @@ export default function* () {
     downloadKeypairSaga,
     initAppSaga,
     loadAppsSaga.listener,
+    loadStoreAccountSaga,
     loginSaga,
     mergeUserAccountSaga,
     openDappSaga,

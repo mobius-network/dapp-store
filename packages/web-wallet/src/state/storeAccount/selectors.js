@@ -8,8 +8,9 @@ export const getDappCatalog = createSelector(
   account => account.data_attr
 );
 
-export const getDappCatalogEntry = entryId =>
-  createSelector(getDappCatalog, dappCatalog => {
+export const getDappCatalogEntry = createSelector(
+  [getDappCatalog, (_, { entryId } = {}) => entryId],
+  (dappCatalog, entryId) => {
     if (isEmpty(dappCatalog)) {
       return undefined;
     }
@@ -25,6 +26,7 @@ export const getDappCatalogEntry = entryId =>
     return {
       appId: parsedEntryString[0],
       status: parsedEntryString[1],
-      hash: parsedEntryString[2],
+      ipfsPath: parsedEntryString[2],
     };
-  });
+  }
+);

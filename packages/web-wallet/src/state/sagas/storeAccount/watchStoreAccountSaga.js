@@ -1,32 +1,16 @@
 import { delay } from 'redux-saga';
 import { call, cancel, fork, put, take, takeLatest } from 'redux-saga/effects';
 
-import { safeLoadAccount } from '@mobius-network/core';
-import { mobiusStoreAddress } from 'utils/env';
-
 import { storeAccountActions } from 'state/storeAccount';
-import { fetchStart, requestActions } from 'state/requests';
+import { requestActions } from 'state/requests';
+
+import loadStoreAccount from './loadStoreAccount';
 
 let watcher;
 
-function* reloadStoreAccount() {
-  const { storeAccount } = yield call(fetchStart, {
-    name: 'reloadStoreAccount',
-    fetcher: safeLoadAccount,
-    payload: mobiusStoreAddress,
-    serialize: result => ({
-      storeAccount: result,
-    }),
-  });
-
-  if (storeAccount) {
-    yield put(storeAccountActions.setStoreAccount(storeAccount));
-  }
-}
-
 function* watch(delayDuration = 2000) {
   while (true) {
-    yield call(reloadStoreAccount);
+    yield call(loadStoreAccount);
     yield call(delay, delayDuration);
   }
 }
