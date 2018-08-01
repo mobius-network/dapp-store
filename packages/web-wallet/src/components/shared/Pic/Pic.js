@@ -18,24 +18,31 @@ class Pic extends Component {
     theme: 'default',
   };
 
-  constructor(props) {
-    super(props);
+  state = {
+    isPlaceholderVisible: false,
+    isLoadingFailed: false,
+  };
 
-    this.state = {
-      isPlaceholderVisible: !isString(props.url),
-    };
+  static getDerivedStateFromProps(props, state) {
+    const isPlaceholderVisible = !isString(props.url);
+
+    if (isPlaceholderVisible === state.isPlaceholderVisible) {
+      return null;
+    }
+
+    return { isPlaceholderVisible };
   }
 
-  handleImageError = () => this.setState({ isPlaceholderVisible: true });
+  handleImageError = () => this.setState({ isLoadingFailed: true });
 
   render() {
     const { className, url, theme } = this.props;
-    const { isPlaceholderVisible } = this.state;
+    const { isLoadingFailed, isPlaceholderVisible } = this.state;
 
     return (
       <ThemeProvider theme={themes[theme]}>
         <Container className={className}>
-          {isPlaceholderVisible ? (
+          {isPlaceholderVisible || isLoadingFailed ? (
             <Placeholder>
               <FontAwesomeIcon icon={faImage} />
             </Placeholder>

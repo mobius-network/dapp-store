@@ -78,7 +78,7 @@ class DappItem extends Component {
 
     return (
       <Container>
-        <DappPic src={userDappDetails.image_url} theme="small" />
+        <DappPic url={userDappDetails.image_url} theme="small" />
         <DappDetails>
           {userDappDetails.name ? (
             <DappName>
@@ -92,7 +92,7 @@ class DappItem extends Component {
           )}
 
           <DappActions>
-            <DappAction to="/">
+            <DappAction to={`/developers/my/${accountNumber}/edit`}>
               {isDraft
                 ? t('myDapps.dappItem.publishButton')
                 : t('myDapps.dappItem.editButton')}
