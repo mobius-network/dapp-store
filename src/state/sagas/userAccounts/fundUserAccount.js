@@ -33,9 +33,9 @@ function* buildTransaction(userAccountKeypair) {
       type: 'error',
       message: error.message,
     }));
-  }
 
-  return undefined;
+    throw error;
+  }
 }
 
 export default function* fundUserAccount(accountNumber) {

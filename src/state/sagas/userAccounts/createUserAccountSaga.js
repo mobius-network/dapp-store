@@ -59,9 +59,9 @@ function* buildTransation(userAccountKeypair, data, appCount) {
       type: 'error',
       message: error.message,
     }));
-  }
 
-  return undefined;
+    throw error;
+  }
 }
 
 function* run() {
