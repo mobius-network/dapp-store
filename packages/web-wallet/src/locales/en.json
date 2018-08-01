@@ -47,6 +47,13 @@
       "appWebsiteLink": "Website"
     },
     "dappForm": {
+      "agreementModal": {
+        "agree": "I agree to the DApp store guideliness.",
+        "header": "By submitting an app to the DApp store, you acknowledge the following:",
+        "submitButton": "SUBMIT",
+        "text": "You must only withdraw coins from the user’s account when the user “spends” the coins within your app. \n Violation of guidelines may result in the removal of your app from the DApp store.",
+        "title": "DApp Store Guidelines"
+      },
       "authUrlFieldCaption": "Full URL of your authentication endpoint (ex. https://mygame.com/auth). HTTPS-only. Should be configured to allow CORS requests from the DApp Store (store.mobius.network or store.beta.mobius.network).",
       "authUrlFieldLabel": "Authentication URL",
       "descriptionFieldCaption": "Full description of your app (1-3 paragraphs). Please include pricing details.",
@@ -203,13 +210,6 @@
       "weChatModalTitle": "WeChat QR Code"
     },
     "submitDapp": {
-      "agreementModal": {
-        "agree": "I agree to the DApp store guideliness.",
-        "header": "By submitting an app to the DApp store, you acknowledge the following:",
-        "submitButton": "SUBMIT",
-        "text": "You must only withdraw coins from the user’s account when the user “spends” the coins within your app. \n Violation of guidelines may result in the removal of your app from the DApp store.",
-        "title": "DApp Store Guidelines"
-      },
       "completed": {
         "goToMyDappsButton": "GO TO MY DAPPS",
         "message": "Your DApp was successfully submitted",
