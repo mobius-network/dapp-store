@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
-import { isEmpty } from 'lodash';
+import { isEmpty, isNil } from 'lodash';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
-import { getEntitiesObject } from 'state/requests';
+import { getEntitiesObject, getIsSuccess, getOperation } from 'state/requests';
 import { getDappCatalog, parseDappCatalogEntry } from 'state/storeAccount';
 
 export const getUserAccount = createSelector(
@@ -59,4 +59,16 @@ export const getDappStatus = createSelector(
 
     return parsedEntry.status;
   }
+);
+
+export const getAccountIsLoaded = createSelector(
+  (state, { accountNumber } = {}) =>
+    getIsSuccess(state, { operation: `loadUserAccount_${accountNumber}` }),
+  (state, { accountNumber } = {}) =>
+    getOperation(state, { operation: `loadDappDetails_${accountNumber}` }),
+  (state, { accountNumber } = {}) =>
+    getIsSuccess(state, { operation: `loadDappDetails_${accountNumber}` }),
+  (isUserAccountLoaded, loadDappDetailsOperation, isDappDetailsLoaded) =>
+    isUserAccountLoaded &&
+    (isNil(loadDappDetailsOperation) || isDappDetailsLoaded)
 );
