@@ -1,37 +1,20 @@
 import { createSelector } from 'reselect';
-import { isNil, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
-export const getUserAccounts = state => state.userAccounts;
+import { getEntitiesObject } from 'state/requests';
+import { getDappCatalog, parseDappCatalogEntry } from 'state/storeAccount';
 
-export const getUserAccountsEntry = createSelector(
-  [getUserAccounts, (_, { id } = {}) => id],
-  (userAccounts, id) => {
+export const getUserAccount = createSelector(
+  state => getEntitiesObject(state, { entity: 'userAccounts' }),
+  (_, { accountNumber } = {}) => accountNumber,
+  (userAccounts, accountNumber) => {
     if (isEmpty(userAccounts)) {
       return {};
     }
 
-    if (isNil(id)) {
-      return {};
-    }
-
-    return userAccounts[id] || {};
+    return userAccounts[accountNumber] || {};
   }
-);
-
-export const getUserAccount = createSelector(
-  getUserAccountsEntry,
-  entry => entry.userAccount || {}
-);
-
-export const getDappDetails = createSelector(
-  getUserAccountsEntry,
-  entry => entry.dappDetails || {}
-);
-
-export const getDappStatus = createSelector(
-  getUserAccountsEntry,
-  entry => entry.dappStatus
 );
 
 export const getUserAccountBalance = createSelector(
@@ -44,5 +27,36 @@ export const getUserAccountBalance = createSelector(
     const balances = parseBalance(userAccount);
 
     return parsedBalanceValue(balances, 'mobi');
+  }
+);
+
+export const getUserAccountId = createSelector(
+  getUserAccount,
+  userAccount => userAccount.id
+);
+
+export const getUserDappDetails = createSelector(
+  state => getEntitiesObject(state, { entity: 'userDapps' }),
+  (_, { accountNumber } = {}) => accountNumber,
+  (userDapps, accountNumber) => {
+    if (isEmpty(userDapps)) {
+      return {};
+    }
+
+    return userDapps[accountNumber] || {};
+  }
+);
+
+export const getDappStatus = createSelector(
+  [getDappCatalog, getUserAccountId],
+  (dappCatalog, accountId) => {
+    if (isEmpty(dappCatalog)) {
+      return undefined;
+    }
+
+    const entry = dappCatalog[accountId];
+    const parsedEntry = parseDappCatalogEntry(entry) || {};
+
+    return parsedEntry.status;
   }
 );

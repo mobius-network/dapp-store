@@ -5,8 +5,22 @@ export const getStoreAccount = state => state.storeAccount;
 
 export const getDappCatalog = createSelector(
   getStoreAccount,
-  account => account.data_attr
+  storeAccount => storeAccount.data_attr || {}
 );
+
+export const parseDappCatalogEntry = entry => {
+  if (isNil(entry)) {
+    return undefined;
+  }
+
+  const parsedEntryString = atob(entry).split(':');
+
+  return {
+    appId: parsedEntryString[0],
+    status: parsedEntryString[1],
+    ipfsPath: parsedEntryString[2],
+  };
+};
 
 export const getDappCatalogEntry = createSelector(
   [getDappCatalog, (_, { entryId } = {}) => entryId],
@@ -17,16 +31,6 @@ export const getDappCatalogEntry = createSelector(
 
     const entry = dappCatalog[entryId];
 
-    if (isNil(entry)) {
-      return undefined;
-    }
-
-    const parsedEntryString = atob(entry).split(':');
-
-    return {
-      appId: parsedEntryString[0],
-      status: parsedEntryString[1],
-      ipfsPath: parsedEntryString[2],
-    };
+    return parseDappCatalogEntry(entry);
   }
 );
