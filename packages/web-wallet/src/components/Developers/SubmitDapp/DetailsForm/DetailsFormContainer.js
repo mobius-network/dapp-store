@@ -5,12 +5,12 @@ import { submit } from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 
 import { getIsFetching } from 'state/requests';
-import { submitDappActions, getDAppIsSubmitting } from 'state/submitDapp';
+import { submitDappActions, getDappIsSubmitting } from 'state/submitDapp';
 
 import DetailsForm from './DetailsForm';
 
 const mapStateToProps = createStructuredSelector({
-  isSubmitting: getDAppIsSubmitting,
+  isSubmitting: getDappIsSubmitting,
   isUserAccountMerging: state =>
     getIsFetching(state, { operation: 'mergeUserAccount' }),
 });
