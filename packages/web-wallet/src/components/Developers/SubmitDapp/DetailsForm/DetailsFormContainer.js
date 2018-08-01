@@ -1,7 +1,6 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { submit } from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 
 import { getIsFetching } from 'state/requests';
@@ -15,12 +14,11 @@ const mapStateToProps = createStructuredSelector({
     getIsFetching(state, { operation: 'mergeUserAccount' }),
 });
 
-const actions = {
+const mapDispatchToProps = {
   ...submitDappActions,
-  submitDappForm: () => submit('dappForm'),
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(mapStateToProps, mapDispatchToProps),
   translate('translation')
 )(DetailsForm);

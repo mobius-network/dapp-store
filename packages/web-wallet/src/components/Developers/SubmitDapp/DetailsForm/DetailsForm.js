@@ -5,15 +5,12 @@ import Pane from 'components/shared/Pane';
 import ConfirmationModal from 'components/shared/ConfirmationModal';
 import DappForm from 'components/shared/DappForm';
 
-import AgreementModal from './AgreementModal';
-
 class DetailsForm extends Component {
   static propTypes = {
     isSubmitting: PropTypes.bool,
     isUserAccountMerging: PropTypes.bool,
     mergeUserAccount: PropTypes.func.isRequired,
     submitDapp: PropTypes.func.isRequired,
-    submitDappForm: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
   };
 
@@ -23,14 +20,7 @@ class DetailsForm extends Component {
   };
 
   state = {
-    agreementModalVisible: false,
     cancelConfirmationVisible: false,
-  };
-
-  toggleAgreementModal = () => {
-    this.setState({
-      agreementModalVisible: !this.state.agreementModalVisible,
-    });
   };
 
   toggleCancelConfirmation = () =>
@@ -44,10 +34,9 @@ class DetailsForm extends Component {
       isUserAccountMerging,
       mergeUserAccount,
       submitDapp,
-      submitDappForm,
       t,
     } = this.props;
-    const { agreementModalVisible, cancelConfirmationVisible } = this.state;
+    const { cancelConfirmationVisible } = this.state;
 
     return (
       <Fragment>
@@ -56,17 +45,9 @@ class DetailsForm extends Component {
           <DappForm
             isBusy={isSubmitting}
             onCancel={this.toggleCancelConfirmation}
-            onBeforeSubmit={this.toggleAgreementModal}
             onSubmit={submitDapp}
           />
         </Pane>
-
-        <AgreementModal
-          isConfirming={isSubmitting}
-          isOpen={agreementModalVisible}
-          onCancel={this.toggleAgreementModal}
-          onSubmit={submitDappForm}
-        />
 
         <ConfirmationModal
           isConfirming={isUserAccountMerging}
