@@ -57,7 +57,7 @@ export const getIsDappSubmitted = createSelector(
   }
 );
 
-export const getDAppIsSubmitting = createSelector(
+export const getDappIsSubmitting = createSelector(
   state => getIsFetching(state, { operation: 'addFilesToIpfs' }),
   state => getIsFetching(state, { operation: 'submitDapp' }),
   state => getIsFetching(state, { operation: 'fundUserAccount' }),
