@@ -19,9 +19,8 @@ import {
 class DappItem extends Component {
   static propTypes = {
     accountNumber: PropTypes.number.isRequired,
-    dappDetails: PropTypes.object,
+    userDappDetails: PropTypes.object,
     dappStatus: PropTypes.string,
-    isLoaded: PropTypes.bool,
     loadUserAccountWithDapp: PropTypes.func.isRequired,
     userAccount: PropTypes.object,
     userAccountKeypair: PropTypes.object,
@@ -29,7 +28,7 @@ class DappItem extends Component {
   };
 
   static defaultProps = {
-    isLoaded: false,
+    userDappDetails: {},
     userAccountBalance: 0,
   };
 
@@ -71,53 +70,48 @@ class DappItem extends Component {
   render() {
     const {
       accountNumber,
-      dappDetails,
-      isLoaded,
+      userDappDetails,
       t,
       userAccountBalance,
     } = this.props;
-    const isDraft = isEmpty(dappDetails);
+    const isDraft = isEmpty(userDappDetails);
 
-    if (isLoaded) {
-      return (
-        <Container>
-          <DappPic src={dappDetails.image_url} theme="small" />
-          <DappDetails>
-            {dappDetails.name ? (
-              <DappName>
-                {dappDetails.name}
-                {this.renderStatusBadge()}
-              </DappName>
-            ) : (
-              <DappNamePlaceholder>
-                {t('myDapps.dappItem.namePlaceholder')} #{accountNumber}
-              </DappNamePlaceholder>
-            )}
-
-            <DappActions>
-              <DappAction to="/">
-                {isDraft
-                  ? t('myDapps.dappItem.publishButton')
-                  : t('myDapps.dappItem.editButton')}
-              </DappAction>
-            </DappActions>
-          </DappDetails>
-
-          {isDraft ? (
-            <Badge>{t('myDapps.dappItem.draft')}</Badge>
+    return (
+      <Container>
+        <DappPic src={userDappDetails.image_url} theme="small" />
+        <DappDetails>
+          {userDappDetails.name ? (
+            <DappName>
+              {userDappDetails.name}
+              {this.renderStatusBadge()}
+            </DappName>
           ) : (
-            <AccountDetails>
-              <AccountBalance>{userAccountBalance} MOBI</AccountBalance>
-              <AccountLink to="/">
-                {t('myDapps.dappItem.viewAccountButton')}
-              </AccountLink>
-            </AccountDetails>
+            <DappNamePlaceholder>
+              {t('myDapps.dappItem.namePlaceholder')} #{accountNumber}
+            </DappNamePlaceholder>
           )}
-        </Container>
-      );
-    }
 
-    return null;
+          <DappActions>
+            <DappAction to="/">
+              {isDraft
+                ? t('myDapps.dappItem.publishButton')
+                : t('myDapps.dappItem.editButton')}
+            </DappAction>
+          </DappActions>
+        </DappDetails>
+
+        {isDraft ? (
+          <Badge>{t('myDapps.dappItem.draft')}</Badge>
+        ) : (
+          <AccountDetails>
+            <AccountBalance>{userAccountBalance} MOBI</AccountBalance>
+            <AccountLink to="/">
+              {t('myDapps.dappItem.viewAccountButton')}
+            </AccountLink>
+          </AccountDetails>
+        )}
+      </Container>
+    );
   }
 }
 
