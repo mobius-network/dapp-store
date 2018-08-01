@@ -37,9 +37,9 @@ function* signChallenge(challenge, dapp) {
       type: 'error',
       message: error.message,
     }));
-  }
 
-  return undefined;
+    throw error;
+  }
 }
 
 function* getToken(signedChallenge, dapp) {
