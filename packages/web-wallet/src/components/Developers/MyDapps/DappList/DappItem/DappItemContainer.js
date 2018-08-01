@@ -8,11 +8,16 @@ import {
   getUserAccountBalance,
   getUserDappDetails,
   getDappStatus,
+  getAccountIsLoaded,
 } from 'state/userAccounts';
 
 import DappItem from './DappItem';
 
 const mapStateToProps = (state, ownProps) => ({
+  dappStatus: getDappStatus(state, { accountNumber: ownProps.accountNumber }),
+  isLoaded: getAccountIsLoaded(state, {
+    accountNumber: ownProps.accountNumber,
+  }),
   userAccountBalance: getUserAccountBalance(state, {
     accountNumber: ownProps.accountNumber,
   }),
@@ -22,7 +27,6 @@ const mapStateToProps = (state, ownProps) => ({
   userDappDetails: getUserDappDetails(state, {
     accountNumber: ownProps.accountNumber,
   }),
-  dappStatus: getDappStatus(state, { accountNumber: ownProps.accountNumber }),
 });
 
 const mapDispatchToProps = {

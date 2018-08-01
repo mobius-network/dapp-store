@@ -9,7 +9,7 @@ import { userAccountsActions } from 'state/userAccounts';
 
 function* loadUserAccount(accountNumber, publicKey) {
   const { userAccount } = yield call(fetchStart, {
-    name: 'loadUserAccount',
+    name: `loadUserAccount_${accountNumber}`,
     fetcher: safeLoadAccount,
     payload: publicKey,
     serialize: result => ({
@@ -27,7 +27,7 @@ function* loadUserAccount(accountNumber, publicKey) {
 
 function* loadDappDetails(accountNumber, ipfsPath) {
   const { dappDetails } = yield call(fetchStart, {
-    name: 'loadDappDetails',
+    name: `loadDappDetails_${accountNumber}`,
     fetcher: getIpfsFiles,
     payload: ipfsPath,
     serialize: result => ({

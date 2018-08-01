@@ -19,17 +19,19 @@ import {
 class DappItem extends Component {
   static propTypes = {
     accountNumber: PropTypes.number.isRequired,
-    userDappDetails: PropTypes.object,
     dappStatus: PropTypes.string,
+    isLoaded: PropTypes.bool,
     loadUserAccountWithDapp: PropTypes.func.isRequired,
     userAccount: PropTypes.object,
-    userAccountKeypair: PropTypes.object,
     userAccountBalance: PropTypes.number,
+    userAccountKeypair: PropTypes.object,
+    userDappDetails: PropTypes.object,
   };
 
   static defaultProps = {
-    userDappDetails: {},
+    isLoaded: false,
     userAccountBalance: 0,
+    userDappDetails: {},
   };
 
   componentDidMount() {
@@ -70,11 +72,16 @@ class DappItem extends Component {
   render() {
     const {
       accountNumber,
-      userDappDetails,
+      isLoaded,
       t,
       userAccountBalance,
+      userDappDetails,
     } = this.props;
     const isDraft = isEmpty(userDappDetails);
+
+    if (!isLoaded) {
+      return null;
+    }
 
     return (
       <Container>

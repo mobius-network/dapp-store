@@ -34,3 +34,8 @@ export const getEntitiesObject = createSelector(
 
 export const getEntities = createSelector([getEntitiesObject], entities =>
   Object.values(entities));
+
+export const getOperation = createSelector(
+  [getRequests, getOperationName],
+  (requests, operation) => get(requests, operation)
+);
