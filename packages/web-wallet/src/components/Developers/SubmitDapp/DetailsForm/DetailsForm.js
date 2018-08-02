@@ -4,19 +4,22 @@ import PropTypes from 'prop-types';
 import Pane from 'components/shared/Pane';
 import ConfirmationModal from 'components/shared/ConfirmationModal';
 import DappForm from 'components/shared/DappForm';
+import { submitSteps } from 'state/submitDapp';
 
 class DetailsForm extends Component {
   static propTypes = {
     isSubmitting: PropTypes.bool,
-    isUserAccountMerging: PropTypes.bool,
-    mergeUserAccount: PropTypes.func.isRequired,
+    setSubmitStep: PropTypes.func.isRequired,
     submitDapp: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
+    userAccount: PropTypes.object.isRequired,
+    userAccountBalance: PropTypes.number,
+    userAccountNumber: PropTypes.number.isRequired,
   };
 
   static defaultProps = {
-    isUserAccountMerging: false,
     isSubmitting: false,
+    userAccountBalance: 0,
   };
 
   state = {
@@ -28,14 +31,26 @@ class DetailsForm extends Component {
       cancelConfirmationVisible: !this.state.cancelConfirmationVisible,
     });
 
-  render() {
+  handleSubmit = formValues => {
     const {
-      isSubmitting,
-      isUserAccountMerging,
-      mergeUserAccount,
+      setSubmitStep,
       submitDapp,
-      t,
+      userAccount,
+      userAccountBalance,
+      userAccountNumber,
     } = this.props;
+
+    submitDapp({
+      formValues,
+      userAccount,
+      userAccountNumber,
+      userAccountBalance,
+      callbackAction: () => setSubmitStep(submitSteps.completed),
+    });
+  };
+
+  render() {
+    const { isSubmitting, reset, t } = this.props;
     const { cancelConfirmationVisible } = this.state;
 
     return (
@@ -45,15 +60,14 @@ class DetailsForm extends Component {
           <DappForm
             isBusy={isSubmitting}
             onCancel={this.toggleCancelConfirmation}
-            onSubmit={submitDapp}
+            onSubmit={this.handleSubmit}
           />
         </Pane>
 
         <ConfirmationModal
-          isConfirming={isUserAccountMerging}
           isOpen={cancelConfirmationVisible}
           onCancel={this.toggleCancelConfirmation}
-          onConfirm={mergeUserAccount}
+          onConfirm={reset}
           title={t('submitDapp.detailsForm.cancelConfirmationTitle')}
         >
           {t('submitDapp.detailsForm.cancelConfirmationText')}

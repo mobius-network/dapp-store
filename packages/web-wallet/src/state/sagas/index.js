@@ -2,6 +2,7 @@ import { all } from 'redux-saga/effects';
 
 import {
   createUserAccountSaga,
+  editDappSaga,
   loadUserAccountWithDappSaga,
   mergeUserAccountSaga,
   submitDappSaga,
@@ -25,6 +26,7 @@ export default function* () {
     createUserAccountSaga,
     depositAppSaga,
     downloadKeypairSaga,
+    editDappSaga,
     initAppSaga,
     loadAppsSaga.listener,
     loadStoreAccountSaga,
