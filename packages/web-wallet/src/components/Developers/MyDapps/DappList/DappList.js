@@ -11,7 +11,7 @@ class DappList extends Component {
   static propTypes = {
     isStoreAccountLoaded: PropTypes.bool,
     userAccountsCount: PropTypes.number,
-    watchStoreAccount: PropTypes.func.isRequired,
+    loadStoreAccount: PropTypes.func.isRequired,
   };
 
   static defaultProps = {

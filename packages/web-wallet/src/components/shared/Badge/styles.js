@@ -18,14 +18,22 @@ export const themes = {
 };
 
 export const Text = styled.span`
+  background: ${props => props.theme.background};
+  border-radius: ${radius.small};
+  color: ${props => props.theme.color};
   font-family: ${fonts.default};
   font-size: 15px;
-  line-height: 1;
-  border-radius: ${radius.small};
-  padding: 3px 15px;
-  background: ${props => props.theme.background};
-  color: ${props => props.theme.color};
   font-weight: 300;
-  white-space: nowrap;
+  line-height: 1;
   margin: 0 10px;
+  padding: 3px 15px;
+  white-space: nowrap;
+
+  &:first-child {
+    margin-left: 0;
+  }
+
+  &:last-child {
+    margin-right: 0;
+  }
 `;
