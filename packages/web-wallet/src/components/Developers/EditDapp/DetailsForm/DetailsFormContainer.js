@@ -2,42 +2,44 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { getIsFetching } from 'state/requests';
 import { getUserAccountKeypair } from 'state/auth';
 import {
   getAccountIsLoaded,
-  getDappStatus,
+  getDappIsSubmitting,
   getUserAccount,
   getUserAccountBalance,
   getUserDappDetails,
   userAccountsActions,
 } from 'state/userAccounts';
+import { editDappActions } from 'state/editDapp';
 
-import DappItem from './DappItem';
+import DetailsForm from './DetailsForm';
 
 const mapStateToProps = (state, ownProps) => ({
-  dappStatus: getDappStatus(state, { accountNumber: ownProps.accountNumber }),
+  isSubmitting: getDappIsSubmitting(state),
   isLoaded: getAccountIsLoaded(state, {
-    accountNumber: ownProps.accountNumber,
+    accountNumber: ownProps.match.params.id,
   }),
-  isUserAccountMerging: getIsFetching(state, { operation: 'mergeUserAccount' }),
-  userAccount: getUserAccount(state, { accountNumber: ownProps.accountNumber }),
+  userAccount: getUserAccount(state, {
+    accountNumber: ownProps.match.params.id,
+  }),
   userAccountBalance: getUserAccountBalance(state, {
-    accountNumber: ownProps.accountNumber,
+    accountNumber: ownProps.match.params.id,
   }),
   userAccountKeypair: getUserAccountKeypair(state, {
-    accountNumber: ownProps.accountNumber,
+    accountNumber: ownProps.match.params.id,
   }),
   userDappDetails: getUserDappDetails(state, {
-    accountNumber: ownProps.accountNumber,
+    accountNumber: ownProps.match.params.id,
   }),
 });
 
 const mapDispatchToProps = {
+  ...editDappActions,
   ...userAccountsActions,
 };
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
   translate('translation')
-)(DappItem);
+)(DetailsForm);
