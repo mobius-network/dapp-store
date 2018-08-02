@@ -26,7 +26,7 @@ class DevelopersLayout extends Component {
               <Grid.Row flexWrap="wrap">
                 <Grid.Col width={[1, 1, 1 / 6]}>
                   <SidebarNav title={t('developersLayout.navigationTitle')}>
-                    <SidebarNav.Item to="/developers/my">
+                    <SidebarNav.Item to="/developers/my" exact={false}>
                       {t('navigation.developers.myDapps')}
                     </SidebarNav.Item>
                     <SidebarNav.Item to="/developers/submit">
