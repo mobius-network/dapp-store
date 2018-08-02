@@ -1,16 +1,14 @@
 import { call, put, select } from 'redux-saga/effects';
 import { Operation, TransactionBuilder } from 'stellar-sdk';
-import {
-  safeLoadAccount,
-  submitTransaction,
-  assets,
-} from '@mobius-network/core';
-import { mobiusStoreRegPrice } from 'utils/env';
+import { submitTransaction, assets } from '@mobius-network/core';
 
-import { fetchStart, requestActions } from 'state/requests';
+import { mobiusStoreRegPrice } from 'utils/env';
+import { fetchStart } from 'state/requests';
 import { getMasterAccount } from 'state/account';
 import { getKeypairFor, getUserAccountKeypair } from 'state/auth';
 import { notificationsActions } from 'state/notifications';
+
+import loadUserAccount from './loadUserAccount';
 
 function* buildTransaction(userAccountKeypair) {
   const masterAccount = yield select(getMasterAccount);
@@ -51,16 +49,11 @@ export default function* fundUserAccount(accountNumber) {
     payload: tx,
   });
 
-  const { userAccount } = yield call(fetchStart, {
-    name: 'reloadUserAccount',
-    fetcher: safeLoadAccount,
-    payload: userAccountKeypair.publicKey(),
-    serialize: result => ({
-      userAccount: result,
-    }),
-  });
-
-  yield put(requestActions.resetRequests(['fundUserAccount', 'reloadUserAccount']));
+  const userAccount = yield call(
+    loadUserAccount,
+    accountNumber,
+    userAccountKeypair.publicKey()
+  );
 
   return userAccount;
 }

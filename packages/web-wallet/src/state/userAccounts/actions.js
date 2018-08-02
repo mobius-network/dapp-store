@@ -1,6 +1,6 @@
 import { createActions } from 'redux-yo';
 
 export const userAccountsActions = createActions(
-  ['loadUserAccountWithDapp'],
+  ['editDapp', 'loadUserAccountWithDapp', 'mergeUserAccount', 'submitDapp'],
   'userAccounts'
 );

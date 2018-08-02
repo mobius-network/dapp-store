@@ -3,7 +3,6 @@ import { isNil, isEmpty } from 'lodash';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
 import { getDappCatalog } from 'state/storeAccount';
-import { getIsFetching } from 'state/requests';
 
 export const getSubmitStep = state => state.submitDapp.submitStep;
 
@@ -13,33 +12,20 @@ export const getUserAccountNumber = state => state.submitDapp.userAccountNumber;
 
 export const getUserAccountId = createSelector(
   getUserAccount,
-  account => account.id
+  userAccount => userAccount.id
 );
 
-export const getAsset = (_, { asset = 'mobi' } = {}) => asset;
-
-export const getMobiAsset = () => 'mobi';
-
-export const createBalanceSelector = accountSelector =>
-  createSelector(accountSelector, account => parseBalance(account));
-
-export const createAssetBalanceSelector = (
-  balanceSelector,
-  assetSelector = getAsset
-) =>
-  createSelector([balanceSelector, assetSelector], (balance, asset) => {
-    if (!balance) {
-      return 0;
+export const getUserAccountBalance = createSelector(
+  getUserAccount,
+  userAccount => {
+    if (isEmpty(userAccount)) {
+      return undefined;
     }
 
-    return parsedBalanceValue(balance, asset);
-  });
+    const balances = parseBalance(userAccount);
 
-export const getBalance = createBalanceSelector(getUserAccount);
-
-export const getMobiBalance = createAssetBalanceSelector(
-  getBalance,
-  getMobiAsset
+    return parsedBalanceValue(balances, 'mobi');
+  }
 );
 
 export const getIsDappSubmitted = createSelector(
@@ -57,21 +43,4 @@ export const getIsDappSubmitted = createSelector(
 
     return true;
   }
-);
-
-export const getDappIsSubmitting = createSelector(
-  state => getIsFetching(state, { operation: 'addFilesToIpfs' }),
-  state => getIsFetching(state, { operation: 'submitDapp' }),
-  state => getIsFetching(state, { operation: 'fundUserAccount' }),
-  state => getIsFetching(state, { operation: 'loadUserAccount' }),
-  (
-    isDataUploadingToIpfs,
-    isSubmitting,
-    isUserAccountFunding,
-    isUserAccountLoading
-  ) =>
-    isDataUploadingToIpfs ||
-    isSubmitting ||
-    isUserAccountFunding ||
-    isUserAccountLoading
 );

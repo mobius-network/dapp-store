@@ -1,29 +1,12 @@
 import { takeEvery, call, select } from 'redux-saga/effects';
 import { isNil } from 'lodash';
-import { safeLoadAccount } from '@mobius-network/core';
 
 import { getIpfsFiles } from 'utils/ipfs';
 import { fetchStart } from 'state/requests';
 import { getDappCatalogEntry } from 'state/storeAccount';
 import { userAccountsActions } from 'state/userAccounts';
 
-function* loadUserAccount(accountNumber, publicKey) {
-  const { userAccount } = yield call(fetchStart, {
-    name: `loadUserAccount_${accountNumber}`,
-    fetcher: safeLoadAccount,
-    payload: publicKey,
-    serialize: result => ({
-      userAccount: result,
-      entities: {
-        userAccounts: {
-          [accountNumber]: result,
-        },
-      },
-    }),
-  });
-
-  return userAccount;
-}
+import loadUserAccount from './shared/loadUserAccount';
 
 function* loadDappDetails(accountNumber, ipfsPath) {
   const { dappDetails } = yield call(fetchStart, {

@@ -2,7 +2,12 @@ import { createSelector } from 'reselect';
 import { isEmpty, isNil } from 'lodash';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
-import { getEntitiesObject, getIsSuccess, getOperation } from 'state/requests';
+import {
+  getEntitiesObject,
+  getIsFetching,
+  getIsSuccess,
+  getOperation,
+} from 'state/requests';
 import { getDappCatalog, parseDappCatalogEntry } from 'state/storeAccount';
 
 export const getUserAccount = createSelector(
@@ -71,4 +76,21 @@ export const getAccountIsLoaded = createSelector(
   (isUserAccountLoaded, loadDappDetailsOperation, isDappDetailsLoaded) =>
     isUserAccountLoaded &&
     (isNil(loadDappDetailsOperation) || isDappDetailsLoaded)
+);
+
+export const getDappIsSubmitting = createSelector(
+  state => getIsFetching(state, { operation: 'addFilesToIpfs' }),
+  state => getIsFetching(state, { operation: 'submitDapp' }),
+  state => getIsFetching(state, { operation: 'fundUserAccount' }),
+  state => getIsFetching(state, { operation: 'loadUserAccount' }),
+  (
+    isDataUploadingToIpfs,
+    isSubmitting,
+    isUserAccountFunding,
+    isUserAccountLoading
+  ) =>
+    isDataUploadingToIpfs ||
+    isSubmitting ||
+    isUserAccountFunding ||
+    isUserAccountLoading
 );
