@@ -26,7 +26,7 @@ class MyDapps extends Component {
     return (
       <Pane theme="narrow">
         <Pane.Header title={t('myDapps.title')}>
-          <Button theme="secondary" to="/developers/submit">
+          <Button to="/developers/submit" variant="secondary">
             <ButtonIcon>
               <FontAwesomeIcon icon={faPlus} />
             </ButtonIcon>

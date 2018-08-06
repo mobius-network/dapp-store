@@ -78,8 +78,8 @@ class PurchaseMobi extends Component {
     } = this.props;
 
     if (
-      bestPaymentPath &&
-      parseFloat(bestPaymentPath.source_amount) > xlmBalance
+      bestPaymentPath
+      && parseFloat(bestPaymentPath.source_amount) > xlmBalance
     ) {
       addNotification({
         type: toast.TYPE.ERROR,
@@ -165,7 +165,7 @@ class PurchaseMobi extends Component {
                   fullWidth
                   isLoading={loading || isBestPathFetching}
                   onClick={this.submitTransfer}
-                  theme="secondary"
+                  variant="secondary"
                 >
                   {t('purchaseMobi.submitButton')}
                 </Button>

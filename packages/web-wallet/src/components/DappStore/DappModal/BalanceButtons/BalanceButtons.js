@@ -38,11 +38,10 @@ class BalanceButtons extends Component {
     this.setState({ depositFormActive: false });
   };
 
-  toggleSubmitReserveConfirmation = () =>
-    this.setState({
-      submitReserveConfirmationVisible: !this.state
-        .submitReserveConfirmationVisible,
-    });
+  toggleSubmitReserveConfirmation = () => this.setState({
+    submitReserveConfirmationVisible: !this.state
+      .submitReserveConfirmationVisible,
+  });
 
   handleGoToAppClick = () => {
     const { app, openDapp, appAccount } = this.props;
@@ -59,8 +58,7 @@ class BalanceButtons extends Component {
   handleConfirmation = () => {
     const { app, openDapp } = this.props;
 
-    this.setState({ submitReserveConfirmationVisible: false }, () =>
-      openDapp(app));
+    this.setState({ submitReserveConfirmationVisible: false }, () => openDapp(app));
   };
 
   render() {
@@ -97,7 +95,11 @@ class BalanceButtons extends Component {
           {depositFormActive ? (
             <AppDepositForm app={app} onSuccess={this.hideDepositForm} />
           ) : (
-            <Button onClick={this.showDepositForm} fullWidth theme="secondary">
+            <Button
+              onClick={this.showDepositForm}
+              fullWidth
+              variant="secondary"
+            >
               {t('balanceButtons.depositFunds')}
             </Button>
           )}
@@ -107,9 +109,9 @@ class BalanceButtons extends Component {
           <ButtonRow>
             <Button
               fullWidth
-              theme="secondary"
-              onClick={releaseAppBalance.mutate}
               isLoading={releaseAppBalance.loading}
+              onClick={releaseAppBalance.mutate}
+              variant="secondary"
             >
               {t('balanceButtons.releaseFunds')}
             </Button>

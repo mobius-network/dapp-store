@@ -56,8 +56,8 @@ class AppDepositForm extends Component {
             fullWidth
             isLoading={amount < 100 && loading}
             onClick={amount > 100 ? this.showConfirmation : handleSubmit}
-            theme="secondary"
             type="submit"
+            variant="secondary"
           >
             {t('appDepositForm.submitButton')}
           </Button>

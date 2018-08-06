@@ -19,8 +19,7 @@ class PasswordForm extends Component {
     isPasswordVisible: false,
   };
 
-  handlePasswordVisibilityToggle = isPasswordVisible =>
-    this.setState({ isPasswordVisible });
+  handlePasswordVisibilityToggle = isPasswordVisible => this.setState({ isPasswordVisible });
 
   render() {
     const { submitting, handleSubmit, t } = this.props;
@@ -70,7 +69,7 @@ class PasswordForm extends Component {
           <LoginBlock>
             <LoginBlockText>{t('passwordForm.loginText')}</LoginBlockText>
 
-            <Button to="/login" theme="primaryOutline" wide>
+            <Button to="/login" variant="primaryOutline" wide>
               {t('passwordForm.loginButton')}
             </Button>
           </LoginBlock>

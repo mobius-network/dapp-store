@@ -73,7 +73,7 @@ class AssetAllocation extends Component {
           <Content>
             <Caption>{this.renderCaption()}</Caption>
             <ButtonContainer>
-              <Button to={`/wallet/add/${asset}`} theme="secondary" wide>
+              <Button to={`/wallet/add/${asset}`} variant="secondary" wide>
                 <ButtonIcon>
                   <FontAwesomeIcon icon={faPlus} />
                 </ButtonIcon>
