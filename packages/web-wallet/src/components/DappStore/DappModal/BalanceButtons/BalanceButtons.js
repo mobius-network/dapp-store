@@ -97,7 +97,11 @@ class BalanceButtons extends Component {
           {depositFormActive ? (
             <AppDepositForm app={app} onSuccess={this.hideDepositForm} />
           ) : (
-            <Button onClick={this.showDepositForm} fullWidth theme="secondary">
+            <Button
+              onClick={this.showDepositForm}
+              fullWidth
+              variant="secondary"
+            >
               {t('balanceButtons.depositFunds')}
             </Button>
           )}
@@ -107,9 +111,9 @@ class BalanceButtons extends Component {
           <ButtonRow>
             <Button
               fullWidth
-              theme="secondary"
-              onClick={releaseAppBalance.mutate}
               isLoading={releaseAppBalance.loading}
+              onClick={releaseAppBalance.mutate}
+              variant="secondary"
             >
               {t('balanceButtons.releaseFunds')}
             </Button>

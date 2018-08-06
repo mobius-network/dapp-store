@@ -167,7 +167,7 @@ class DappForm extends Component {
             >
               {t('dappForm.submitButton')}
             </Button>
-            <Button onClick={onCancel} type="button" theme="text" wide>
+            <Button onClick={onCancel} type="button" variant="text" wide>
               {t('shared.cancel')}
             </Button>
           </Pane.Footer>

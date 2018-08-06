@@ -46,7 +46,7 @@ class ConfirmationModal extends Component {
             <Action isLoading={isConfirming} onClick={onConfirm} wide>
               {t('shared.continue')}
             </Action>
-            <Action onClick={onCancel} theme="text">
+            <Action onClick={onCancel} variant="text">
               {t('shared.cancel')}
             </Action>
           </Actions>

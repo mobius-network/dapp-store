@@ -95,7 +95,7 @@ class AddFunds extends Component {
           assetValue={this.state.delta}
           message={t('addFunds.completeText')}
         />
-        <Button theme="secondary" onClick={this.resetForm} fullWidth>
+        <Button onClick={this.resetForm} fullWidth variant="secondary">
           {t('addFunds.completeButton')}
         </Button>
       </Pane.Section>

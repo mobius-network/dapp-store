@@ -70,7 +70,7 @@ class PasswordForm extends Component {
           <LoginBlock>
             <LoginBlockText>{t('passwordForm.loginText')}</LoginBlockText>
 
-            <Button to="/login" theme="primaryOutline" wide>
+            <Button to="/login" variant="primaryOutline" wide>
               {t('passwordForm.loginButton')}
             </Button>
           </LoginBlock>

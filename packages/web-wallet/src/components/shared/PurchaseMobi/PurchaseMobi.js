@@ -165,7 +165,7 @@ class PurchaseMobi extends Component {
                   fullWidth
                   isLoading={loading || isBestPathFetching}
                   onClick={this.submitTransfer}
-                  theme="secondary"
+                  variant="secondary"
                 >
                   {t('purchaseMobi.submitButton')}
                 </Button>

@@ -29,7 +29,7 @@ class Login extends Component {
           <SignupBlock>
             <SignupBlockText>{t('login.signupText')}</SignupBlockText>
 
-            <Button to="/signup" theme="primaryOutline" wide>
+            <Button to="/signup" variant="primaryOutline" wide>
               {t('login.signupButton')}
             </Button>
           </SignupBlock>

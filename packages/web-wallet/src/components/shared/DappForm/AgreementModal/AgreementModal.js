@@ -57,7 +57,7 @@ class AgreementModal extends Component {
             >
               {t('dappForm.agreementModal.submitButton')}
             </Button>
-            <Button onClick={onCancel} type="button" theme="text" wide>
+            <Button onClick={onCancel} type="button" variant="text" wide>
               {t('shared.cancel')}
             </Button>
           </ActionsRow>
