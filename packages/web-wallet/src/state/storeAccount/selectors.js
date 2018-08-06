@@ -1,12 +1,10 @@
 import { createSelector } from 'reselect';
-import { isNil, isEmpty } from 'lodash';
+import { isNil, isEmpty, get } from 'lodash';
 
 export const getStoreAccount = state => state.storeAccount;
 
-export const getDappCatalog = createSelector(
-  getStoreAccount,
-  storeAccount => storeAccount.data_attr || {}
-);
+export const getDappCatalog = createSelector(getStoreAccount, storeAccount =>
+  get(storeAccount, 'data_attr', {}));
 
 export const parseDappCatalogEntry = entry => {
   if (isNil(entry)) {

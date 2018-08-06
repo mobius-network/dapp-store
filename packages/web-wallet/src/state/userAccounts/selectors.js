@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { isEmpty, isNil } from 'lodash';
+import { isEmpty, isNil, get } from 'lodash';
 import { parseBalance, parsedBalanceValue } from '@mobius-network/core';
 
 import {
@@ -18,7 +18,7 @@ export const getUserAccount = createSelector(
       return {};
     }
 
-    return userAccounts[accountNumber] || {};
+    return get(userAccounts, accountNumber, {});
   }
 );
 
@@ -48,7 +48,7 @@ export const getUserDappDetails = createSelector(
       return {};
     }
 
-    return userDapps[accountNumber] || {};
+    return get(userDapps, accountNumber, {});
   }
 );
 
