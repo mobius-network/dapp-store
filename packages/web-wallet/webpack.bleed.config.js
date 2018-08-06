@@ -6,19 +6,19 @@ const jsRule = devConfig.module.rules.find(rule => rule.loader === 'babel-loader
 jsRule.options = {
   babelrc: false,
   presets: [
-    ['env', {
+    ['@babel/env', {
       targets: {
         chrome: 67,
       },
       modules: false,
-      useBuiltIns: true,
+      useBuiltIns: 'usage',
     }],
-    'react',
+    '@babel/react',
   ],
   plugins: [
     'react-hot-loader/babel',
-    'transform-object-rest-spread',
-    'transform-class-properties',
+    '@babel/proposal-object-rest-spread',
+    '@babel/proposal-class-properties',
     'styled-components',
     'lodash',
   ],

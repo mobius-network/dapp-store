@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  require: ['babel-polyfill'],
+  // require: ['babel-polyfill'],
   components: 'src/**/[A-Z]*.js',
   webpackConfig: {
     devtool: 'source-map',
@@ -16,8 +16,11 @@ module.exports = {
           test: /\.js$/,
           loader: 'babel-loader',
           options: {
-            plugins: ['react-native-web'],
             presets: ['react-native'],
+            plugins: [
+              'react-native-web',
+              '@babel/syntax-dynamic-import',
+            ],
             babelrc: false,
           },
         },

@@ -41,27 +41,6 @@ const config = {
       {
         test: /\.js?$/,
         loader: 'babel-loader',
-        options: {
-          presets: [
-            [
-              'env',
-              {
-                targets: {
-                  chrome: 66,
-                },
-                useBuiltIns: true,
-              },
-            ],
-            'react',
-          ],
-          plugins: [
-            'react-native-web',
-            'syntax-object-rest-spread',
-            'transform-class-properties',
-            'styled-components',
-            'lodash',
-          ],
-        },
         include: [
           resolve(__dirname, 'src'),
           resolve(__dirname, '../components/src'),
