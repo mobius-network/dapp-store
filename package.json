@@ -42,6 +42,8 @@
     "format": "npx wsrun format",
     "start:web": "yarn workspace @mobius-network/web-wallet start",
     "start:mobile": "yarn workspace @mobius-network/mobile-wallet start",
+    "start:mobile:ios": "yarn workspace @mobius-network/mobile-wallet ios",
+    "start:mobile:android": "yarn workspace @mobius-network/mobile-wallet android",
     "start:components": "yarn workspace @mobius-network/components start",
     "precommit": "lint-staged"
   },
