@@ -14,7 +14,7 @@ const baseConfig = {
     publicPath: '',
   },
   resolve: {
-    extensions: ['.js'],
+    extensions: ['.web.js', '.js'],
     modules: [resolve(root, 'src'), 'node_modules'],
   },
   module: {

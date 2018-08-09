@@ -10,11 +10,12 @@ import { requestsReducer } from './requests';
 import { transfersReducer } from './transfers';
 
 const rootReducer = combineReducers({
-  auth: authReducer,
   form: formReducer,
+  requests: requestsReducer,
+
+  auth: authReducer,
   masterAccount: accountReducer,
   notifications: notificationsReducer,
-  requests: requestsReducer,
   transfers: transfersReducer,
 });
 

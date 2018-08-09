@@ -11,11 +11,20 @@
     "nohoist": [
       "**/react-native",
       "**/react-native/**",
-      "**/@*/react-native-*",
       "**/@haskkor/react-native-pincode",
       "**/components/",
       "@mobius-network/mobile-wallet/react-native-*",
       "@mobius-network/mobile-wallet/react-native-*/**",
+      "@mobius-network/mobile-wallet/vm-browserify",
+      "@mobius-network/mobile-wallet/vm-browserify/**",
+      "**/@tradle/react-native-http",
+      "**/@tradle/react-native-http/**",
+      "**/https-browserify",
+      "**/https-browserify/**",
+      "**/stream-browserify",
+      "**/stream-browserify/**",
+      "**/eventsource",
+      "**/eventsource/**",
       "@mobius-network/mobile-wallet/@haskkor/react-native-pincode",
       "@mobius-network/components/react-native-*",
       "@mobius-network/components/react-native-*/**"
@@ -52,5 +61,8 @@
   },
   "engines": {
     "node": "8.11.3"
+  },
+  "dependencies": {
+    "@tradle/react-native-http": "^2.0.1"
   }
 }
