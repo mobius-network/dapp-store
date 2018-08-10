@@ -7,7 +7,7 @@ export async function safeLoadAccount(pubKey) {
 
     return account;
   } catch (err) {
-    if (err.name === 'NotFoundError') {
+    if (err.response.status === 404) {
       return null;
     }
 

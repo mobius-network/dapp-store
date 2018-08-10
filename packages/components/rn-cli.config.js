@@ -13,7 +13,7 @@ function getRoots() {
 const config = {
   getBlacklistRE() {
     return metro.createBlacklist([
-      /.*\/packages\/components\/node_modules\/.*/,
+      /.*\/packages\/mobile-wallet\/node_modules\/.*/,
     ]);
   },
 

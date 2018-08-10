@@ -1,20 +1,28 @@
 {
   "presets": [
-    ["env", {
-      "targets": {
-        "browsers": ["last 2 versions", "safari >= 7"]
-      },
-      "modules": false,
-      "useBuiltIns": true
-    }],
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "safari >= 7"
+          ]
+        },
+        "modules": false,
+        "useBuiltIns": "usage"
+      }
+    ]
   ],
   "plugins": [
-    "transform-object-rest-spread",
-    "transform-class-properties",
-    ["transform-runtime", {
-      "polyfill": false,
-      "regenerator": true
-    }],
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
+    ],
     "lodash"
   ]
 }
