@@ -11,6 +11,7 @@ import { Content, Message } from './styles';
 class Completed extends Component {
   static propTypes = {
     isDappSubmitted: PropTypes.bool,
+    reset: PropTypes.func.isRequired,
     stopWatchStoreAccount: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     watchStoreAccount: PropTypes.func.isRequired,
@@ -24,12 +25,9 @@ class Completed extends Component {
     this.props.watchStoreAccount();
   }
 
-  componentDidUpdate(prevProps) {
-    const { isDappSubmitted, stopWatchStoreAccount } = this.props;
-
-    if (isDappSubmitted && isDappSubmitted !== prevProps.isDappSubmitted) {
-      stopWatchStoreAccount();
-    }
+  componentWillUnmount() {
+    this.props.stopWatchStoreAccount();
+    this.props.reset();
   }
 
   render() {

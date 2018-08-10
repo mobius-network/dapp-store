@@ -2,7 +2,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
-import { getIsDappSubmitted } from 'state/editDapp';
+import { getIsDappSubmitted, editDappActions } from 'state/editDapp';
 import { storeAccountActions } from 'state/storeAccount';
 
 import Completed from './Completed';
@@ -15,9 +15,13 @@ const mapStateToProps = (state, ownProps) => ({
 
 const actions = {
   ...storeAccountActions,
+  ...editDappActions,
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   translate('translation')
 )(Completed);
