@@ -1,4 +1,6 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import {
+  takeLatest, call, put, select,
+} from 'redux-saga/effects';
 import { Operation, TransactionBuilder } from 'stellar-sdk';
 import {
   safeLoadAccount,
@@ -26,28 +28,34 @@ import { reloadMasterAccount } from '../reloadMasterAccount';
  * @param {number} appCount
  * @returns {Transaction} transaction signed by masterAccount & userAccount
  */
-function* buildTransation(userAccountKeypair, data, appCount) {
+function* buildTransation(userAccountKeypair, data, currentAppCount) {
   const masterAccount = yield select(getMasterAccount);
   const masterAccountKeypair = yield select(getKeypairFor);
 
   try {
     const tx = new TransactionBuilder(masterAccount)
-      .addOperation(Operation.createAccount({
-        destination: userAccountKeypair.publicKey(),
-        source: masterAccountKeypair.publicKey(),
-        startingBalance: '3',
-      }))
-      .addOperation(Operation.changeTrust({
-        source: userAccountKeypair.publicKey(),
-        asset: assets.mobi,
-      }))
-      .addOperation(Operation.manageData({
-        name: 'mobius.store.meta',
-        value: JSON.stringify({
-          ...data,
-          appCount,
-        }),
-      }))
+      .addOperation(
+        Operation.createAccount({
+          destination: userAccountKeypair.publicKey(),
+          source: masterAccountKeypair.publicKey(),
+          startingBalance: '3',
+        })
+      )
+      .addOperation(
+        Operation.changeTrust({
+          source: userAccountKeypair.publicKey(),
+          asset: assets.mobi,
+        })
+      )
+      .addOperation(
+        Operation.manageData({
+          name: 'mobius.store.meta',
+          value: JSON.stringify({
+            ...data,
+            appCount: currentAppCount + 1,
+          }),
+        })
+      )
       .build();
 
     tx.sign(masterAccountKeypair);
@@ -55,10 +63,12 @@ function* buildTransation(userAccountKeypair, data, appCount) {
 
     return tx;
   } catch (error) {
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
 
     throw error;
   }
@@ -69,13 +79,18 @@ function* run() {
 
   const data = yield select(getMasterAccountData);
 
-  const appCount = get(data, 'appCount', 0) + 1;
+  const currentAppCount = get(data, 'appCount', 0);
 
   const userAccountKeypair = yield select(getUserAccountKeypair, {
-    accountNumber: appCount,
+    accountNumber: currentAppCount,
   });
 
-  const tx = yield call(buildTransation, userAccountKeypair, data, appCount);
+  const tx = yield call(
+    buildTransation,
+    userAccountKeypair,
+    data,
+    currentAppCount
+  );
 
   yield call(fetchStart, {
     name: 'createUserAccount',
@@ -93,15 +108,19 @@ function* run() {
   });
 
   if (userAccount) {
-    yield put(submitDappActions.setUserAccount({
-      userAccount,
-      userAccountNumber: appCount,
-    }));
+    yield put(
+      submitDappActions.setUserAccount({
+        userAccount,
+        userAccountNumber: currentAppCount,
+      })
+    );
 
     yield put(submitDappActions.setSubmitStep(submitSteps.setup));
   }
 
-  yield put(requestActions.resetRequests(['createUserAccount', 'loadUserAccount']));
+  yield put(
+    requestActions.resetRequests(['createUserAccount', 'loadUserAccount'])
+  );
 }
 
 export default takeLatest(submitDappActions.createUserAccount, run);
