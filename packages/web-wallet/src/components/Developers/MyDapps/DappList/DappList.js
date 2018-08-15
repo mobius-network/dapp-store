@@ -24,12 +24,14 @@ class DappList extends Component {
 
   render() {
     const { isStoreAccountLoaded, userAccountsCount } = this.props;
-    const userAccounts = range(1, userAccountsCount + 1);
+    const userAccounts = range(0, userAccountsCount);
 
     if (isStoreAccountLoaded) {
       return (
         <Fragment>
-          {userAccounts.map(id => <DappItem accountNumber={id} key={id} />)}
+          {userAccounts.map(id => (
+            <DappItem accountNumber={id} key={id} />
+          ))}
         </Fragment>
       );
     }
