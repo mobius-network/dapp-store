@@ -9,14 +9,12 @@ import { submitDappActions } from 'state/submitDapp';
 import Setup from './Setup';
 
 const mapStateToProps = createStructuredSelector({
-  publicKey: state =>
-    getUserAccountKeypair(state, {
-      accountNumber: state.userAccountNumber,
-    }).publicKey(),
-  secret: state =>
-    getUserAccountKeypair(state, {
-      accountNumber: state.userAccountNumber,
-    }).secret(),
+  publicKey: state => getUserAccountKeypair(state, {
+    accountNumber: state.submitDapp.userAccountNumber,
+  }).publicKey(),
+  secret: state => getUserAccountKeypair(state, {
+    accountNumber: state.submitDapp.userAccountNumber,
+  }).secret(),
 });
 
 const actions = {
@@ -24,6 +22,9 @@ const actions = {
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   translate('translation')
 )(Setup);
