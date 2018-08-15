@@ -24,5 +24,6 @@ export const Container = styled.div`
 export const Label = styled.span`
   color: ${colors.textPrimary};
   margin-right: 10px;
+  user-select: none;
   white-space: nowrap;
 `;
