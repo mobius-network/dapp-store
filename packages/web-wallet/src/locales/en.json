@@ -98,6 +98,9 @@
         "title": "Completed"
       },
       "detailsForm": {
+        "publicKey": "Public Key:",
+        "revealButton": "Reveal",
+        "secretKey": "Secret Key:",
         "title": "Edit DApp",
         "titleNew": "Submit DApp"
       }

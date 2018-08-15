@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { isEmpty } from 'lodash';
 
-import Spinner from 'components/shared/Spinner';
-import Pane from 'components/shared/Pane';
 import DappForm from 'components/shared/DappForm';
+import Pane from 'components/shared/Pane';
+import Spinner from 'components/shared/Spinner';
 import { editSteps } from 'state/editDapp';
-import { SpinnerContainer } from './styles';
+import { SpinnerContainer, KeyContainer, KeyRevealButton } from './styles';
 
 class DetailsForm extends Component {
   static propTypes = {
@@ -32,6 +32,10 @@ class DetailsForm extends Component {
     isSubmitting: false,
   };
 
+  state = {
+    isSecretKeyVisible: false,
+  };
+
   componentDidMount() {
     const {
       loadUserAccountWithDapp,
@@ -46,6 +50,8 @@ class DetailsForm extends Component {
       publicKey: userAccountKeypair.publicKey(),
     });
   }
+
+  toggleSecretKey = () => this.setState({ isSecretKeyVisible: !this.state.isSecretKeyVisible });
 
   handleCancel = () => this.props.history.push('/developers/my');
 
@@ -82,26 +88,51 @@ class DetailsForm extends Component {
 
   render() {
     const {
-      isLoaded, isSubmitting, t, userDappDetails,
+      isLoaded,
+      isSubmitting,
+      t,
+      userDappDetails,
+      userAccountKeypair,
     } = this.props;
+
+    const { isSecretKeyVisible } = this.state;
 
     if (isLoaded) {
       return (
-        <Pane theme="narrow">
-          <Pane.Header
-            title={
-              isEmpty(userDappDetails)
-                ? t('editDapp.detailsForm.titleNew')
-                : t('editDapp.detailsForm.title')
-            }
-          />
-          <DappForm
-            initialValues={userDappDetails}
-            isBusy={isSubmitting}
-            onCancel={this.handleCancel}
-            onSubmit={this.handleSubmit}
-          />
-        </Pane>
+        <Fragment>
+          <KeyContainer label={t('editDapp.detailsForm.publicKey')}>
+            {userAccountKeypair.publicKey()}
+          </KeyContainer>
+          <KeyContainer label={t('editDapp.detailsForm.secretKey')}>
+            {isSecretKeyVisible ? (
+              userAccountKeypair.secret()
+            ) : (
+              <KeyRevealButton
+                type="button"
+                variant="text"
+                onClick={this.toggleSecretKey}
+              >
+                {t('editDapp.detailsForm.revealButton')}
+              </KeyRevealButton>
+            )}
+          </KeyContainer>
+
+          <Pane theme="narrow">
+            <Pane.Header
+              title={
+                isEmpty(userDappDetails)
+                  ? t('editDapp.detailsForm.titleNew')
+                  : t('editDapp.detailsForm.title')
+              }
+            />
+            <DappForm
+              initialValues={userDappDetails}
+              isBusy={isSubmitting}
+              onCancel={this.handleCancel}
+              onSubmit={this.handleSubmit}
+            />
+          </Pane>
+        </Fragment>
       );
     }
 
