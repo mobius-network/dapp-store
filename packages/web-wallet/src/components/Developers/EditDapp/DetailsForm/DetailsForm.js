@@ -68,21 +68,22 @@ class DetailsForm extends Component {
 
     if (isEmpty(userDappDetails)) {
       submitDapp({
+        callbackAction: () => setEditStep(editSteps.completed),
         formValues,
         userAccount,
-        userAccountNumber: match.params.id,
         userAccountBalance,
-        callbackAction: () => setEditStep(editSteps.completed),
+        userAccountNumber: match.params.id,
       });
 
       return;
     }
 
     editDapp({
+      callbackAction: () => setEditStep(editSteps.completed),
       formValues,
       userAccount,
+      userAccountBalance,
       userAccountNumber: match.params.id,
-      callbackAction: () => setEditStep(editSteps.completed),
     });
   };
 
@@ -97,26 +98,26 @@ class DetailsForm extends Component {
 
     const { isSecretKeyVisible } = this.state;
 
-    if (isLoaded) {
-      return (
-        <Fragment>
-          <KeyContainer label={t('editDapp.detailsForm.publicKey')}>
-            {userAccountKeypair.publicKey()}
-          </KeyContainer>
-          <KeyContainer label={t('editDapp.detailsForm.secretKey')}>
-            {isSecretKeyVisible ? (
-              userAccountKeypair.secret()
-            ) : (
-              <KeyRevealButton
-                type="button"
-                variant="text"
-                onClick={this.toggleSecretKey}
-              >
-                {t('editDapp.detailsForm.revealButton')}
-              </KeyRevealButton>
-            )}
-          </KeyContainer>
+    return (
+      <Fragment>
+        <KeyContainer label={t('editDapp.detailsForm.publicKey')}>
+          {userAccountKeypair.publicKey()}
+        </KeyContainer>
+        <KeyContainer label={t('editDapp.detailsForm.secretKey')}>
+          {isSecretKeyVisible ? (
+            userAccountKeypair.secret()
+          ) : (
+            <KeyRevealButton
+              type="button"
+              variant="text"
+              onClick={this.toggleSecretKey}
+            >
+              {t('editDapp.detailsForm.revealButton')}
+            </KeyRevealButton>
+          )}
+        </KeyContainer>
 
+        {isLoaded ? (
           <Pane theme="narrow">
             <Pane.Header
               title={
@@ -132,14 +133,12 @@ class DetailsForm extends Component {
               onSubmit={this.handleSubmit}
             />
           </Pane>
-        </Fragment>
-      );
-    }
-
-    return (
-      <SpinnerContainer>
-        <Spinner />
-      </SpinnerContainer>
+        ) : (
+          <SpinnerContainer>
+            <Spinner />
+          </SpinnerContainer>
+        )}
+      </Fragment>
     );
   }
 }

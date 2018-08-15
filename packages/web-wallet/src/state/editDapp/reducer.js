@@ -14,8 +14,8 @@ const initialState = {
 
 export const editDappReducer = createReducer(
   {
-    [editDappActions.setEditStep]: (state, editStep) =>
-      merge(state, { editStep }),
+    [editDappActions.reset]: () => initialState,
+    [editDappActions.setEditStep]: (state, editStep) => merge(state, { editStep }),
   },
   initialState
 );

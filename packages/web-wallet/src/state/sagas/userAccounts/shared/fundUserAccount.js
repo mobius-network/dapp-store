@@ -10,38 +10,42 @@ import { notificationsActions } from 'state/notifications';
 
 import loadUserAccount from './loadUserAccount';
 
-function* buildTransaction(userAccountKeypair) {
+function* buildTransaction(userAccountKeypair, amount = mobiusStoreRegPrice) {
   const masterAccount = yield select(getMasterAccount);
   const masterAccountKeypair = yield select(getKeypairFor);
 
   try {
     const tx = new TransactionBuilder(masterAccount)
-      .addOperation(Operation.payment({
-        amount: mobiusStoreRegPrice,
-        asset: assets.mobi,
-        destination: userAccountKeypair.publicKey(),
-      }))
+      .addOperation(
+        Operation.payment({
+          amount,
+          asset: assets.mobi,
+          destination: userAccountKeypair.publicKey(),
+        })
+      )
       .build();
 
     tx.sign(masterAccountKeypair);
 
     return tx;
   } catch (error) {
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
 
     throw error;
   }
 }
 
-export default function* fundUserAccount(accountNumber) {
+export default function* fundUserAccount(accountNumber, amount) {
   const userAccountKeypair = yield select(getUserAccountKeypair, {
     accountNumber,
   });
 
-  const tx = yield call(buildTransaction, userAccountKeypair);
+  const tx = yield call(buildTransaction, userAccountKeypair, amount);
 
   yield call(fetchStart, {
     name: 'fundUserAccount',

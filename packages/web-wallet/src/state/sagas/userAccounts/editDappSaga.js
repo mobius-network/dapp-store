@@ -1,5 +1,9 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { Operation, TransactionBuilder, Memo, MemoHash } from 'stellar-sdk';
+import {
+  takeLatest, call, put, select,
+} from 'redux-saga/effects';
+import {
+  Operation, TransactionBuilder, Memo, MemoHash,
+} from 'stellar-sdk';
 import { submitTransaction, assets } from '@mobius-network/core';
 import { addIpfsFiles } from 'utils/ipfs';
 import { mobiusStoreAddress } from 'utils/env';
@@ -7,6 +11,10 @@ import { mobiusStoreAddress } from 'utils/env';
 import { userAccountsActions } from 'state/userAccounts';
 import { fetchStart, requestActions } from 'state/requests';
 import { getUserAccountKeypair } from 'state/auth';
+
+import fundUserAccount from './shared/fundUserAccount';
+
+const mobiusStoreEditPrice = '0.0000001';
 
 function* submit(memoValue, userAccount, accountNumber) {
   const userAccountKeypair = yield select(getUserAccountKeypair, {
@@ -16,7 +24,7 @@ function* submit(memoValue, userAccount, accountNumber) {
   const memo = new Memo(MemoHash, memoValue);
 
   const paymentOp = Operation.payment({
-    amount: '0',
+    amount: mobiusStoreEditPrice,
     asset: assets.mobi,
     destination: mobiusStoreAddress,
   });
@@ -39,7 +47,11 @@ function* submit(memoValue, userAccount, accountNumber) {
 
 function* run({
   payload: {
-    callbackAction, formValues, userAccount, userAccountNumber,
+    callbackAction,
+    formValues,
+    userAccount,
+    userAccountBalance,
+    userAccountNumber,
   },
 }) {
   const { memoValue } = yield call(fetchStart, {
@@ -50,6 +62,10 @@ function* run({
       memoValue: result,
     }),
   });
+
+  if (userAccountBalance <= parseInt(mobiusStoreEditPrice, 10)) {
+    yield call(fundUserAccount, userAccountNumber, mobiusStoreEditPrice);
+  }
 
   yield call(submit, memoValue, userAccount, userAccountNumber);
 
