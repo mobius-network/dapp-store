@@ -10,9 +10,9 @@
     "start:rn": "node node_modules/react-native/local-cli/cli.js start",
     "start:ios": "react-native run-ios",
     "start:android": "react-native run-android",
-    "prettier": "npx prettier --write src/**/*.js *.js",
-    "lint": "npx eslint --fix --ext js .",
-    "format": "npm run prettier && npm run lint",
+    "format": "prettier --write src/**/*.js *.js",
+    "lint": "eslint --fix . --ext js",
+    "lint-staged": "lint-staged",
     "test": "jest"
   },
   "devDependencies": {
@@ -21,7 +21,7 @@
     "@babel/polyfill": "7.0.0-beta.56",
     "@babel/preset-flow": "7.0.0-beta.56",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "9.0.0-beta.3",
     "babel-jest": "23.4.2",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-react-native-web": "^0.8.9",
@@ -36,6 +36,7 @@
     "eslint-plugin-react-native": "^3.2.1",
     "flow-bin": "^0.78.0",
     "jest": "22.4.3",
+    "lint-staged": "^7.1.0",
     "prettier": "^1.12.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
@@ -58,5 +59,12 @@
   "files": [
     "src/",
     "package.json"
-  ]
+  ],
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
+  }
 }

@@ -1,11 +1,15 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebappWebpackPlugin = require('webapp-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { merge } = require('lodash');
 const HoneybadgerSourceMapPlugin = require('@honeybadger-io/webpack');
 
-const { baseConfig, webAppPluginConfig, copyPluginPatterns } = require('./config/webpack.base.config');
+const {
+  baseConfig,
+  webAppPluginConfig,
+  copyPluginPatterns
+} = require('./config/webpack.base.config');
 const env = require('./config/beta.env');
 
 module.exports = merge(baseConfig, {
@@ -13,7 +17,7 @@ module.exports = merge(baseConfig, {
   mode: 'production',
   output: {
     filename: '[name].[chunkhash].js',
-    sourceMapFilename: '[name].[chunkhash].js.map',
+    sourceMapFilename: '[name].[chunkhash].js.map'
   },
   optimization: {
     minimize: true,
@@ -22,22 +26,22 @@ module.exports = merge(baseConfig, {
         commons: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    },
+          chunks: 'all'
+        }
+      }
+    }
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': env,
+      'process.env': env
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      chunksSortMode (a, b) {
+      chunksSortMode(a, b) {
         const order = ['vendors', 'plugins', 'bundle'];
         return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
-      },
+      }
     }),
     new WebappWebpackPlugin(webAppPluginConfig),
     new CopyWebpackPlugin(copyPluginPatterns),
@@ -45,12 +49,12 @@ module.exports = merge(baseConfig, {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.LoaderOptionsPlugin({
       minimize: true,
-      debug: false,
+      debug: false
     }),
     new HoneybadgerSourceMapPlugin({
       apiKey: JSON.parse(env.HONEYBADGER_API_TOKEN),
       assetsUrl: 'https://store.mobius.network',
-      revision: JSON.parse(env.COMMITHASH),
-    }),
-  ],
+      revision: JSON.parse(env.COMMITHASH)
+    })
+  ]
 });

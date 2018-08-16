@@ -9,9 +9,9 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "prettier": "npx prettier --write src/**/*.js *.js",
-    "lint": "npx eslint --fix --ext js .",
-    "format": "npm run prettier && npm run lint",
+    "format": "prettier --write src/**/*.js *.js",
+    "lint": "eslint --fix --ext js .",
+    "lint-staged": "lint-staged",
     "clean": "watchman watch-del-all && rm -rf ./ios/build ./android/build $TMPDIR/react-*",
     "link": "react-native link"
   },
@@ -29,7 +29,7 @@
     "@babel/core": "7.0.0-beta.56",
     "@babel/preset-flow": "7.0.0-beta.56",
     "babel-core": "^7.0.0-bridge.0",
-    "babel-eslint": "^8.2.6",
+    "babel-eslint": "9.0.0-beta.3",
     "babel-jest": "23.4.2",
     "babel-plugin-module-resolver": "^3.1.1",
     "babel-preset-react-native": "5.0.0",
@@ -50,5 +50,12 @@
   },
   "jest": {
     "preset": "react-native"
+  },
+  "lint-staged": {
+    "src/**/*.js": [
+      "prettier --write",
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

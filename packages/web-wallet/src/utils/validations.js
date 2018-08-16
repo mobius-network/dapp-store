@@ -11,23 +11,20 @@ export const combineValidators = config => {
   return (values, props) => validator({ ...props, ...values });
 };
 
-const formatMessage = (message, defaultMessage) =>
-  isObject(message) && message.message
-    ? message.message
-    : defaultMessage(message);
+const formatMessage = (message, defaultMessage) => isObject(message) && message.message
+  ? message.message
+  : defaultMessage(message);
 
-export const isEquals = comparisonValue =>
-  createValidator(
-    message => (value, allValues) => {
-      if (value !== allValues[comparisonValue]) {
-        return message;
-      }
+export const isEquals = comparisonValue => createValidator(
+  message => (value, allValues) => {
+    if (value !== allValues[comparisonValue]) {
+      return message;
+    }
 
-      return undefined;
-    },
-    field =>
-      formatMessage(field, f => `${f} must be equal to "${comparisonValue}"`)
-  );
+    return undefined;
+  },
+  field => formatMessage(field, f => `${f} must be equal to "${comparisonValue}"`)
+);
 
 export const isRationalNumber = createValidator(
   message => value => {
@@ -40,14 +37,13 @@ export const isRationalNumber = createValidator(
   field => `${field} must be a rational number`
 );
 
-export const isLessThanProp = ({ name, label }) =>
-  createValidator(
-    message => (value, props) => {
-      if (Number(value) > Number(props[name])) {
-        return message;
-      }
+export const isLessThanProp = ({ name, label }) => createValidator(
+  message => (value, props) => {
+    if (Number(value) > Number(props[name])) {
+      return message;
+    }
 
-      return undefined;
-    },
-    field => `${field} must be a less than ${label}`
-  );
+    return undefined;
+  },
+  field => `${field} must be a less than ${label}`
+);

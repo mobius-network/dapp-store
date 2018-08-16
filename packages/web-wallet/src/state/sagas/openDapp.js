@@ -1,4 +1,6 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import {
+  takeLatest, call, put, select,
+} from 'redux-saga/effects';
 import { Auth } from '@mobius-network/mobius-client-js';
 import { isEmpty, isNil } from 'lodash';
 
@@ -33,10 +35,12 @@ function* signChallenge(challenge, dapp) {
 
     return signedChallenge;
   } catch (error) {
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
 
     throw error;
   }
@@ -79,8 +83,7 @@ export function* run({ payload: dapp }) {
 
     const token = yield call(getToken, signedChallenge, dapp);
 
-    const finalUrl =
-      isNil(token) || isEmpty(token) ? dapp.url : `${dapp.url}/?token=${token}`;
+    const finalUrl = isNil(token) || isEmpty(token) ? dapp.url : `${dapp.url}/?token=${token}`;
 
     tab.location.href = finalUrl;
   } catch (error) {

@@ -36,21 +36,19 @@ class DappStore extends Component {
     },
   };
 
-  openIntroModal = type => () =>
-    this.setState({
-      modals: {
-        ...this.state.modals,
-        [type]: true,
-      },
-    });
+  openIntroModal = type => () => this.setState({
+    modals: {
+      ...this.state.modals,
+      [type]: true,
+    },
+  });
 
-  closeIntroModal = type => () =>
-    this.setState({
-      modals: {
-        ...this.state.modals,
-        [type]: false,
-      },
-    });
+  closeIntroModal = type => () => this.setState({
+    modals: {
+      ...this.state.modals,
+      [type]: false,
+    },
+  });
 
   render() {
     const { t } = this.props;

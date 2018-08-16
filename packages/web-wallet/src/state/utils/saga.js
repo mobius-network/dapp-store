@@ -1,5 +1,7 @@
 import { createActions } from 'redux-yo';
-import { takeLatest, take, fork, cancel } from 'redux-saga/effects';
+import {
+  takeLatest, take, fork, cancel,
+} from 'redux-saga/effects';
 
 export function createSaga(name, saga) {
   const actions = createActions(['sagaStart', 'sagaSuccess', 'sagaFail'], name);

@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import Modal from 'components/shared/Modal';
 
-import { Actions, Action, Content, Message } from './styles';
+import {
+  Actions, Action, Content, Message,
+} from './styles';
 
 class ConfirmationModal extends Component {
   static propTypes = {

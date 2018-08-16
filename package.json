@@ -9,6 +9,8 @@
       "packages/*"
     ],
     "nohoist": [
+      "**/*eslint*",
+      "**/*eslint*/**",
       "**/react-native",
       "**/react-native/**",
       "**/components/",
@@ -19,32 +21,21 @@
     ]
   },
   "scripts": {
-    "reset-modules": "rm -rf node_modules/ yarn.lock packages/*/node_modules",
-    "reset-yarn": "yarn cache clean",
-    "reset-rn": "watchman watch-del-all; rm -fr $TMPDIR/react-*; rm -rf $TMPDIR/haste-map-react-native-packager-*",
+    "format": "npx wsrun format",
+    "lint": "npx wsrun lint",
+    "precommit": "npx wsrun lint-staged",
     "reset-cache": "yarn reset-yarn && yarn reset-rn",
+    "reset-modules": "rm -rf node_modules/ yarn.lock packages/*/node_modules",
+    "reset-rn": "watchman watch-del-all; rm -fr $TMPDIR/react-*; rm -rf $TMPDIR/haste-map-react-native-packager-*",
+    "reset-yarn": "yarn cache clean",
     "reset": "yarn reset-modules && yarn reset-cache",
     "run-all": "npx wsrun",
-    "prettier": "npx wsrun prettier",
-    "lint": "npx wsrun lint",
-    "format": "npx wsrun format",
-    "start:web": "yarn workspace @mobius-network/web-wallet start",
-    "start:mobile": "yarn workspace @mobius-network/mobile-wallet start",
     "start:components": "yarn workspace @mobius-network/components start",
-    "precommit": "lint-staged"
+    "start:mobile": "yarn workspace @mobius-network/mobile-wallet start",
+    "start:web": "yarn workspace @mobius-network/web-wallet start"
   },
   "devDependencies": {
-    "babel-eslint": "8.2.6",
-    "eslint": "^4.9.0",
-    "eslint-config-airbnb": "^17.0.0",
-    "eslint-plugin-babel": "^5.1.0",
-    "eslint-plugin-flowtype": "^2.46.3",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
     "husky": "^0.14.3",
-    "lint-staged": "^7.1.0",
-    "prettier": "^1.12.1",
     "wsrun": "^2.2.0"
   },
   "engines": {

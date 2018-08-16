@@ -6,10 +6,9 @@ import eventFilterMiddleware from 'event-filter-redux-middleware';
 import { isDev } from 'utils/env';
 import getReducer from './reducer';
 
-const sagaMiddleware =
-  typeof createSagaMiddleware === 'function'
-    ? createSagaMiddleware()
-    : createSagaMiddleware.default();
+const sagaMiddleware = typeof createSagaMiddleware === 'function'
+  ? createSagaMiddleware()
+  : createSagaMiddleware.default();
 
 function enhance(middlewareArray = []) {
   let composeEnhancers = compose;
@@ -19,9 +18,8 @@ function enhance(middlewareArray = []) {
     // eslint-disable-next-line no-underscore-dangle
     const extCompose = global.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
-    const devtoolsCompose =
-      extCompose &&
-      extCompose({
+    const devtoolsCompose = extCompose
+      && extCompose({
         // actionsBlacklist: ['account/setMasterAccount', 'apps/setAppAccount'],
       });
 

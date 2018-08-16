@@ -36,18 +36,15 @@ export const authReducer = createReducer(
       return merge(state, auth);
     },
     [authActions.set]: (state, payload) => merge(state, payload),
-    [authActions.signupSuccess]: state =>
-      merge(state, {
-        loggedIn: true,
-        mnemonic: undefined,
-        keystore: undefined,
-      }),
-    [authActions.loginSuccess]: state =>
-      merge(state, {
-        loggedIn: true,
-      }),
-    [authActions.setSignupStep]: (state, signupStep) =>
-      merge(state, { signupStep }),
+    [authActions.signupSuccess]: state => merge(state, {
+      loggedIn: true,
+      mnemonic: undefined,
+      keystore: undefined,
+    }),
+    [authActions.loginSuccess]: state => merge(state, {
+      loggedIn: true,
+    }),
+    [authActions.setSignupStep]: (state, signupStep) => merge(state, { signupStep }),
     [authActions.setKeystore]: (state, keystore) => merge(state, { keystore }),
     [authActions.setMnemonic]: (state, mnemonic) => merge(state, { mnemonic }),
     [authActions.logout]: () => initialState,

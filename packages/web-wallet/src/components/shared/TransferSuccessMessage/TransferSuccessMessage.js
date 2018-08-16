@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, AssetName, AssetValue, Message } from './styles';
+import {
+  Container, AssetName, AssetValue, Message,
+} from './styles';
 
 class TransferSuccessMessage extends Component {
   static propTypes = {

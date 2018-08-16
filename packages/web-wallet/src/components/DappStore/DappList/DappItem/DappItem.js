@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { object } from 'prop-types';
 
 import DappModal from 'components/DappStore/DappModal';
-import { Container, AppTagline, AppDetails, AppName, AppPic } from './styles';
+import {
+  Container, AppTagline, AppDetails, AppName, AppPic,
+} from './styles';
 
 class DappItem extends Component {
   static propTypes = {

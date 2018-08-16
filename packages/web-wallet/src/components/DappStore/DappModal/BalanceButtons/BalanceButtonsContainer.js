@@ -18,8 +18,7 @@ import BalanceButtons from './BalanceButtons';
 const mapStateToProps = createStructuredSelector({
   isAuthorized: getIsAuthorized,
   appAccount: (state, { app }) => getAppAccount(state, { appId: app.id }),
-  mobiAppBalance: (state, { app }) =>
-    getAppAssetBalance(state, { appId: app.id }),
+  mobiAppBalance: (state, { app }) => getAppAssetBalance(state, { appId: app.id }),
   isAppOpening: getAppIsOpening,
 });
 
@@ -28,7 +27,10 @@ const actions = {
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   translate('translation'),
   restMutation({
     ...releaseAppBalanceSaga,

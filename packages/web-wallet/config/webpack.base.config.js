@@ -26,7 +26,6 @@ const baseConfig = {
           resolve(root, 'src'),
           resolve(root, 'node_modules', 'js-xdr'),
           resolve(root, '../core/src'),
-          resolve(root, '../components/src'),
         ],
       },
       {

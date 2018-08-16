@@ -1,4 +1,6 @@
-import React, { Component, Children, cloneElement, createRef } from 'react';
+import React, {
+  Component, Children, cloneElement, createRef,
+} from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
@@ -82,13 +84,12 @@ class Dropdown extends Component {
       <ThemeProvider theme={themes[theme]}>
         <Container className={className}>
           <div ref={this.dropdownRef}>
-            {Children.map(children, child =>
-              cloneElement(child, {
-                close: this.close,
-                isOpen,
-                open: this.open,
-                toggle: this.toggle,
-              }))}
+            {Children.map(children, child => cloneElement(child, {
+              close: this.close,
+              isOpen,
+              open: this.open,
+              toggle: this.toggle,
+            }))}
           </div>
         </Container>
       </ThemeProvider>
