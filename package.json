@@ -13,11 +13,8 @@
       "**/*eslint*/**",
       "**/react-native",
       "**/react-native/**",
-      "**/components/",
       "mobile-wallet/react-native-*",
-      "mobile-wallet/react-native-*/**",
-      "components/react-native-*",
-      "components/react-native-*/**"
+      "mobile-wallet/react-native-*/**"
     ]
   },
   "scripts": {
@@ -30,7 +27,6 @@
     "reset-yarn": "yarn cache clean",
     "reset": "yarn reset-modules && yarn reset-cache",
     "run-all": "npx wsrun",
-    "start:components": "yarn workspace @mobius-network/components start",
     "start:mobile": "yarn workspace @mobius-network/mobile-wallet start",
     "start:web": "yarn workspace @mobius-network/web-wallet start"
   },
