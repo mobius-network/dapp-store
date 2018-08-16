@@ -72,6 +72,14 @@ class Header extends Component {
                     {t('navigation.developers.developers')}
                   </Link>
                 </ListItem>
+                <ListItem>
+                  <Link
+                    href="https://docs.mobius.network/docs/submitting-a-dapp"
+                    theme={this.getLinkTheme()}
+                  >
+                    {t('navigation.submitDapp')}
+                  </Link>
+                </ListItem>
                 {this.renderSessionActions()}
               </ListContainer>
             </Grid.Col>
