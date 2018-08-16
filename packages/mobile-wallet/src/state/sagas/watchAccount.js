@@ -30,10 +30,12 @@ export function* loadAccount(publicKey) {
   } catch (error) {
     // TODO: use fetchStart to `safeLoadAccount` and error handling
     yield put(requestActions.fetchFail({ name: 'loadAccount', error }));
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
   }
 }
 
@@ -67,10 +69,12 @@ export function* prepareAccount() {
   const state = yield select();
 
   if (!getMasterTrustlineCreated(state)) {
-    yield put(accountActions.transact({
-      name: 'createTrustline',
-      operation: createTrustline(assets.mobi),
-    }));
+    yield put(
+      accountActions.transact({
+        name: 'createTrustline',
+        operation: createTrustline(assets.mobi),
+      })
+    );
   }
 }
 

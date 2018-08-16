@@ -10,14 +10,16 @@ function* transact({ payload: { operation, name }, meta }) {
   const account = yield select(getMasterAccount);
   const keypair = yield select(getKeypairFor);
 
-  yield put(requestActions.fetchStart(
-    {
-      name,
-      fetcher: submitOperation,
-      payload: [operation, account, keypair],
-    },
-    meta
-  ));
+  yield put(
+    requestActions.fetchStart(
+      {
+        name,
+        fetcher: submitOperation,
+        payload: [operation, account, keypair],
+      },
+      meta
+    )
+  );
 }
 
 export default takeLatest(accountActions.transact, transact);
