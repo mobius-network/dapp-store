@@ -10599,6 +10599,12 @@ react-native-level-fs@^3.0.1:
     level-filesystem "^1.0.1"
     levelup "^0.18.2"
 
+react-native-linear-gradient@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-linear-gradient/-/react-native-linear-gradient-2.4.0.tgz#51d8ea12bb72a59bede9edc87b694b16b64cf435"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-os@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/react-native-os/-/react-native-os-1.2.1.tgz#681c27b4b4340c96f6297cf50df00ba2f6fad7cb"
