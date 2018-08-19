@@ -19,7 +19,7 @@ export async function findBestPath(opts) {
   const sortedByPrice = records.sort((a, b) =>
     a.source_amount - b.source_amount);
 
-  return sortedByPrice[0];
+  return sortedByPrice[0] || 0;
 }
 
 export function pathPayment(opts) {
