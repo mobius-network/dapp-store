@@ -36,7 +36,11 @@ class AppAllocation extends Component {
           <AppBalanceItem>{xlmBalance} XLM</AppBalanceItem>
         </AppBalance>
         <ButtonContainer>
-          <ReleaseButton theme="secondary" onClick={mutate} isLoading={loading}>
+          <ReleaseButton
+            onClick={mutate}
+            isLoading={loading}
+            variant="secondary"
+          >
             {t('appAllocation.releaseButton')}
           </ReleaseButton>
         </ButtonContainer>

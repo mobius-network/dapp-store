@@ -9,12 +9,14 @@ import TextInput from 'components/shared/TextInput';
 import Textarea from 'components/shared/Textarea';
 import Button from 'components/shared/Button';
 
+import AgreementModal from './AgreementModal';
+
 class DappForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
     isBusy: PropTypes.bool,
     onCancel: PropTypes.func.isRequired,
-    onBeforeSubmit: PropTypes.func.isRequired,
+    submitDappForm: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
   };
 
@@ -22,21 +24,32 @@ class DappForm extends Component {
     isBusy: false,
   };
 
+  state = {
+    agreementModalVisible: false,
+  };
+
+  toggleAgreementModal = () => {
+    this.setState({
+      agreementModalVisible: !this.state.agreementModalVisible,
+    });
+  };
+
   render() {
     const {
-      handleSubmit,
       dirty,
+      handleSubmit,
       isBusy,
-      onBeforeSubmit,
       onCancel,
+      submitDappForm,
       t,
     } = this.props;
+    const { agreementModalVisible } = this.state;
 
     return (
       <Fragment>
         <Prompt when={dirty} message={t('dappForm.promptMessage')} />
 
-        <form onSubmit={handleSubmit(onBeforeSubmit)}>
+        <form onSubmit={handleSubmit(this.toggleAgreementModal)}>
           <Pane.Section>
             <Grid>
               <Grid.Row>
@@ -148,17 +161,24 @@ class DappForm extends Component {
           <Pane.Footer>
             <Button
               disabled={isBusy}
-              onClick={handleSubmit(onBeforeSubmit)}
+              onClick={handleSubmit(this.toggleAgreementModal)}
               type="submit"
               wide
             >
               {t('dappForm.submitButton')}
             </Button>
-            <Button onClick={onCancel} type="button" theme="text" wide>
+            <Button onClick={onCancel} type="button" variant="text" wide>
               {t('shared.cancel')}
             </Button>
           </Pane.Footer>
         </form>
+
+        <AgreementModal
+          isConfirming={isBusy}
+          isOpen={agreementModalVisible}
+          onCancel={this.toggleAgreementModal}
+          onSubmit={submitDappForm}
+        />
       </Fragment>
     );
   }

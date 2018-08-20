@@ -1,26 +1,31 @@
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { submit } from 'redux-form';
 import { createStructuredSelector } from 'reselect';
 
-import { getIsFetching } from 'state/requests';
-import { submitDappActions, getDappIsSubmitting } from 'state/submitDapp';
+import {
+  getUserAccount,
+  getUserAccountBalance,
+  getUserAccountNumber,
+  submitDappActions,
+} from 'state/submitDapp';
+import { userAccountsActions, getDappIsSubmitting } from 'state/userAccounts';
 
 import DetailsForm from './DetailsForm';
 
 const mapStateToProps = createStructuredSelector({
   isSubmitting: getDappIsSubmitting,
-  isUserAccountMerging: state =>
-    getIsFetching(state, { operation: 'mergeUserAccount' }),
+  userAccount: getUserAccount,
+  userAccountBalance: getUserAccountBalance,
+  userAccountNumber: getUserAccountNumber,
 });
 
-const actions = {
+const mapDispatchToProps = {
   ...submitDappActions,
-  submitDappForm: () => submit('dappForm'),
+  ...userAccountsActions,
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(mapStateToProps, mapDispatchToProps),
   translate('translation')
 )(DetailsForm);

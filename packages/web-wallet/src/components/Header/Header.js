@@ -66,7 +66,7 @@ class Header extends Component {
                 </ListItem>
                 <ListItem>
                   {isAuthorized ? (
-                    <Link to="/developers/submit" theme={this.getLinkTheme()}>
+                    <Link to="/developers/my" theme={this.getLinkTheme()}>
                       {t('navigation.developers.developers')}
                     </Link>
                   ) : (

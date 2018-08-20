@@ -1,41 +1,56 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeProvider } from 'styled-components';
 import { isString } from 'lodash';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/fontawesome-free-regular';
 
-import { Container, Image, Placeholder } from './styles';
+import { Container, Image, Placeholder, themes } from './styles';
 
 class Pic extends Component {
   static propTypes = {
     className: PropTypes.string,
-    url: PropTypes.string.isRequired,
+    theme: PropTypes.oneOf(['default', 'small']),
+    url: PropTypes.string,
   };
 
-  constructor(props) {
-    super(props);
+  static defaultProps = {
+    theme: 'default',
+  };
 
-    this.state = {
-      isPlaceholderVisible: !isString(props.url),
-    };
+  state = {
+    isPlaceholderVisible: false,
+    isLoadingFailed: false,
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    const isPlaceholderVisible = !isString(props.url);
+
+    if (isPlaceholderVisible === state.isPlaceholderVisible) {
+      return null;
+    }
+
+    return { isPlaceholderVisible };
   }
 
-  handleImageError = () => this.setState({ isPlaceholderVisible: true });
+  handleImageError = () => this.setState({ isLoadingFailed: true });
 
   render() {
-    const { className, url } = this.props;
-    const { isPlaceholderVisible } = this.state;
+    const { className, url, theme } = this.props;
+    const { isLoadingFailed, isPlaceholderVisible } = this.state;
 
     return (
-      <Container className={className}>
-        {isPlaceholderVisible ? (
-          <Placeholder>
-            <FontAwesomeIcon icon={faImage} />
-          </Placeholder>
-        ) : (
-          <Image src={url} onError={this.handleImageError} />
-        )}
-      </Container>
+      <ThemeProvider theme={themes[theme]}>
+        <Container className={className}>
+          {isPlaceholderVisible || isLoadingFailed ? (
+            <Placeholder>
+              <FontAwesomeIcon icon={faImage} />
+            </Placeholder>
+          ) : (
+            <Image src={url} onError={this.handleImageError} />
+          )}
+        </Container>
+      </ThemeProvider>
     );
   }
 }

@@ -4,21 +4,13 @@ import { submitTransaction, assets } from '@mobius-network/core';
 import { addIpfsFiles } from 'utils/ipfs';
 import { mobiusStoreAddress, mobiusStoreRegPrice } from 'utils/env';
 
-import {
-  submitDappActions,
-  getUserAccount,
-  getUserAccountNumber,
-  getMobiBalance,
-  submitSteps,
-} from 'state/submitDapp';
+import { userAccountsActions } from 'state/userAccounts';
 import { fetchStart, requestActions } from 'state/requests';
 import { getUserAccountKeypair } from 'state/auth';
 
-import fundUserAccount from './fundUserAccount';
+import fundUserAccount from './shared//fundUserAccount';
 
-function* submit(memoValue) {
-  const accountNumber = yield select(getUserAccountNumber);
-  const userAccount = yield select(getUserAccount);
+function* submit(memoValue, userAccount, accountNumber) {
   const userAccountKeypair = yield select(getUserAccountKeypair, {
     accountNumber,
   });
@@ -47,33 +39,33 @@ function* submit(memoValue) {
   yield put(requestActions.resetRequest('submitDapp'));
 }
 
-function* run({ payload }) {
-  const mobiBalance = yield select(getMobiBalance);
-  const accountNumber = yield select(getUserAccountNumber);
-
+function* run({
+  payload: {
+    callbackAction,
+    formValues,
+    userAccount,
+    userAccountBalance,
+    userAccountNumber,
+  },
+}) {
   const { memoValue } = yield call(fetchStart, {
     name: 'addFilesToIpfs',
     fetcher: addIpfsFiles,
-    payload,
+    payload: formValues,
     serialize: result => ({
       memoValue: result,
     }),
   });
 
-  if (mobiBalance <= parseInt(mobiusStoreRegPrice, 10)) {
-    const userAccount = yield call(fundUserAccount, accountNumber);
-
-    if (userAccount) {
-      yield put(submitDappActions.setUserAccount({
-        userAccount,
-        userAccountNumber: accountNumber,
-      }));
-    }
+  if (userAccountBalance <= parseInt(mobiusStoreRegPrice, 10)) {
+    yield call(fundUserAccount, userAccountNumber);
   }
 
-  yield call(submit, memoValue);
+  yield call(submit, memoValue, userAccount, userAccountNumber);
 
-  yield put(submitDappActions.setSubmitStep(submitSteps.completed));
+  if (callbackAction) {
+    yield put(callbackAction());
+  }
 }
 
-export default takeLatest(submitDappActions.submitDapp, run);
+export default takeLatest(userAccountsActions.submitDapp, run);

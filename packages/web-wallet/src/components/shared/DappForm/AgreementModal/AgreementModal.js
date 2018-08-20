@@ -6,15 +6,17 @@ import FormRow from 'components/shared/FormRow';
 import CheckboxInput from 'components/shared/CheckboxInput';
 import Button from 'components/shared/Button';
 
-import { Content, ControlRow, Header, Paragraph, ActionsRow } from './styles';
+import {
+  Content, ControlRow, Header, Paragraph, ActionsRow,
+} from './styles';
 
 class AgreementModal extends Component {
   static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
     isConfirming: PropTypes.bool.isRequired,
+    isOpen: PropTypes.bool.isRequired,
     onCancel: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
   };
 
   render() {
@@ -29,21 +31,23 @@ class AgreementModal extends Component {
         isClosable={false}
         isOpen={isOpen}
         shouldCloseOnOverlayClick={false}
-        title={t('submitDapp.agreementModal.title')}
+        title={t('dappForm.agreementModal.title')}
       >
         <Content onSubmit={handleSubmit}>
-          <Header>{t('submitDapp.agreementModal.header')}</Header>
+          <Header>{t('dappForm.agreementModal.header')}</Header>
 
-          {t('submitDapp.agreementModal.text')
+          {t('dappForm.agreementModal.text')
             .split('\n')
-            .map((line, index) => <Paragraph key={index}>{line}</Paragraph>)}
+            .map((line, index) => (
+              <Paragraph key={index}>{line}</Paragraph>
+            ))}
 
           <ControlRow>
             <FormRow
               name="agree"
               component={CheckboxInput}
               inputProps={{
-                label: t('submitDapp.agreementModal.agree'),
+                label: t('dappForm.agreementModal.agree'),
               }}
             />
           </ControlRow>
@@ -55,9 +59,9 @@ class AgreementModal extends Component {
               type="submit"
               wide
             >
-              {t('submitDapp.agreementModal.submitButton')}
+              {t('dappForm.agreementModal.submitButton')}
             </Button>
-            <Button onClick={onCancel} type="button" theme="text" wide>
+            <Button onClick={onCancel} type="button" variant="text" wide>
               {t('shared.cancel')}
             </Button>
           </ActionsRow>

@@ -21,7 +21,7 @@ class DownloadKeypair extends Component {
         />
 
         <Pane.Section>
-          <Button theme="secondary" onClick={downloadKeypair} fullWidth>
+          <Button onClick={downloadKeypair} fullWidth variant="secondary">
             {t('downloadKeypair.downloadButton')}
           </Button>
         </Pane.Section>

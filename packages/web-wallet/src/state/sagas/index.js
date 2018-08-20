@@ -2,6 +2,8 @@ import { all } from 'redux-saga/effects';
 
 import {
   createUserAccountSaga,
+  editDappSaga,
+  loadUserAccountWithDappSaga,
   mergeUserAccountSaga,
   submitDappSaga,
 } from './userAccounts';
@@ -17,15 +19,18 @@ import requestSaga from './request';
 import signupSaga from './signup';
 import submitTransactionSaga from './submitTransaction';
 import watchAccountSaga from './watchAccount';
-import watchStoreAccountSaga from './watchStoreAccount';
+import { loadStoreAccountSaga, watchStoreAccountSaga } from './storeAccount';
 
 export default function* () {
   yield all([
     createUserAccountSaga,
     depositAppSaga,
     downloadKeypairSaga,
+    editDappSaga,
     initAppSaga,
     loadAppsSaga.listener,
+    loadStoreAccountSaga,
+    loadUserAccountWithDappSaga,
     loginSaga,
     mergeUserAccountSaga,
     openDappSaga,

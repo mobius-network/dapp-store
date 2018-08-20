@@ -5,6 +5,7 @@ import { reducer as formReducer } from 'redux-form';
 
 import { accountReducer } from './account';
 import { authReducer } from './auth';
+import { editDappReducer } from './editDapp';
 import { notificationsReducer } from './notifications';
 import { requestsReducer } from './requests';
 import { storeAccountReducer } from './storeAccount';
@@ -13,6 +14,7 @@ import { transfersReducer } from './transfers';
 
 const rootReducer = combineReducers({
   auth: authReducer,
+  editDapp: editDappReducer,
   form: formReducer,
   masterAccount: accountReducer,
   notifications: notificationsReducer,

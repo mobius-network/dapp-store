@@ -1,22 +1,41 @@
 import React, { Component } from 'react';
-// import { string } from 'prop-types';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/fontawesome-free-solid';
 
-import DappList from './DappList';
-import { Container, Title } from './styles';
+import Pane from 'components/shared/Pane';
+import Button from 'components/shared/Button';
+
+import Placeholder from './Placeholder';
+import DappsList from './DappList';
+import { ButtonIcon } from './styles';
 
 class MyDapps extends Component {
   static propTypes = {
-    // name: string.isRequired,
+    t: PropTypes.func.isRequired,
+    userAccountsCount: PropTypes.number,
+  };
+
+  static defaultProps = {
+    userAccountsCount: 0,
   };
 
   render() {
+    const { t, userAccountsCount } = this.props;
+
     return (
-      <Container>
-        <Title>MyDapps</Title>
-        <Link to="/developers/submit">Submit DApp</Link>
-        <DappList />
-      </Container>
+      <Pane theme="narrow">
+        <Pane.Header title={t('myDapps.title')}>
+          <Button to="/developers/submit" variant="secondary">
+            <ButtonIcon>
+              <FontAwesomeIcon icon={faPlus} />
+            </ButtonIcon>
+            <span>{t('myDapps.submitDappButton')}</span>
+          </Button>
+        </Pane.Header>
+
+        {userAccountsCount > 0 ? <DappsList /> : <Placeholder />}
+      </Pane>
     );
   }
 }

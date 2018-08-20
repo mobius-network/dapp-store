@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 
 import Modal from 'components/shared/Modal';
 
-import { Actions, Action, Content, Message } from './styles';
+import {
+  Actions, Action, Content, Message,
+} from './styles';
 
 class ConfirmationModal extends Component {
   static propTypes = {
@@ -46,7 +48,7 @@ class ConfirmationModal extends Component {
             <Action isLoading={isConfirming} onClick={onConfirm} wide>
               {t('shared.continue')}
             </Action>
-            <Action onClick={onCancel} theme="text">
+            <Action onClick={onCancel} variant="text">
               {t('shared.cancel')}
             </Action>
           </Actions>

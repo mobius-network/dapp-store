@@ -11,6 +11,8 @@ import { Content, Message } from './styles';
 class Completed extends Component {
   static propTypes = {
     isDappSubmitted: PropTypes.bool,
+    reset: PropTypes.func.isRequired,
+    stopWatchStoreAccount: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     watchStoreAccount: PropTypes.func.isRequired,
   };
@@ -21,6 +23,11 @@ class Completed extends Component {
 
   componentDidMount() {
     this.props.watchStoreAccount();
+  }
+
+  componentWillUnmount() {
+    this.props.stopWatchStoreAccount();
+    this.props.reset();
   }
 
   render() {
@@ -37,8 +44,8 @@ class Completed extends Component {
                   <Content>
                     <Message>{t('submitDapp.completed.message')}</Message>
 
-                    <Button to="/" wide>
-                      {t('navigation.browseDapps')}
+                    <Button to="/developers/my" wide>
+                      {t('submitDapp.completed.goToMyDappsButton')}
                     </Button>
                   </Content>
                 ) : (

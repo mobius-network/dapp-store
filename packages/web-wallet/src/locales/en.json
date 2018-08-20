@@ -47,6 +47,13 @@
       "appWebsiteLink": "Website"
     },
     "dappForm": {
+      "agreementModal": {
+        "agree": "I agree to the DApp store guideliness.",
+        "header": "By submitting an app to the DApp store, you acknowledge the following:",
+        "submitButton": "SUBMIT",
+        "text": "You must only withdraw coins from the user’s account when the user “spends” the coins within your app. \n Violation of guidelines may result in the removal of your app from the DApp store.",
+        "title": "DApp Store Guidelines"
+      },
       "authUrlFieldCaption": "Full URL of your authentication endpoint (ex. https://mygame.com/auth). HTTPS-only. Should be configured to allow CORS requests from the DApp Store (store.mobius.network or store.beta.mobius.network).",
       "authUrlFieldLabel": "Authentication URL",
       "descriptionFieldCaption": "Full description of your app (1-3 paragraphs). Please include pricing details.",
@@ -83,6 +90,20 @@
       "caption": "You will need your key pair file in order to login to you wallet in the future. Store it in a safe place.",
       "downloadButton": "Download Now",
       "title": "Download Your Key Pair"
+    },
+    "editDapp": {
+      "completed": {
+        "goToMyDappsButton": "GO TO MY DAPPS",
+        "message": "Your DApp was successfully submitted",
+        "title": "Completed"
+      },
+      "detailsForm": {
+        "publicKey": "Public Key:",
+        "revealButton": "Reveal",
+        "secretKey": "Secret Key:",
+        "title": "Edit DApp",
+        "titleNew": "Submit DApp"
+      }
     },
     "featuredDapp": {
       "goToAppButton": "GO TO APP",
@@ -125,14 +146,49 @@
       "submitButton": "I’ve Written it Down",
       "title": "Write Down Your Mnemonic Phrase"
     },
+    "myDapps": {
+      "dappItem": {
+        "deleteButton": "Delete",
+        "deleteConfirmationText": "Are you sure?",
+        "deleteConfirmationTitle": "Cancel confirm",
+        "draft": "Draft",
+        "editButton": "Edit",
+        "namePlaceholder": "New DApp",
+        "publishButton": "Publish",
+        "status": {
+          "pending": "Pending",
+          "revoked": "Revoked",
+          "approved": "Approved"
+        },
+        "viewAccountButton": "View Account"
+      },
+      "placeholderActions": {
+        "docs": {
+          "title": "Read the API Docs",
+          "desc": "Complete API reference"
+        },
+        "gettingStarted": {
+          "title": "Getting Started",
+          "desc": "Learn the basics"
+        },
+        "submit": {
+          "title": "Submit DApp",
+          "desc": "This is where you get started"
+        }
+      },
+      "placeholderMessage": "You haven’t created any DApps…",
+      "submitDappButton": "Submit DApp",
+      "title": "My DApps"
+    },
     "navigation": {
       "browseDapps": "Browse DApps",
       "copyright": "Copyright",
       "developers": {
         "developers": "Developers",
-        "gettingStarted": "Getting Started",
         "documentation": "Documentation",
-        "submitDApp": "Submit Dapp"
+        "gettingStarted": "Getting Started",
+        "myDapps": "My DApps",
+        "submitDapp": "Submit Dapp"
       },
       "login": "Login",
       "logout": "Logout",
@@ -171,13 +227,6 @@
       "weChatModalTitle": "WeChat QR Code"
     },
     "submitDapp": {
-      "agreementModal": {
-        "agree": "I agree to the DApp store guideliness.",
-        "header": "By submitting an app to the DApp store, you acknowledge the following:",
-        "submitButton": "SUBMIT",
-        "text": "You must only withdraw coins from the user’s account when the user “spends” the coins within your app. \n Violation of guidelines may result in the removal of your app from the DApp store.",
-        "title": "DApp Store Guidelines"
-      },
       "completed": {
         "goToMyDappsButton": "GO TO MY DAPPS",
         "message": "Your DApp was successfully submitted",

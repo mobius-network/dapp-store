@@ -40,8 +40,7 @@ class AddFunds extends Component {
     this.setState({ delta: 0 });
   };
 
-  getAssetName = () =>
-    this.props.match.params.asset === 'native' ? 'XLM' : 'MOBI';
+  getAssetName = () => this.props.match.params.asset === 'native' ? 'XLM' : 'MOBI';
 
   onTabChange = index => (this.currentTabIndex = index);
 
@@ -95,7 +94,7 @@ class AddFunds extends Component {
           assetValue={this.state.delta}
           message={t('addFunds.completeText')}
         />
-        <Button theme="secondary" onClick={this.resetForm} fullWidth>
+        <Button onClick={this.resetForm} fullWidth variant="secondary">
           {t('addFunds.completeButton')}
         </Button>
       </Pane.Section>
