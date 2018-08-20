@@ -6,6 +6,10 @@ export const assets = {
     process.env.MOBI_ASSET_ISSUER
   ),
   native: Asset.native(),
+  usd: new Asset(
+    'USD',
+    'GA2HGBJIJKI6O4XEM7CZWY5PS6GKSXL6D34ERAJYQSPYA6X6AI7HYW36',
+  ),
 };
 
 export function parseBalance(account) {
