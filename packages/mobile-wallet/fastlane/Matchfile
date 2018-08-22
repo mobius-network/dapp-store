@@ -1,0 +1,17 @@
+git_url "git@github.com:mobius-network/certificates.git"
+
+force_for_new_devices true
+shallow_clone true
+readonly true
+
+type "development"
+
+for_lane :beta do
+  type "adhoc"
+end
+
+for_lane :release do
+  type "appstore"
+end
+
+
