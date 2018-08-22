@@ -17,8 +17,10 @@ platform :ios do
     )
   end
 
-  desc 'Build the iOS application.'
   private_lane :build do |options|
+    ensure_git_status_clean
+    increment_build_number(xcodeproj: "./ios/MobiusMobileWallet.xcodeproj")
+    commit_version_bump(xcodeproj:  "./ios/MobiusMobileWallet.xcodeproj")
     build_app(
       scheme: "MobiusMobileWallet",
       workspace: "./ios/MobiusMobileWallet.xcworkspace",
@@ -27,30 +29,29 @@ platform :ios do
     )
   end
 
-  lane :dev do
+  desc 'Push a new beta build to Crashlytics.'
+  lane :internal do
     sync_code_signing(type: "adhoc")
-    increment_build_number(xcodeproj: "./ios/MobiusMobileWallet.xcodeproj")
     build(clean: true)
     crashlytics(
       crashlytics_path: "./ios/Pods/Crashlytics/submit",
       api_token: ENV["CRASHLYTICS_API_TOKEN"],
-      build_secret: ENV["CRASHLYTICS_BUILD_SECRET"]
+      build_secret: ENV["CRASHLYTICS_BUILD_SECRET"],
+      groups: "mobius"
     )
   end
 
   desc "Push a new beta build to TestFlight"
   lane :beta do
     sync_code_signing(type: "appstore")
-    increment_build_number(xcodeproj: "./ios/MobiusMobileWallet.xcodeproj")
     build(clean: true)
     upload_to_testflight
   end
 
   lane :release do
     sync_code_signing(type: "appstore")
-    increment_build_number(xcodeproj: "./ios/MobiusMobileWallet.xcodeproj")
     build(clean: true)
-    upload_to_testflight
+    upload_to_appstore
   end
 end
 

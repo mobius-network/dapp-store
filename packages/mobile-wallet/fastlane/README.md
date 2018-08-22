@@ -21,11 +21,11 @@ or alternatively using `brew cask install fastlane`
 fastlane ios test
 ```
 Runs all the tests
-### ios dev
+### ios internal
 ```
-fastlane ios dev
+fastlane ios internal
 ```
-
+Push a new beta build to Crashlytics.
 ### ios beta
 ```
 fastlane ios beta
