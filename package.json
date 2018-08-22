@@ -39,7 +39,8 @@
     "start:mobile:ios": "yarn workspace @mobius-network/mobile-wallet ios",
     "start:mobile:android": "yarn workspace @mobius-network/mobile-wallet android",
     "start:components": "yarn workspace @mobius-network/components start",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "postinstall": "yarn workspace @mobius-network/mobile-wallet setup"
   },
   "devDependencies": {
     "babel-eslint": "8.2.6",
@@ -53,6 +54,7 @@
     "eslint-plugin-react-native": "^3.2.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.0",
+    "postinstall-prepare": "^1.0.1",
     "prettier": "^1.12.1",
     "wsrun": "^2.2.0"
   },
