@@ -37,7 +37,7 @@ platform :ios do
       crashlytics_path: "./ios/Pods/Crashlytics/submit",
       api_token: ENV["CRASHLYTICS_API_TOKEN"],
       build_secret: ENV["CRASHLYTICS_BUILD_SECRET"],
-      groups: "mobius"
+      groups: "mobius,evil-martians"
     )
   end
 
