@@ -5,13 +5,3 @@ shallow_clone true
 readonly true
 
 type "development"
-
-for_lane :beta do
-  type "adhoc"
-end
-
-for_lane :release do
-  type "appstore"
-end
-
-
