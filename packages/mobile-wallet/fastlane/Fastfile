@@ -29,6 +29,15 @@ platform :ios do
     )
   end
 
+  desc 'Prepare local build'
+  lane :local do
+    sync_code_signing(type: "development")
+    build_app(
+      scheme: "MobiusMobileWallet",
+      workspace: "./ios/MobiusMobileWallet.xcworkspace"
+    )
+  end
+
   desc 'Push a new beta build to Crashlytics.'
   lane :internal do
     sync_code_signing(type: "adhoc")
