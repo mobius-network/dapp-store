@@ -11,23 +11,17 @@
     "nohoist": [
       "**/react-native",
       "**/react-native/**",
-      "**/@haskkor/react-native-pincode",
+      "**/react-native-*",
+      "**/react-native-*/**",
       "**/components/",
-      "@mobius-network/mobile-wallet/react-native-*",
-      "@mobius-network/mobile-wallet/react-native-*/**",
-      "@mobius-network/mobile-wallet/vm-browserify",
-      "@mobius-network/mobile-wallet/vm-browserify/**",
-      "**/@tradle/react-native-http",
-      "**/@tradle/react-native-http/**",
+      "**/vm-browserify",
+      "**/vm-browserify/**",
       "**/https-browserify",
       "**/https-browserify/**",
       "**/stream-browserify",
       "**/stream-browserify/**",
       "**/eventsource",
-      "**/eventsource/**",
-      "@mobius-network/mobile-wallet/@haskkor/react-native-pincode",
-      "@mobius-network/components/react-native-*",
-      "@mobius-network/components/react-native-*/**"
+      "**/eventsource/**"
     ]
   },
   "scripts": {
@@ -56,6 +50,7 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-react-native": "^3.2.1",
     "husky": "^0.14.3",
     "lint-staged": "^7.1.0",
     "prettier": "^1.12.1",
@@ -63,9 +58,5 @@
   },
   "engines": {
     "node": "8.11.3"
-  },
-  "dependencies": {
-    "@tradle/react-native-http": "^2.0.1",
-    "eslint-plugin-react-native": "^3.2.1"
   }
 }
