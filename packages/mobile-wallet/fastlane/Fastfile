@@ -1,0 +1,95 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+
+fastlane_version '2.95.0'
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+    cocoapods(podfile: "./ios")
+   end
+
+  desc "Runs all the tests"
+  lane :test do
+    scan(
+      workspace: "./ios/MobiusMobileWallet.xcworkspace"
+    )
+  end
+
+  private_lane :build do |options|
+    ensure_git_status_clean
+    increment_build_number(xcodeproj: "./ios/MobiusMobileWallet.xcodeproj")
+    commit_version_bump(xcodeproj:  "./ios/MobiusMobileWallet.xcodeproj")
+    build_app(
+      scheme: "MobiusMobileWallet",
+      workspace: "./ios/MobiusMobileWallet.xcworkspace",
+      silent: true,
+      **options
+    )
+  end
+
+  desc 'Prepare local build'
+  lane :local do
+    sync_code_signing(type: "development")
+    build_app(
+      scheme: "MobiusMobileWallet",
+      export_method: "development",
+      workspace: "./ios/MobiusMobileWallet.xcworkspace"
+    )
+  end
+
+  desc 'Push a new beta build to Crashlytics.'
+  lane :internal do
+    sync_code_signing(type: "adhoc")
+    build(clean: true)
+    crashlytics(
+      crashlytics_path: "./ios/Pods/Crashlytics/submit",
+      api_token: ENV["CRASHLYTICS_API_TOKEN"],
+      build_secret: ENV["CRASHLYTICS_BUILD_SECRET"],
+      groups: "mobius,evil-martians"
+    )
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    sync_code_signing(type: "appstore")
+    build(clean: true)
+    upload_to_testflight
+  end
+
+  lane :release do
+    sync_code_signing(type: "appstore")
+    build(clean: true)
+    upload_to_appstore
+  end
+end
+
+platform :android do
+  desc 'Clean Android project.'
+  lane :clean do
+    gradle(task: 'clean', project_dir: 'android/')
+  end
+
+  desc 'Build the Android application.'
+  lane :build do
+    clean
+    gradle(
+      task: 'assemble',
+      build_type: 'Release',
+      project_dir: 'android/'
+    )
+  end
+
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Deploy a new version to the Google Play"
+  lane :deploy do
+    build
+    gradle(task: "assembleRelease")
+    #upload_to_play_store
+  end
+end

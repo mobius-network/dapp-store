@@ -1,0 +1,7 @@
+git_url "git@github.com:mobius-network/certificates.git"
+
+force_for_new_devices true
+shallow_clone true
+readonly true
+
+type "development"

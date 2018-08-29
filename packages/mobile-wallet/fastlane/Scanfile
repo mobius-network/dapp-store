@@ -1,0 +1,4 @@
+scheme("MobiusMobileWallet")
+open_report(false)
+clean(true)
+skip_build(false)
