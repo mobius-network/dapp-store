@@ -80,7 +80,7 @@ export const Content = styled.div`
   flex-direction: row;
   flex: 1;
   font-family: ${fonts.nunitoSans};
-  font-size: ${fontSizes.button};
+  font-size: ${fontSizes.normal};
   font-weight: ${props => props.theme.fontWeight};
   justify-content: center;
   margin: 2px;
