@@ -16,7 +16,6 @@
     "link": "react-native link"
   },
   "dependencies": {
-    "@mobius-network/components": "0.0.1",
     "react": "16.4.2",
     "react-native": "0.56.0",
     "redux": "^4.0.0",
