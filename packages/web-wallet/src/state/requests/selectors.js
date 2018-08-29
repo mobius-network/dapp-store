@@ -32,5 +32,4 @@ export const getEntitiesObject = createSelector(
   (entities, name) => entities[name] || {}
 );
 
-export const getEntities = createSelector([getEntitiesObject], entities =>
-  Object.values(entities));
+export const getEntities = createSelector([getEntitiesObject], entities => Object.values(entities));

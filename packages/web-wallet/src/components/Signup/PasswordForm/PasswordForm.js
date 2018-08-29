@@ -19,8 +19,7 @@ class PasswordForm extends Component {
     isPasswordVisible: false,
   };
 
-  handlePasswordVisibilityToggle = isPasswordVisible =>
-    this.setState({ isPasswordVisible });
+  handlePasswordVisibilityToggle = isPasswordVisible => this.setState({ isPasswordVisible });
 
   render() {
     const { submitting, handleSubmit, t } = this.props;

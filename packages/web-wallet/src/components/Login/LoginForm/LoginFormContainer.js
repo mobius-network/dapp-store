@@ -19,14 +19,18 @@ const actions = {
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   translate('translation'),
   reduxForm({
     form: 'loginForm',
     validate,
-    onSubmit: (values, store, { loginStart }) =>
+    onSubmit: (values, store, { loginStart }) => {
       promisifyAction(loginStart, values).catch(error => {
         throw new SubmissionError(error);
-      }),
+      });
+    },
   })
 )(LoginForm);

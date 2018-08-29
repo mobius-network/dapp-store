@@ -1,5 +1,7 @@
 import { Operation } from 'stellar-sdk';
-import { takeLatest, select, spawn, call, put } from 'redux-saga/effects';
+import {
+  takeLatest, select, spawn, call, put,
+} from 'redux-saga/effects';
 
 import {
   submitTransaction,
@@ -20,17 +22,19 @@ export function* addToAppAccount(app, amount, meta) {
     accountNumber: app.id,
   });
 
-  yield put(accountActions.transact(
-    {
-      name: 'depositApp',
-      operation: Operation.payment({
-        destination,
-        amount: String(amount),
-        asset: assets.mobi,
-      }),
-    },
-    meta
-  ));
+  yield put(
+    accountActions.transact(
+      {
+        name: 'depositApp',
+        operation: Operation.payment({
+          destination,
+          amount: String(amount),
+          asset: assets.mobi,
+        }),
+      },
+      meta
+    )
+  );
 }
 
 export function* createApp(app, amount, meta) {
@@ -67,10 +71,12 @@ export function* depositApp({ payload: { app, amount }, meta }) {
 
     yield call(handler, app, amount, meta);
   } catch (error) {
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
   }
 }
 

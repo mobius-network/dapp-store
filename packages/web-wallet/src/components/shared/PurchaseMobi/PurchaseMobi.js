@@ -78,8 +78,8 @@ class PurchaseMobi extends Component {
     } = this.props;
 
     if (
-      bestPaymentPath &&
-      parseFloat(bestPaymentPath.source_amount) > xlmBalance
+      bestPaymentPath
+      && parseFloat(bestPaymentPath.source_amount) > xlmBalance
     ) {
       addNotification({
         type: toast.TYPE.ERROR,

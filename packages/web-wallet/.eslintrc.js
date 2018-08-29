@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { baseConfig } = require('./config/webpack.base.config');
 
 module.exports = {
   "parser": "babel-eslint",
@@ -6,10 +6,7 @@ module.exports = {
     "plugin:react/recommended",
     "airbnb-base"
   ],
-  "plugins": [
-    "babel",
-    "flowtype"
-  ],
+  "plugins": ["babel"],
   "env": {
     "node": true,
     "browser": true,
@@ -19,11 +16,11 @@ module.exports = {
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": resolve(__dirname, 'webpack.development.config.js')
+        "config": baseConfig
       }
     },
-    "flowtype": {
-      "onlyFilesWithFlowAnnotation": false
+    "react": {
+      "version": "16.3.2"
     }
   },
   "rules": {
@@ -62,12 +59,9 @@ module.exports = {
       "allowShortCircuit": true,
       "allowTernary": true
     }],
-
     "import/prefer-default-export": 0,
-    "import/no-extraneous-dependencies": 0,
-    "import/named": 2,
+    "import/no-extraneous-dependencies": [2, { "peerDependencies": true }],
     "import/no-unresolved": 2,
-
     "react/prefer-stateless-function": 0,
     "react/prop-types": 0,
     "react/sort-comp": [2, {

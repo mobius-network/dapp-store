@@ -4,7 +4,9 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/fontawesome-free-solid';
 
 import CopyField from 'components/shared/CopyField';
-import { Container, Info, InfoText, InfoIcon } from './styles';
+import {
+  Container, Info, InfoText, InfoIcon,
+} from './styles';
 
 class CurrentAddress extends Component {
   static propTypes = {

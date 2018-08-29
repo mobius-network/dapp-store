@@ -5,7 +5,11 @@ const WebappWebpackPlugin = require('webapp-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { merge } = require('lodash');
 
-const { baseConfig, webAppPluginConfig, copyPluginPatterns } = require('./config/webpack.base.config');
+const {
+  baseConfig,
+  webAppPluginConfig,
+  copyPluginPatterns
+} = require('./config/webpack.base.config');
 
 module.exports = merge(baseConfig, {
   stats: 'minimal',
@@ -16,27 +20,25 @@ module.exports = merge(baseConfig, {
     hotOnly: true,
     publicPath: '/',
     historyApiFallback: true,
-    contentBase: resolve(__dirname, 'dist'),
+    contentBase: resolve(__dirname, 'dist')
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': require('./config/dev.env'),
+      'process.env': require('./config/dev.env')
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'index.html',
-      chunksSortMode (a, b) {
+      chunksSortMode(a, b) {
         const order = ['plugins', 'bundle'];
         return order.indexOf(a.names[0]) - order.indexOf(b.names[0]);
-      },
+      }
     }),
     new WebappWebpackPlugin(webAppPluginConfig),
     new CopyWebpackPlugin(copyPluginPatterns),
-    new webpack.optimize.ModuleConcatenationPlugin(),
+    new webpack.optimize.ModuleConcatenationPlugin()
   ],
   watchOptions: {
-    ignored: [
-      /node_modules([\\]+|\/)+(?!mobius-network)/,
-    ],
-  },
+    ignored: [/node_modules([\\]+|\/)+(?!mobius-network)/]
+  }
 });

@@ -19,12 +19,14 @@ const actions = {
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   translate('translation'),
   reduxForm({
     form: 'signupPassword',
     validate,
-    onSubmit: (values, store, { signupStart }) =>
-      promisifyAction(signupStart, values),
+    onSubmit: (values, store, { signupStart }) => promisifyAction(signupStart, values),
   })
 )(PasswordForm);

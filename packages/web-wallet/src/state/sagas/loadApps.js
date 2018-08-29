@@ -1,5 +1,7 @@
 import { delay } from 'redux-saga';
-import { all, fork, call, select, take, put, cancel } from 'redux-saga/effects';
+import {
+  all, fork, call, select, take, put, cancel,
+} from 'redux-saga/effects';
 import { normalize, schema } from 'normalizr';
 
 import { safeLoadAccount } from '@mobius-network/core';
@@ -35,10 +37,12 @@ export function* loadAppAccount(app) {
 
     return { account: appAccount, app };
   } catch (error) {
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
     return {};
   }
 }
@@ -62,9 +66,11 @@ export function* stopAppAccountWatcher() {
     yield cancel(watchers[appId]);
     delete watchers[appId];
 
-    yield put(requestActions.deleteEntities({
-      appAccounts: [appId],
-    }));
+    yield put(
+      requestActions.deleteEntities({
+        appAccounts: [appId],
+      })
+    );
   }
 }
 
@@ -75,9 +81,11 @@ export function* loadAppAccounts() {
   const pairs = yield all(apps.map(app => call(loadAppAccount, app)));
 
   // Start watching only apps with created accounts
-  yield all(pairs
-    .filter(pair => pair.account)
-    .map(pair => fork(startAppAccountWatcher, pair.app)));
+  yield all(
+    pairs
+      .filter(pair => pair.account)
+      .map(pair => fork(startAppAccountWatcher, pair.app))
+  );
 
   yield fork(stopAppAccountWatcher);
 

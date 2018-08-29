@@ -19,24 +19,22 @@ const initialState = {
   entities: {},
 };
 
-const entitiesUpdate = (state, entities) =>
-  Object.entries(entities).reduce((acc, [key, value]) => {
-    const operation = state.entities[key] ? '$merge' : '$set';
+const entitiesUpdate = (state, entities) => Object.entries(entities).reduce((acc, [key, value]) => {
+  const operation = state.entities[key] ? '$merge' : '$set';
 
-    acc[key] = { [operation]: value };
+  acc[key] = { [operation]: value };
 
-    return acc;
-  }, {});
+  return acc;
+}, {});
 
 export const requestsReducer = createReducer(
   {
-    [requestActions.fetchStart]: (state, { name }) =>
-      merge(state, {
-        [name]: {
-          data: undefined,
-          isFetching: true,
-        },
-      }),
+    [requestActions.fetchStart]: (state, { name }) => merge(state, {
+      [name]: {
+        data: undefined,
+        isFetching: true,
+      },
+    }),
     [requestActions.fetchSuccess]: (
       state,
       { name, data: { entities = {}, result, ...data } = {} }
@@ -72,19 +70,17 @@ export const requestsReducer = createReducer(
       },
       errors: [error, ...state.errors.slice(0, 4)],
     }),
-    [requestActions.resetRequest]: (state, name) =>
-      merge(state, {
-        [name]: {
-          error: undefined,
-          data: undefined,
-          success: undefined,
-          isFetching: false,
-        },
-      }),
-    [requestActions.setEntities]: (state, entities) =>
-      update(state, {
-        entities: entitiesUpdate(state, entities),
-      }),
+    [requestActions.resetRequest]: (state, name) => merge(state, {
+      [name]: {
+        error: undefined,
+        data: undefined,
+        success: undefined,
+        isFetching: false,
+      },
+    }),
+    [requestActions.setEntities]: (state, entities) => update(state, {
+      entities: entitiesUpdate(state, entities),
+    }),
     [requestActions.deleteEntities]: (state, entities) => {
       const updates = Object.entries(entities).reduce((acc, [key, ids]) => {
         acc[key] = { $unset: ids };
@@ -98,15 +94,21 @@ export const requestsReducer = createReducer(
   initialState
 );
 
-export const fetchStart = (payload, meta = {}) =>
-  new Promise((resolve, reject) =>
-    store.dispatch(requestActions.fetchStart(payload, {
-      resolve: resp => {
-        resolve(resp);
-        if (meta.resolve) meta.resolve(resp);
-      },
-      reject: error => {
-        reject(error);
-        if (meta.reject) meta.reject(error);
-      },
-    })));
+export const fetchStart = (payload, meta = {}) => {
+  const fetchPromise = new Promise((resolve, reject) => {
+    store.dispatch(
+      requestActions.fetchStart(payload, {
+        resolve: resp => {
+          resolve(resp);
+          if (meta.resolve) meta.resolve(resp);
+        },
+        reject: error => {
+          reject(error);
+          if (meta.reject) meta.reject(error);
+        },
+      })
+    );
+  });
+
+  return fetchPromise;
+};

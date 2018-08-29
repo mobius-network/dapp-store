@@ -48,8 +48,9 @@ class SocialLinks extends Component {
     isWeChatModalVisible: false,
   };
 
-  toggleWeChatModal = () =>
-    this.setState({ isWeChatModalVisible: !this.state.isWeChatModalVisible });
+  toggleWeChatModal = () => this.setState({
+    isWeChatModalVisible: !this.state.isWeChatModalVisible,
+  });
 
   render() {
     const { t } = this.props;

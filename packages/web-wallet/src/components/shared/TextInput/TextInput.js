@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from 'styled-components';
 
-import { themes, Container, Input, ErrorMessage, InnerLabel } from './styles';
+import {
+  themes, Container, Input, ErrorMessage, InnerLabel,
+} from './styles';
 
 class TextInput extends Component {
   static propTypes = {

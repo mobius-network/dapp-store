@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/fontawesome-free-solid';
 
-import { Container, Spinner, SpinnerIcon, SpinnerText } from './styles';
+import {
+  Container, Spinner, SpinnerIcon, SpinnerText,
+} from './styles';
 
 class Loading extends Component {
   static propTypes = {

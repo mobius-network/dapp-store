@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { isProduction } from 'utils/env';
-import { LogoImage, LogoLink, LogoName, LogoBetaShield } from './styles';
+import {
+  LogoImage, LogoLink, LogoName, LogoBetaShield,
+} from './styles';
 
 export default class Logo extends Component {
   static propTypes = {

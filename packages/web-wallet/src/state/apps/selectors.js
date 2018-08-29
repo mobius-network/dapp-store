@@ -41,11 +41,9 @@ export const getFeaturedApp = createSelector([getApps], apps => {
   return featuredApps[Math.floor(Math.random() * featuredApps.length)];
 });
 
-export const getAppAccountsObject = state =>
-  getEntitiesObject(state, { entity: 'appAccounts' });
+export const getAppAccountsObject = state => getEntitiesObject(state, { entity: 'appAccounts' });
 
-export const getAppAccounts = state =>
-  getEntities(state, { entity: 'appAccounts' });
+export const getAppAccounts = state => getEntities(state, { entity: 'appAccounts' });
 
 export const getAppAccount = createSelector(
   [getAppAccountsObject, getAppId],
@@ -57,24 +55,26 @@ export const getAppAssetBalance = createAssetBalanceSelector(getAppBalance);
 
 export const getAppAssetSumBalance = createSelector(
   [getAppAccounts, getAsset],
-  (accounts, asset) =>
-    Object.values(accounts)
-      .filter(v => v)
-      .reduce((acc, app) => {
-        const assetRegexp = new RegExp(asset, 'i');
-        const { balance = 0 } =
-          app.balances.find(data =>
-            assetRegexp.test(data.asset_type) ||
-              assetRegexp.test(data.asset_code)) || {};
+  (accounts, asset) => Object.values(accounts)
+    .filter(v => v)
+    .reduce((acc, app) => {
+      const assetRegexp = new RegExp(asset, 'i');
+      const { balance = 0 } = app.balances.find(
+        data => assetRegexp.test(data.asset_type)
+              || assetRegexp.test(data.asset_code)
+      ) || {};
 
-        return acc + parseFloat(balance);
-      }, 0)
+      return acc + parseFloat(balance);
+    }, 0)
 );
 
 export const getAppIsOpening = createSelector(
   state => getIsFetching(state, { operation: 'getChallenge' }),
   state => getIsFetching(state, { operation: 'getToken' }),
   state => getIsFetching(state, { operation: 'createAppAccount' }),
-  (isChallengeFetching, isTokenFetching, isAccountCreating) =>
-    isChallengeFetching || isTokenFetching || isAccountCreating
+  (isChallengeFetching, isTokenFetching, isAccountCreating) => {
+    const appIsOpening = isChallengeFetching || isTokenFetching || isAccountCreating;
+
+    return appIsOpening;
+  }
 );

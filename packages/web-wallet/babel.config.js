@@ -4,10 +4,10 @@ module.exports = {
       '@babel/env',
       {
         modules: false,
-        useBuiltIns: 'usage',
-      },
+        useBuiltIns: 'usage'
+      }
     ],
-    '@babel/react',
+    '@babel/react'
   ],
   plugins: [
     'react-hot-loader/babel',
@@ -16,10 +16,10 @@ module.exports = {
     [
       '@babel/transform-runtime',
       {
-        regenerator: true,
-      },
+        regenerator: true
+      }
     ],
     'styled-components',
-    'lodash',
-  ],
+    'lodash'
+  ]
 };

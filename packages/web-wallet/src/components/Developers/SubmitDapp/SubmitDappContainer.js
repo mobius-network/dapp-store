@@ -17,10 +17,12 @@ const actions = {
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   reduxForm({
     form: 'submitDapp',
-    onSubmit: (values, store, { submitDapp }) =>
-      promisifyAction(submitDapp, values),
+    onSubmit: (values, store, { submitDapp }) => promisifyAction(submitDapp, values),
   })
 )(SubmitDapp);
