@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  ImageBackgroundView, ContentView, Description, Title,
-} from './styles';
+import ImageBackground from 'components/shared/ImageBackground';
 
-import background from './images/bg.png';
+import { ContentView, Description, Title } from './styles';
 
 class NoticeView extends Component {
   static propTypes = {
@@ -18,13 +16,13 @@ class NoticeView extends Component {
     const { children, description, title } = this.props;
 
     return (
-      <ImageBackgroundView source={background}>
+      <ImageBackground>
         <ContentView>
           <Title selectable={false}>{title}</Title>
           <Description selectable={false}>{description}</Description>
           {children}
         </ContentView>
-      </ImageBackgroundView>
+      </ImageBackground>
     );
   }
 }

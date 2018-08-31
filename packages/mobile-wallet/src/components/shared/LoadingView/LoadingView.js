@@ -1,17 +1,16 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
+import ImageBackground from 'components/shared/ImageBackground';
 import Button from 'components/shared/Button';
+
 import {
-  ImageBackgroundView,
   ContentView,
   Description,
   Title,
   LoadingIconView,
   LoadingIcon,
 } from './styles';
-
-import background from './images/bg.png';
 
 class LoadingView extends Component {
   static propTypes = {
@@ -32,7 +31,7 @@ class LoadingView extends Component {
     } = this.props;
 
     return (
-      <ImageBackgroundView source={background}>
+      <ImageBackground>
         {isLoading && (
           <LoadingIconView>
             <LoadingIcon />
@@ -60,7 +59,7 @@ class LoadingView extends Component {
             </Fragment>
           )}
         </ContentView>
-      </ImageBackgroundView>
+      </ImageBackground>
     );
   }
 }

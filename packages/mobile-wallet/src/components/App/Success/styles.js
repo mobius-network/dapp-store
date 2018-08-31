@@ -7,12 +7,23 @@ import {
   helpers,
 } from 'components/shared/Styleguide';
 
-export const ContentView = styled.View`
+export const Container = styled.View`
   align-items: stretch;
   flex-direction: column;
-  padding-left: 24;
-  padding-right: 24;
-  padding-bottom: 16;
+  flex: 1;
+`;
+
+export const Content = styled.View`
+  align-items: stretch;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+`;
+
+export const Action = styled.View`
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
 export const Title = styled.Text`

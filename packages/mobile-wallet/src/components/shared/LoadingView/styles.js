@@ -7,13 +7,6 @@ import {
   helpers,
 } from 'components/shared/Styleguide';
 
-export const ImageBackgroundView = styled.ImageBackground`
-  align-items: center;
-  flex-direction: column;
-  flex: 1;
-  justify-content: flex-end;
-`;
-
 export const LoadingIconView = styled.View`
   align-items: center;
   flex-direction: row;
