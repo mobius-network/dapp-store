@@ -5,7 +5,9 @@ import BackgroundView from 'components/shared/BackgroundView';
 import SimpleInfo from 'components/shared/SimpleInfo';
 import Button from 'components/shared/Button';
 
-import { Content, LoadingIconView, LoadingIcon } from './styles';
+import {
+  Content, LoadingIconView, LoadingIcon, FakeButton,
+} from './styles';
 
 class LoadingView extends Component {
   static propTypes = {
@@ -27,7 +29,7 @@ class LoadingView extends Component {
 
     return (
       <BackgroundView
-        variant="center"
+        variant="bottom"
         content={
           <Content>
             {isLoading && (
@@ -50,8 +52,10 @@ class LoadingView extends Component {
           </Content>
         }
         action={
-          error && (
+          error ? (
             <Button onPress={onError} title={t('loadingView.tryAgainButton')} />
+          ) : (
+            <FakeButton />
           )
         }
       />
