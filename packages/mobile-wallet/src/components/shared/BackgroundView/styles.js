@@ -8,6 +8,7 @@ const variants = {
     },
     action: {
       position: 'absolute',
+      bottom: 16,
     },
   },
   bottom: {
@@ -17,6 +18,7 @@ const variants = {
     },
     action: {
       position: 'relative',
+      bottom: 0,
     },
   },
 };
@@ -42,6 +44,6 @@ export const Content = styled.View`
 
 export const Action = styled.View`
   position: ${({ theme }) => variants[theme.variant].action.position};
-  bottom: 0;
+  bottom: ${({ theme }) => variants[theme.variant].action.bottom};
   width: 100%;
 `;
