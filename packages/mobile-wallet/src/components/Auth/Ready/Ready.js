@@ -5,7 +5,7 @@ import BackgroundView from 'components/shared/BackgroundView';
 import SimpleInfo from 'components/shared/SimpleInfo';
 import Button from 'components/shared/Button';
 
-class Success extends Component {
+class Ready extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
@@ -23,8 +23,8 @@ class Success extends Component {
         variant="bottom"
         content={
           <SimpleInfo
-            title={t('success.title')}
-            description={t('success.description')}
+            title={t('ready.title')}
+            description={t('ready.description')}
           />
         }
         action={
@@ -38,4 +38,4 @@ class Success extends Component {
   }
 }
 
-export default Success;
+export default Ready;

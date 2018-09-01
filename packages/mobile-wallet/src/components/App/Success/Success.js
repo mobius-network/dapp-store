@@ -13,16 +13,18 @@ class Success extends Component {
   };
 
   render() {
+    const { t } = this.props;
+
     return (
       <BackgroundView
         variant="center"
         content={
           <SimpleInfo
-            title="Success!"
+            title={t('success.title')}
             description="You sent 140 MOBI to the address GCPI...CPJF"
           />
         }
-        action={<Button variant="primary" title="Done" />}
+        action={<Button variant="primary" title={t('shared.done')} />}
       />
     );
   }
