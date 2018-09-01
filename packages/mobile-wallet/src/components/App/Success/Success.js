@@ -7,24 +7,32 @@ import Button from 'components/shared/Button';
 
 class Success extends Component {
   static propTypes = {
-    text: PropTypes.string,
+    message: PropTypes.string,
 
     t: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
+  onComplete = () => this.props.navigation.navigate('Dashboard');
+
   render() {
-    const { t } = this.props;
+    const { t, message } = this.props;
 
     return (
       <BackgroundView
         variant="center"
         content={
-          <SimpleInfo
-            title={t('success.title')}
-            description="You sent 140 MOBI to the address GCPI...CPJF"
+          <SimpleInfo title={t('success.title')} description={message} />
+        }
+        action={
+          <Button
+            variant="primary"
+            title={t('shared.done')}
+            onPress={this.onComplete}
           />
         }
-        action={<Button variant="primary" title={t('shared.done')} />}
       />
     );
   }

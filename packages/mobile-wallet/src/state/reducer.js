@@ -3,6 +3,7 @@ import { dataReducer, requestsReducer } from 'redux-boost';
 import { reducer as formReducer } from 'redux-form';
 
 import { accountReducer } from './account';
+import { appReducer } from './app';
 import { authReducer } from './auth';
 import { notificationsReducer } from './notifications';
 import { transfersReducer } from './transfers';
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   requests: requestsReducer,
 
   prices: pricesReducer,
+  app: appReducer,
   auth: authReducer,
   masterAccount: accountReducer,
   notifications: notificationsReducer,
