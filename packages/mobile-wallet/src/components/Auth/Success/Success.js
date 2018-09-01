@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import NoticeView from 'components/shared/NoticeView';
+import BackgroundView from 'components/shared/BackgroundView';
+import SimpleInfo from 'components/shared/SimpleInfo';
 import Button from 'components/shared/Button';
 
 class Success extends Component {
@@ -18,15 +19,21 @@ class Success extends Component {
     const { t } = this.props;
 
     return (
-      <NoticeView
-        description={t('success.description')}
-        title={t('success.title')}
-      >
-        <Button
-          onPress={this.handleNavigationClick}
-          title={t('shared.continue')}
-        />
-      </NoticeView>
+      <BackgroundView
+        variant="bottom"
+        content={
+          <SimpleInfo
+            title={t('success.title')}
+            description={t('success.description')}
+          />
+        }
+        action={
+          <Button
+            onPress={this.handleNavigationClick}
+            title={t('shared.continue')}
+          />
+        }
+      />
     );
   }
 }

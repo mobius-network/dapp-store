@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ImageBackground from 'components/shared/ImageBackground';
+import BackgroundView from 'components/shared/BackgroundView';
+import SimpleInfo from 'components/shared/SimpleInfo';
 import Button from 'components/shared/Button';
 
-import {
-  Container, Content, Action, Title, Description,
-} from './styles';
-
-class Loading extends Component {
+class Success extends Component {
   static propTypes = {
     text: PropTypes.string,
 
@@ -17,21 +14,18 @@ class Loading extends Component {
 
   render() {
     return (
-      <ImageBackground>
-        <Container>
-          <Content>
-            <Title>Success!</Title>
-            <Description>
-              You sent 140 MOBI to the address GCPI...CPJF
-            </Description>
-          </Content>
-          <Action>
-            <Button variant="primary" title="Done" />
-          </Action>
-        </Container>
-      </ImageBackground>
+      <BackgroundView
+        variant="center"
+        content={
+          <SimpleInfo
+            title="Success!"
+            description="You sent 140 MOBI to the address GCPI...CPJF"
+          />
+        }
+        action={<Button variant="primary" title="Done" />}
+      />
     );
   }
 }
 
-export default Loading;
+export default Success;

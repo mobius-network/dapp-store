@@ -1,16 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import ImageBackground from 'components/shared/ImageBackground';
+import BackgroundView from 'components/shared/BackgroundView';
+import SimpleInfo from 'components/shared/SimpleInfo';
 import Button from 'components/shared/Button';
 
-import {
-  ContentView,
-  Description,
-  Title,
-  LoadingIconView,
-  LoadingIcon,
-} from './styles';
+import { Content, LoadingIconView, LoadingIcon } from './styles';
 
 class LoadingView extends Component {
   static propTypes = {
@@ -31,35 +26,35 @@ class LoadingView extends Component {
     } = this.props;
 
     return (
-      <ImageBackground>
-        {isLoading && (
-          <LoadingIconView>
-            <LoadingIcon />
-          </LoadingIconView>
-        )}
+      <BackgroundView
+        variant="center"
+        content={
+          <Content>
+            {isLoading && (
+              <LoadingIconView>
+                <LoadingIcon />
+              </LoadingIconView>
+            )}
 
-        <ContentView>
-          {error ? (
-            <Fragment>
-              <Title selectable={false}>{t('loadingView.errorTitle')}</Title>
-              <Description selectable={false}>
-                {t('loadingView.errorDescription')}
-              </Description>
-              <Button
-                onPress={onError}
-                title={t('loadingView.tryAgainButton')}
+            {error ? (
+              <SimpleInfo
+                title={t('loadingView.errorTitle')}
+                description={t('loadingView.errorDescription')}
               />
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Title selectable={false}>{t('loadingView.title')}</Title>
-              <Description selectable={false}>
-                {t('loadingView.description')}
-              </Description>
-            </Fragment>
-          )}
-        </ContentView>
-      </ImageBackground>
+            ) : (
+              <SimpleInfo
+                title={t('loadingView.title')}
+                description={t('loadingView.description')}
+              />
+            )}
+          </Content>
+        }
+        action={
+          error && (
+            <Button onPress={onError} title={t('loadingView.tryAgainButton')} />
+          )
+        }
+      />
     );
   }
 }
