@@ -49,6 +49,14 @@ export const BalanceAmount = styled.Text`
   line-height: 54;
 `;
 
+export const ButtonRow = styled.View`
+  align-self: stretch;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 export const ActionButton = styled(Button).attrs({
   square: true,
-})``;
+})`
+  flex-grow: 1;
+`;

@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import { dataReducer, requestsReducer } from 'redux-boost';
 
 import { accountReducer } from './account';
@@ -10,6 +11,7 @@ import { pricesReducer } from './prices';
 const rootReducer = combineReducers({
   data: dataReducer,
   requests: requestsReducer,
+  form: formReducer,
 
   prices: pricesReducer,
   auth: authReducer,
