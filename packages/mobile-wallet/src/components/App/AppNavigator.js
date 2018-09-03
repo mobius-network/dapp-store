@@ -7,11 +7,27 @@ import NavHeader from 'components/shared/NavHeader';
 
 import Dashboard from './Dashboard';
 import AddFunds from './AddFunds';
+import SendFunds from './SendFunds';
+import AddressForm from './AddressForm';
 
 export const AppNavigator = createStackNavigator(
   {
     Dashboard: {
       screen: Dashboard,
+      navigationOptions: () => ({
+        header: null,
+      }),
+    },
+    SendFunds: {
+      screen: SendFunds,
+      navigationOptions: () => ({
+        // eslint-disable-next-line
+        header: props => <NavHeader {...props} title="sendFunds.headerTitle" />
+      }),
+    },
+    AddressForm: {
+      screen: AddressForm,
+      mode: 'modal',
       navigationOptions: () => ({
         header: null,
       }),

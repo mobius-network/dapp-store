@@ -35,8 +35,8 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<key>NSCameraUsageDescription</key>
+	<string>QR Code scanner</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Entypo.ttf</string>

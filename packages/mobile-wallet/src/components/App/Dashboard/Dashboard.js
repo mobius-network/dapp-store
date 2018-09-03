@@ -10,6 +10,7 @@ import {
   BalanceContainer,
   CurrencySymbol,
   BalanceAmount,
+  ButtonRow,
   ActionButton,
 } from './styles';
 
@@ -26,7 +27,9 @@ class Dashboard extends Component {
     balanceAmount: 0,
   };
 
-  handleNavigationClick = () => this.props.navigation.navigate('AddFunds');
+  openReceiveScreen = () => this.props.navigation.navigate('AddFunds');
+
+  openSendScreen = () => this.props.navigation.navigate('SendFunds');
 
   render() {
     const { t, usdBalance } = this.props;
@@ -44,11 +47,18 @@ class Dashboard extends Component {
 
         <Balances />
 
-        <ActionButton
-          square
-          onPress={this.handleNavigationClick}
-          title={t('dashboard.receiveButton').toUpperCase()}
-        />
+        <ButtonRow>
+          <ActionButton
+            square
+            onPress={this.openReceiveScreen}
+            title={t('dashboard.receiveButton').toUpperCase()}
+          />
+          <ActionButton
+            square
+            onPress={this.openSendScreen}
+            title={t('dashboard.sendButton').toUpperCase()}
+          />
+        </ButtonRow>
       </Container>
     );
   }

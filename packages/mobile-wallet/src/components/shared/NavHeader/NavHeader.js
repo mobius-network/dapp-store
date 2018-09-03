@@ -8,17 +8,22 @@ import {
 
 class NavHeader extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     navigation: PropTypes.shape({
       pop: PropTypes.func.isRequired,
-    }).isRequired,
+    }),
     t: PropTypes.func.isRequired,
+    children: PropTypes.func,
   };
 
   goBack = () => this.props.navigation.pop();
 
   render() {
-    const { t, title } = this.props;
+    const { t, title, children } = this.props;
+
+    if (children) {
+      return <Gradient>{children}</Gradient>;
+    }
 
     return (
       <Gradient>
