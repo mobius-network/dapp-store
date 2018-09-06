@@ -19,12 +19,22 @@ class Dashboard extends Component {
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
     }).isRequired,
+    stopWatchPrices: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
+    watchPrices: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
     balanceAmount: 0,
   };
+
+  componentDidMount() {
+    this.props.watchPrices();
+  }
+
+  componentWillUnmount() {
+    this.props.stopWatchPrices();
+  }
 
   handleNavigationClick = () => this.props.navigation.navigate('AddFunds');
 
