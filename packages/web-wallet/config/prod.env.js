@@ -3,7 +3,7 @@ const GitRevisionPlugin = require('git-revision-webpack-plugin');
 const gitRevisionPlugin = new GitRevisionPlugin();
 
 module.exports = {
-  API_URL: '"https://mobius.network/api/v1"',
+  API_URL: '"https://api.mobius.network/api/v1"',
   COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
   HONEYBADGER_API_TOKEN: '"d52d00a4"',
   MOBI_ASSET_ISSUER: '"GA6HCMBLTZS5VYYBCATRBRZ3BZJMAFUDKYYF6AH6MVCMGWMRDNSWJPIH"',
