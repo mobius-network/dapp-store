@@ -1,4 +1,4 @@
-# Mobius DApp Store
+# Mobius Network DApp Store
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -6,7 +6,6 @@
 
   - [Getting started](#getting-started)
   - [Project structure](#project-structure)
-    - [Notes on terms and directories](#notes-on-terms-and-directories)
   - [Scaffolding](#scaffolding)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -35,7 +34,7 @@ yarn run build:production
 
 ```sh
 ├── config            # Configs
-├── src               # Wallet sources
+├── src               # Sources
 │   ├── components    # All UI components
 │   │   ├── Feature   # Hierarchy of components grouped by feature
 │   │   ├── shared    # Components shared across features
