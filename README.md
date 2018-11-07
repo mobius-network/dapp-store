@@ -1,29 +1,63 @@
-# Mobius Network wallet monorepo
+# Mobius DApp Store
 
-## Development
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Contents**
 
-Install dependencies for all packages:
+  - [Getting started](#getting-started)
+  - [Project structure](#project-structure)
+    - [Notes on terms and directories](#notes-on-terms-and-directories)
+  - [Scaffolding](#scaffolding)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Getting started
 
 ```sh
-yarn
+yarn start
 ```
 
-Run command for each package:
+## Build
+
+### Beta
 
 ```sh
-yarn run-all <command>
+yarn run build:beta
 ```
 
-Start packages from the root folder:
+### Production
 
 ```sh
-yarn start:web
-yarn start:mobile
-yarn start:components
+yarn run build:production
 ```
 
-Run custom command for one package from the root folder:
+## Project structure
 
 ```sh
-yarn workspace <package-name-from-package.json> <command>
+├── config            # Configs
+├── src               # Wallet sources
+│   ├── components    # All UI components
+│   │   ├── Feature   # Hierarchy of components grouped by feature
+│   │   ├── shared    # Components shared across features
+│   ├── state         # State related modules
+│   │   ├── Feature   # Reducers, actions, sagas, selectors grouped by feature
+│   │   ├── utils     # Redux related utils
+│   ├── assets        # Static assets
+│   ├── utils         # General purpose utility functions
+│   └── styles
+└── templates         # Scaffolding templates
+```
+
+## Scaffolding
+
+Generate a component:
+
+```sh
+yarn create:component
+```
+
+Generate a state feature
+
+```sh
+yarn create:state
 ```
