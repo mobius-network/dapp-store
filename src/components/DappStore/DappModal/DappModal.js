@@ -23,6 +23,7 @@ class DappModal extends Component {
   static propTypes = {
     app: PropTypes.object.isRequired,
     isOpen: PropTypes.bool.isRequired,
+    mobiBalance: PropTypes.number.isRequired,
     onClose: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
   };
@@ -52,7 +53,7 @@ class DappModal extends Component {
             </Grid.Col>
           </Grid.Row>
           <Grid.Row flexWrap="wrap">
-            <Grid.Col px={0} mb={[30, 30, 0]} width={[1, 1, 7 / 10]}>
+            <Grid.Col mb={[30, 30, 0]} px={0} width={[1, 1, 7 / 10]}>
               <Desc>{app.description}</Desc>
             </Grid.Col>
             <Grid.Col px={0} width={[1, 1, 3 / 10]}>
@@ -63,8 +64,8 @@ class DappModal extends Component {
                   {app.website_url && (
                     <AppLink
                       href={app.website_url}
-                      target="_blank"
                       rel="noopener noreferrer"
+                      target="_blank"
                     >
                       <AppLinkTitle>
                         {t('dappModal.appWebsiteLink')}
@@ -77,8 +78,8 @@ class DappModal extends Component {
                   {app.support_url && (
                     <AppLink
                       href={app.support_url}
-                      target="_blank"
                       rel="noopener noreferrer"
+                      target="_blank"
                     >
                       <AppLinkTitle>
                         {t('dappModal.appSupportLink')}

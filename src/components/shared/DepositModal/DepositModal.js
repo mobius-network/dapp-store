@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { object, bool, func } from 'prop-types';
+import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/fontawesome-free-solid';
 
@@ -24,9 +24,12 @@ import {
 
 class DepositModal extends Component {
   static propTypes = {
-    app: object.isRequired,
-    onClose: func.isRequired,
-    isOpen: bool.isRequired,
+    app: PropTypes.object.isRequired,
+    depositApp: PropTypes.object,
+    depositCompleted: PropTypes.bool,
+    isOpen: PropTypes.bool.isRequired,
+    mobiBalance: PropTypes.number,
+    onClose: PropTypes.func.isRequired,
   };
 
   state = {
@@ -41,7 +44,7 @@ class DepositModal extends Component {
     this.props.onClose();
   };
 
-  onAmountChange = e => {
+  onAmountChange = (e) => {
     const amount = e.target.value;
 
     this.setState({ amount });
@@ -85,10 +88,10 @@ class DepositModal extends Component {
         </Balance>
 
         <Button
-          onClick={this.onDeposit}
+          disabled={!amount || loading || amount > mobiBalance}
           fullWidth
           isLoading={loading}
-          disabled={!amount || loading || amount > mobiBalance}
+          onClick={this.onDeposit}
         >
           DEPOSIT
         </Button>
@@ -112,7 +115,7 @@ class DepositModal extends Component {
           </CompleteDetails>
         </CompleteContainer>
 
-        <Button onClick={this.onClose} fullWidth>
+        <Button fullWidth onClick={this.onClose}>
           Back
         </Button>
       </Fragment>

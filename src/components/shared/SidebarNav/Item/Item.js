@@ -14,7 +14,7 @@ class Item extends Component {
 
     return (
       <Container>
-        <StyledLink to={to} exact>
+        <StyledLink exact to={to}>
           {children}
         </StyledLink>
       </Container>

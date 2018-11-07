@@ -26,30 +26,7 @@ module.exports = {
     },
   },
   "rules": {
-    "new-cap": 0,
-    "func-names": 0,
-    "no-plusplus": 0,
-    "no-sequences": 0,
-    "arrow-parens": 0,
-    "global-require": 0,
-    "no-return-assign": 0,
-    "no-confusing-arrow": 0,
-    "no-mixed-operators": 0,
-    "max-len": ["error", {
-      "code": 100,
-      "ignoreStrings": true,
-      "ignoreTemplateLiterals": true,
-    }],
-    "no-constant-condition": 0,
     "class-methods-use-this": 0,
-    "space-before-function-paren": 0,
-    "quotes": ["error", "single"],
-    "indent": ["error", 2, {
-      "SwitchCase": 1
-    }],
-    "no-param-reassign": ["error", {
-      "props": false
-    }],
     "comma-dangle": [2, {
       "arrays": "always-multiline",
       "objects": "always-multiline",
@@ -57,17 +34,25 @@ module.exports = {
       "exports": "always-multiline",
       "functions": "ignore"
     }],
+    "import/no-extraneous-dependencies": [2, {
+      "devDependencies": true
+    }],
+    "import/prefer-default-export": 0,
+    "max-len": [1, 120, 2, {
+      "ignoreComments": true,
+      "ignoreUrls": true
+    }],
+    "no-constant-condition": 0,
+    "no-return-assign": [2, "except-parens"],
     "no-unused-expressions": ["error", {
       "allowShortCircuit": true,
       "allowTernary": true
     }],
-
-    "import/prefer-default-export": 0,
-    "import/no-extraneous-dependencies": 0,
-    "import/named": 2,
-    "import/no-unresolved": 2,
-    "react/prefer-stateless-function": 0,
-    "react/prop-types": 0,
+    "prefer-destructuring": ["error", {
+      "AssignmentExpression": {
+        "array": false
+      }
+    }],
     "react/sort-comp": [2, {
       "order": [
         "static-methods",
@@ -83,7 +68,13 @@ module.exports = {
           "render"
         ]
       }
-    }]
+    }],
+    "react/sort-prop-types": [2, {
+      "sortShapeProp": true
+    }],
+    "react/jsx-sort-props": [2, {
+      "reservedFirst": true
+    }],
   }
 }
 

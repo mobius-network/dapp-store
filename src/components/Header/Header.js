@@ -9,6 +9,7 @@ import { Container, ListContainer, ListItem } from './styles';
 
 class Header extends Component {
   static propTypes = {
+    isAuthorized: PropTypes.bool.isRequired,
     t: PropTypes.func.isRequired,
     theme: PropTypes.oneOf(['default', 'dark']),
   };
@@ -33,12 +34,12 @@ class Header extends Component {
     return (
       <Fragment>
         <ListItem>
-          <Link to="/login" theme={this.getLinkTheme()}>
+          <Link theme={this.getLinkTheme()} to="/login">
             {t('navigation.login')}
           </Link>
         </ListItem>
         <ListItem>
-          <Link to="/signup" theme={this.getLinkTheme()}>
+          <Link theme={this.getLinkTheme()} to="/signup">
             {t('navigation.signUp')}
           </Link>
         </ListItem>
@@ -57,10 +58,10 @@ class Header extends Component {
               <Logo withName />
             </Grid.Col>
 
-            <Grid.Col width={[1, 2 / 3]} px={[0, 2]}>
+            <Grid.Col px={[0, 2]} width={[1, 2 / 3]}>
               <ListContainer>
                 <ListItem>
-                  <Link to="/" theme={this.getLinkTheme()}>
+                  <Link theme={this.getLinkTheme()} to="/">
                     {t('navigation.browseDapps')}
                   </Link>
                 </ListItem>

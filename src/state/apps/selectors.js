@@ -27,7 +27,7 @@ export const getApps = createSelector(
   }
 );
 
-export const getFeaturedApp = createSelector([getApps], apps => {
+export const getFeaturedApp = createSelector([getApps], (apps) => {
   if (isEmpty(apps)) {
     return undefined;
   }
@@ -59,8 +59,10 @@ export const getAppAssetSumBalance = createSelector(
     .filter(v => v)
     .reduce((acc, app) => {
       const assetRegexp = new RegExp(asset, 'i');
-      const { balance = 0 } = app.balances.find(data => assetRegexp.test(data.asset_type)
-              || assetRegexp.test(data.asset_code)) || {};
+      const { balance = 0 } = app.balances.find(
+        data => assetRegexp.test(data.asset_type)
+              || assetRegexp.test(data.asset_code)
+      ) || {};
 
       return acc + parseFloat(balance);
     }, 0)

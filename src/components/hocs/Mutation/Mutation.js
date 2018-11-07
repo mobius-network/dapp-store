@@ -7,6 +7,10 @@ import { requestActions } from 'state/requests/reducer';
 const { requestStart } = requestActions;
 
 export class RestMutation extends Component {
+  static propTypes = {
+    children: PropTypes.any,
+  };
+
   static contextTypes = {
     store: PropTypes.object.isRequired,
   };
@@ -39,13 +43,13 @@ export class RestMutation extends Component {
     ...this.state,
   });
 
-  updateState = data => {
+  updateState = (data) => {
     if (this.hasMounted) {
       this.setState(data);
     }
   };
 
-  runMutation = async options => {
+  runMutation = async (options) => {
     const { store } = this.context;
     const { query, action } = this.props;
     const dynamicPayload = options.nativeEvent ? undefined : options;

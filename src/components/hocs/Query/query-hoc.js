@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { RestQuery } from './Query';
 
-export const restQuery = config => WrappedComponent => {
+export const restQuery = config => (WrappedComponent) => {
   let lastResultProps;
   const {
     query, options, skip, placeholder: Placeholder,
   } = config;
 
   class RestQueryHoc extends Component {
-    applyProps = fn => {
+    applyProps = (fn) => {
       if (typeof fn === 'function') {
         return fn(this.props);
       }
@@ -18,6 +18,7 @@ export const restQuery = config => WrappedComponent => {
 
     render() {
       if (options) {
+        // eslint-disable-next-line no-param-reassign
         config.query = {
           ...query,
           ...this.applyProps(options),
@@ -25,12 +26,13 @@ export const restQuery = config => WrappedComponent => {
       }
 
       if (skip) {
+        // eslint-disable-next-line no-param-reassign
         config.shouldSkip = this.applyProps(skip);
       }
 
       return (
         <RestQuery {...config} {...this.props}>
-          {result => {
+          {(result) => {
             const name = config.name || 'data';
             let childProps = { [name]: result };
 

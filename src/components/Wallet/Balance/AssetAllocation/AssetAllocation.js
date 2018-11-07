@@ -21,6 +21,7 @@ import {
 
 class AssetAllocation extends Component {
   static propTypes = {
+    appsBalance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     asset: PropTypes.string.isRequired,
     balance: PropTypes.number.isRequired,
     gradient: PropTypes.oneOf(['left', 'right']),
@@ -73,7 +74,7 @@ class AssetAllocation extends Component {
           <Content>
             <Caption>{this.renderCaption()}</Caption>
             <ButtonContainer>
-              <Button to={`/wallet/add/${asset}`} theme="secondary" wide>
+              <Button theme="secondary" to={`/wallet/add/${asset}`} wide>
                 <ButtonIcon>
                   <FontAwesomeIcon icon={faPlus} />
                 </ButtonIcon>

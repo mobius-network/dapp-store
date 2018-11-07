@@ -31,6 +31,7 @@ const themes = {
 class Dropdown extends Component {
   static propTypes = {
     children: PropTypes.any,
+    className: PropTypes.string,
     theme: PropTypes.oneOf(['default', 'dark', 'secondary']),
   };
 
@@ -62,7 +63,7 @@ class Dropdown extends Component {
 
   close = () => this.setState({ isOpen: false });
 
-  handleOutsideClick = e => {
+  handleOutsideClick = (e) => {
     if (!this.state.isOpen) {
       return;
     }

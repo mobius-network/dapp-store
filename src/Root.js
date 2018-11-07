@@ -1,5 +1,6 @@
 import { hot } from 'react-hot-loader';
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -24,6 +25,11 @@ import Wallet from 'components/Wallet';
 import Developers from 'components/Developers';
 
 class Root extends Component {
+  static propTypes = {
+    persistor: PropTypes.object,
+    store: PropTypes.object,
+  };
+
   componentDidCatch(error, info) {
     notify(error, info);
   }
@@ -36,18 +42,18 @@ class Root extends Component {
         <I18nextProvider i18n={i18n}>
           <PersistGate
             loading={<Loading fullScreen />}
-            persistor={persistor}
             onBeforeLift={waitForMasterAccount(store)}
+            persistor={persistor}
           >
             <Router>
               <DefaultLayout>
                 <Switch>
-                  <Route path="/" component={DappStore} exact />
-                  <PublicLayout path="/login" component={Login} exact />
-                  <PublicLayout path="/signup" component={Signup} exact />
-                  <OnboardingLayout path="/onboarding" component={Onboarding} />
-                  <WalletLayout path="/wallet" component={Wallet} />
-                  <DevelopersLayout path="/developers" component={Developers} />
+                  <Route component={DappStore} exact path="/" />
+                  <PublicLayout component={Login} exact path="/login" />
+                  <PublicLayout component={Signup} exact path="/signup" />
+                  <OnboardingLayout component={Onboarding} path="/onboarding" />
+                  <WalletLayout component={Wallet} path="/wallet" />
+                  <DevelopersLayout component={Developers} path="/developers" />
                 </Switch>
               </DefaultLayout>
             </Router>

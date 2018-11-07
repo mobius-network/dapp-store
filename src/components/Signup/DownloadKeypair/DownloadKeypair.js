@@ -16,12 +16,12 @@ class DownloadKeypair extends Component {
     return (
       <Pane theme="wide" withGradient>
         <Pane.Header
-          title={t('downloadKeypair.title')}
           caption={t('downloadKeypair.caption')}
+          title={t('downloadKeypair.title')}
         />
 
         <Pane.Section>
-          <Button theme="secondary" onClick={downloadKeypair} fullWidth>
+          <Button fullWidth onClick={downloadKeypair} theme="secondary">
             {t('downloadKeypair.downloadButton')}
           </Button>
         </Pane.Section>

@@ -85,8 +85,8 @@ export default class Button extends Component {
     return (
       <ThemeProvider theme={themes[theme]}>
         {to || href ? (
-          <LinkComponent href={href} to={to} onClick={onClick} {...rest}>
-            <Content wide={wide} fullWidth={fullWidth}>
+          <LinkComponent href={href} onClick={onClick} to={to} {...rest}>
+            <Content fullWidth={fullWidth} wide={wide}>
               {children}
             </Content>
           </LinkComponent>
@@ -98,7 +98,7 @@ export default class Button extends Component {
             type="button"
             {...rest}
           >
-            <Content wide={wide} fullWidth={fullWidth}>
+            <Content fullWidth={fullWidth} wide={wide}>
               {children}
             </Content>
             {isLoading && <LoadingIndicator />}

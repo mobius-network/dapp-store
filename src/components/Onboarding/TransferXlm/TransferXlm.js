@@ -11,6 +11,7 @@ class TransferXlm extends Component {
   static propTypes = {
     balance: PropTypes.number,
     t: PropTypes.func.isRequired,
+    watchAccount: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -52,12 +53,12 @@ class TransferXlm extends Component {
     return (
       <Pane theme="wide" withGradient>
         <Pane.Header
-          title={t('transferXlm.title')}
           caption={
             <Fragment>
               {t('transferXlm.caption')} <b>3 XLM</b>.
             </Fragment>
           }
+          title={t('transferXlm.title')}
         />
         <Pane.Section>
           {balance > 0 ? this.renderComplete() : this.renderWaiting()}

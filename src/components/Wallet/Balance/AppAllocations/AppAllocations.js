@@ -8,6 +8,11 @@ import { AppsList } from './styles';
 
 class AppAllocations extends Component {
   static propTypes = {
+    apps: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+    ),
     t: PropTypes.func.isRequired,
   };
 
@@ -17,13 +22,15 @@ class AppAllocations extends Component {
     return (
       <Pane theme="narrow">
         <Pane.Header
-          title={t('appAllocations.title')}
           caption={t('appAllocations.caption')}
+          title={t('appAllocations.title')}
         />
         <AppsList>
           <Grid>
             <Grid.Row flexWrap="wrap">
-              {apps.map(app => <AppAllocation app={app} key={app.id} />)}
+              {apps.map(app => (
+                <AppAllocation key={app.id} app={app} />
+              ))}
             </Grid.Row>
           </Grid>
         </AppsList>

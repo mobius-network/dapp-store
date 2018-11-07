@@ -44,6 +44,6 @@ export const TabButton = styled.button`
   }
 
   &:last-child {
-    border-right: ${props => props.fluid ? 'none' : `1px solid ${colors.border}`};
+    border-right: ${props => (props.fluid ? 'none' : `1px solid ${colors.border}`)};
   }
 `;

@@ -10,9 +10,9 @@ class Wallet extends Component {
   render() {
     return (
       <Switch>
-        <PrivateRoute path="/wallet" component={Balance} exact />
-        <PrivateRoute path="/wallet/add/:asset?" component={AddFunds} exact />
-        <PrivateRoute path="/wallet/withdraw" component={WithdrawFunds} exact />
+        <PrivateRoute component={Balance} exact path="/wallet" />
+        <PrivateRoute component={AddFunds} exact path="/wallet/add/:asset?" />
+        <PrivateRoute component={WithdrawFunds} exact path="/wallet/withdraw" />
       </Switch>
     );
   }

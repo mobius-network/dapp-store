@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import TextInput from 'components/shared/TextInput';
 import FileInput from 'components/shared/FileInput';
 import Textarea from 'components/shared/Textarea';
@@ -16,6 +17,10 @@ import {
 const required = v => !!v;
 
 class SubmitDapp extends Component {
+  static propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+  };
+
   render() {
     const { handleSubmit } = this.props;
 
@@ -24,27 +29,27 @@ class SubmitDapp extends Component {
         <Title>Submit DApp</Title>
 
         <Form onSubmit={handleSubmit}>
-          <TextField name="name" component={TextInput} validate={required} />
-          <TextField name="url" component={TextInput} validate={required} />
+          <TextField component={TextInput} name="name" validate={required} />
+          <TextField component={TextInput} name="url" validate={required} />
 
-          <TextField name="summary" component={TextInput} validate={required} />
+          <TextField component={TextInput} name="summary" validate={required} />
           <TextField
-            name="description"
             component={Textarea}
+            name="description"
             validate={required}
           />
 
           <UploadField
-            name="icon"
             component={FileInput}
-            validate={required}
+            name="icon"
             onChange={this.onKeyUpload}
+            validate={required}
           />
           <UploadField
-            name="screenshots"
             component={FileInput}
-            validate={required}
+            name="screenshots"
             onChange={this.onKeyUpload}
+            validate={required}
           />
 
           <SubmitButton onClick={handleSubmit}>Submit Draft</SubmitButton>

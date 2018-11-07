@@ -46,7 +46,7 @@ class WelcomeScreen extends Component {
               <ContentStepText>{t('welcomeScreen.thirdStep')}</ContentStepText>
             </ContentStep>
           </ContentSteps>
-          <Button to="/onboarding/xlm" fullWidth>
+          <Button fullWidth to="/onboarding/xlm">
             {t('shared.continue')}
           </Button>
         </Content>

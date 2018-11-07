@@ -7,9 +7,10 @@ import { ToggleButton, Title, Icon } from './styles';
 
 class Toggle extends Component {
   static propTypes = {
-    fluid: PropTypes.bool,
     children: PropTypes.any,
+    className: PropTypes.string,
     disabled: PropTypes.bool,
+    fluid: PropTypes.bool,
     toggle: PropTypes.func,
   };
 

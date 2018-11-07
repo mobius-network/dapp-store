@@ -26,6 +26,7 @@ class PurchaseMobi extends Component {
     fetchStart: PropTypes.func.isRequired,
     isBestPathFetching: PropTypes.bool.isRequired,
     onSuccess: PropTypes.func,
+    pathPayment: PropTypes.object,
     resetRequest: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
     transact: PropTypes.func.isRequired,
@@ -158,7 +159,7 @@ class PurchaseMobi extends Component {
           </Grid.Row>
 
           <Grid.Row>
-            <Grid.Col width={1} px={0}>
+            <Grid.Col px={0} width={1}>
               <ButtonContainer>
                 <Button
                   disabled={!destAmount || loading || isBestPathFetching}

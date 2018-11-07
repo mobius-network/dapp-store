@@ -8,6 +8,7 @@ import {
 
 export default class Logo extends Component {
   static propTypes = {
+    className: PropTypes.string,
     withName: PropTypes.bool,
   };
 
@@ -19,7 +20,7 @@ export default class Logo extends Component {
     const { className, withName } = this.props;
 
     return (
-      <LogoLink to="/" title="Mobius Wallet" className={className}>
+      <LogoLink className={className} title="Mobius Wallet" to="/">
         <LogoImage />
 
         {withName && (

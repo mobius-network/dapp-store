@@ -39,9 +39,9 @@ class Tabs extends Component {
         {Children.map(children, (child, i) => (
           <TabButton
             key={camelCase(child.props.title)}
-            type="button"
             disabled={i === activeTabIndex}
             onClick={this.handleTabSwitch(i)}
+            type="button"
             {...child.props}
           >
             {child.props.title}
@@ -55,10 +55,7 @@ class Tabs extends Component {
     const { children } = this.props;
     const { activeTabIndex } = this.state;
 
-    return Children.map(
-      children,
-      (child, i) => (i === activeTabIndex ? child : null)
-    );
+    return Children.map(children, (child, i) => (i === activeTabIndex ? child : null));
   };
 
   render() {

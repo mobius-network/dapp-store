@@ -12,6 +12,7 @@ import { LoginBlock, LoginBlockText, ActionsRow } from './styles';
 class PasswordForm extends Component {
   static propTypes = {
     handleSubmit: PropTypes.func.isRequired,
+    submitting: PropTypes.bool,
     t: PropTypes.func.isRequired,
   };
 
@@ -29,8 +30,8 @@ class PasswordForm extends Component {
       <Fragment>
         <Pane theme="wide" withGradient>
           <Pane.Header
-            title={t('passwordForm.title')}
             caption={t('passwordForm.caption')}
+            title={t('passwordForm.title')}
           />
 
           <Pane.Section>
@@ -69,7 +70,7 @@ class PasswordForm extends Component {
           <LoginBlock>
             <LoginBlockText>{t('passwordForm.loginText')}</LoginBlockText>
 
-            <Button to="/login" theme="primaryOutline" wide>
+            <Button theme="primaryOutline" to="/login" wide>
               {t('passwordForm.loginButton')}
             </Button>
           </LoginBlock>

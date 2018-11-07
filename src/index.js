@@ -5,8 +5,8 @@ import store, { persistor } from 'state/store';
 import Root from 'Root';
 
 const renderApp = () => render(
-  <Root store={store} persistor={persistor} />,
-  document.getElementById('root')
+    <Root persistor={persistor} store={store} />,
+    document.getElementById('root')
 );
 
 renderApp();

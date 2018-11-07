@@ -4,8 +4,8 @@ import { Container } from './styles';
 
 export default class Footer extends Component {
   static propTypes = {
-    className: PropTypes.string,
     children: PropTypes.any,
+    className: PropTypes.string,
   };
 
   render() {

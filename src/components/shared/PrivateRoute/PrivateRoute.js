@@ -32,11 +32,11 @@ class PrivateRoute extends Component {
     return (
       <Route
         {...rest}
-        render={props => isAuthorized === checkEqualityTo ? (
-          <RouteComponent {...props} />
+        render={props => (isAuthorized === checkEqualityTo ? (
+            <RouteComponent {...props} />
         ) : (
           unauthorizedContent
-        )
+        ))
         }
       />
     );

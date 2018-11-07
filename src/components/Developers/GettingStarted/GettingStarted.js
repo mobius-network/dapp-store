@@ -26,8 +26,8 @@ class GettingStarted extends Component {
     return (
       <Pane theme="wide">
         <Pane.Header
-          title={t('gettingStarted.title')}
           caption={t('gettingStarted.caption')}
+          title={t('gettingStarted.title')}
         />
         <Pane.Section>
           <SectionHeading>{t('gettingStarted.overviewTitle')}</SectionHeading>
@@ -43,8 +43,8 @@ class GettingStarted extends Component {
             <LinkContainer>
               <LinkItem
                 href="https://mobius.network/docs"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <LinkItemTitle>{t('gettingStarted.apiDocsLink')}</LinkItemTitle>
                 <LinkItemUrl>mobius.network/docs</LinkItemUrl>
@@ -53,8 +53,8 @@ class GettingStarted extends Component {
             <LinkContainer>
               <LinkItem
                 href="https://docsend.com/view/ru9kz86"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <LinkItemTitle>
                   {t('gettingStarted.mobiusWhitePaperLink')}
@@ -65,8 +65,8 @@ class GettingStarted extends Component {
             <LinkContainer>
               <LinkItem
                 href="https://www.stellar.org/developers/js-stellar-sdk/reference/"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <LinkItemTitle>
                   {t('gettingStarted.stellarSdkLink')}
@@ -79,8 +79,8 @@ class GettingStarted extends Component {
             <LinkContainer>
               <LinkItem
                 href="https://lumenauts.com"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <LinkItemTitle>
                   {t('gettingStarted.stellarVideosLink')}
@@ -91,8 +91,8 @@ class GettingStarted extends Component {
             <LinkContainer>
               <LinkItem
                 href="https://mobius-network.slack.com"
-                target="_blank"
                 rel="noopener noreferrer"
+                target="_blank"
               >
                 <LinkItemTitle>
                   {t('gettingStarted.mobiDeveloperSlack')}

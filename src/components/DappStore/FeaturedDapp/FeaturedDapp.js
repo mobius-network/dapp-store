@@ -61,10 +61,10 @@ class FeaturedDapp extends Component {
           <Footer>
             {app.featured_article_url && (
               <ReadMoreButton
-                theme="primaryOutline"
-                target="_blank"
-                rel="noopener noreferrer"
                 href={app.featured_article_url}
+                rel="noopener noreferrer"
+                target="_blank"
+                theme="primaryOutline"
               >
                 {t('featuredDapp.readMoreButton')}
               </ReadMoreButton>

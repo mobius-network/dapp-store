@@ -18,8 +18,8 @@ class PasswordInput extends Component {
     input: PropTypes.object,
     isPasswordVisible: PropTypes.bool,
     meta: PropTypes.shape({
-      error: PropTypes.string,
       dirty: PropTypes.bool,
+      error: PropTypes.string,
       touched: PropTypes.bool,
     }),
     onVisibilityToggle: PropTypes.func,

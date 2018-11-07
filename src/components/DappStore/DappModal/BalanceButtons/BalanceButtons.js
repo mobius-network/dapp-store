@@ -11,11 +11,11 @@ import { ButtonRow, AppBalance, AppBalanceAmount } from './styles';
 class BalanceButtons extends Component {
   static propTypes = {
     app: PropTypes.object.isRequired,
-    mobiAppBalance: PropTypes.number.isRequired,
     appAccount: PropTypes.object,
-    openDapp: PropTypes.func.isRequired,
-    isAuthorized: PropTypes.bool.isRequired,
     isAppOpening: PropTypes.bool,
+    isAuthorized: PropTypes.bool.isRequired,
+    mobiAppBalance: PropTypes.number.isRequired,
+    openDapp: PropTypes.func.isRequired,
     releaseAppBalance: PropTypes.object.isRequired,
     t: PropTypes.func.isRequired,
   };
@@ -85,7 +85,7 @@ class BalanceButtons extends Component {
               {t('balanceButtons.goToAppButton')}
             </Button>
           ) : (
-            <Button to="/login" fullWidth>
+            <Button fullWidth to="/login">
               {t('balanceButtons.goToAppUnauthorizedButton')}
             </Button>
           )}
@@ -95,7 +95,7 @@ class BalanceButtons extends Component {
           {depositFormActive ? (
             <AppDepositForm app={app} onSuccess={this.hideDepositForm} />
           ) : (
-            <Button onClick={this.showDepositForm} fullWidth theme="secondary">
+            <Button fullWidth onClick={this.showDepositForm} theme="secondary">
               {t('balanceButtons.depositFunds')}
             </Button>
           )}
@@ -105,9 +105,9 @@ class BalanceButtons extends Component {
           <ButtonRow>
             <Button
               fullWidth
-              theme="secondary"
-              onClick={releaseAppBalance.mutate}
               isLoading={releaseAppBalance.loading}
+              onClick={releaseAppBalance.mutate}
+              theme="secondary"
             >
               {t('balanceButtons.releaseFunds')}
             </Button>

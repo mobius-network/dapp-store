@@ -7,8 +7,8 @@ class Item extends Component {
   static propTypes = {
     children: PropTypes.any,
     disabled: PropTypes.bool,
-    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     onClick: PropTypes.func,
+    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   };
 
   handleClick = () => {
@@ -27,7 +27,7 @@ class Item extends Component {
     } = this.props;
 
     return to ? (
-      <LinkItem to={to} disabled={disabled} onClick={this.handleClick}>
+      <LinkItem disabled={disabled} onClick={this.handleClick} to={to}>
         {children}
       </LinkItem>
     ) : (

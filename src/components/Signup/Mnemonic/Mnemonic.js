@@ -19,8 +19,8 @@ class Mnemonic extends Component {
     return (
       <Pane theme="wide" withGradient>
         <Pane.Header
-          title={t('mnemonic.title')}
           caption={t('mnemonic.caption')}
+          title={t('mnemonic.title')}
         />
 
         <Pane.Section>
@@ -28,7 +28,7 @@ class Mnemonic extends Component {
             <CopyField text={mnemonic} />
           </MnemonicPhraseRow>
 
-          <Button to="/onboarding" onClick={signupSuccess} fullWidth>
+          <Button fullWidth onClick={signupSuccess} to="/onboarding">
             {t('mnemonic.submitButton')}
           </Button>
         </Pane.Section>

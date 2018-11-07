@@ -15,8 +15,8 @@ class FileInput extends Component {
     disabled: PropTypes.bool,
     input: PropTypes.object,
     meta: PropTypes.shape({
-      error: PropTypes.string,
       dirty: PropTypes.bool,
+      error: PropTypes.string,
       touched: PropTypes.bool,
     }),
     placeholder: PropTypes.string,
@@ -37,7 +37,7 @@ class FileInput extends Component {
     return value.length ? value[0].name : null;
   };
 
-  handleChange = e => {
+  handleChange = (e) => {
     const {
       target: { files: value },
     } = e;
@@ -66,7 +66,7 @@ class FileInput extends Component {
           type="file"
         />
 
-        <Label htmlFor={name} error={showError}>
+        <Label error={showError} htmlFor={name}>
           <LabelText showPlaceholder={showPlaceholder}>
             {showPlaceholder ? placeholder : fileName}
           </LabelText>

@@ -19,9 +19,9 @@ class CopyField extends Component {
     return (
       <Container>
         <Text>{text}</Text>
-        <CopyToClipboard text={text} onCopy={onCopy}>
+        <CopyToClipboard onCopy={onCopy} text={text}>
           <CopyButton title={t('copyField.title')}>
-            <FontAwesomeIcon icon={faCopy} fixedWidth />
+            <FontAwesomeIcon fixedWidth icon={faCopy} />
           </CopyButton>
         </CopyToClipboard>
       </Container>

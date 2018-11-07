@@ -10,9 +10,9 @@ class Onboarding extends Component {
   render() {
     return (
       <Switch>
-        <PrivateRoute path="/onboarding" component={WelcomeScreen} exact />
-        <PrivateRoute path="/onboarding/xlm" component={TransferXlm} exact />
-        <PrivateRoute path="/onboarding/mobi" component={TransferMobi} exact />
+        <PrivateRoute component={WelcomeScreen} exact path="/onboarding" />
+        <PrivateRoute component={TransferXlm} exact path="/onboarding/xlm" />
+        <PrivateRoute component={TransferMobi} exact path="/onboarding/mobi" />
       </Switch>
     );
   }

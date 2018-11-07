@@ -6,14 +6,14 @@ import { Container, Label, Caption } from './styles';
 
 class FormRow extends Component {
   static propTypes = {
+    caption: PropTypes.any,
     component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
       .isRequired,
     disabled: PropTypes.bool,
-    name: PropTypes.string,
     label: PropTypes.string,
-    caption: PropTypes.any,
-    validate: PropTypes.func,
+    name: PropTypes.string,
     placeholder: PropTypes.string,
+    validate: PropTypes.func,
   };
 
   render() {

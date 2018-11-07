@@ -18,7 +18,7 @@ class Login extends Component {
     return (
       <Fragment>
         <Pane theme="wide" withGradient>
-          <Pane.Header title={t('login.title')} caption={t('login.caption')} />
+          <Pane.Header caption={t('login.caption')} title={t('login.title')} />
 
           <Pane.Section>
             <LoginForm />
@@ -29,7 +29,7 @@ class Login extends Component {
           <SignupBlock>
             <SignupBlockText>{t('login.signupText')}</SignupBlockText>
 
-            <Button to="/signup" theme="primaryOutline" wide>
+            <Button theme="primaryOutline" to="/signup" wide>
               {t('login.signupButton')}
             </Button>
           </SignupBlock>

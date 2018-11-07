@@ -14,7 +14,13 @@ import {
 class AppAllocation extends Component {
   static propTypes = {
     app: PropTypes.object.isRequired,
+    mobiBalance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    releaseAppBalance: PropTypes.shape({
+      loading: PropTypes.bool,
+      mutate: PropTypes.func,
+    }),
     t: PropTypes.func.isRequired,
+    xlmBalance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   render() {
@@ -28,7 +34,7 @@ class AppAllocation extends Component {
     }
 
     return (
-      <Container width={[1, 1 / 3]} px={0}>
+      <Container px={0} width={[1, 1 / 3]}>
         <AppPic url={app.image_url} />
         <AppName>{app.name}</AppName>
         <AppBalance>
@@ -36,7 +42,7 @@ class AppAllocation extends Component {
           <AppBalanceItem>{xlmBalance} XLM</AppBalanceItem>
         </AppBalance>
         <ButtonContainer>
-          <ReleaseButton theme="secondary" onClick={mutate} isLoading={loading}>
+          <ReleaseButton isLoading={loading} onClick={mutate} theme="secondary">
             {t('appAllocation.releaseButton')}
           </ReleaseButton>
         </ButtonContainer>

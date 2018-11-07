@@ -13,6 +13,11 @@ import { CompleteMessage, WaitingTitle, WaitingCaption } from './styles';
 class AddFunds extends Component {
   static propTypes = {
     balance: PropTypes.number,
+    match: PropTypes.shape({
+      params: PropTypes.shape({
+        asset: PropTypes.string,
+      }),
+    }),
     t: PropTypes.func.isRequired,
   };
 
@@ -40,7 +45,7 @@ class AddFunds extends Component {
     this.setState({ delta: 0 });
   };
 
-  getAssetName = () => this.props.match.params.asset === 'native' ? 'XLM' : 'MOBI';
+  getAssetName = () => (this.props.match.params.asset === 'native' ? 'XLM' : 'MOBI');
 
   onTabChange = index => (this.currentTabIndex = index);
 
@@ -61,15 +66,15 @@ class AddFunds extends Component {
 
     return (
       <Tabs
-        onTabChange={this.onTabChange}
         defaultTabIndex={this.currentTabIndex}
+        onTabChange={this.onTabChange}
       >
-        <Tabs.Tab title="Use XLM" fluid>
+        <Tabs.Tab fluid title="Use XLM">
           <Pane.Section>
             <PurchaseMobi />
           </Pane.Section>
         </Tabs.Tab>
-        <Tabs.Tab title="External Transfer" fluid>
+        <Tabs.Tab fluid title="External Transfer">
           <Pane.Section>
             <WaitingTitle>{t('addFunds.waitingTitle')}</WaitingTitle>
             <WaitingCaption>
@@ -94,7 +99,7 @@ class AddFunds extends Component {
           assetValue={this.state.delta}
           message={t('addFunds.completeText')}
         />
-        <Button theme="secondary" onClick={this.resetForm} fullWidth>
+        <Button fullWidth onClick={this.resetForm} theme="secondary">
           {t('addFunds.completeButton')}
         </Button>
       </Pane.Section>

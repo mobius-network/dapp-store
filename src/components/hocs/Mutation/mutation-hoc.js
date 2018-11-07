@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { RestMutation } from './Mutation';
 
-export const restMutation = config => WrappedComponent => {
+export const restMutation = config => (WrappedComponent) => {
   let lastResultProps;
   const { query, options } = config;
 
   class RestMutationHoc extends Component {
-    applyProps = fn => {
+    applyProps = (fn) => {
       if (typeof fn === 'function') {
         return fn(this.props);
       }
@@ -15,6 +15,7 @@ export const restMutation = config => WrappedComponent => {
     };
 
     render() {
+      // eslint-disable-next-line no-param-reassign
       config.query = {
         name: config.name,
         ...query,

@@ -6,6 +6,11 @@ import { requestActions } from 'state/requests/reducer';
 const { requestStart } = requestActions;
 
 export class RestQuery extends Component {
+  static propTypes = {
+    children: PropTypes.any,
+    shouldSkip: PropTypes.bool,
+  };
+
   static contextTypes = {
     store: PropTypes.object.isRequired,
   };
@@ -40,7 +45,7 @@ export class RestQuery extends Component {
     ...this.state,
   });
 
-  updateState = data => {
+  updateState = (data) => {
     if (this.hasMounted) {
       this.setState(data);
     }

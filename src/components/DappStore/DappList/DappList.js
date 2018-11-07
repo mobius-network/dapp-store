@@ -5,6 +5,11 @@ import DappItem from './DappItem';
 
 class DappList extends Component {
   static propTypes = {
+    apps: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+      })
+    ),
     loadApps: PropTypes.object.isRequired,
   };
 
@@ -13,7 +18,9 @@ class DappList extends Component {
 
     return (
       <Fragment>
-        {apps.map(app => <DappItem key={app.id} app={app} />)}
+        {apps.map(app => (
+          <DappItem key={app.id} app={app} />
+        ))}
       </Fragment>
     );
   }

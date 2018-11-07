@@ -15,7 +15,12 @@ import { FormFields, AvailableBalance, FormActions } from './styles';
 class WithdrawForm extends Component {
   static propTypes = {
     asset: PropTypes.string.isRequired,
+    balance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    handleSubmit: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
+    withdrawAsset: PropTypes.shape({
+      loading: PropTypes.bool,
+    }),
   };
 
   getAssetName = () => (this.props.asset === 'native' ? 'XLM' : 'MOBI');

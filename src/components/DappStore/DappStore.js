@@ -66,7 +66,7 @@ class DappStore extends Component {
                     <Title>{t('dappStore.title')}</Title>
                     <Subtitle>{t('dappStore.subtitle')}</Subtitle>
                   </TitleContainer>
-                  <Button type="button" onClick={this.openIntroModal('user')}>
+                  <Button onClick={this.openIntroModal('user')} type="button">
                     <UserWalkThroughIcon icon={faPlay} />
                     {t('dappStore.userWalkThroughIcon')}
                   </Button>
@@ -85,8 +85,8 @@ class DappStore extends Component {
                   <SubmitTitle>{t('dappStore.submitTitle')}</SubmitTitle>
                   <SubmitText>{t('dappStore.submitText')}</SubmitText>
                   <DevWalkThroughButton
-                    type="button"
                     onClick={this.openIntroModal('dev')}
+                    type="button"
                   >
                     <VideoContent src="https://www.youtube.com/embed/GzIaUn8Wtw8?rel=0&controls=0&showinfo=0" />
                   </DevWalkThroughButton>

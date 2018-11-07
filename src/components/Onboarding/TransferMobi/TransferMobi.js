@@ -24,12 +24,12 @@ class TransferMobi extends Component {
 
     return (
       <Tabs>
-        <Tabs.Tab title={t('transferMobi.purchaseTabTitle')} fluid>
+        <Tabs.Tab fluid title={t('transferMobi.purchaseTabTitle')}>
           <Pane.Section>
             <PurchaseMobi />
           </Pane.Section>
         </Tabs.Tab>
-        <Tabs.Tab title={t('transferMobi.externalTransferTabTitle')} fluid>
+        <Tabs.Tab fluid title={t('transferMobi.externalTransferTabTitle')}>
           <Pane.Section>
             <WaitingTitle>
               {t('transferMobi.externalTransferTitle')}
@@ -67,8 +67,8 @@ class TransferMobi extends Component {
     return (
       <Pane theme="wide" withGradient>
         <Pane.Header
-          title={t('transferMobi.title')}
           caption={t('transferMobi.caption')}
+          title={t('transferMobi.title')}
         />
 
         {balance > 0 ? this.renderComplete() : this.renderPurchase()}

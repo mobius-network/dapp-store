@@ -35,7 +35,7 @@ export const Label = styled.label`
 `;
 
 export const LabelText = styled.span`
-  color: ${props => props.showPlaceholder ? colors.textLight : colors.textDefault};
+  color: ${props => (props.showPlaceholder ? colors.textLight : colors.textDefault)};
   flex: 1;
   font: ${fontSizes.formField} ${fonts.nunitoSans};
   margin-right: 20px;

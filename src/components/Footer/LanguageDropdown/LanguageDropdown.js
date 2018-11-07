@@ -12,6 +12,9 @@ const availableLangs = {
 
 class LanguageDropdown extends Component {
   static propTypes = {
+    i18n: PropTypes.shape({
+      changeLanguage: PropTypes.func.isRequired,
+    }).isRequired,
     t: PropTypes.func.isRequired,
   };
 
@@ -28,8 +31,8 @@ class LanguageDropdown extends Component {
         <Dropdown.Menu align="right" placement="top">
           {Object.keys(availableLangs).map(lang => (
             <Dropdown.Item
-              disabled={currentLanguage.indexOf(lang) > -1}
               key={lang}
+              disabled={currentLanguage.indexOf(lang) > -1}
               onClick={() => i18n.changeLanguage(lang)}
             >
               {availableLangs[lang]}

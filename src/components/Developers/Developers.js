@@ -10,7 +10,7 @@ class Developers extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/developers" component={GettingStarted} />
+        <Route component={GettingStarted} path="/developers" />
       </Switch>
     );
   }

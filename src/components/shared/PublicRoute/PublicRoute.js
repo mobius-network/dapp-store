@@ -4,7 +4,7 @@ import PrivateRoute from 'components/shared/PrivateRoute';
 class PublicRoute extends Component {
   render() {
     return (
-      <PrivateRoute redirectTo="/" checkEqualityTo={false} {...this.props} />
+      <PrivateRoute checkEqualityTo={false} redirectTo="/" {...this.props} />
     );
   }
 }

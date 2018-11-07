@@ -33,7 +33,7 @@ class Pic extends Component {
             <FontAwesomeIcon icon={faImage} />
           </Placeholder>
         ) : (
-          <Image src={url} onError={this.handleImageError} />
+          <Image onError={this.handleImageError} src={url} />
         )}
       </Container>
     );

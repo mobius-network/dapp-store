@@ -17,7 +17,7 @@ export function encrypt(password, mnemonic) {
       encoding: 'binary',
     };
 
-    scrypt(password, salt, scryptOptions, key => {
+    scrypt(password, salt, scryptOptions, (key) => {
       const cipher = nacl.secretbox(seedHex, nonce, key);
       const keystore = {
         version: 'mobius-wallet-1.0',

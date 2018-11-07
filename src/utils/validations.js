@@ -5,15 +5,15 @@ import {
 import { isObject } from 'lodash';
 
 // Allows to access `props` in validator
-export const combineValidators = config => {
+export const combineValidators = (config) => {
   const validator = sourceCombine(config);
 
   return (values, props) => validator({ ...props, ...values });
 };
 
-const formatMessage = (message, defaultMessage) => isObject(message) && message.message
+const formatMessage = (message, defaultMessage) => (isObject(message) && message.message
   ? message.message
-  : defaultMessage(message);
+  : defaultMessage(message));
 
 export const isEquals = comparisonValue => createValidator(
   message => (value, allValues) => {
@@ -27,7 +27,7 @@ export const isEquals = comparisonValue => createValidator(
 );
 
 export const isRationalNumber = createValidator(
-  message => value => {
+  message => (value) => {
     if (!/^(\d*\.)?\d+$/i.test(value)) {
       return message;
     }

@@ -9,6 +9,7 @@ import { AmountInput, Caption } from './styles';
 
 class AppDepositForm extends Component {
   static propTypes = {
+    amount: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     depositApp: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     invalid: PropTypes.bool.isRequired,
@@ -42,13 +43,13 @@ class AppDepositForm extends Component {
       <Fragment>
         <form onSubmit={handleSubmit}>
           <Field
+            autoFocus
             component={AmountInput}
-            autofocus
-            type="number"
+            innerLabel="MOBI"
             label={t('appDepositForm.amountLabel')}
             name="amount"
             placeholder="0.0"
-            innerLabel="MOBI"
+            type="number"
           />
           <Caption>{t('appDepositForm.caption')}</Caption>
           <Button

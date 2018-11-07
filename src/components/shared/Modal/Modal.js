@@ -40,7 +40,7 @@ class Modal extends Component {
     isClosable: true,
   };
 
-  handleClose = e => {
+  handleClose = (e) => {
     const { isClosable, onRequestClose } = this.props;
 
     if (!isClosable) {

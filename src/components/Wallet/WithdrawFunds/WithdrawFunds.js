@@ -16,16 +16,16 @@ class WithdrawFunds extends Component {
     return (
       <Pane theme="narrow">
         <Pane.Header
-          title={t('withdrawFunds.title')}
           caption={t('withdrawFunds.caption')}
+          title={t('withdrawFunds.title')}
         />
         <Tabs>
-          <Tabs.Tab title="XLM" fluid>
+          <Tabs.Tab fluid title="XLM">
             <Pane.Section>
               <WithdrawForm asset="native" />
             </Pane.Section>
           </Tabs.Tab>
-          <Tabs.Tab title="MOBI" fluid>
+          <Tabs.Tab fluid title="MOBI">
             <Pane.Section>
               <WithdrawForm asset="mobi" />
             </Pane.Section>

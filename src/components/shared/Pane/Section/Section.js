@@ -4,8 +4,8 @@ import { Container } from './styles';
 
 export default class Section extends Component {
   static propTypes = {
-    className: PropTypes.string,
     children: PropTypes.any,
+    className: PropTypes.string,
   };
 
   render() {
