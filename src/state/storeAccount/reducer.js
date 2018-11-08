@@ -7,8 +7,7 @@ const initialState = {};
 
 export const storeAccountReducer = createReducer(
   {
-    [storeAccountActions.setStoreAccount]: (state, storeAccount) =>
-      merge(state, storeAccount),
+    [storeAccountActions.setStoreAccount]: (state, storeAccount) => merge(state, storeAccount),
   },
   initialState
 );

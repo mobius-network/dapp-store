@@ -6,15 +6,17 @@ import FormRow from 'components/shared/FormRow';
 import CheckboxInput from 'components/shared/CheckboxInput';
 import Button from 'components/shared/Button';
 
-import { Content, ControlRow, Header, Paragraph, ActionsRow } from './styles';
+import {
+  Content, ControlRow, Header, Paragraph, ActionsRow,
+} from './styles';
 
 class AgreementModal extends Component {
   static propTypes = {
-    isOpen: PropTypes.bool.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
     isConfirming: PropTypes.bool.isRequired,
+    isOpen: PropTypes.bool.isRequired,
     onCancel: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
   };
 
   render() {
@@ -36,15 +38,17 @@ class AgreementModal extends Component {
 
           {t('submitDapp.agreementModal.text')
             .split('\n')
-            .map((line, index) => <Paragraph key={index}>{line}</Paragraph>)}
+            .map((line, index) => (
+              <Paragraph key={index}>{line}</Paragraph>
+            ))}
 
           <ControlRow>
             <FormRow
-              name="agree"
               component={CheckboxInput}
               inputProps={{
                 label: t('submitDapp.agreementModal.agree'),
               }}
+              name="agree"
             />
           </ControlRow>
 
@@ -57,7 +61,7 @@ class AgreementModal extends Component {
             >
               {t('submitDapp.agreementModal.submitButton')}
             </Button>
-            <Button onClick={onCancel} type="button" theme="text" wide>
+            <Button onClick={onCancel} theme="text" type="button" wide>
               {t('shared.cancel')}
             </Button>
           </ActionsRow>

@@ -1,4 +1,6 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import {
+  takeLatest, call, put, select,
+} from 'redux-saga/effects';
 import { Operation, TransactionBuilder } from 'stellar-sdk';
 import { submitTransaction, assets } from 'core';
 
@@ -53,10 +55,12 @@ function* buildTransaction() {
 
     return tx;
   } catch (error) {
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
   }
 
   return undefined;

@@ -9,10 +9,8 @@ import { getIsFetching } from 'state/requests';
 import CreateAccount from './CreateAccount';
 
 const mapStateToProps = createStructuredSelector({
-  isUserAccountCreating: state =>
-    getIsFetching(state, { operation: 'createUserAccount' }),
-  isUserAccountLoading: state =>
-    getIsFetching(state, { operation: 'loadUserAccount' }),
+  isUserAccountCreating: state => getIsFetching(state, { operation: 'createUserAccount' }),
+  isUserAccountLoading: state => getIsFetching(state, { operation: 'loadUserAccount' }),
 });
 
 const actions = {
@@ -20,6 +18,9 @@ const actions = {
 };
 
 export default compose(
-  connect(mapStateToProps, actions),
+  connect(
+    mapStateToProps,
+    actions
+  ),
   translate('translation')
 )(CreateAccount);

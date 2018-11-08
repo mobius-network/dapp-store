@@ -13,7 +13,7 @@ import {
 } from 'utils/validations';
 
 const supportUrlValidator = createValidator(
-  message => value => {
+  message => (value) => {
     if (!(urlPattern.test(value) || mailtoUrlPattern.test(value))) {
       return message;
     }
@@ -28,7 +28,9 @@ export const validate = combineValidators({
   description: composeValidators(isRequired)('Description'),
   image_url: composeValidators(isRequired, isUrl)('App Icon'),
   name: composeValidators(isRequired)('Name'),
-  support_url: composeValidators(isRequired, supportUrlValidator)('Support URL'),
+  support_url: composeValidators(isRequired, supportUrlValidator)(
+    'Support URL'
+  ),
   tagline: composeValidators(isRequired, hasLengthLessThan(60))('Tagline'),
   url: composeValidators(isRequired, isUrl)('DApp URL'),
   website_url: composeValidators(isRequired, isUrl)('Homepage URL'),

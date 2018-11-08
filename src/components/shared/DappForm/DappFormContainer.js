@@ -12,9 +12,8 @@ export default compose(
   reduxForm({
     form: 'dappForm',
     validate,
-    onSubmit: (values, store, { onSubmit }) =>
-      promisifyAction(onSubmit, values).catch(error => {
-        throw new SubmissionError(error);
-      }),
+    onSubmit: (values, store, { onSubmit }) => promisifyAction(onSubmit, values).catch((error) => {
+      throw new SubmissionError(error);
+    }),
   })
 )(DappForm);

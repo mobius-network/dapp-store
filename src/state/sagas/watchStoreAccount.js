@@ -1,5 +1,7 @@
 import { delay } from 'redux-saga';
-import { call, cancel, fork, put, take, takeLatest } from 'redux-saga/effects';
+import {
+  call, cancel, fork, put, take, takeLatest,
+} from 'redux-saga/effects';
 
 import { safeLoadAccount } from 'core';
 import { mobiusStoreAddress } from 'utils/env';

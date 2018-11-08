@@ -13,12 +13,11 @@ class Setup extends Component {
   static propTypes = {
     publicKey: PropTypes.string.isRequired,
     secret: PropTypes.string.isRequired,
-    t: PropTypes.func.isRequired,
     setSubmitStep: PropTypes.func.isRequired,
+    t: PropTypes.func.isRequired,
   };
 
-  handleContinueButtonClick = () =>
-    this.props.setSubmitStep(submitSteps.detailsForm);
+  handleContinueButtonClick = () => this.props.setSubmitStep(submitSteps.detailsForm);
 
   render() {
     const { publicKey, secret, t } = this.props;

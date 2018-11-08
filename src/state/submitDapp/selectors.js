@@ -67,9 +67,8 @@ export const getDappIsSubmitting = createSelector(
     isSubmitting,
     isUserAccountFunding,
     isUserAccountLoading
-  ) =>
-    isDataUploadingToIpfs ||
-    isSubmitting ||
-    isUserAccountFunding ||
-    isUserAccountLoading
+  ) => isDataUploadingToIpfs
+    || isSubmitting
+    || isUserAccountFunding
+    || isUserAccountLoading
 );

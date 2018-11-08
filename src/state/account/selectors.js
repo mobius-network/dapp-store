@@ -56,7 +56,7 @@ export const getMasterTrustlineCreated = createSelector(
 
 export const getMasterAccountData = createSelector(
   getMasterAccount,
-  account => {
+  (account) => {
     if (!account.data_attr['mobius.store.meta']) {
       return {};
     }

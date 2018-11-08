@@ -8,8 +8,8 @@ class Textarea extends Component {
     disabled: PropTypes.bool,
     input: PropTypes.object,
     meta: PropTypes.shape({
-      error: PropTypes.string,
       dirty: PropTypes.bool,
+      error: PropTypes.string,
       touched: PropTypes.bool,
     }),
     placeholder: PropTypes.string,

@@ -8,23 +8,22 @@ export const getDappCatalog = createSelector(
   account => account.data_attr
 );
 
-export const getDappCatalogEntry = entryId =>
-  createSelector(getDappCatalog, dappCatalog => {
-    if (isEmpty(dappCatalog)) {
-      return undefined;
-    }
+export const getDappCatalogEntry = entryId => createSelector(getDappCatalog, (dappCatalog) => {
+  if (isEmpty(dappCatalog)) {
+    return undefined;
+  }
 
-    const entry = dappCatalog[entryId];
+  const entry = dappCatalog[entryId];
 
-    if (isNil(entry)) {
-      return undefined;
-    }
+  if (isNil(entry)) {
+    return undefined;
+  }
 
-    const parsedEntryString = atob(entry).split(':');
+  const parsedEntryString = atob(entry).split(':');
 
-    return {
-      appId: parsedEntryString[0],
-      status: parsedEntryString[1],
-      hash: parsedEntryString[2],
-    };
-  });
+  return {
+    appId: parsedEntryString[0],
+    status: parsedEntryString[1],
+    hash: parsedEntryString[2],
+  };
+});

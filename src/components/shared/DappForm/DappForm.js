@@ -11,10 +11,11 @@ import Button from 'components/shared/Button';
 
 class DappForm extends Component {
   static propTypes = {
+    dirty: PropTypes.bool,
     handleSubmit: PropTypes.func.isRequired,
     isBusy: PropTypes.bool,
-    onCancel: PropTypes.func.isRequired,
     onBeforeSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
     t: PropTypes.func.isRequired,
   };
 
@@ -34,13 +35,13 @@ class DappForm extends Component {
 
     return (
       <Fragment>
-        <Prompt when={dirty} message={t('dappForm.promptMessage')} />
+        <Prompt message={t('dappForm.promptMessage')} when={dirty} />
 
         <form onSubmit={handleSubmit(onBeforeSubmit)}>
           <Pane.Section>
             <Grid>
               <Grid.Row>
-                <Grid.Col width={1} mb={20}>
+                <Grid.Col mb={20} width={1}>
                   <FormRow
                     caption={t('dappForm.nameFieldCaption')}
                     component={TextInput}
@@ -52,7 +53,7 @@ class DappForm extends Component {
               </Grid.Row>
 
               <Grid.Row>
-                <Grid.Col width={1} mb={20}>
+                <Grid.Col mb={20} width={1}>
                   <FormRow
                     caption={t('dappForm.taglineFieldCaption')}
                     component={TextInput}
@@ -64,7 +65,7 @@ class DappForm extends Component {
               </Grid.Row>
 
               <Grid.Row>
-                <Grid.Col width={1} mb={20}>
+                <Grid.Col mb={20} width={1}>
                   <FormRow
                     caption={t('dappForm.descriptionFieldCaption')}
                     component={Textarea}
@@ -76,7 +77,7 @@ class DappForm extends Component {
               </Grid.Row>
 
               <Grid.Row>
-                <Grid.Col width={1} mb={20}>
+                <Grid.Col mb={20} width={1}>
                   <FormRow
                     caption={t('dappForm.imageUrlFieldCaption')}
                     component={TextInput}
@@ -89,7 +90,7 @@ class DappForm extends Component {
               </Grid.Row>
 
               <Grid.Row>
-                <Grid.Col width={1} mb={20}>
+                <Grid.Col mb={20} width={1}>
                   <FormRow
                     caption={t('dappForm.websiteUrlFieldCaption')}
                     component={TextInput}
@@ -118,7 +119,7 @@ class DappForm extends Component {
           <Pane.Section>
             <Grid>
               <Grid.Row>
-                <Grid.Col width={1} mb={20}>
+                <Grid.Col mb={20} width={1}>
                   <FormRow
                     caption={t('dappForm.urlFieldCaption')}
                     component={TextInput}
@@ -131,7 +132,7 @@ class DappForm extends Component {
               </Grid.Row>
 
               <Grid.Row>
-                <Grid.Col width={1} mb={20}>
+                <Grid.Col mb={20} width={1}>
                   <FormRow
                     caption={t('dappForm.authUrlFieldCaption')}
                     component={TextInput}
@@ -154,7 +155,7 @@ class DappForm extends Component {
             >
               {t('dappForm.submitButton')}
             </Button>
-            <Button onClick={onCancel} type="button" theme="text" wide>
+            <Button onClick={onCancel} theme="text" type="button" wide>
               {t('shared.cancel')}
             </Button>
           </Pane.Footer>

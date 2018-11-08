@@ -19,8 +19,7 @@ const initialState = {
 export const submitDappReducer = createReducer(
   {
     [submitDappActions.reset]: () => initialState,
-    [submitDappActions.setSubmitStep]: (state, submitStep) =>
-      merge(state, { submitStep }),
+    [submitDappActions.setSubmitStep]: (state, submitStep) => merge(state, { submitStep }),
     [submitDappActions.setUserAccount]: (
       state,
       { userAccount, userAccountNumber }

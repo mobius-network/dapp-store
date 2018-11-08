@@ -67,8 +67,8 @@ class Header extends Component {
                 </ListItem>
                 <ListItem>
                   {isAuthorized ? (
-                    <Link to="/developers/submit" theme={this.getLinkTheme()}>
-                      {t('navigation.developers.developers')}
+                    <Link theme={this.getLinkTheme()} to="/developers/submit">
+                      {t('navigation.developers.submitDApp')}
                     </Link>
                   ) : (
                     <Link
@@ -78,14 +78,6 @@ class Header extends Component {
                       {t('navigation.developers.developers')}
                     </Link>
                   )}
-                </ListItem>
-                <ListItem>
-                  <Link
-                    href="https://docs.mobius.network/docs/submitting-a-dapp"
-                    theme={this.getLinkTheme()}
-                  >
-                    {t('navigation.submitDapp')}
-                  </Link>
                 </ListItem>
                 {this.renderSessionActions()}
               </ListContainer>

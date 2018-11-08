@@ -1,4 +1,6 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
+import {
+  takeLatest, call, put, select,
+} from 'redux-saga/effects';
 import { safeLoadAccount } from 'core';
 
 import { accountActions } from 'state/account';
@@ -23,10 +25,12 @@ export function* reloadMasterAccount() {
       yield put(accountActions.setMasterAccount(masterAccount));
     }
   } catch (error) {
-    yield put(notificationsActions.addNotification({
-      type: 'error',
-      message: error.message,
-    }));
+    yield put(
+      notificationsActions.addNotification({
+        type: 'error',
+        message: error.message,
+      })
+    );
   }
 }
 

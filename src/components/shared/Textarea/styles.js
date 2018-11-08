@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
-import { fonts, fontSizes, colors, radius } from 'components/shared/Styleguide';
+import {
+  fonts, fontSizes, colors, radius,
+} from 'components/shared/Styleguide';
 
 export const Container = styled.div`
   margin: 0;

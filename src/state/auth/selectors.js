@@ -3,8 +3,7 @@ import { Keypair } from 'stellar-sdk';
 
 export const getAccountNumber = (_, { accountNumber = 0 } = {}) => parseInt(accountNumber, 10);
 
-export const getUserAccountNumber = (_, { accountNumber = 0 } = {}) =>
-  parseInt(accountNumber, 10);
+export const getUserAccountNumber = (_, { accountNumber = 0 } = {}) => parseInt(accountNumber, 10);
 export const getSignupStep = state => state.auth.signupStep;
 export const getKeystore = state => state.auth.keystore;
 export const getMnemonic = state => state.auth.mnemonic;

@@ -1,5 +1,9 @@
-import { takeLatest, call, put, select } from 'redux-saga/effects';
-import { Operation, TransactionBuilder, Memo, MemoHash } from 'stellar-sdk';
+import {
+  takeLatest, call, put, select,
+} from 'redux-saga/effects';
+import {
+  Operation, TransactionBuilder, Memo, MemoHash,
+} from 'stellar-sdk';
 import { submitTransaction, assets } from 'core';
 import { addIpfsFiles } from 'utils/ipfs';
 import { mobiusStoreAddress, mobiusStoreRegPrice } from 'utils/env';
@@ -38,6 +42,8 @@ function* submit(memoValue) {
 
   tx.sign(userAccountKeypair);
 
+  console.log(tx);
+
   yield call(fetchStart, {
     name: 'submitDapp',
     fetcher: submitTransaction,
@@ -64,10 +70,12 @@ function* run({ payload }) {
     const userAccount = yield call(fundUserAccount, accountNumber);
 
     if (userAccount) {
-      yield put(submitDappActions.setUserAccount({
-        userAccount,
-        userAccountNumber: accountNumber,
-      }));
+      yield put(
+        submitDappActions.setUserAccount({
+          userAccount,
+          userAccountNumber: accountNumber,
+        })
+      );
     }
   }
 

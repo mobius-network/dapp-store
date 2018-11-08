@@ -15,9 +15,8 @@ export const Label = styled.label`
   font: ${fontSizes.formField} ${fonts.nunitoSans};
   margin: 0 0 5px;
 
-  ${props =>
-    props.required &&
-    `
+  ${props => props.required
+    && `
     &:before {
       content: '*';
       color: ${colors.error};
