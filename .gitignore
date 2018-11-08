@@ -1,15 +1,19 @@
-**/node_modules/**
-**/dist/**
-
 # OSX
 #
 .DS_Store
 
-# developer editor preferences
-.vscode
-
 # Node
 #
-node_modules
+dist/
+node_modules/
 npm-debug.log
 yarn-error.log
+
+# VScode
+#
+.vscode
+
+# coverage
+#
+/coverage
+
