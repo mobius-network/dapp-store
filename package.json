@@ -1,5 +1,5 @@
 {
-  "name": "@mobius-network/web-wallet",
+  "name": "@mobius-network/dapp-store",
   "description": "Mobius Network DApp Store",
   "license": "MIT",
   "scripts": {
