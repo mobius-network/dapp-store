@@ -48,7 +48,7 @@ class Header extends Component {
   }
 
   render() {
-    const { t } = this.props;
+    const { isAuthorized, t } = this.props;
 
     return (
       <Container>
@@ -66,20 +66,18 @@ class Header extends Component {
                   </Link>
                 </ListItem>
                 <ListItem>
-                  <Link
-                    href="https://docs.mobius.network"
-                    theme={this.getLinkTheme()}
-                  >
-                    {t('navigation.developers.developers')}
-                  </Link>
-                </ListItem>
-                <ListItem>
-                  <Link
-                    href="https://docs.mobius.network/docs/submitting-a-dapp"
-                    theme={this.getLinkTheme()}
-                  >
-                    {t('navigation.submitDapp')}
-                  </Link>
+                  {isAuthorized ? (
+                    <Link theme={this.getLinkTheme()} to="/developers/submit">
+                      {t('navigation.developers.submitDApp')}
+                    </Link>
+                  ) : (
+                    <Link
+                      href="https://docs.mobius.network"
+                      theme={this.getLinkTheme()}
+                    >
+                      {t('navigation.developers.developers')}
+                    </Link>
+                  )}
                 </ListItem>
                 {this.renderSessionActions()}
               </ListContainer>

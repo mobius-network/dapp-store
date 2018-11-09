@@ -1,29 +1,41 @@
 import { all } from 'redux-saga/effects';
 
-import initAppSaga from './initApp';
-import watchAccountSaga from './watchAccount';
-import signupSaga from './signup';
-import downloadKeypairSaga from './downloadKeypair';
-import submitTransactionSaga from './submitTransaction';
-import loginSaga from './login';
-import requestSaga from './request';
-import loadAppsSaga from './loadApps';
+import {
+  createUserAccountSaga,
+  mergeUserAccountSaga,
+  submitDappSaga,
+} from './userAccounts';
 import depositAppSaga from './depositApp';
+import downloadKeypairSaga from './downloadKeypair';
+import initAppSaga from './initApp';
+import loadAppsSaga from './loadApps';
+import loginSaga from './login';
 import openDappSaga from './openDapp';
 import releaseBalanceSaga from './releaseBalance';
+import reloadMasterAccountSaga from './reloadMasterAccount';
+import requestSaga from './request';
+import signupSaga from './signup';
+import submitTransactionSaga from './submitTransaction';
+import watchAccountSaga from './watchAccount';
+import watchStoreAccountSaga from './watchStoreAccount';
 
 export default function* () {
   yield all([
-    initAppSaga,
-    watchAccountSaga,
-    signupSaga,
-    downloadKeypairSaga,
-    submitTransactionSaga,
-    loginSaga,
-    requestSaga,
-    loadAppsSaga.listener,
+    createUserAccountSaga,
     depositAppSaga,
+    downloadKeypairSaga,
+    initAppSaga,
+    loadAppsSaga.listener,
+    loginSaga,
+    mergeUserAccountSaga,
     openDappSaga,
     releaseBalanceSaga.listener,
+    reloadMasterAccountSaga,
+    requestSaga,
+    signupSaga,
+    submitDappSaga,
+    submitTransactionSaga,
+    watchAccountSaga,
+    watchStoreAccountSaga,
   ]);
 }

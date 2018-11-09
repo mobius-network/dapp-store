@@ -1,7 +1,9 @@
 import { createSelector } from 'reselect';
+import { Keypair } from 'stellar-sdk';
 
 export const getAccountNumber = (_, { accountNumber = 0 } = {}) => parseInt(accountNumber, 10);
 
+export const getUserAccountNumber = (_, { accountNumber = 0 } = {}) => parseInt(accountNumber, 10);
 export const getSignupStep = state => state.auth.signupStep;
 export const getKeystore = state => state.auth.keystore;
 export const getMnemonic = state => state.auth.mnemonic;
@@ -41,5 +43,18 @@ export const getKeypairFor = createSelector(
     }
 
     return wallet.getKeypair(accountNumber);
+  }
+);
+
+export const getUserAccountKeypair = createSelector(
+  [getWallet, getUserAccountNumber],
+  (wallet, userAccountNumber) => {
+    if (!wallet) {
+      return undefined;
+    }
+
+    const rawKey = wallet.derive(`m/44'/148'/1868'/0'/${userAccountNumber}'`);
+
+    return Keypair.fromRawEd25519Seed(rawKey);
   }
 );

@@ -27,6 +27,7 @@ export const getMobiBalance = createAssetBalanceSelector(
   getBalance,
   getMobiAsset
 );
+
 export const getNativeBalance = createAssetBalanceSelector(
   getBalance,
   getNativeAsset
@@ -51,4 +52,15 @@ export const getAssetValueFixed = createSelector(
 export const getMasterTrustlineCreated = createSelector(
   getBalance,
   balance => balance && balance.mobi !== undefined
+);
+
+export const getMasterAccountData = createSelector(
+  getMasterAccount,
+  (account) => {
+    if (!account.data_attr['mobius.store.meta']) {
+      return {};
+    }
+
+    return JSON.parse(atob(account.data_attr['mobius.store.meta']));
+  }
 );

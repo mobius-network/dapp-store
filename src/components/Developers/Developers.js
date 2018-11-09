@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
-import { Switch, Route } from 'react-router-dom';
-// import PrivateRoute from 'components/shared/PrivateRoute';
+import { Switch } from 'react-router-dom';
 
-// import MyDapps from './MyDapps';
-// import SubmitDapp from './SubmitDapp';
-import GettingStarted from './GettingStarted';
+import PrivateRoute from 'components/shared/PrivateRoute';
+
+import SubmitDapp from './SubmitDapp';
 
 class Developers extends Component {
   render() {
     return (
       <Switch>
-        <Route component={GettingStarted} path="/developers" />
+        <PrivateRoute component={SubmitDapp} exact path="/developers/submit" />
       </Switch>
     );
   }

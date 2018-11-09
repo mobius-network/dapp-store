@@ -1,58 +1,100 @@
 {
   "translation": {
-    "navigation": {
-      "browseDapps": "Browse DApps",
-      "copyright": "Copyright",
-      "developers": {
-        "developers": "Developers",
-        "gettingStarted": "Getting Started"
-      },
-      "login": "Login",
-      "logout": "Logout",
-      "privacy": "Privacy",
-      "signUp": "Sign Up",
-      "submitDapp": "Submit DApp",
-      "terms": "Terms of Service",
-      "wallet": {
-        "addFunds": "Add Funds",
-        "balance": "Wallet Balance",
-        "withdrawFunds": "Withdraw Funds"
-      }
+    "addFunds": {
+      "completeButton": "Done",
+      "completeText": "Added successfully!",
+      "title": "Add",
+      "waitingText": "Use the following address to transfer <0>{{assetName}}</0> to your DApp Store wallet.",
+      "waitingTitle": "Transfer from External Wallet"
     },
-    "shared": {
-      "cancel": "Cancel",
-      "close": "Close",
-      "continue": "Continue",
-      "loading": "Loading"
+    "appAllocation": {
+      "releaseButton": "Release balance"
+    },
+    "appAllocations": {
+      "caption": "These are the DApps that you’ve transferred MOBI to but haven’t spent yet. Release a DApp balance if you’d like to return the coins to your primary balance.",
+      "title": "Balance Allocation"
+    },
+    "appDepositForm": {
+      "amountLabel": "Amount",
+      "caption": "Only put in as much as you’re willing to spend.",
+      "confirmationText": "The developer can take these coins at any point in time. We recommend depositing in smaller increments of 10 or 100, depending on how much you need to play.",
+      "confirmationTitle": "Are you sure you want to deposit this much?",
+      "submitButton": "Submit Deposit"
+    },
+    "assetAllocation": {
+      "allocatedBalance": "Allocated to DApps",
+      "captionMobi": "Use your MOBI to make purchases within DApps.",
+      "captionNative": "Each DApp you use puts a hold on 3 XLM until you close out the DApp balance.",
+      "deposit": "Deposit"
+    },
+    "balanceButtons": {
+      "balance": "DApp balance: ",
+      "depositFunds": "Deposit Funds",
+      "goToAppButton": "GO TO APP",
+      "goToAppUnauthorizedButton": "LOGIN TO OPEN APP",
+      "releaseFunds": "Release Funds",
+      "submitReserveConfirmationText": "Opening this app will reserve 3 XLM in order to open a stellar account. You can release this account and receive the XLM back at any time from your account dashboard.",
+      "submitReserveConfirmationTitle": "Reserve XLM for App?"
+    },
+    "copyField": {
+      "title": "Copy to clipboard"
+    },
+    "currentAddress": {
+      "statusText": "Waiting for transfer…"
+    },
+    "dappModal": {
+      "appSupportLink": "Support",
+      "appWebsiteLink": "Website"
+    },
+    "dappForm": {
+      "authUrlFieldCaption": "Full URL of your authentication endpoint (ex. https://mygame.com/auth). HTTPS-only. Should be configured to allow CORS requests from the DApp Store (store.mobius.network or store.beta.mobius.network).",
+      "authUrlFieldLabel": "Authentication URL",
+      "descriptionFieldCaption": "Full description of your app (1-3 paragraphs). Please include pricing details.",
+      "descriptionFieldLabel": "Description",
+      "imageUrlFieldCaption": "Full URL of your application logo image (ex. https://mygame.com/logo.png). HTTPS-only. JPEG or PNG image, recommended size: 225x225.",
+      "imageUrlFieldLabel": "DApp Icon",
+      "nameFieldCaption": "What’s your DApp called?",
+      "nameFieldLabel": "Name",
+      "promptMessage": "You have unsaved changes on this page. Do you want to leave this page and discard your changes or stay on this page?",
+      "submitButton": "Submit",
+      "supportUrlFieldCaption": "Either a link to your customer support portal (HTTP/HTTPS) or an email in 'mailto:support@example.com' format.",
+      "supportUrlFieldLabel": "Customer Support",
+      "taglineFieldCaption": "Short one-phrase description of your app (max 60 characters)",
+      "taglineFieldLabel": "Tagline",
+      "urlFieldCaption": "Full URL of your application starting page (ex. https://app.mygame.com). HTTPS-only. After successful authentication DApp Store will redirect the user to this URL, passing the token acquired from your authentication endpoint as a query string 'token' param.",
+      "urlFieldLabel": "DApp URL",
+      "websiteUrlFieldCaption": "Full URL of your application landing page or developer website (ex. https://mygame.com).",
+      "websiteUrlFieldLabel": "Homepage URL"
     },
     "dappStore": {
+      "devWalkThroughTitle": "Mobius DApp Store Developer Walk-Through",
       "submitButton": "GET STARTED",
       "submitText": "The Mobius SDK makes it easy to start collecting coin payments.",
       "submitTitle": "Submit Your Own DApps",
       "subtitle": "Checkout great apps that you can pay for using MOBI.",
       "title": "DApp Store",
       "userWalkThroughIcon": "See how it works",
-      "userWalkThroughTitle": "Mobius DApp Store User Walk-Through",
-      "devWalkThroughTitle": "Mobius DApp Store Developer Walk-Through"
+      "userWalkThroughTitle": "Mobius DApp Store User Walk-Through"
+    },
+    "developersLayout": {
+      "navigationTitle": "DEVELOPERS"
+    },
+    "downloadKeypair": {
+      "caption": "You will need your key pair file in order to login to you wallet in the future. Store it in a safe place.",
+      "downloadButton": "Download Now",
+      "title": "Download Your Key Pair"
+    },
+    "featuredDapp": {
+      "goToAppButton": "GO TO APP",
+      "readMoreButton": "Read More on Medium",
+      "title": "Featured DApp"
+    },
+    "fileInput": {
+      "buttonText": "Choose File"
     },
     "footer": {
       "copyright": "© 2018 Mochi, Inc. All Rights Reserved.",
       "trademarks": "MOBIUS™, the MOBIUS logo, MOBI™, and The DApp Store™ are trademarks of Mochi, Inc. Product names, logos, and other trademarks referred to within mobius.network are the property of their respective trademark owners, as applicable. The owners of any such trademarks are not affiliated with Mobius or our products and services."
-    },
-    "login": {
-      "caption": "Access your wallet and submit DApps.",
-      "signupButton": "Sign Up",
-      "signupText": "Don’t have an account?",
-      "title": "Login"
-    },
-    "dappModal": {
-      "appWebsiteLink": "Website",
-      "appSupportLink": "Support"
-    },
-    "featuredDapp": {
-      "title": "Featured DApp",
-      "readMoreButton": "Read More on Medium",
-      "goToAppButton": "GO TO APP"
     },
     "gettingStarted": {
       "apiDocsLink": "API Docs",
@@ -67,46 +109,42 @@
       "stellarVideosLink": "Stellar Explainer Videos",
       "title": "Getting Started"
     },
-    "socialLinks": {
-      "weChatModalTitle": "WeChat QR Code"
+    "login": {
+      "caption": "Access your wallet and submit DApps.",
+      "signupButton": "Sign Up",
+      "signupText": "Don’t have an account?",
+      "title": "Login"
     },
     "loginForm": {
       "keyfileField": "Keyfile",
       "passwordField": "Password",
       "submitButton": "Login"
     },
-    "transferMobi": {
-      "caption": "You’ll use your MOBI to make purchases within DApps.",
-      "title": "Add MOBI",
-      "completeText": "Added successfully!",
-      "completeButton": "Browse DApp store",
-      "purchaseTabTitle": "Use XLM",
-      "externalTransferTabTitle": "External Transfer",
-      "externalTransferTitle": "Transfer from External Wallet",
-      "externalTransferCaption": "Use the following address to transfer MOBI to your DApp Store wallet."
-    },
-    "transferXlm": {
-      "caption": "DApp store transaction fees are charged from your XLM balance. You need to have a minimum balance of",
-      "title": "Transfer XLM",
-      "waitingCaption": "Use the following address to transfer XLM to your DApp Store wallet.",
-      "waitingTitle": "Transfer from External Wallet"
-    },
-    "welcomeScreen": {
-      "caption": "Let’s finish setting up your Mobius wallet",
-      "firstStep": "Transfer XLM to your new wallet",
-      "secondStep": "Add MOBI to your wallet",
-      "thirdStep": "Start making purchases in DApps",
-      "title": "Welcome to Mobius!"
-    },
-    "downloadKeypair": {
-      "caption": "You will need your key pair file in order to login to you wallet in the future. Store it in a safe place.",
-      "downloadButton": "Download Now",
-      "title": "Download Your Key Pair"
-    },
     "mnemonic": {
       "caption": "If you ever lose your key pair you can use your mnemonic phrase to recover your account.",
       "submitButton": "I’ve Written it Down",
       "title": "Write Down Your Mnemonic Phrase"
+    },
+    "navigation": {
+      "browseDapps": "Browse DApps",
+      "copyright": "Copyright",
+      "developers": {
+        "developers": "Developers",
+        "gettingStarted": "Getting Started",
+        "documentation": "Documentation",
+        "submitDApp": "Submit Dapp"
+      },
+      "login": "Login",
+      "logout": "Logout",
+      "privacy": "Privacy",
+      "signUp": "Sign Up",
+      "submitDapp": "Submit DApp",
+      "terms": "Terms of Service",
+      "wallet": {
+        "addFunds": "Add Funds",
+        "balance": "Wallet Balance",
+        "withdrawFunds": "Withdraw Funds"
+      }
     },
     "passwordForm": {
       "caption": "We’ll create a new Mobius wallet for you to make purchases in the DApp store.",
@@ -116,36 +154,6 @@
       "passwordFieldLabel": "Set Password",
       "title": "Sign Up"
     },
-    "addFunds": {
-      "title": "Add",
-      "completeText": "Added successfully!",
-      "completeButton": "Done",
-      "waitingTitle": "Transfer from External Wallet",
-      "waitingText": "Use the following address to transfer <0>{{assetName}}<\/0> to your DApp Store wallet."
-    },
-    "withdrawForm": {
-      "amountFieldLabel": "Amount",
-      "amountFieldCaption": "Enter the amount of <0>{{assetName}<\/0> to transfer",
-      "availableBalance": "Available balance:",
-      "destinationFieldLabel": "Wallet Address",
-      "destinationFieldCaption": "Enter the address of the external wallet",
-      "submitButton": "Submit transfer"
-    },
-    "walletLayout": {
-      "navigationTitle": "WALLET"
-    },
-    "developersLayout": {
-      "navigationTitle": "DEVELOPERS"
-    },
-    "copyField": {
-      "title": "Copy to clipboard"
-    },
-    "currentAddress": {
-      "statusText": "Waiting for transfer…"
-    },
-    "fileInput": {
-      "buttonText": "Choose File"
-    },
     "purchaseMobi": {
       "approx": "Approximately",
       "calculating": "Calculating...",
@@ -154,38 +162,81 @@
       "submitButton": "Buy MOBI",
       "title": "Purchase MOBI"
     },
-    "balanceButtons": {
-      "balance": "DApp balance: ",
-      "depositFunds": "Deposit Funds",
-      "goToAppButton": "GO TO APP",
-      "goToAppUnauthorizedButton": "LOGIN TO OPEN APP",
-      "releaseFunds": "Release Funds",
-      "submitReserveConfirmationTitle": "Reserve XLM for App?",
-      "submitReserveConfirmationText": "Opening this app will reserve 3 XLM in order to open a stellar account. You can release this account and receive the XLM back at any time from your account dashboard."
+    "shared": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "continue": "Continue",
+      "loading": "Loading"
     },
-    "appAllocations": {
-      "title": "Balance Allocation",
-      "caption": "These are the DApps that you’ve transferred MOBI to but haven’t spent yet. Release a DApp balance if you’d like to return the coins to your primary balance."
+    "socialLinks": {
+      "weChatModalTitle": "WeChat QR Code"
     },
-    "assetAllocation": {
-      "allocatedBalance": "Allocated to DApps",
-      "deposit": "Deposit",
-      "captionNative": "Each DApp you use puts a hold on 3 XLM until you close out the DApp balance.",
-      "captionMobi": "Use your MOBI to make purchases within DApps."
+    "submitDapp": {
+      "agreementModal": {
+        "agree": "I agree to the DApp store guideliness.",
+        "header": "By submitting an app to the DApp store, you acknowledge the following:",
+        "submitButton": "SUBMIT",
+        "text": "You must only withdraw coins from the user’s account when the user “spends” the coins within your app. \n Violation of guidelines may result in the removal of your app from the DApp store.",
+        "title": "DApp Store Guidelines"
+      },
+      "completed": {
+        "goToMyDappsButton": "GO TO MY DAPPS",
+        "message": "Your DApp was successfully submitted",
+        "title": "Completed"
+      },
+      "createAccount": {
+        "title": "Step 1: Create DApp Account",
+        "explanation": "You need to create DApp-specific account"
+      },
+      "detailsForm": {
+        "cancelConfirmationText": "Are you sure?",
+        "cancelConfirmationTitle": "Cancel confirm",
+        "title": "Step 3: DApp Details"
+      },
+      "setup": {
+        "title": "Step 2: Setup your DApp",
+        "explanation": "Setup your DApp using the following keypair to receive payments:",
+        "publicKey": "Public Key:",
+        "secretkey": "Secret Key:"
+      }
+    },
+    "transferMobi": {
+      "caption": "You’ll use your MOBI to make purchases within DApps.",
+      "completeButton": "Browse DApp store",
+      "completeText": "Added successfully!",
+      "externalTransferCaption": "Use the following address to transfer MOBI to your DApp Store wallet.",
+      "externalTransferTabTitle": "External Transfer",
+      "externalTransferTitle": "Transfer from External Wallet",
+      "purchaseTabTitle": "Use XLM",
+      "title": "Add MOBI"
+    },
+    "transferXlm": {
+      "caption": "DApp store transaction fees are charged from your XLM balance. You need to have a minimum balance of",
+      "title": "Transfer XLM",
+      "waitingCaption": "Use the following address to transfer XLM to your DApp Store wallet.",
+      "waitingTitle": "Transfer from External Wallet"
+    },
+    "walletLayout": {
+      "navigationTitle": "WALLET"
+    },
+    "welcomeScreen": {
+      "caption": "Let’s finish setting up your Mobius wallet",
+      "firstStep": "Transfer XLM to your new wallet",
+      "secondStep": "Add MOBI to your wallet",
+      "thirdStep": "Start making purchases in DApps",
+      "title": "Welcome to Mobius!"
+    },
+    "withdrawForm": {
+      "amountFieldCaption": "Enter the amount of <0>{{assetName}</0> to transfer",
+      "amountFieldLabel": "Amount",
+      "availableBalance": "Available balance:",
+      "destinationFieldCaption": "Enter the address of the external wallet",
+      "destinationFieldLabel": "Wallet Address",
+      "submitButton": "Submit transfer"
     },
     "withdrawFunds": {
       "caption": "Transfer to an external wallet.",
       "title": "Withdraw Funds"
-    },
-    "appDepositForm": {
-      "amountLabel": "Amount",
-      "caption": "Only put in as much as you’re willing to spend.",
-      "confirmationText": "The developer can take these coins at any point in time. We recommend depositing in smaller increments of 10 or 100, depending on how much you need to play.",
-      "confirmationTitle": "Are you sure you want to deposit this much?",
-      "submitButton": "Submit Deposit"
-    },
-    "appAllocation": {
-      "releaseButton": "Release balance"
     }
   }
 }

@@ -10,10 +10,19 @@ export const Container = styled.div`
   }
 `;
 
-export const Label = styled.p`
+export const Label = styled.label`
   color: ${colors.textDefault};
   font: ${fontSizes.formField} ${fonts.nunitoSans};
   margin: 0 0 5px;
+
+  ${props => props.required
+    && `
+    &:before {
+      content: '*';
+      color: ${colors.error};
+      margin-right: 5px;
+    }
+  `};
 `;
 
 export const Caption = styled.p`

@@ -2,7 +2,7 @@ import {
   createValidator,
   combineValidators as sourceCombine,
 } from 'revalidate';
-import { isObject } from 'lodash';
+import { isObject, isNil } from 'lodash';
 
 // Allows to access `props` in validator
 export const combineValidators = (config) => {
@@ -28,7 +28,9 @@ export const isEquals = comparisonValue => createValidator(
 
 export const isRationalNumber = createValidator(
   message => (value) => {
-    if (!/^(\d*\.)?\d+$/i.test(value)) {
+    const regexp = /^(\d*\.)?\d+$/i;
+
+    if (!regexp.test(value)) {
       return message;
     }
 
@@ -46,4 +48,49 @@ export const isLessThanProp = ({ name, label }) => createValidator(
     return undefined;
   },
   field => `${field} must be a less than ${label}`
+);
+
+export const urlPattern = /^https:\/\/[\w.-]+(?:\.[\w-]+)+[\w\-_~:/?#[\]@!&',;=.]+$/;
+
+export const isUrl = createValidator(
+  message => (value) => {
+    const regexp = urlPattern;
+
+    if (!regexp.test(value)) {
+      return message;
+    }
+
+    return undefined;
+  },
+  field => `${field} must be an URL string`
+);
+
+export const mailtoUrlPattern = /^mailto:[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+export const isMailtoUrl = createValidator(
+  message => (value) => {
+    const regexp = mailtoUrlPattern;
+
+    if (!regexp.test(value)) {
+      return message;
+    }
+
+    return undefined;
+  },
+  field => `${field} must be vaild mailto link`
+);
+
+export const isTrueIsh = createValidator(
+  message => (value) => {
+    if (isNil(value)) {
+      return message;
+    }
+
+    if (!value) {
+      return message;
+    }
+
+    return undefined;
+  },
+  field => `${field} must be trueish`
 );
