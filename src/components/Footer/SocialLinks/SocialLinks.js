@@ -2,13 +2,8 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {
-  faTelegramPlane,
-  faWeixin,
-  faMeetup,
   faTwitter,
   faFacebook,
-  faWeibo,
-  faReddit,
   faGithub,
   faMedium,
 } from '@fortawesome/fontawesome-free-brands';
@@ -27,13 +22,8 @@ import {
 } from './styles';
 
 const socialUrls = {
-  telegram: 'https://t.me/mobius_network',
-  kakao: 'https://open.kakao.com/o/gRSkdgM',
-  meetup: 'http://meetu.ps/c/3T5fw/FKt7k/f',
   twitter: 'https://twitter.com/mobius_network',
   facebook: 'https://www.facebook.com/mobiusnet',
-  weibo: 'https://weibo.com/mobiuschina',
-  reddit: 'https://www.reddit.com/r/MobiusNetwork/',
   github: 'https://github.com/mobius-network',
   medium: 'https://medium.com/mobius-network',
   email: 'mailto:hello@mobius.network',
@@ -58,32 +48,6 @@ class SocialLinks extends Component {
       <Fragment>
         <ListContainer>
           <ListItem>
-            <SocialLink href={socialUrls.telegram} title="Telegram">
-              <FontAwesomeIcon fixedWidth icon={faTelegramPlane} size="lg" />
-            </SocialLink>
-          </ListItem>
-
-          <ListItem>
-            <KakaoTalkLink href={socialUrls.kakao} title="KakaoTalk" />
-          </ListItem>
-
-          <ListItem>
-            <WeChatButton
-              onClick={this.toggleWeChatModal}
-              title="WeChat"
-              type="button"
-            >
-              <FontAwesomeIcon fixedWidth icon={faWeixin} size="lg" />
-            </WeChatButton>
-          </ListItem>
-
-          <ListItem>
-            <SocialLink href={socialUrls.meetup} title="Meetup">
-              <FontAwesomeIcon fixedWidth icon={faMeetup} size="lg" />
-            </SocialLink>
-          </ListItem>
-
-          <ListItem>
             <SocialLink href={socialUrls.twitter} title="Twitter">
               <FontAwesomeIcon fixedWidth icon={faTwitter} size="lg" />
             </SocialLink>
@@ -92,18 +56,6 @@ class SocialLinks extends Component {
           <ListItem>
             <SocialLink href={socialUrls.facebook} title="Facebook">
               <FontAwesomeIcon fixedWidth icon={faFacebook} size="lg" />
-            </SocialLink>
-          </ListItem>
-
-          <ListItem>
-            <SocialLink href={socialUrls.weibo} title="Weibo">
-              <FontAwesomeIcon fixedWidth icon={faWeibo} size="lg" />
-            </SocialLink>
-          </ListItem>
-
-          <ListItem>
-            <SocialLink href={socialUrls.reddit} title="Reddit">
-              <FontAwesomeIcon fixedWidth icon={faReddit} size="lg" />
             </SocialLink>
           </ListItem>
 
