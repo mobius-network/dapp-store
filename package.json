@@ -1,5 +1,5 @@
 {
-  "name": "@mobius-network/web-wallet",
+  "name": "@mobius-network/dapp-store",
   "description": "Mobius Network DApp Store",
   "license": "MIT",
   "scripts": {
@@ -25,7 +25,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.13",
     "@fortawesome/react-fontawesome": "^0.0.20",
     "@mobius-network/mobius-client-js": "^0.3.2",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "base64-js": "^1.3.0",
     "downloadjs": "^1.4.7",
     "event-filter-redux-middleware": "^0.0.2",
