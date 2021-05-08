@@ -34,7 +34,7 @@
     "i18next": "^11.3.3",
     "i18next-browser-languagedetector": "^2.2.0",
     "immutability-helper": "^2.7.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "nanoid": "^1.0.7",
     "normalizr": "^3.2.4",
     "prop-types": "^15.6.2",
