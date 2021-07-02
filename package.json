@@ -59,7 +59,7 @@
     "revalidate": "^1.2.0",
     "scrypt-async": "^2.0.1",
     "stellar-hd-wallet": "^0.0.6",
-    "stellar-sdk": "^0.8.1",
+    "stellar-sdk": "^8.2.3",
     "styled-components": "^3.2.6",
     "tweetnacl": "^1.0.0"
   },
